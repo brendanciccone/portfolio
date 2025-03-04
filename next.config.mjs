@@ -14,7 +14,7 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    unoptimized: true,
+    // Enable Vercel's image optimization
   },
   experimental: {
     webpackBuildWorker: true,
