@@ -14,7 +14,12 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    // Enable Vercel's image optimization
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'hebbkx1anhila5yf.public.blob.vercel-storage.com',
+      },
+    ],
   },
   experimental: {
     webpackBuildWorker: true,
