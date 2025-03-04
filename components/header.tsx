@@ -83,7 +83,9 @@ export default function Header() {
         </nav>
 
         <div className="hidden md:flex items-center gap-3">
-          {mounted && <ThemeSwitcher />}
+          <div className="w-10 h-10 flex items-center justify-center">
+            {mounted && <ThemeSwitcher />}
+          </div>
           <Button asChild>
             <Link href="/contact" prefetch={true}>
               Let's chat
@@ -94,7 +96,9 @@ export default function Header() {
 
         {/* Mobile Menu Button */}
         <div className="flex md:hidden items-center gap-3">
-          {mounted && <ThemeSwitcher />}
+          <div className="w-10 h-10 flex items-center justify-center">
+            {mounted && <ThemeSwitcher />}
+          </div>
           <Button
             variant="default"
             size="icon"
