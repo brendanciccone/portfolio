@@ -2,7 +2,7 @@
 
 ![Brendan Ciccone Portfolio](https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image.jpg-d0SidsvzAZGPwLQFoyhGS1atLlTVa3.jpeg)
 
-A modern, responsive portfolio website.
+A modern, responsive portfolio website. Check it out live [here](https://www.brendanciccone.com/).
 
 ## Features
 
@@ -10,7 +10,7 @@ A modern, responsive portfolio website.
 - **Dark/Light Mode**: Theme toggle with system preference detection
 - **Project Showcase**: Detailed case studies of past work
 - **Animations**: Subtle fade-in animations for enhanced user experience
-- **Contact Form**: Direct communication channel for potential clients
+- **Contact Form**: Direct communication channel
 - **SEO Optimized**: Meta tags and OpenGraph images for better sharing
 - **Accessibility**: Built with accessibility in mind
 
