@@ -34,7 +34,7 @@ export default function Header() {
         <Link href="/" className="flex items-center gap-2">
           <Image
             src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Profile.jpg-al2nGt8LMiAxExrg2Jeb9tDq6VnRHb.jpeg"
-            alt="Brendan Ciccone"
+            alt="Profile picture of Brendan Ciccone"
             width={40}
             height={40}
             className="rounded-full object-cover"
