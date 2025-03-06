@@ -27,8 +27,8 @@ export default function Portfolio() {
                   <Image
                     src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/7-WhNtJkfUVhAkOhZSBPAbhHNURWpkYU.png"
                     alt="Spontivly social analytics dashboard showing engagement metrics, impression trends, and top performing content"
-                    width={600}
-                    height={400}
+                    width={1200}
+                    height={800}
                     className="w-full"
                     priority
                   />
@@ -44,7 +44,7 @@ export default function Portfolio() {
                 {/* Badges in the middle with proper spacing */}
                 <div className="flex flex-wrap gap-2 sm:gap-3 mb-5">
                   <span className="text-xs bg-secondary px-3 py-1 rounded-full">2023</span>
-                  <span className="text-xs bg-secondary px-3 py-1 rounded-full">Saas</span>
+                  <span className="text-xs bg-secondary px-3 py-1 rounded-full">Seed</span>
                   <span className="text-xs bg-secondary px-3 py-1 rounded-full">Data</span>
                 </div>
 
@@ -66,8 +66,8 @@ export default function Portfolio() {
                   <Image
                     src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/10-REigS5TLwDhOSRkjUpSoZzM0XHLPy1.png"
                     alt="Immertec VR medical training platform showing a live surgical procedure with multiple participating doctors, medical imaging views, and interactive controls for remote learning"
-                    width={600}
-                    height={400}
+                    width={1200}
+                    height={800}
                     className="w-full"
                     priority
                   />
@@ -105,8 +105,8 @@ export default function Portfolio() {
                   <Image
                     src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/6-T3wsvxOlM1iRLfYYJAzhzlAlH5YblJ.png"
                     alt="Paidly mobile app showing invoice list, automatic reminders feature, and customer creation form"
-                    width={600}
-                    height={400}
+                    width={1200}
+                    height={800}
                     className="w-full"
                     priority
                   />
@@ -143,8 +143,8 @@ export default function Portfolio() {
                   <Image
                     src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2-YNbm8YXYTIRuRh45avNSzDpqW2VQU9.png"
                     alt="Magier AI chatbot mobile app screens showing settings, chat interface, and subscription options"
-                    width={600}
-                    height={400}
+                    width={1200}
+                    height={800}
                     className="w-full"
                     priority
                   />
