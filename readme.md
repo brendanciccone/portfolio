@@ -1,8 +1,7 @@
-# Brendan Ciccone Portfolio
+# Portfolio
+A modern, responsive portfolio website I made for myself. Check it out live [here](https://www.brendanciccone.com/).
 
-<img width="800" alt="Screenshot of Brendan Ciccone's portfolio showing a case study" src="https://github.com/user-attachments/assets/41115fc4-73ec-470f-acad-69c09610bbf0"/>
-
-A modern, responsive portfolio website. Check it out live [here](https://www.brendanciccone.com/).
+<img width="100%" alt="Screenshot of Brendan Ciccone's portfolio showing a case study" src="https://github.com/user-attachments/assets/41115fc4-73ec-470f-acad-69c09610bbf0"/>
 
 ## Features
 
