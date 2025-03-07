@@ -1,6 +1,6 @@
 # Brendan Ciccone Portfolio
 
-<img width="600" alt="Screenshot of Brendan Ciccone's portfolio showing a case study" src="https://github.com/user-attachments/assets/41115fc4-73ec-470f-acad-69c09610bbf0"/>
+<img width="800" alt="Screenshot of Brendan Ciccone's portfolio showing a case study" src="https://github.com/user-attachments/assets/41115fc4-73ec-470f-acad-69c09610bbf0"/>
 
 A modern, responsive portfolio website. Check it out live [here](https://www.brendanciccone.com/).
 
