@@ -51,7 +51,14 @@ export const metadata: Metadata = {
     title: "Brendan Ciccone - 0 → 1 Senior Product Designer",
     description:
       "Brendan Ciccone is a 0 → 1 Senior Product Designer with 7 years of experience turning ideas into fully realized B2B and B2C products across healthcare, cybersecurity, and finance.",
-    images: ["/opengraph-image.png"],
+    images: [
+      {
+        url: "/opengraph-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Brendan Ciccone - 0 → 1 Senior Product Designer"
+      }
+    ],
   },
     generator: 'v0.dev'
 }
