@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     siteName: "Brendan Ciccone",
     images: [
       {
-        url: "/opengraph-image.png", // This will use the image we're now generating
+        url: "https://www.brendanciccone.com/opengraph-image?e50fb33e0392c9b1",
         width: 1200,
         height: 630,
         alt: "Brendan Ciccone - 0 → 1 Senior Product Designer",
@@ -51,9 +51,10 @@ export const metadata: Metadata = {
     title: "Brendan Ciccone - 0 → 1 Senior Product Designer",
     description:
       "Brendan Ciccone is a 0 → 1 Senior Product Designer with 7 years of experience turning ideas into fully realized B2B and B2C products across healthcare, cybersecurity, and finance.",
+    creator: "@brendanciccone",
     images: [
       {
-        url: "/opengraph-image.png",
+        url: "https://www.brendanciccone.com/opengraph-image?e50fb33e0392c9b1",
         width: 1200,
         height: 630,
         alt: "Brendan Ciccone - 0 → 1 Senior Product Designer"
