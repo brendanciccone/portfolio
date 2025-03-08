@@ -16,11 +16,15 @@ export const contentType = "image/png"
 export default async function Image() {
   try {
     // Use the provided image URL
-    const imageUrl =
-      "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image.jpg-d0SidsvzAZGPwLQFoyhGS1atLlTVa3.jpeg"
+    const imageUrl = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image.jpg-d0SidsvzAZGPwLQFoyhGS1atLlTVa3.jpeg"
 
-    // Fetch the image
-    const imageResponse = await fetch(imageUrl, { cache: "force-cache" })
+    // Fetch the image with proper headers
+    const imageResponse = await fetch(imageUrl, {
+      cache: "force-cache",
+      headers: {
+        "Accept": "image/jpeg",
+      },
+    })
 
     if (!imageResponse.ok) {
       throw new Error(`Failed to fetch image: ${imageResponse.status}`)
@@ -37,6 +41,7 @@ export default async function Image() {
           alignItems: "center",
           justifyContent: "center",
           background: "white",
+          position: "relative",
         }}
       >
         <img
@@ -46,11 +51,36 @@ export default async function Image() {
             width: "100%",
             height: "100%",
             objectFit: "cover",
+            position: "absolute",
+            top: 0,
+            left: 0,
           }}
         />
+        <div
+          style={{
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            right: 0,
+            padding: "40px",
+            background: "linear-gradient(to top, rgba(0,0,0,0.7), transparent)",
+            color: "white",
+            fontSize: "32px",
+            fontWeight: "bold",
+            textAlign: "center",
+          }}
+        >
+          Brendan Ciccone
+          <div style={{ fontSize: "24px", marginTop: "8px", opacity: 0.9 }}>
+            0 → 1 Senior Product Designer
+          </div>
+        </div>
       </div>,
       {
         ...size,
+        headers: {
+          "Cache-Control": "public, max-age=31536000, immutable",
+        },
       },
     )
   } catch (error) {
@@ -80,6 +110,9 @@ export default async function Image() {
       </div>,
       {
         ...size,
+        headers: {
+          "Cache-Control": "public, max-age=31536000, immutable",
+        },
       },
     )
   }

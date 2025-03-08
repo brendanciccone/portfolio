@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     siteName: "Brendan Ciccone",
     images: [
       {
-        url: "https://www.brendanciccone.com/opengraph-image?e50fb33e0392c9b1",
+        url: "/opengraph-image",
         width: 1200,
         height: 630,
         alt: "Brendan Ciccone - 0 → 1 Senior Product Designer",
@@ -54,14 +54,13 @@ export const metadata: Metadata = {
     creator: "@brendanciccone",
     images: [
       {
-        url: "https://www.brendanciccone.com/opengraph-image?e50fb33e0392c9b1",
+        url: "/opengraph-image",
         width: 1200,
         height: 630,
         alt: "Brendan Ciccone - 0 → 1 Senior Product Designer"
       }
     ],
   },
-    generator: 'v0.dev'
 }
 
 export default function RootLayout({
@@ -82,7 +81,3 @@ export default function RootLayout({
     </html>
   )
 }
-
-
-
-import './globals.css'
