@@ -1,19 +1,11 @@
-import { Inter } from "next/font/google"
+import { GeistSans } from "geist/font/sans"
 import type React from "react"
 import type { Metadata } from "next"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import ScrollToTop from "@/components/scroll-to-top"
-import { Analytics } from "@vercel/analytics/react"
+import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
-
-// Load Inter font
-const inter = Inter({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  display: "swap",
-  variable: "--font-inter",
-})
 
 export const metadata: Metadata = {
   title: "Brendan Ciccone - 0 → 1 Senior Product Designer",
@@ -69,7 +61,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={inter.className}>
+    <html lang="en" suppressHydrationWarning className={GeistSans.className}>
       <body>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <ScrollToTop />
