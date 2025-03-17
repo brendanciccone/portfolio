@@ -4,6 +4,12 @@ import { ArrowRight } from "lucide-react"
 import Footer from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { FadeIn } from "@/components/fade-in"
+import { generatePageMetadata } from "@/lib/metadata"
+
+export const metadata = generatePageMetadata({
+  title: "About",
+  path: "/about",
+})
 
 export default function About() {
   return (

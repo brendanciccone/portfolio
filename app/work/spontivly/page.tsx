@@ -1,3 +1,15 @@
+import { generatePageMetadata, projectDetails } from "@/lib/metadata";
+
+export const metadata = generatePageMetadata({
+  title: projectDetails.spontivly.title,
+  description: `${projectDetails.spontivly.description} by Brendan Ciccone, a 0 → 1 Senior Product Designer with 7 years of experience turning ideas into fully realized products.`,
+  path: "/work/spontivly",
+  imageUrl: projectDetails.spontivly.image.url,
+  imageAlt: projectDetails.spontivly.image.alt,
+  imageWidth: 1200,
+  imageHeight: 800,
+});
+
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"

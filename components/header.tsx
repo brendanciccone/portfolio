@@ -48,7 +48,7 @@ export default function Header() {
           <div className="flex space-x-2">
             <Link
               href="/"
-              className={`text-sm h-10 px-4 flex items-center justify-center rounded-md transition-colors duration-200 ${
+              className={`text-sm h-10 px-4 flex items-center justify-center rounded-md transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
                 pathname === "/"
                   ? "font-medium bg-secondary text-foreground"
                   : "text-muted-foreground hover:text-foreground hover:bg-secondary/40"
@@ -60,7 +60,7 @@ export default function Header() {
             </Link>
             <Link
               href="/about"
-              className={`text-sm h-10 px-4 flex items-center justify-center rounded-md transition-colors duration-200 ${
+              className={`text-sm h-10 px-4 flex items-center justify-center rounded-md transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
                 pathname === "/about"
                   ? "font-medium bg-secondary text-foreground"
                   : "text-muted-foreground hover:text-foreground hover:bg-secondary/40"
@@ -72,7 +72,7 @@ export default function Header() {
             </Link>
             <Link
               href="/contact"
-              className={`text-sm h-10 px-4 flex items-center justify-center rounded-md transition-colors duration-200 ${
+              className={`text-sm h-10 px-4 flex items-center justify-center rounded-md transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
                 pathname === "/contact"
                   ? "font-medium bg-secondary text-foreground"
                   : "text-muted-foreground hover:text-foreground hover:bg-secondary/40"
@@ -106,7 +106,17 @@ export default function Header() {
             variant="default"
             size="icon"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                setMobileMenuOpen(!mobileMenuOpen)
+              }
+              if (e.key === 'Escape' && mobileMenuOpen) {
+                setMobileMenuOpen(false)
+              }
+            }}
             aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-menu"
             className="bg-foreground text-background hover:bg-foreground/90"
           >
             {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -128,7 +138,7 @@ export default function Header() {
           <div>
             <Link
               href="/"
-              className={`text-sm inline-flex py-2 px-3 rounded-md transition-colors duration-200 ${
+              className={`text-sm inline-flex py-2 px-3 rounded-md transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
                 pathname === "/"
                   ? "font-medium bg-secondary text-foreground"
                   : "hover:bg-secondary/40 hover:text-foreground"
@@ -142,7 +152,7 @@ export default function Header() {
           <div>
             <Link
               href="/about"
-              className={`text-sm inline-flex py-2 px-3 rounded-md transition-colors duration-200 ${
+              className={`text-sm inline-flex py-2 px-3 rounded-md transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
                 pathname === "/about"
                   ? "font-medium bg-secondary text-foreground"
                   : "hover:bg-secondary/40 hover:text-foreground"
@@ -156,7 +166,7 @@ export default function Header() {
           <div>
             <Link
               href="/contact"
-              className={`text-sm inline-flex py-2 px-3 rounded-md transition-colors duration-200 ${
+              className={`text-sm inline-flex py-2 px-3 rounded-md transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
                 pathname === "/contact"
                   ? "font-medium bg-secondary text-foreground"
                   : "hover:bg-secondary/40 hover:text-foreground"
