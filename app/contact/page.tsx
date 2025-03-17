@@ -150,10 +150,9 @@ Message: ${formData.get("message")}`,
 
                     <Button
                       type="submit"
-                      className="w-full"
+                      className="w-full h-9 sm:h-10 mt-2"
                       disabled={!isConsented}
                       size="sm"
-                      className="w-full h-9 sm:h-10 mt-2"
                     >
                       <Send className="mr-2 h-4 w-4" /> Send message
                     </Button>
