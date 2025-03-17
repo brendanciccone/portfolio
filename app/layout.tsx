@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import ScrollToTop from "@/components/scroll-to-top"
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { ErrorBoundary } from "@/components/error-boundary"
 
 export const metadata: Metadata = {
   title: "Brendan Ciccone - 0 → 1 Senior Product Designer",
@@ -64,10 +65,12 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning className={GeistSans.className}>
       <body>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <ScrollToTop />
-          {children}
-          <Analytics />
-          <SpeedInsights />
+          <ErrorBoundary>
+            <ScrollToTop />
+            {children}
+            <Analytics />
+            <SpeedInsights />
+          </ErrorBoundary>
         </ThemeProvider>
       </body>
     </html>

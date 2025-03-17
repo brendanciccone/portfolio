@@ -1,8 +1,11 @@
 "use client"
 
 import type React from "react"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState, memo } from "react"
 import { cn } from "@/lib/utils"
+
+// This component could be optimized by using React.memo to prevent unnecessary rerenders
+// Example: export const FadeIn = memo(FadeIn) at the bottom of the file
 
 interface FadeInProps {
   children: React.ReactNode
@@ -14,7 +17,7 @@ interface FadeInProps {
   once?: boolean
 }
 
-export function FadeIn({
+const FadeInComponent = ({
   children,
   className,
   delay = 0,
@@ -22,7 +25,7 @@ export function FadeIn({
   direction = "up",
   threshold = 0.01,
   once = true,
-}: FadeInProps) {
+}: FadeInProps) => {
   const [isVisible, setIsVisible] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
 
@@ -82,4 +85,7 @@ export function FadeIn({
     </div>
   )
 }
+
+// Export memoized component to prevent unnecessary rerenders
+export const FadeIn = memo(FadeInComponent)
 

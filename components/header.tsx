@@ -53,6 +53,7 @@ export default function Header() {
                   ? "font-medium bg-secondary text-foreground"
                   : "text-muted-foreground hover:text-foreground hover:bg-secondary/40"
               }`}
+              aria-current={pathname === "/" ? "page" : undefined}
               prefetch={true}
             >
               Work
@@ -64,6 +65,7 @@ export default function Header() {
                   ? "font-medium bg-secondary text-foreground"
                   : "text-muted-foreground hover:text-foreground hover:bg-secondary/40"
               }`}
+              aria-current={pathname === "/about" ? "page" : undefined}
               prefetch={true}
             >
               About
@@ -75,6 +77,7 @@ export default function Header() {
                   ? "font-medium bg-secondary text-foreground"
                   : "text-muted-foreground hover:text-foreground hover:bg-secondary/40"
               }`}
+              aria-current={pathname === "/contact" ? "page" : undefined}
               prefetch={true}
             >
               Contact
@@ -116,6 +119,10 @@ export default function Header() {
         className={`md:hidden bg-background absolute left-0 right-0 shadow-md border-b border-border transform transition-all duration-300 ease-in-out ${
           mobileMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4 pointer-events-none"
         }`}
+        id="mobile-menu"
+        aria-hidden={!mobileMenuOpen}
+        role="navigation"
+        aria-label="Mobile Navigation"
       >
         <div className="max-w-[1024px] mx-auto px-4 py-5 flex flex-col items-center space-y-5">
           <div>
@@ -126,6 +133,7 @@ export default function Header() {
                   ? "font-medium bg-secondary text-foreground"
                   : "hover:bg-secondary/40 hover:text-foreground"
               }`}
+              aria-current={pathname === "/" ? "page" : undefined}
               prefetch={true}
             >
               Work
@@ -139,6 +147,7 @@ export default function Header() {
                   ? "font-medium bg-secondary text-foreground"
                   : "hover:bg-secondary/40 hover:text-foreground"
               }`}
+              aria-current={pathname === "/about" ? "page" : undefined}
               prefetch={true}
             >
               About
@@ -152,6 +161,7 @@ export default function Header() {
                   ? "font-medium bg-secondary text-foreground"
                   : "hover:bg-secondary/40 hover:text-foreground"
               }`}
+              aria-current={pathname === "/contact" ? "page" : undefined}
               prefetch={true}
             >
               Contact
