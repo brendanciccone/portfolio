@@ -8,7 +8,6 @@
 
 # pnpm specific
 .pnpm-debug.log*
-.pnpm-store/
 
 # testing
 /coverage
@@ -16,23 +15,14 @@
 # next.js
 /.next/
 /out/
-.next/
 next-env.d.ts
-out
 
 # production
 /build
 /dist
 
 # misc
-.DS_Store
 *.pem
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
 
 # debug and logs
 npm-debug.log*
@@ -48,6 +38,8 @@ logs
 .parcel-cache
 .eslintcache
 .stylelintcache
+.turbo
+.swc/
 
 # local env files
 .env
@@ -64,7 +56,6 @@ logs
 
 # typescript
 *.tsbuildinfo
-next-env.d.ts
 
 # IDE specific files
 .idea
@@ -73,6 +64,8 @@ next-env.d.ts
 *.swo
 *.swn
 *.bak
+*.sublime-workspace
+*.sublime-project
 
 # OS generated files
 .DS_Store
@@ -86,6 +79,35 @@ Thumbs.db
 # Package specific
 *.tgz
 .yarn-integrity
+.pnp.*
+.npmrc
+.yarnrc
+.pnpmrc
 
 # Serverless
 .serverless/
+.netlify
+.vercel
+
+# Storybook
+storybook-static/
+storybook-static
+
+# PWA files
+**/public/sw.js
+**/public/workbox-*.js
+**/public/worker-*.js
+**/public/sw.js.map
+**/public/workbox-*.js.map
+**/public/worker-*.js.map
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.swp
+*~
+
+# Build artifacts
+*.tsbuildinfo
+*.map
