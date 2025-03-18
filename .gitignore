@@ -1,32 +1,91 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # dependencies
 /node_modules
+/.pnp
+.pnp.js
+.pnp.*
+.pnpm-store/
+.npm
+
+# pnpm specific
+.pnpm-debug.log*
+.pnpm-store/
+
+# testing
+/coverage
 
 # next.js
 /.next/
 /out/
+.next/
+next-env.d.ts
+out
 
 # production
 /build
+/dist
 
-# debug
+# misc
+.DS_Store
+*.pem
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# debug and logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
+logs
+*.log
+.node_repl_history
 
-# env files
-.env*
+# cache directories
+.cache
+.parcel-cache
+.eslintcache
+.stylelintcache
+
+# local env files
+.env
+.env*.local
+.env.development
+.env.test
+.env.production
+.env.development.local
+.env.test.local
+.env.production.local
 
 # vercel
 .vercel
 
-# macOS system files
-.DS_Store
-.DS_Store?
-._*
-
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# IDE specific files
+.idea
+.vscode
+*.swp
+*.swo
+*.swn
+*.bak
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Package specific
+*.tgz
+.yarn-integrity
+
+# Serverless
+.serverless/
