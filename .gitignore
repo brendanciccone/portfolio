@@ -8,6 +8,8 @@
 
 # pnpm specific
 .pnpm-debug.log*
+.npmrc
+.pnpmrc
 
 # testing
 /coverage
@@ -51,11 +53,14 @@ logs
 .env.test.local
 .env.production.local
 
-# vercel
+# vercel and deployment
 .vercel
+.netlify
+.serverless/
 
 # typescript
 *.tsbuildinfo
+*.map
 
 # IDE specific files
 .idea
@@ -80,14 +85,7 @@ Thumbs.db
 *.tgz
 .yarn-integrity
 .pnp.*
-.npmrc
 .yarnrc
-.pnpmrc
-
-# Serverless
-.serverless/
-.netlify
-.vercel
 
 # Storybook
 storybook-static/
@@ -105,9 +103,4 @@ storybook-static
 *.tmp
 *.temp
 *.bak
-*.swp
 *~
-
-# Build artifacts
-*.tsbuildinfo
-*.map
