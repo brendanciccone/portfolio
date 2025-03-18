@@ -27,7 +27,7 @@ A modern, responsive portfolio website I made for myself. Check it out live [her
 ### Prerequisites
 
 - Node.js 18.x or higher
-- npm or yarn
+- pnpm (recommended) or npm
 
 ### Installation
 
@@ -35,3 +35,16 @@ A modern, responsive portfolio website I made for myself. Check it out live [her
    ```bash
    git clone https://github.com/brendancicone/portfolio.git
    cd portfolio
+   ```
+
+2. Install dependencies:
+   ```bash
+   pnpm install
+   ```
+
+3. Start the development server:
+   ```bash
+   pnpm dev
+   ```
+
+4. Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
