@@ -31,6 +31,8 @@ export default function Portfolio() {
                     height={800}
                     className="w-full"
                     priority
+                    quality={80}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
                   />
                 </Link>
               </div>
@@ -70,6 +72,8 @@ export default function Portfolio() {
                     height={800}
                     className="w-full"
                     priority
+                    quality={80}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
                   />
                 </Link>
               </div>
@@ -109,6 +113,8 @@ export default function Portfolio() {
                     height={800}
                     className="w-full"
                     priority
+                    quality={80}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
                   />
                 </Link>
               </div>
@@ -147,6 +153,8 @@ export default function Portfolio() {
                     height={800}
                     className="w-full"
                     priority
+                    quality={80}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
                   />
                 </Link>
               </div>

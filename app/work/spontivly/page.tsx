@@ -33,6 +33,8 @@ export default function SpontivlyPage() {
                   width={40}
                   height={40}
                   className="w-full h-full object-cover"
+                  quality={85}
+                  sizes="40px"
                 />
               </div>
               <h1 className="text-xl sm:text-2xl font-semibold">Spontivly</h1>
@@ -78,6 +80,8 @@ export default function SpontivlyPage() {
                   width={1200}
                   height={800}
                   className="rounded-lg w-full"
+                  quality={80}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
                 />
               </div>
             </section>
@@ -105,6 +109,8 @@ export default function SpontivlyPage() {
                   height={800}
                   className="rounded-lg w-full"
                   priority
+                  quality={80}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
                 />
               </div>
             </section>

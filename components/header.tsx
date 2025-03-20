@@ -39,6 +39,8 @@ export default function Header() {
             height={40}
             className="rounded-full object-cover"
             priority
+            quality={85}
+            sizes="40px"
           />
           <span className="font-medium">Brendan Ciccone</span>
         </Link>

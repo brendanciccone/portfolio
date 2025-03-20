@@ -28,11 +28,13 @@ export default function PaidlyPage() {
             <div className="flex items-center mb-3">
               <div className="w-10 h-10 rounded-lg border border-border flex items-center justify-center mr-3 bg-transparent overflow-hidden">
                 <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/uvNlfL0W1id65iarhG9wcUaT3aA-wvwBeKadRSwDEpSkFpeHnvcna1xp85.webp"
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ezoCjlgeSj5tIFHHhgsBJDEwk9o-iSm1AEAjKQ0VZmMjqQpqEyGG4V3ooJ.webp"
                   alt="Paidly logo"
                   width={40}
                   height={40}
                   className="w-full h-full object-cover"
+                  quality={85}
+                  sizes="40px"
                 />
               </div>
               <h1 className="text-xl sm:text-2xl font-semibold">Paidly</h1>
@@ -74,11 +76,13 @@ export default function PaidlyPage() {
             <section>
               <div className="bg-muted p-3 sm:p-4 rounded-lg mb-6">
                 <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/6-ZvLOgtuigyMw4YHmpEcm0a6xW4SS0t.png"
-                  alt="Paidly mobile app screens showing invoice list view, automatic reminders feature, and customer creation form"
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/0-QBdKZBsm3KkIjI2yBLc1JjC5eIRwkT.png"
+                  alt="Paidly mobile app mobile sending invoice screens"
                   width={1200}
                   height={800}
                   className="rounded-lg w-full"
+                  quality={80}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
                 />
               </div>
             </section>
@@ -111,6 +115,8 @@ export default function PaidlyPage() {
                   height={800}
                   className="rounded-lg w-full"
                   priority
+                  quality={80}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
                 />
               </div>
               <div className="bg-muted p-3 sm:p-4 rounded-lg mb-6">
@@ -121,6 +127,8 @@ export default function PaidlyPage() {
                   height={800}
                   className="rounded-lg w-full"
                   priority
+                  quality={80}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
                 />
               </div>
             </section>
@@ -150,6 +158,8 @@ export default function PaidlyPage() {
                   width={1200}
                   height={800}
                   className="rounded-lg w-full"
+                  quality={80}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
                 />
               </div>
             </section>
@@ -179,6 +189,8 @@ export default function PaidlyPage() {
                   width={1200}
                   height={800}
                   className="rounded-lg w-full"
+                  quality={80}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
                 />
               </div>
             </section>

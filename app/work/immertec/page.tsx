@@ -33,6 +33,8 @@ export default function ImmertecPage() {
                   width={40}
                   height={40}
                   className="w-full h-full object-cover"
+                  quality={85}
+                  sizes="40px"
                 />
               </div>
               <h1 className="text-xl sm:text-2xl font-semibold">Immertec</h1>
@@ -82,6 +84,8 @@ export default function ImmertecPage() {
                   height={800}
                   className="rounded-lg w-full"
                   priority
+                  quality={80}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
                 />
               </div>
             </section>
@@ -111,6 +115,8 @@ export default function ImmertecPage() {
                   height={800}
                   className="rounded-lg w-full"
                   priority
+                  quality={80}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
                 />
               </div>
             </section>
@@ -144,6 +150,8 @@ export default function ImmertecPage() {
                     width={1200}
                     height={800}
                     className="rounded-lg w-full"
+                    quality={80}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
                   />
                 </div>
                 <div className="grid grid-cols-2 gap-6">
@@ -154,6 +162,8 @@ export default function ImmertecPage() {
                       width={600}
                       height={400}
                       className="rounded-lg w-full"
+                      quality={80}
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 40vw, 600px"
                     />
                   </div>
                   <div className="bg-muted p-3 sm:p-4 rounded-lg">
@@ -163,6 +173,8 @@ export default function ImmertecPage() {
                       width={600}
                       height={400}
                       className="rounded-lg w-full"
+                      quality={80}
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 40vw, 600px"
                     />
                   </div>
                 </div>
@@ -175,6 +187,8 @@ export default function ImmertecPage() {
                       width={600}
                       height={400}
                       className="rounded-lg w-full"
+                      quality={80}
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 40vw, 600px"
                     />
                   </div>
                   <div className="bg-muted p-3 sm:p-4 rounded-lg">
@@ -184,6 +198,8 @@ export default function ImmertecPage() {
                       width={600}
                       height={400}
                       className="rounded-lg w-full"
+                      quality={80}
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 40vw, 600px"
                     />
                   </div>
                 </div>
@@ -218,6 +234,8 @@ export default function ImmertecPage() {
                   width={1200}
                   height={800}
                   className="rounded-lg w-full"
+                  quality={80}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
                 />
               </div>
             </section>
@@ -246,6 +264,8 @@ export default function ImmertecPage() {
                   width={1200}
                   height={800}
                   className="rounded-lg w-full"
+                  quality={80}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
                 />
               </div>
             </section>
