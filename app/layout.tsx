@@ -69,7 +69,7 @@ export default function RootLayout({
           href="https://hebbkx1anhila5yf.public.blob.vercel-storage.com"
         />
       </head>
-      <body>
+      <body suppressHydrationWarning>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <ErrorBoundary>
             <ScrollToTop />
