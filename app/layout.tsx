@@ -65,12 +65,6 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning className={GeistSans.className}>
       <head>
         <link
-          rel="preload"
-          href="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Profile.jpg-al2nGt8LMiAxExrg2Jeb9tDq6VnRHb.jpeg"
-          as="image"
-          type="image/jpeg"
-        />
-        <link
           rel="preconnect"
           href="https://hebbkx1anhila5yf.public.blob.vercel-storage.com"
         />
