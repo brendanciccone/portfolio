@@ -145,6 +145,7 @@ export default function Header() {
               }`}
               aria-current={pathname === "/" ? "page" : undefined}
               prefetch={true}
+              tabIndex={mobileMenuOpen ? 0 : -1}
             >
               Work
             </Link>
@@ -159,6 +160,7 @@ export default function Header() {
               }`}
               aria-current={pathname === "/about" ? "page" : undefined}
               prefetch={true}
+              tabIndex={mobileMenuOpen ? 0 : -1}
             >
               About
             </Link>
@@ -173,12 +175,17 @@ export default function Header() {
               }`}
               aria-current={pathname === "/contact" ? "page" : undefined}
               prefetch={true}
+              tabIndex={mobileMenuOpen ? 0 : -1}
             >
               Contact
             </Link>
           </div>
           <Button asChild className="max-w-[200px]">
-            <Link href="/contact" prefetch={true}>
+            <Link 
+              href="/contact" 
+              prefetch={true}
+              tabIndex={mobileMenuOpen ? 0 : -1}
+            >
               Let's chat
               <ArrowRight className="ml-1 h-4 w-4 transition-all duration-200" />
             </Link>
