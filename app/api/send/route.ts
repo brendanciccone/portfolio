@@ -30,7 +30,7 @@ Message: ${message}
     const data = await resend.emails.send({
       from: 'Contact Form <onboarding@resend.dev>', // Update this with your verified domain
       to: ['brendan@fourpixels.xyz'], // Your email address
-      subject: 'New Contact Form Submission',
+      subject: 'New Contact Form (Portfolio)',
       text: emailContent,
       reply_to: email,
     });
