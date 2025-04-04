@@ -28,7 +28,7 @@ export default function PaidlyPage() {
             <div className="flex items-center mb-3">
               <div className="w-10 h-10 rounded-lg border border-border flex items-center justify-center mr-3 bg-transparent overflow-hidden">
                 <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ezoCjlgeSj5tIFHHhgsBJDEwk9o-iSm1AEAjKQ0VZmMjqQpqEyGG4V3ooJ.webp"
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/uvNlfL0W1id65iarhG9wcUaT3aA-wvwBeKadRSwDEpSkFpeHnvcna1xp85.webp"
                   alt="Paidly logo"
                   width={40}
                   height={40}
@@ -76,7 +76,7 @@ export default function PaidlyPage() {
             <section>
               <div className="bg-muted p-3 sm:p-4 rounded-lg mb-6">
                 <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/0-QBdKZBsm3KkIjI2yBLc1JjC5eIRwkT.png"
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/6-ZvLOgtuigyMw4YHmpEcm0a6xW4SS0t.png"
                   alt="Paidly mobile app mobile sending invoice screens"
                   width={1200}
                   height={800}
