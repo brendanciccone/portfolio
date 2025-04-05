@@ -10,8 +10,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Send } from "lucide-react"
 
 interface FormData {
-  firstName: string
-  lastName: string
+  name: string
   email: string
   company: string
   message: string
@@ -19,8 +18,7 @@ interface FormData {
 }
 
 interface FormErrors {
-  firstName?: string
-  lastName?: string
+  name?: string
   email?: string
   company?: string
   message?: string
@@ -32,8 +30,7 @@ export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
   const [formData, setFormData] = useState<FormData>({
-    firstName: "",
-    lastName: "",
+    name: "",
     email: "",
     company: "",
     message: "",
@@ -44,12 +41,8 @@ export default function ContactForm() {
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {}
 
-    if (!formData.firstName.trim()) {
-      newErrors.firstName = "First name is required"
-    }
-
-    if (!formData.lastName.trim()) {
-      newErrors.lastName = "Last name is required"
+    if (!formData.name.trim()) {
+      newErrors.name = "Name is required"
     }
 
     if (!formData.email.trim()) {
@@ -128,8 +121,7 @@ export default function ContactForm() {
 
       // Reset form
       setFormData({
-        firstName: "",
-        lastName: "",
+        name: "",
         email: "",
         company: "",
         message: "",
@@ -179,51 +171,27 @@ export default function ContactForm() {
       )}
 
       <form className="space-y-3 sm:space-y-4 w-full" onSubmit={handleSubmit}>
-        <div className="grid grid-cols-1 gap-3 sm:gap-4 sm:grid-cols-2">
-          <div>
-            <label
-              htmlFor="firstName"
-              className="block text-[13px] sm:text-[14px] mb-1 sm:mb-2"
-            >
-              First name
-            </label>
-            <Input 
-              id="firstName" 
-              value={formData.firstName} 
-              onChange={handleChange} 
-              required 
-              className="w-full"
-              aria-invalid={!!errors.firstName}
-              aria-describedby={errors.firstName ? "firstName-error" : undefined}
-            />
-            {errors.firstName && (
-              <p className="text-red-500 text-xs mt-1" id="firstName-error">
-                {errors.firstName}
-              </p>
-            )}
-          </div>
-          <div>
-            <label
-              htmlFor="lastName"
-              className="block text-[13px] sm:text-[14px] mb-1 sm:mb-2"
-            >
-              Last name
-            </label>
-            <Input 
-              id="lastName" 
-              value={formData.lastName} 
-              onChange={handleChange} 
-              required 
-              className="w-full"
-              aria-invalid={!!errors.lastName}
-              aria-describedby={errors.lastName ? "lastName-error" : undefined}
-            />
-            {errors.lastName && (
-              <p className="text-red-500 text-xs mt-1" id="lastName-error">
-                {errors.lastName}
-              </p>
-            )}
-          </div>
+        <div>
+          <label
+            htmlFor="name"
+            className="block text-[13px] sm:text-[14px] mb-1 sm:mb-2"
+          >
+            Name
+          </label>
+          <Input 
+            id="name" 
+            value={formData.name} 
+            onChange={handleChange} 
+            required 
+            className="w-full"
+            aria-invalid={!!errors.name}
+            aria-describedby={errors.name ? "name-error" : undefined}
+          />
+          {errors.name && (
+            <p className="text-red-500 text-xs mt-1" id="name-error">
+              {errors.name}
+            </p>
+          )}
         </div>
         <div>
           <label

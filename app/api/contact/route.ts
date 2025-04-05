@@ -8,10 +8,10 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 export async function POST(request: Request) {
   try {
     // Parse the request body
-    const { firstName, lastName, email, company, message } = await request.json();
+    const { name, email, company, message } = await request.json();
 
     // Basic validation for required fields
-    if (!firstName || !lastName || !email || !message) {
+    if (!name || !email || !message) {
       return NextResponse.json(
         { error: 'Missing required fields' },
         { status: 400 }
@@ -33,7 +33,7 @@ export async function POST(request: Request) {
       to: "brendan@fourpixels.xyz",
       reply_to: email,
       subject: "New Contact Form Submission",
-      text: `Name: ${firstName} ${lastName}\nEmail: ${email}\nCompany: ${company || 'Not provided'}\nMessage: ${message}`,
+      text: `Name: ${name}\nEmail: ${email}\nCompany: ${company || 'Not provided'}\nMessage: ${message}`,
     });
 
     return NextResponse.json({ success: true });
