@@ -1,223 +1,322 @@
 "use client"
 
-import { useState } from "react"
 import type React from "react"
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import * as z from "zod"
-import { Send, CheckCircle } from "lucide-react"
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Checkbox } from "@/components/ui/checkbox"
+import { Send } from "lucide-react"
 
-// Define form schema with Zod
-const formSchema = z.object({
-  firstName: z.string().min(1, "First name is required"),
-  lastName: z.string().min(1, "Last name is required"),
-  email: z.string().email("Invalid email address"),
-  company: z.string().optional(),
-  message: z.string().min(1, "Message is required"),
-  consent: z.boolean().refine(val => val === true, {
-    message: "You must accept to proceed",
-  }),
-});
+interface FormData {
+  firstName: string
+  lastName: string
+  email: string
+  company: string
+  message: string
+  termsAccepted: boolean
+}
 
-type FormValues = z.infer<typeof formSchema>;
+interface FormErrors {
+  firstName?: string
+  lastName?: string
+  email?: string
+  company?: string
+  message?: string
+  termsAccepted?: string
+  submit?: string
+}
 
 export default function ContactForm() {
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitError, setSubmitError] = useState<string | null>(null);
-  
-  const {
-    register,
-    handleSubmit,
-    watch,
-    reset,
-    setValue,
-    formState: { errors },
-  } = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
-      company: "",
-      message: "",
-      consent: false,
-    },
-  });
-  
-  const consentValue = watch("consent");
-  
-  // Fix for handling checkbox changes
-  const handleConsentChange = (checked: boolean | "indeterminate") => {
-    setValue("consent", checked === true);
-  };
-  
-  const onSubmit = async (data: FormValues) => {
-    setIsSubmitting(true);
-    setSubmitError(null);
-    
-    try {
-      const response = await fetch('/api/send', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
-      
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || 'Failed to send message');
-      }
-      
-      // Show thank you state and reset form
-      setIsSubmitted(true);
-      reset();
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      setSubmitError(error instanceof Error ? error.message : 'An unexpected error occurred');
-    } finally {
-      setIsSubmitting(false);
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isSuccess, setIsSuccess] = useState(false)
+  const [formData, setFormData] = useState<FormData>({
+    firstName: "",
+    lastName: "",
+    email: "",
+    company: "",
+    message: "",
+    termsAccepted: false,
+  })
+  const [errors, setErrors] = useState<FormErrors>({})
+
+  const validateForm = (): boolean => {
+    const newErrors: FormErrors = {}
+
+    if (!formData.firstName.trim()) {
+      newErrors.firstName = "First name is required"
     }
-  };
 
-  const handleNewMessage = () => {
-    setIsSubmitted(false);
-    setSubmitError(null);
-  };
+    if (!formData.lastName.trim()) {
+      newErrors.lastName = "Last name is required"
+    }
 
-  if (isSubmitted) {
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required"
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = "Please enter a valid email address"
+    }
+
+    if (!formData.message.trim()) {
+      newErrors.message = "Message is required"
+    } else if (formData.message.length < 10) {
+      newErrors.message = "Message must be at least 10 characters long"
+    } else if (formData.message.length > 1000) {
+      newErrors.message = "Message must be less than 1000 characters"
+    }
+
+    if (!formData.termsAccepted) {
+      newErrors.termsAccepted = "You must accept the terms to send a message"
+    }
+
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { id, value } = e.target
+    setFormData((prev) => ({
+      ...prev,
+      [id]: value,
+    }))
+    // Clear error when user starts typing
+    if (errors[id as keyof FormErrors]) {
+      setErrors((prev) => ({
+        ...prev,
+        [id]: undefined,
+      }))
+    }
+  }
+
+  const handleCheckboxChange = (checked: boolean) => {
+    setFormData((prev) => ({
+      ...prev,
+      termsAccepted: checked,
+    }))
+    if (errors.termsAccepted) {
+      setErrors((prev) => ({
+        ...prev,
+        termsAccepted: undefined,
+      }))
+    }
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    
+    if (!validateForm()) {
+      return
+    }
+
+    setIsSubmitting(true)
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to send message")
+      }
+
+      // Reset form
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        company: "",
+        message: "",
+        termsAccepted: false,
+      })
+      setIsSuccess(true)
+    } catch (error) {
+      console.error("Form submission error:", error)
+      // Show error in the form
+      setErrors((prev) => ({
+        ...prev,
+        submit: error instanceof Error ? error.message : "Failed to send message. Please try again later.",
+      }))
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
+  if (isSuccess) {
     return (
-      <div className="text-center py-4 sm:py-8">
-        <CheckCircle className="mx-auto h-12 w-12 sm:h-16 sm:w-16 text-green-500 mb-3 sm:mb-4" />
-        <h1 className="text-xl sm:text-[24px] font-semibold mb-2 sm:mb-4">Thank you for your message!</h1>
-        <p className="text-sm sm:text-base text-muted-foreground mb-4 sm:mb-6">
-          I appreciate you reaching out and will get back to you as soon as possible.
+      <div className="w-full flex flex-col items-center justify-center space-y-4 text-center">
+        <div className="rounded-full bg-green-100 p-3 dark:bg-green-900">
+          <Send className="h-6 w-6 text-green-600 dark:text-green-400" />
+        </div>
+        <h3 className="text-xl font-semibold">Thank you for your message!</h3>
+        <p className="text-sm text-muted-foreground">
+          I'll get back to you as soon as possible.
         </p>
-        <Button onClick={handleNewMessage} size="sm" className="sm:size-default">
+        <Button 
+          onClick={() => setIsSuccess(false)}
+          variant="outline"
+          className="px-6 mt-2"
+        >
           Send another message
         </Button>
       </div>
-    );
+    )
   }
 
   return (
-    <>
-      <h1 className="text-xl sm:text-[24px] font-semibold mb-1 sm:mb-2">Let's go to market</h1>
-      <p className="text-sm sm:text-base text-muted-foreground mb-6 sm:mb-8">
-        Ready to take your product from 0 → 1 or looking to expand your team? Reach out below.
-      </p>
-
-      {submitError && (
+    <div className="w-full">
+      {errors.submit && (
         <div className="mb-4 p-3 bg-red-50 text-red-700 rounded-md border border-red-200 text-sm">
           <p className="font-medium">Error sending message:</p>
-          <p>{submitError}</p>
+          <p>{errors.submit}</p>
         </div>
       )}
 
-      <form 
-        className="space-y-3 sm:space-y-4" 
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleSubmit(onSubmit)(e);
-        }}
-      >
-        <div>
-          <label htmlFor="firstName" className="block text-[13px] sm:text-[14px] mb-1 sm:mb-2">
-            First name
-          </label>
-          <input
-            id="firstName"
-            {...register("firstName")}
-            className={`w-full px-3 sm:px-4 py-2 rounded-lg border ${errors.firstName ? "border-red-500" : "border-input"} bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring text-sm sm:text-base`}
-          />
-          {errors.firstName && (
-            <p className="text-red-500 text-xs mt-1">{errors.firstName.message}</p>
-          )}
+      <form className="space-y-3 sm:space-y-4 w-full" onSubmit={handleSubmit}>
+        <div className="grid grid-cols-1 gap-3 sm:gap-4 sm:grid-cols-2">
+          <div>
+            <label
+              htmlFor="firstName"
+              className="block text-[13px] sm:text-[14px] mb-1 sm:mb-2"
+            >
+              First name
+            </label>
+            <Input 
+              id="firstName" 
+              value={formData.firstName} 
+              onChange={handleChange} 
+              required 
+              className="w-full"
+              aria-invalid={!!errors.firstName}
+              aria-describedby={errors.firstName ? "firstName-error" : undefined}
+            />
+            {errors.firstName && (
+              <p className="text-red-500 text-xs mt-1" id="firstName-error">
+                {errors.firstName}
+              </p>
+            )}
+          </div>
+          <div>
+            <label
+              htmlFor="lastName"
+              className="block text-[13px] sm:text-[14px] mb-1 sm:mb-2"
+            >
+              Last name
+            </label>
+            <Input 
+              id="lastName" 
+              value={formData.lastName} 
+              onChange={handleChange} 
+              required 
+              className="w-full"
+              aria-invalid={!!errors.lastName}
+              aria-describedby={errors.lastName ? "lastName-error" : undefined}
+            />
+            {errors.lastName && (
+              <p className="text-red-500 text-xs mt-1" id="lastName-error">
+                {errors.lastName}
+              </p>
+            )}
+          </div>
         </div>
-
         <div>
-          <label htmlFor="lastName" className="block text-[13px] sm:text-[14px] mb-1 sm:mb-2">
-            Last name
-          </label>
-          <input
-            id="lastName"
-            {...register("lastName")}
-            className={`w-full px-3 sm:px-4 py-2 rounded-lg border ${errors.lastName ? "border-red-500" : "border-input"} bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring text-sm sm:text-base`}
-          />
-          {errors.lastName && (
-            <p className="text-red-500 text-xs mt-1">{errors.lastName.message}</p>
-          )}
-        </div>
-
-        <div>
-          <label htmlFor="email" className="block text-[13px] sm:text-[14px] mb-1 sm:mb-2">
+          <label
+            htmlFor="email"
+            className="block text-[13px] sm:text-[14px] mb-1 sm:mb-2"
+          >
             Email
           </label>
-          <input
+          <Input
             id="email"
+            value={formData.email}
+            onChange={handleChange}
             type="email"
-            {...register("email")}
-            className={`w-full px-3 sm:px-4 py-2 rounded-lg border ${errors.email ? "border-red-500" : "border-input"} bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring text-sm sm:text-base`}
+            required
+            className="w-full"
+            aria-invalid={!!errors.email}
+            aria-describedby={errors.email ? "email-error" : undefined}
           />
           {errors.email && (
-            <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>
+            <p className="text-red-500 text-xs mt-1" id="email-error">
+              {errors.email}
+            </p>
           )}
         </div>
-
         <div>
-          <label htmlFor="company" className="block text-[13px] sm:text-[14px] mb-1 sm:mb-2">
+          <label
+            htmlFor="company"
+            className="block text-[13px] sm:text-[14px] mb-1 sm:mb-2"
+          >
             Company
           </label>
-          <input
+          <Input
             id="company"
-            {...register("company")}
+            value={formData.company}
+            onChange={handleChange}
             placeholder="Optional"
-            className="w-full px-3 sm:px-4 py-2 rounded-lg border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring placeholder:text-muted-foreground text-sm sm:text-base"
+            className="w-full"
+            aria-describedby={errors.company ? "company-error" : undefined}
           />
-        </div>
-
-        <div>
-          <label htmlFor="message" className="block text-[13px] sm:text-[14px] mb-1 sm:mb-2">
-            Message
-          </label>
-          <textarea
-            id="message"
-            {...register("message")}
-            rows={4}
-            placeholder="Tell me about your project or idea..."
-            className={`w-full px-3 sm:px-4 py-2 rounded-lg border ${errors.message ? "border-red-500" : "border-input"} bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring placeholder:text-muted-foreground text-sm sm:text-base`}
-          />
-          {errors.message && (
-            <p className="text-red-500 text-xs mt-1">{errors.message.message}</p>
+          {errors.company && (
+            <p className="text-red-500 text-xs mt-1" id="company-error">
+              {errors.company}
+            </p>
           )}
         </div>
-
+        <div>
+          <label
+            htmlFor="message"
+            className="block text-[13px] sm:text-[14px] mb-1 sm:mb-2"
+          >
+            Message
+          </label>
+          <Textarea
+            id="message"
+            value={formData.message}
+            onChange={handleChange}
+            className="min-h-[120px] w-full"
+            required
+            placeholder="Tell me about your project or idea..."
+            aria-invalid={!!errors.message}
+            aria-describedby={errors.message ? "message-error" : undefined}
+          />
+          {errors.message && (
+            <p className="text-red-500 text-xs mt-1" id="message-error">
+              {errors.message}
+            </p>
+          )}
+        </div>
         <div className="flex items-start sm:items-center gap-2 pt-1 sm:pt-2">
           <Checkbox
-            id="consent"
-            {...register("consent")}
-            checked={consentValue}
-            onCheckedChange={handleConsentChange}
+            id="termsAccepted"
+            checked={formData.termsAccepted}
+            onCheckedChange={handleCheckboxChange}
             className="mt-0.5 sm:mt-0"
+            aria-invalid={!!errors.termsAccepted}
+            aria-describedby={errors.termsAccepted ? "terms-error" : undefined}
           />
           <label
-            htmlFor="consent"
-            className="text-[13px] sm:text-[14px] text-muted-foreground cursor-pointer"
+            htmlFor="termsAccepted"
+            className={`text-[13px] sm:text-[14px] ${formData.termsAccepted ? "text-foreground" : "text-muted-foreground"} cursor-pointer`}
           >
             I accept this information will be used to contact me.
           </label>
         </div>
-        {errors.consent && (
-          <p className="text-red-500 text-xs -mt-2">{errors.consent.message}</p>
+        {errors.termsAccepted && (
+          <p className="text-red-500 text-xs -mt-2" id="terms-error">
+            {errors.termsAccepted}
+          </p>
         )}
-
-        <Button
-          type="submit"
-          className="w-full h-9 sm:h-10 mt-2"
-          disabled={!consentValue || isSubmitting}
+        <Button 
+          type="submit" 
+          className="w-full h-9 sm:h-10 mt-2" 
+          disabled={isSubmitting || !formData.termsAccepted}
           size="sm"
         >
           {isSubmitting ? (
@@ -235,6 +334,9 @@ export default function ContactForm() {
           )}
         </Button>
       </form>
-    </>
-  );
-} 
+    </div>
+  )
+}
+
+// Add named export for backward compatibility
+export { ContactForm } 

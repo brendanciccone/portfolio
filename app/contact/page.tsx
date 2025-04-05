@@ -14,8 +14,14 @@ export default function ContactPage() {
     <div className="min-h-screen bg-background text-foreground">
       <Header />
       <div className="max-w-[1024px] mx-auto px-4 py-6 sm:py-8">
-        <div className="flex justify-center">
+        <div className="flex flex-col items-center">
           <FadeIn delay={0} duration={350}>
+            <div className="w-full max-w-[528px] mb-6">
+              <h1 className="text-xl sm:text-[24px] font-semibold mb-1 sm:mb-2 text-center">Let's go to market</h1>
+              <p className="text-sm sm:text-base text-muted-foreground text-center">
+                Ready to take your product from 0 → 1 or looking to expand your team? Reach out below.
+              </p>
+            </div>
             <div className="w-full max-w-[528px] border border-border rounded-xl p-4 sm:p-8">
               <ContactForm />
             </div>
