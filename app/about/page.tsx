@@ -62,25 +62,40 @@ export default function About() {
               <div className="space-y-8">
                 <div>
                   <h3 className="text-lg font-medium mb-4">Listening to</h3>
-                  <div className="grid grid-cols-3 gap-4">
+                  <div className="grid grid-cols-2 gap-4">
                     {[
                       {
                         name: "Multi-Love",
                         artist: "Unknown Mortal Orchestra",
-                        cover: "/album1.webp"
+                        cover: "/album1.webp",
+                        url: "https://music.apple.com/us/album/multi-love/962057741"
                       },
                       {
                         name: "Madvillainy",
                         artist: "Madvillain",
-                        cover: "/album2.webp"
+                        cover: "/album2.webp",
+                        url: "https://music.apple.com/us/album/madvillainy/887699504"
                       },
                       {
                         name: "Integrated Tech Solutions",
                         artist: "Aesop Rock",
-                        cover: "/album3.webp"
+                        cover: "/album3.webp",
+                        url: "https://music.apple.com/us/album/integrated-tech-solutions/1699280993"
+                      },
+                      {
+                        name: "Nocturne",
+                        artist: "Wild Nothing",
+                        cover: "/album4.webp",
+                        url: "https://music.apple.com/us/album/nocturne/553227907"
                       }
                     ].map((album, index) => (
-                      <div key={index} className="flex flex-col items-center text-center">
+                      <Link 
+                        key={index} 
+                        href={album.url}
+                        className="flex flex-col items-center text-center transition-opacity hover:opacity-80"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         <div className="relative w-full aspect-square mb-2 rounded-lg overflow-hidden">
                           <Image
                             src={album.cover}
@@ -91,7 +106,7 @@ export default function About() {
                         </div>
                         <p className="text-sm font-medium">{album.name}</p>
                         <p className="text-xs text-muted-foreground">{album.artist}</p>
-                      </div>
+                      </Link>
                     ))}
                   </div>
                 </div>
@@ -103,15 +118,23 @@ export default function About() {
                       {
                         name: "Blood Meridian",
                         author: "Cormac McCarthy",
-                        cover: "/book1.webp"
+                        cover: "/book1.webp",
+                        url: "https://bookshop.org/p/books/blood-meridian-or-the-evening-redness-in-the-west-cormac-mccarthy/6697128?ean=9780679728757&next=t"
                       },
                       {
                         name: "The Water Knife",
                         author: "Paolo Bacigalupi",
-                        cover: "/book2.webp"
+                        cover: "/book2.webp",
+                        url: "https://bookshop.org/p/books/the-water-knife-paolo-bacigalupi/7434664?ean=9780804171533&next=t"
                       }
                     ].map((book, index) => (
-                      <div key={index} className="flex flex-col items-center text-center">
+                      <Link 
+                        key={index} 
+                        href={book.url}
+                        className="flex flex-col items-center text-center transition-opacity hover:opacity-80"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         <div className="relative w-full aspect-[2/3] mb-2 rounded-lg overflow-hidden">
                           <Image
                             src={book.cover}
@@ -122,7 +145,7 @@ export default function About() {
                         </div>
                         <p className="text-sm font-medium">{book.name}</p>
                         <p className="text-xs text-muted-foreground">{book.author}</p>
-                      </div>
+                      </Link>
                     ))}
                   </div>
                 </div>
