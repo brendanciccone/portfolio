@@ -67,25 +67,25 @@ export default function About() {
                       {
                         name: "Multi-Love",
                         artist: "Unknown Mortal Orchestra",
-                        cover: "/album1.webp",
+                        cover: "/about/album1.webp",
                         url: "https://music.apple.com/us/album/multi-love/962057741"
                       },
                       {
                         name: "Madvillainy",
                         artist: "Madvillain",
-                        cover: "/album2.webp",
+                        cover: "/about/album2.webp",
                         url: "https://music.apple.com/us/album/madvillainy/887699504"
                       },
                       {
                         name: "Integrated Tech Solutions",
                         artist: "Aesop Rock",
-                        cover: "/album3.webp",
+                        cover: "/about/album3.webp",
                         url: "https://music.apple.com/us/album/integrated-tech-solutions/1699280993"
                       },
                       {
                         name: "Nocturne",
                         artist: "Wild Nothing",
-                        cover: "/album4.webp",
+                        cover: "/about/album4.webp",
                         url: "https://music.apple.com/us/album/nocturne/553227907"
                       }
                     ].map((album, index) => (
@@ -118,13 +118,13 @@ export default function About() {
                       {
                         name: "Blood Meridian",
                         author: "Cormac McCarthy",
-                        cover: "/book1.webp",
+                        cover: "/about/book1.webp",
                         url: "https://bookshop.org/p/books/blood-meridian-or-the-evening-redness-in-the-west-cormac-mccarthy/6697128?ean=9780679728757&next=t"
                       },
                       {
                         name: "The Water Knife",
                         author: "Paolo Bacigalupi",
-                        cover: "/book2.webp",
+                        cover: "/about/book2.webp",
                         url: "https://bookshop.org/p/books/the-water-knife-paolo-bacigalupi/7434664?ean=9780804171533&next=t"
                       }
                     ].map((book, index) => (
