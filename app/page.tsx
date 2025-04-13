@@ -147,7 +147,7 @@ export default function Portfolio() {
               <div className="bg-muted border-b border-border">
                 <Link href="#">
                   <Image
-                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2-YNbm8YXYTIRuRh45avNSzDpqW2VQU9.png"
+                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1-WtDzPw61Kv4Intp9oftbRM5XbqtNAi.png"
                     alt="Magier AI chatbot mobile app screens showing settings, chat interface, and subscription options"
                     width={1200}
                     height={800}
