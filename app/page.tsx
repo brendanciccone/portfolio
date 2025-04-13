@@ -145,18 +145,16 @@ export default function Portfolio() {
           <FadeIn delay={125} duration={350}>
             <div className="border border-border rounded-xl overflow-hidden">
               <div className="bg-muted border-b border-border">
-                <Link href="#">
-                  <Image
-                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1-WtDzPw61Kv4Intp9oftbRM5XbqtNAi.png"
-                    alt="Magier AI chatbot mobile app screens showing settings, chat interface, and subscription options"
-                    width={1200}
-                    height={800}
-                    className="w-full"
-                    priority
-                    quality={80}
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
-                  />
-                </Link>
+                <Image
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1-WtDzPw61Kv4Intp9oftbRM5XbqtNAi.png"
+                  alt="Magier AI chatbot mobile app screens showing settings, chat interface, and subscription options"
+                  width={1200}
+                  height={800}
+                  className="w-full"
+                  priority
+                  quality={80}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
+                />
               </div>
               <div className="p-4 sm:p-6">
                 {/* Group title and description closer together */}
