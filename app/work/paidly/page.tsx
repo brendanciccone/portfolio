@@ -153,7 +153,7 @@ export default function PaidlyPage() {
               </div>
               <div className="bg-muted p-3 sm:p-4 rounded-lg mb-6">
                 <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/9-x7H18OAILjxiFS651ndFzNK1kMqnEE.png"
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/4-ZhXGY50aBYRlkHytNcqwMPoUEOqrxA.png"
                   alt="Paidly app screens showing item management: adding items, empty state, and item creation form"
                   width={1200}
                   height={800}
