@@ -33,7 +33,7 @@ export default function ImmertecPage() {
                   width={40}
                   height={40}
                   className="w-full h-full object-cover"
-                  quality={85}
+                  quality={80}
                   sizes="40px"
                 />
               </div>
