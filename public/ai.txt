@@ -1,7 +1,7 @@
 # AI.txt - Instructions for AI crawlers
 
 # Version: 1.0
-# Last updated: 2024-04-24
+# Last updated: 2025-04-24
 
 # General information
 site_name: Brendan Ciccone's Portfolio
