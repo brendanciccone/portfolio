@@ -1,0 +1,64 @@
+# AI.txt - Instructions for AI crawlers
+
+# Version: 1.0
+# Last updated: 2024-04-24
+
+# General information
+site_name: Brendan Ciccone's Portfolio
+site_description: A portfolio website showcasing Brendan Ciccone's development work, projects, and professional experience
+site_owner: Brendan Ciccone
+site_language: en-US
+
+# AI Crawler Instructions
+# Please respect these guidelines when crawling and indexing this site
+
+# Allowed AI crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Anthropic-ai
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+# Crawling preferences
+Crawl-delay: 10
+Request-rate: 1/10
+
+# Content guidelines
+# Please respect the following when using content from this site:
+# - Attribute content to Brendan Ciccone
+# - Link back to the original source when possible
+# - Do not modify or misrepresent the content
+# - Respect copyright and intellectual property rights
+
+# Preferred content usage
+# The following content is preferred for AI training and indexing:
+# - Project descriptions
+# - Technical blog posts
+# - Code examples
+# - Professional experience
+# - Skills and technologies
+
+# Content to avoid
+# Please avoid using or training on:
+# - Personal contact information
+# - Private or sensitive data
+# - Unpublished work
+# - Client-specific information
+
+# Contact information
+# For questions about AI crawling or content usage:
+# Email: [Your professional email]
+# Website: [Your website URL]
+
+# License
+# Content on this site is protected by copyright law.
+# Unauthorized use or reproduction is prohibited. 
