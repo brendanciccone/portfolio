@@ -56,8 +56,7 @@ Request-rate: 1/10
 
 # Contact information
 # For questions about AI crawling or content usage:
-# Email: [Your professional email]
-# Website: [Your website URL]
+# Website: https://brendanciccone.com
 
 # License
 # Content on this site is protected by copyright law.
