@@ -68,9 +68,13 @@ export default function RootLayout({
           rel="preconnect"
           href="https://hebbkx1anhila5yf.public.blob.vercel-storage.com"
         />
+        <link
+          rel="apple-touch-icon-precomposed"
+          href="/apple-touch-icon.png"
+        />
       </head>
       <body suppressHydrationWarning>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <ThemeProvider>
           <ErrorBoundary>
             <ScrollToTop />
             {children}
