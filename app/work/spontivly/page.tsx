@@ -62,9 +62,9 @@ export default function SpontivlyPage() {
                   without needing an engineer, helping teams make better, data-driven decisions.
                 </p>
                 <ul className="list-disc pl-5 space-y-2">
-                  <li>Designed a platform with support for 120+ API integrations</li>
-                  <li>Redesigned the marketing website to decrease the amount of friction for onboarding users</li>
-                  <li>Created interactive sales prototypes in Figma that shortened the sales cycle</li>
+                  <li className="text-foreground">Designed a platform with support for 120+ API integrations</li>
+                  <li className="text-foreground">Redesigned the marketing website to decrease the amount of friction for onboarding users</li>
+                  <li className="text-foreground">Created interactive sales prototypes in Figma that shortened the sales cycle</li>
                 </ul>
               </div>
             </section>

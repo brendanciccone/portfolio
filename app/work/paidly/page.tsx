@@ -63,9 +63,9 @@ export default function PaidlyPage() {
                   launched on iOS and Android.
                 </p>
                 <ul className="list-disc pl-5 space-y-2">
-                  <li>Served over 2,000 SME clients</li>
-                  <li>Became an official Stripe partner</li>
-                  <li>Maintained an average 4-star or higher rating</li>
+                  <li className="text-foreground">Served over 2,000 SME clients</li>
+                  <li className="text-foreground">Became an official Stripe partner</li>
+                  <li className="text-foreground">Maintained an average 4-star or higher rating</li>
                 </ul>
               </div>
             </section>

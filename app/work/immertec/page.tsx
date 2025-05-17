@@ -63,12 +63,12 @@ export default function ImmertecPage() {
                   to train healthcare professionals in real-time using VR and other mediums.
                 </p>
                 <ul className="list-disc pl-5 space-y-2">
-                  <li>Reduced average customer sales cycles by 50%</li>
-                  <li>Increased usability through a redesign by 15%</li>
-                  <li>Maintained an average NPS score of over 80</li>
-                  <li>Published 3 papers on accessibility and virtual environments</li>
-                  <li>Won 4 awards, including Startup of the Year in 2019</li>
-                  <li>Assisted in fundraising efforts of a $12M Series A round</li>
+                  <li className="text-foreground">Reduced average customer sales cycles by 50%</li>
+                  <li className="text-foreground">Increased usability through a redesign by 15%</li>
+                  <li className="text-foreground">Maintained an average NPS score of over 80</li>
+                  <li className="text-foreground">Published 3 papers on accessibility and virtual environments</li>
+                  <li className="text-foreground">Won 4 awards, including Startup of the Year in 2019</li>
+                  <li className="text-foreground">Assisted in fundraising efforts of a $12M Series A round</li>
                 </ul>
               </div>
             </section>

@@ -19,49 +19,8 @@ export default function Portfolio() {
         </FadeIn>
 
         <div className="space-y-6 sm:space-y-8">
-          {/* Project 1 */}
+          {/* Project 1 - Immertec */}
           <FadeIn delay={50} duration={350}>
-            <div className="border border-border rounded-xl overflow-hidden">
-              <div className="bg-muted border-b border-border">
-                <Link href="/work/spontivly">
-                  <Image
-                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/7-WhNtJkfUVhAkOhZSBPAbhHNURWpkYU.png"
-                    alt="Spontivly social analytics dashboard showing engagement metrics, impression trends, and top performing content"
-                    width={1200}
-                    height={800}
-                    className="w-full"
-                    priority
-                    quality={80}
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
-                  />
-                </Link>
-              </div>
-              <div className="p-4 sm:p-6">
-                {/* Group title and description closer together */}
-                <div className="mb-3">
-                  <h2 className="text-lg sm:text-xl font-semibold mb-1">Spontivly</h2>
-                  <p className="text-muted-foreground">Data dashboards for non-technical users</p>
-                </div>
-
-                {/* Badges in the middle with proper spacing */}
-                <div className="flex flex-wrap gap-2 sm:gap-3 mb-5">
-                  <span className="text-xs bg-secondary px-3 py-1 rounded-full">2023</span>
-                  <span className="text-xs bg-secondary px-3 py-1 rounded-full">Seed</span>
-                  <span className="text-xs bg-secondary px-3 py-1 rounded-full">Data</span>
-                </div>
-
-                {/* Button with proper spacing */}
-                <Button asChild size="lg" className="px-4">
-                  <Link href="/work/spontivly">
-                    View work <ArrowRight className="ml-1 h-4 w-4 transition-all duration-200" />
-                  </Link>
-                </Button>
-              </div>
-            </div>
-          </FadeIn>
-
-          {/* Project 2 */}
-          <FadeIn delay={75} duration={350}>
             <div className="border border-border rounded-xl overflow-hidden">
               <div className="bg-muted border-b border-border">
                 <Link href="/work/immertec">
@@ -94,6 +53,47 @@ export default function Portfolio() {
                 {/* Button with proper spacing */}
                 <Button asChild size="lg" className="px-4">
                   <Link href="/work/immertec">
+                    View work <ArrowRight className="ml-1 h-4 w-4 transition-all duration-200" />
+                  </Link>
+                </Button>
+              </div>
+            </div>
+          </FadeIn>
+
+          {/* Project 2 - Spontivly */}
+          <FadeIn delay={75} duration={350}>
+            <div className="border border-border rounded-xl overflow-hidden">
+              <div className="bg-muted border-b border-border">
+                <Link href="/work/spontivly">
+                  <Image
+                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/7-WhNtJkfUVhAkOhZSBPAbhHNURWpkYU.png"
+                    alt="Spontivly social analytics dashboard showing engagement metrics, impression trends, and top performing content"
+                    width={1200}
+                    height={800}
+                    className="w-full"
+                    priority
+                    quality={80}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
+                  />
+                </Link>
+              </div>
+              <div className="p-4 sm:p-6">
+                {/* Group title and description closer together */}
+                <div className="mb-3">
+                  <h2 className="text-lg sm:text-xl font-semibold mb-1">Spontivly</h2>
+                  <p className="text-muted-foreground">Data dashboards for non-technical users</p>
+                </div>
+
+                {/* Badges in the middle with proper spacing */}
+                <div className="flex flex-wrap gap-2 sm:gap-3 mb-5">
+                  <span className="text-xs bg-secondary px-3 py-1 rounded-full">2023</span>
+                  <span className="text-xs bg-secondary px-3 py-1 rounded-full">Seed</span>
+                  <span className="text-xs bg-secondary px-3 py-1 rounded-full">Data</span>
+                </div>
+
+                {/* Button with proper spacing */}
+                <Button asChild size="lg" className="px-4">
+                  <Link href="/work/spontivly">
                     View work <ArrowRight className="ml-1 h-4 w-4 transition-all duration-200" />
                   </Link>
                 </Button>
