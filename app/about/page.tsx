@@ -18,57 +18,116 @@ export default function About() {
       <Header />
       <div className="max-w-[1024px] mx-auto px-4 py-6 sm:py-8">
         <div className="flex flex-col gap-6 sm:gap-8">
-          <FadeIn delay={0} duration={350}>
-            <div className="w-full max-w-[528px] mx-auto border border-border rounded-xl p-4 sm:p-8">
-              <h1 className="text-xl sm:text-[24px] font-semibold mb-4 sm:mb-6">About me</h1>
-
-              <div className="space-y-4 sm:space-y-6 text-muted-foreground">
-                <p className="text-sm sm:text-base">
-                  In 2018, I joined medtech startup Immertec as the second hire to lead all design efforts, increasing
-                  usability by 15 points on the SUS scale, from 68 to 83, and helping the company scale to over 50
-                  employees while securing $12M in funding.
-                </p>
-
-                <p className="text-sm sm:text-base">
-                  After Immertec, I joined FCB Health NY and designed healthcare products for Fortune 100 companies used
-                  by over 5M users. Later, at Spontivly, I led design initiatives for a platform that democratized data
-                  dashboards and supported over 120 API integrations. In 2023, I joined Corellium, where I led the
-                  redesign of their virtualization platform, focusing on scalability, mobile optimization, and
-                  accessibility.
-                </p>
-
-                <p className="text-sm sm:text-base">
-                  I also founded Paidly in 2020, a Stripe-integrated invoicing app used by over 2,000 SMEs, and Magier
-                  in 2023, an AI startup acquired the same year and accepted into Techstars' 2024 cohort. I've also
-                  published research on accessibility and virtual environments in publications by HFES and SSH. When not
-                  designing, I'm probably playing music.
-                </p>
-              </div>
-
-              <div className="mt-6 sm:mt-8">
-                <Button asChild className="px-4" size="lg">
-                  <Link href="/contact">
-                    Let's work together <ArrowRight className="ml-1 h-4 w-4 transition-all duration-200" />
-                  </Link>
-                </Button>
-              </div>
+          <div className="flex flex-col md:flex-row gap-6 sm:gap-8 md:items-stretch">
+            <div className="w-full md:w-1/2">
+              <FadeIn delay={0} duration={350} className="h-full">
+                <div className="w-full max-w-[528px] mx-auto border border-border rounded-xl p-4 sm:p-8 h-full flex flex-col">
+                  <h1 className="text-xl sm:text-[24px] font-semibold mb-4 sm:mb-6">About me</h1>
+                  <div className="space-y-4 sm:space-y-6 text-muted-foreground">
+                    <p className="text-sm sm:text-base">
+                      In 2018, I joined medtech startup Immertec as the second hire to lead all design efforts, increasing
+                      usability by 15 points on the SUS scale, from 68 to 83, and helping the company scale to over 50
+                      employees while securing $12M in funding.
+                    </p>
+                    <p className="text-sm sm:text-base">
+                      After Immertec, I joined FCB Health NY and designed healthcare products for Fortune 100 companies used
+                      by over 5M users. Later, at Spontivly, I led design initiatives for a platform that democratized data
+                      dashboards and supported over 120 API integrations. In 2023, I joined Corellium, where I led the
+                      redesign of their virtualization platform, focusing on scalability, mobile optimization, and
+                      accessibility.
+                    </p>
+                    <p className="text-sm sm:text-base">
+                      I also founded Paidly in 2020, a Stripe-integrated invoicing app used by over 2,000 SMEs, and Magier
+                      in 2023, an AI startup acquired the same year and accepted into Techstars' 2024 cohort. I've also
+                      published research on accessibility and virtual environments in publications by HFES and SSH. When not
+                      designing, I'm probably playing music.
+                    </p>
+                  </div>
+                  <div className="mt-auto pt-6 sm:pt-8">
+                    <Button asChild className="px-4" size="lg">
+                      <Link href="/contact">
+                        Let's work together <ArrowRight className="ml-1 h-4 w-4 transition-all duration-200" />
+                      </Link>
+                    </Button>
+                  </div>
+                </div>
+              </FadeIn>
             </div>
-          </FadeIn>
-
+            <div className="w-full md:w-1/2">
+              <FadeIn delay={0.1} duration={350} className="h-full">
+                <div className="w-full max-w-[528px] mx-auto border border-border rounded-xl p-4 sm:p-8 h-full flex flex-col">
+                  <h2 className="text-xl sm:text-[24px] font-semibold mb-4 sm:mb-6">Experience</h2>
+                  <ul className="space-y-4">
+                    <li className="flex justify-between items-start">
+                      <div>
+                        <span className="font-medium">Senior Product Designer</span>
+                        <div className="text-sm text-muted-foreground">Corellium</div>
+                      </div>
+                      <span className="text-sm text-muted-foreground">2023–Present</span>
+                    </li>
+                    <li className="flex justify-between items-start">
+                      <div>
+                        <span className="font-medium">Senior Product Designer <span className="font-normal text-muted-foreground">(Contract)</span></span>
+                        <div className="text-sm text-muted-foreground">Spontivly</div>
+                      </div>
+                      <span className="text-sm text-muted-foreground">2023</span>
+                    </li>
+                    <li className="flex justify-between items-start">
+                      <div>
+                        <span className="font-medium">Senior Product Designer <span className="font-normal text-muted-foreground">(Contract)</span></span>
+                        <div className="text-sm text-muted-foreground">FCB Health NY</div>
+                      </div>
+                      <span className="text-sm text-muted-foreground">2023</span>
+                    </li>
+                    <li className="flex justify-between items-start">
+                      <div>
+                        <span className="font-medium">Senior Product Designer</span>
+                        <div className="text-sm text-muted-foreground">Immertec</div>
+                      </div>
+                      <span className="text-sm text-muted-foreground">2020–2023</span>
+                    </li>
+                    <li className="flex justify-between items-start">
+                      <div>
+                        <span className="font-medium">Product Designer</span>
+                        <div className="text-sm text-muted-foreground">Immertec</div>
+                      </div>
+                      <span className="text-sm text-muted-foreground">2018–2020</span>
+                    </li>
+                  </ul>
+                  <h3 className="text-lg font-medium mt-8 mb-4 sm:mb-6">Side projects</h3>
+                  <ul className="space-y-4">
+                    <li className="flex justify-between items-start">
+                      <div>
+                        <span className="font-medium">Founder <span className="font-normal text-muted-foreground">(Acquired)</span></span>
+                        <div className="text-sm text-muted-foreground">Magier</div>
+                      </div>
+                      <span className="text-sm text-muted-foreground">2023</span>
+                    </li>
+                    <li className="flex justify-between items-start">
+                      <div>
+                        <span className="font-medium">Founder</span>
+                        <div className="text-sm text-muted-foreground">Paidly</div>
+                      </div>
+                      <span className="text-sm text-muted-foreground">2020</span>
+                    </li>
+                  </ul>
+                </div>
+              </FadeIn>
+            </div>
+          </div>
           <FadeIn delay={0.2} duration={350}>
-            <div className="w-full max-w-[528px] mx-auto border border-border rounded-xl p-4 sm:p-8">
+            <div className="w-full border border-border rounded-xl p-4 sm:p-8">
               <h2 className="text-xl sm:text-[24px] font-semibold mb-4 sm:mb-6">Currently</h2>
-              
-              <div className="space-y-8">
-                <div>
+              <div className="flex flex-col md:flex-row gap-8">
+                <div className="w-full md:w-1/2">
                   <h3 className="text-lg font-medium mb-4">Listening to</h3>
                   <div className="grid grid-cols-2 gap-4">
                     {[
                       {
-                        name: "Multi-Love",
-                        artist: "Unknown Mortal Orchestra",
+                        name: "Eternal Return",
+                        artist: "Windhand",
                         cover: "/about/album1.webp",
-                        url: "https://music.apple.com/us/album/multi-love/962057741"
+                        url: "https://music.apple.com/us/album/eternal-return/1410436187"
                       },
                       {
                         name: "Madvillainy",
@@ -77,16 +136,16 @@ export default function About() {
                         url: "https://music.apple.com/us/album/madvillainy/887699504"
                       },
                       {
-                        name: "Integrated Tech Solutions",
-                        artist: "Aesop Rock",
+                        name: "Wide Awake!",
+                        artist: "Parquet Courts",
                         cover: "/about/album3.webp",
-                        url: "https://music.apple.com/us/album/integrated-tech-solutions/1699280993"
+                        url: "https://music.apple.com/us/album/wide-awake/1342585603"
                       },
                       {
-                        name: "Nocturne",
-                        artist: "Wild Nothing",
+                        name: "Manning Fireworks",
+                        artist: "MJ Lenderman",
                         cover: "/about/album4.webp",
-                        url: "https://music.apple.com/us/album/nocturne/553227907"
+                        url: "https://music.apple.com/us/album/manning-fireworks/1749088991"
                       }
                     ].map((album, index) => (
                       <Link 
@@ -110,8 +169,7 @@ export default function About() {
                     ))}
                   </div>
                 </div>
-
-                <div>
+                <div className="w-full md:w-1/2">
                   <h3 className="text-lg font-medium mb-4">Reading</h3>
                   <div className="grid grid-cols-2 gap-4">
                     {[
