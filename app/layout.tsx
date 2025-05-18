@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     siteName: "Brendan Ciccone",
     images: [
       {
-        url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/opengraph-image-mTJnoVTILGXx5KRnKHq6F3bGGzAcXA.png",
+        url: "/og.png",
         width: 1200,
         height: 630,
         alt: "Brendan Ciccone - 0 → 1 Senior Product Designer",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     creator: "@brendanciccone",
     images: [
       {
-        url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/opengraph-image-mTJnoVTILGXx5KRnKHq6F3bGGzAcXA.png",
+        url: "/og.png",
         width: 1200,
         height: 630,
         alt: "Brendan Ciccone - 0 → 1 Senior Product Designer"
