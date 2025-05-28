@@ -25,22 +25,28 @@ export default function About() {
                   <h1 className="text-xl sm:text-[24px] font-semibold mb-4 sm:mb-6">About me</h1>
                   <div className="space-y-4 sm:space-y-6 text-muted-foreground">
                     <p className="text-sm sm:text-base">
-                      In 2018, I joined medtech startup Immertec as the second hire to lead all design efforts, increasing
-                      usability by 15 points on the SUS scale, from 68 to 83, and helping the company scale to over 50
-                      employees while securing $12M in funding.
+                      In 2018, I joined medtech startup Immertec as the founding designer, 
+                      leading design across VR, web, and mobile. I led a platform redesign 
+                      that increased SUS from 68 to 83, supported growth to 50+ employees, 
+                      and helped secure $12M in Series A funding.
                     </p>
                     <p className="text-sm sm:text-base">
-                      After Immertec, I joined FCB Health NY and designed healthcare products for Fortune 100 companies used
-                      by over 5M users. Later, at Spontivly, I led design initiatives for a platform that democratized data
-                      dashboards and supported over 120 API integrations. In 2023, I joined Corellium, where I led the
-                      redesign of their virtualization platform, focusing on scalability, mobile optimization, and
-                      accessibility.
+                      After Immertec, I joined FCB Health NY and contributed to healthcare 
+                      products used by over 5 million users at Fortune 100 companies. Later, 
+                      at Spontivly, I was the only designer and created a dashboard platform 
+                      that supports 120+ API integrations and sales tools.
                     </p>
                     <p className="text-sm sm:text-base">
-                      I also founded Paidly in 2020, a Stripe-integrated invoicing app used by over 2,000 SMEs, and Magier
-                      in 2023, an AI startup acquired the same year and accepted into Techstars' 2024 cohort. I've also
-                      published research on accessibility and virtual environments in publications by HFES and SSH. When not
-                      designing, I'm probably playing music.
+                      In 2023, I joined Corellium as the sole product designer, owning platform 
+                      design and partnering with product and engineering to ship a CI/CD-integrated 
+                      mobile threat analysis tool. I led a redesign focused on scalability, 
+                      accessibility, and mobile optimization, resulting in a SUS score of 81.
+                    </p>
+                    <p className="text-sm sm:text-base">
+                      I also founded Paidly in 2020, a Stripe-integrated invoicing app used by over 
+                      2,000 SMEs, and Magier in 2023, an AI startup that was acquired the same year 
+                      and accepted into Techstars' 2024 cohort. I've also published research on 
+                      accessibility and virtual environments in publications by HFES and SSH. When I'm not designing, I'm probably making music.
                     </p>
                   </div>
                   <div className="mt-auto pt-6 sm:pt-8">
@@ -94,7 +100,8 @@ export default function About() {
                       <span className="text-sm text-muted-foreground">2018–2020</span>
                     </li>
                   </ul>
-                  <h3 className="text-lg font-medium mt-8 mb-4 sm:mb-6">Side projects</h3>
+                  <div className="h-px bg-border my-8" />
+                  <h3 className="text-lg font-medium mb-4 sm:mb-6">Side projects</h3>
                   <ul className="space-y-4">
                     <li className="flex justify-between items-start">
                       <div>
@@ -107,6 +114,17 @@ export default function About() {
                       <div>
                         <span className="font-medium">Founder</span>
                         <div className="text-sm text-muted-foreground">Paidly</div>
+                      </div>
+                      <span className="text-sm text-muted-foreground">2020</span>
+                    </li>
+                  </ul>
+                  <div className="h-px bg-border my-8" />
+                  <h3 className="text-lg font-medium mb-4 sm:mb-6">Certificates</h3>
+                  <ul className="space-y-4">
+                    <li className="flex justify-between items-start">
+                      <div>
+                        <span className="font-medium">UX Management</span>
+                        <div className="text-sm text-muted-foreground">Nielsen Norman Group</div>
                       </div>
                       <span className="text-sm text-muted-foreground">2020</span>
                     </li>

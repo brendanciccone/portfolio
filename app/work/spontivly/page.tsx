@@ -57,14 +57,14 @@ export default function SpontivlyPage() {
               <h2 className="text-lg sm:text-xl font-semibold mb-4">Overview</h2>
               <div className="space-y-4 text-muted-foreground">
                 <p>
-                  In 2023, I worked as a Senior Product Designer with Spontivly, a venture-backed startup democratizing
-                  data dashboards. I designed a platform allowing non-technical users to create custom dashboards
-                  without needing an engineer, helping teams make better, data-driven decisions.
+                  In 2023, I joined Spontivly as the sole designer at a venture-backed startup focused on democratizing
+                  data dashboards. I designed a platform that allowed non-technical users to build custom dashboards
+                  without engineering support, enabling faster, more informed decisions across teams.
                 </p>
                 <ul className="list-disc pl-5 space-y-2">
-                  <li className="text-foreground">Designed a platform with support for 120+ API integrations</li>
-                  <li className="text-foreground">Redesigned the marketing website to decrease the amount of friction for onboarding users</li>
-                  <li className="text-foreground">Created interactive sales prototypes in Figma that shortened the sales cycle</li>
+                  <li className="text-foreground">Designed a dashboard platform supporting 120+ API integrations for non-technical users</li>
+                  <li className="text-foreground">Collaborated with marketing to redesign the website and reduce onboarding friction</li>
+                  <li className="text-foreground">Built interactive sales prototypes in Figma to support deal flow and shorten the sales cycle</li>
                 </ul>
               </div>
             </section>

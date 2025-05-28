@@ -56,19 +56,21 @@ export default function ImmertecPage() {
             <section>
               <h2 className="text-lg sm:text-xl font-semibold mb-4">Overview</h2>
               <div className="space-y-4 text-muted-foreground">
-                <p>
-                  In 2018, I joined Immertec as a Product Designer as the 2nd hire, where I spent a little over 5 years
-                  leading all design initiatives. During this time, I was promoted to Senior Product Designer, we grew
-                  to over 50 team members, secured our Series A round, and worked alongside top medical device companies
-                  to train healthcare professionals in real-time using VR and other mediums.
+                <p className="leading-relaxed">
+                  In 2018, I joined Immertec as the founding designer and second hire, 
+                  leading design across VR, web, and mobile for over five years. 
+                  During that time, we grew to 50+ team members, secured a $12M Series A, 
+                  and worked with top medtech companies to train surgical teams using real-time VR simulations.
+                  real-time VR simulations.
                 </p>
                 <ul className="list-disc pl-5 space-y-2">
+                  <li className="text-foreground">Increased SUS score by 15 points from 68 to 83 through a full redesign</li>
+                  <li className="text-foreground">Maintained NPS of 80+, improving retention and satisfaction</li>
                   <li className="text-foreground">Reduced average customer sales cycles by 50%</li>
-                  <li className="text-foreground">Increased usability through a redesign by 15%</li>
-                  <li className="text-foreground">Maintained an average NPS score of over 80</li>
-                  <li className="text-foreground">Published 3 papers on accessibility and virtual environments</li>
-                  <li className="text-foreground">Won 4 awards, including Startup of the Year in 2019</li>
-                  <li className="text-foreground">Assisted in fundraising efforts of a $12M Series A round</li>
+                  <li className="text-foreground">Created pitch decks and investor materials that helped secure $12M Series A</li>
+                  <li className="text-foreground">Hired and mentored 2 junior designers during product expansion</li>
+                  <li className="text-foreground">Published 3 papers on accessibility and VR in HFES and SSH journals</li>
+                  <li className="text-foreground">Contributed to 4 company awards, including Startup of the Year (2019)</li>
                 </ul>
               </div>
             </section>
