@@ -37,7 +37,7 @@ export default function About() {
                       that supports 120+ API integrations and sales tools.
                     </p>
                     <p className="text-sm sm:text-base">
-                      In 2023, I joined Corellium as the sole product designer, owning platform 
+                      In 2023, I joined Corellium as the only product designer, owning platform 
                       design and partnering with product and engineering to ship a CI/CD-integrated 
                       mobile threat analysis tool. I led a redesign focused on scalability, 
                       accessibility, and mobile optimization, resulting in a SUS score of 81.

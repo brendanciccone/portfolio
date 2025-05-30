@@ -57,7 +57,7 @@ export default function SpontivlyPage() {
               <h2 className="text-lg sm:text-xl font-semibold mb-4">Overview</h2>
               <div className="space-y-4 text-muted-foreground">
                 <p>
-                  In 2023, I joined Spontivly as the sole designer at a venture-backed startup focused on democratizing
+                  In 2023, I joined Spontivly as the only designer at a venture-backed startup focused on democratizing
                   data dashboards. I designed a platform that allowed non-technical users to build custom dashboards
                   without engineering support, enabling faster, more informed decisions across teams.
                 </p>
