@@ -13,7 +13,7 @@ export default function Portfolio() {
       <div className="max-w-[1024px] mx-auto px-4 py-6 sm:py-8">
         <FadeIn delay={0} duration={350}>
           <p className="text-base sm:text-lg mb-8 sm:mb-12 text-muted-foreground font-medium">
-            <span className="text-foreground">0 → 1 Senior Product Designer</span> with 7 years of experience turning
+            <span className="text-foreground">0 → 1 Staff Product Designer</span> with 7 years of experience turning
             ideas into fully realized B2B and B2C products across healthcare, cybersecurity, and finance.
           </p>
         </FadeIn>

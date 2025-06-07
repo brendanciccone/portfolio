@@ -2,7 +2,7 @@ import { generatePageMetadata, projectDetails } from "@/lib/metadata";
 
 export const metadata = generatePageMetadata({
   title: projectDetails.paidly.title,
-  description: `${projectDetails.paidly.description} by Brendan Ciccone, a 0 → 1 Senior Product Designer with 7 years of experience turning ideas into fully realized products.`,
+  description: `${projectDetails.paidly.description} by Brendan Ciccone, a 0 → 1 Staff Product Designer with 7 years of experience turning ideas into fully realized products.`,
   path: "/work/paidly",
   imageUrl: projectDetails.paidly.image.url,
   imageAlt: projectDetails.paidly.image.alt,

@@ -66,7 +66,7 @@ export default function About() {
                   <ul className="space-y-4">
                     <li className="flex justify-between items-start">
                       <div>
-                        <span className="font-medium">Senior Product Designer</span>
+                        <span className="font-medium">Staff Product Designer</span>
                         <div className="text-sm text-muted-foreground">Corellium</div>
                       </div>
                       <span className="text-sm text-muted-foreground">2023–Present</span>

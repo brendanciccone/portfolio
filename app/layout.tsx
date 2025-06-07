@@ -9,9 +9,9 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 import { ErrorBoundary } from "@/components/error-boundary"
 
 export const metadata: Metadata = {
-  title: "Brendan Ciccone - 0 → 1 Senior Product Designer",
+  title: "Brendan Ciccone - 0 → 1 Staff Product Designer",
   description:
-    "Brendan Ciccone is a 0 → 1 Senior Product Designer with 7 years of experience turning ideas into fully realized B2B and B2C products across healthcare, cybersecurity, and finance.",
+    "Brendan Ciccone is a 0 → 1 Staff Product Designer with 7 years of experience turning ideas into fully realized B2B and B2C products across healthcare, cybersecurity, and finance.",
   icons: {
     icon: [
       { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
@@ -23,9 +23,9 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   openGraph: {
-    title: "Brendan Ciccone - 0 → 1 Senior Product Designer",
+    title: "Brendan Ciccone - 0 → 1 Staff Product Designer",
     description:
-      "Brendan Ciccone is a 0 → 1 Senior Product Designer with 7 years of experience turning ideas into fully realized B2B and B2C products across healthcare, cybersecurity, and finance.",
+      "Brendan Ciccone is a 0 → 1 Staff Product Designer with 7 years of experience turning ideas into fully realized B2B and B2C products across healthcare, cybersecurity, and finance.",
     url: "https://brendanciccone.com",
     siteName: "Brendan Ciccone",
     images: [
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
         url: "/og.png",
         width: 1200,
         height: 630,
-        alt: "Brendan Ciccone - 0 → 1 Senior Product Designer",
+        alt: "Brendan Ciccone - 0 → 1 Staff Product Designer",
       },
     ],
     locale: "en_US",
@@ -41,16 +41,16 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Brendan Ciccone - 0 → 1 Senior Product Designer",
+    title: "Brendan Ciccone - 0 → 1 Staff Product Designer",
     description:
-      "Brendan Ciccone is a 0 → 1 Senior Product Designer with 7 years of experience turning ideas into fully realized B2B and B2C products across healthcare, cybersecurity, and finance.",
+      "Brendan Ciccone is a 0 → 1 Staff Product Designer with 7 years of experience turning ideas into fully realized B2B and B2C products across healthcare, cybersecurity, and finance.",
     creator: "@brendanciccone",
     images: [
       {
         url: "/og.png",
         width: 1200,
         height: 630,
-        alt: "Brendan Ciccone - 0 → 1 Senior Product Designer"
+        alt: "Brendan Ciccone - 0 → 1 Staff Product Designer"
       }
     ],
   },

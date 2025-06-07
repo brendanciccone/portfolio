@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 // Base metadata that's common across all pages
 const baseMetadata = {
   siteName: "Brendan Ciccone",
-  description: "Brendan Ciccone is a 0 → 1 Senior Product Designer with 7 years of experience turning ideas into fully realized B2B and B2C products across healthcare, cybersecurity, and finance.",
+  description: "Brendan Ciccone is a 0 → 1 Staff Product Designer with 7 years of experience turning ideas into fully realized B2B and B2C products across healthcare, cybersecurity, and finance.",
   baseUrl: "https://brendanciccone.com",
   defaultImage: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image.jpg-d0SidsvzAZGPwLQFoyhGS1atLlTVa3.jpeg",
   creator: "@brendanciccone",
@@ -56,13 +56,13 @@ export function generatePageMetadata({
   description = baseMetadata.description,
   path = '',
   imageUrl = baseMetadata.defaultImage,
-  imageAlt = "Brendan Ciccone - 0 → 1 Senior Product Designer",
+  imageAlt = "Brendan Ciccone - 0 → 1 Staff Product Designer",
   imageWidth = 1200,
   imageHeight = 630,
 }: PageMetadataParams): Metadata {
   const pageTitle = title 
-    ? `${title} - Brendan Ciccone - 0 → 1 Senior Product Designer`
-    : "Brendan Ciccone - 0 → 1 Senior Product Designer";
+    ? `${title} - Brendan Ciccone - 0 → 1 Staff Product Designer`
+    : "Brendan Ciccone - 0 → 1 Staff Product Designer";
   
   const url = `${baseMetadata.baseUrl}${path}`;
 
