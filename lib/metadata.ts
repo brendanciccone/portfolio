@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 // Base metadata that's common across all pages
 const baseMetadata = {
   siteName: "Brendan Ciccone",
-  description: "Brendan Ciccone is a 0 → 1 Staff Product Designer with 7 years of experience turning ideas into fully realized B2B and B2C products across healthcare, cybersecurity, and finance.",
+  description: "Brendan Ciccone is a 0 → 1 Staff Product Designer with 7 years of experience turning ideas into fully realized B2B products across healthcare, cybersecurity, and finance.",
   baseUrl: "https://brendanciccone.com",
   defaultImage: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image.jpg-d0SidsvzAZGPwLQFoyhGS1atLlTVa3.jpeg",
   creator: "@brendanciccone",

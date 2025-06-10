@@ -40,7 +40,7 @@ export default function About() {
                       In 2023, I joined Corellium as the only product designer, owning platform 
                       design and partnering with product and engineering to ship a CI/CD-integrated 
                       mobile threat analysis tool. I led a redesign focused on scalability, 
-                      accessibility, and mobile optimization, resulting in a SUS score of 81.
+                      accessibility, and mobile optimization, resulting in a SUS score of 81. This work contributed to Corellium's $200M acquisition by Cellebrite.
                     </p>
                     <p className="text-sm sm:text-base">
                       I also founded Paidly in 2020, a Stripe-integrated invoicing app used by over 
