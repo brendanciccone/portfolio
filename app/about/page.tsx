@@ -160,10 +160,10 @@ export default function About() {
                         url: "https://music.apple.com/us/album/wide-awake/1342585603"
                       },
                       {
-                        name: "Manning Fireworks",
-                        artist: "MJ Lenderman",
+                        name: "Black Hole Superette",
+                        artist: "Aesop Rock",
                         cover: "/about/album4.webp",
-                        url: "https://music.apple.com/us/album/manning-fireworks/1749088991"
+                        url: "https://music.apple.com/us/album/black-hole-superette/1792042033"
                       }
                     ].map((album, index) => (
                       <Link 
