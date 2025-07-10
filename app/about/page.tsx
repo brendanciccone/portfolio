@@ -48,17 +48,17 @@ export default function About() {
                       className="w-full h-full object-contain"
                     />
                   </div>
-                  <div className="flex-1 flex justify-between items-start min-w-0">
+                  <div className="flex-1 flex justify-between min-w-0">
                     <div>
                       <div className="flex items-center gap-2">
-                        <span className="font-medium">Staff Product Designer</span>
+                        <span className="font-medium leading-none">Staff Product Designer</span>
                       </div>
-                      <div className="text-sm text-muted-foreground flex items-center gap-2">
+                      <div className="text-sm text-muted-foreground flex items-center gap-2 mt-1">
                         Corellium
                         <span className="text-xs bg-secondary text-secondary-foreground px-2 py-0.5 rounded-full">Acquired</span>
                       </div>
                     </div>
-                    <span className="text-sm text-muted-foreground flex-shrink-0 ml-2">2023–Present</span>
+                    <span className="text-sm text-muted-foreground flex-shrink-0 ml-2 leading-none">2023–Present</span>
                   </div>
                 </li>
                 {/* Spontivly */}
@@ -72,14 +72,14 @@ export default function About() {
                       className="w-full h-full object-contain"
                     />
                   </div>
-                  <div className="flex-1 flex justify-between items-start min-w-0">
+                  <div className="flex-1 flex justify-between min-w-0">
                     <div>
                       <div className="flex items-center gap-2">
-                        <span className="font-medium">Senior Product Designer</span>
+                        <span className="font-medium leading-none">Senior Product Designer</span>
                       </div>
-                      <div className="text-sm text-muted-foreground">Spontivly</div>
+                      <div className="text-sm text-muted-foreground mt-1">Spontivly</div>
                     </div>
-                    <span className="text-sm text-muted-foreground flex-shrink-0 ml-2">2023</span>
+                    <span className="text-sm text-muted-foreground flex-shrink-0 ml-2 leading-none">2023</span>
                   </div>
                 </li>
                 {/* FCB Health NY */}
@@ -93,14 +93,14 @@ export default function About() {
                       className="w-full h-full object-contain"
                     />
                   </div>
-                  <div className="flex-1 flex justify-between items-start min-w-0">
+                  <div className="flex-1 flex justify-between min-w-0">
                     <div>
                       <div className="flex items-center gap-2">
-                        <span className="font-medium">Senior Product Designer</span>
+                        <span className="font-medium leading-none">Senior Product Designer</span>
                       </div>
-                      <div className="text-sm text-muted-foreground">FCB Health NY</div>
+                      <div className="text-sm text-muted-foreground mt-1">FCB Health NY</div>
                     </div>
-                    <span className="text-sm text-muted-foreground flex-shrink-0 ml-2">2023</span>
+                    <span className="text-sm text-muted-foreground flex-shrink-0 ml-2 leading-none">2023</span>
                   </div>
                 </li>
                 {/* Immertec Senior */}
@@ -116,14 +116,14 @@ export default function About() {
                   </div>
                   {/* Vertical connecting line */}
                   <div className="absolute left-4 top-8 h-[1.5rem] border-l border-border"></div>
-                  <div className="flex-1 flex justify-between items-start min-w-0">
+                  <div className="flex-1 flex justify-between min-w-0">
                     <div>
                       <div className="flex items-center gap-2">
-                        <span className="font-medium">Senior Product Designer</span>
+                        <span className="font-medium leading-none">Senior Product Designer</span>
                       </div>
-                      <div className="text-sm text-muted-foreground">Immertec</div>
+                      <div className="text-sm text-muted-foreground mt-1">Immertec</div>
                     </div>
-                    <span className="text-sm text-muted-foreground flex-shrink-0 ml-2">2020–2023</span>
+                    <span className="text-sm text-muted-foreground flex-shrink-0 ml-2 leading-none">2020–2023</span>
                   </div>
                 </li>
                 {/* Immertec Product Designer */}
@@ -137,14 +137,14 @@ export default function About() {
                       className="w-full h-full object-contain"
                     />
                   </div>
-                  <div className="flex-1 flex justify-between items-start min-w-0">
+                  <div className="flex-1 flex justify-between min-w-0">
                     <div>
                       <div className="flex items-center gap-2">
-                        <span className="font-medium">Product Designer</span>
+                        <span className="font-medium leading-none">Product Designer</span>
                       </div>
-                      <div className="text-sm text-muted-foreground">Immertec</div>
+                      <div className="text-sm text-muted-foreground mt-1">Immertec</div>
                     </div>
-                    <span className="text-sm text-muted-foreground flex-shrink-0 ml-2">2018–2020</span>
+                    <span className="text-sm text-muted-foreground flex-shrink-0 ml-2 leading-none">2018–2020</span>
                   </div>
                 </li>
               </ul>
@@ -163,17 +163,17 @@ export default function About() {
                       className="w-full h-full object-contain"
                     />
                   </div>
-                  <div className="flex-1 flex justify-between items-start min-w-0">
+                  <div className="flex-1 flex justify-between min-w-0">
                     <div>
                       <div className="flex items-center gap-2">
-                        <span className="font-medium">Founder</span>
+                        <span className="font-medium leading-none">Founder</span>
                       </div>
-                      <div className="text-sm text-muted-foreground flex items-center gap-2">
+                      <div className="text-sm text-muted-foreground flex items-center gap-2 mt-1">
                         Magier
                         <span className="text-xs bg-secondary text-secondary-foreground px-2 py-0.5 rounded-full">Acquired</span>
                       </div>
                     </div>
-                    <span className="text-sm text-muted-foreground flex-shrink-0 ml-2">2023</span>
+                    <span className="text-sm text-muted-foreground flex-shrink-0 ml-2 leading-none">2023</span>
                   </div>
                 </li>
                 {/* Paidly */}
@@ -187,14 +187,14 @@ export default function About() {
                       className="w-full h-full object-contain"
                     />
                   </div>
-                  <div className="flex-1 flex justify-between items-start min-w-0">
+                  <div className="flex-1 flex justify-between min-w-0">
                     <div>
                       <div className="flex items-center gap-2">
-                        <span className="font-medium">Founder</span>
+                        <span className="font-medium leading-none">Founder</span>
                       </div>
-                      <div className="text-sm text-muted-foreground">Paidly</div>
+                      <div className="text-sm text-muted-foreground mt-1">Paidly</div>
                     </div>
-                    <span className="text-sm text-muted-foreground flex-shrink-0 ml-2">2020</span>
+                    <span className="text-sm text-muted-foreground flex-shrink-0 ml-2 leading-none">2020</span>
                   </div>
                 </li>
               </ul>
@@ -267,12 +267,14 @@ export default function About() {
                           className="w-full h-full object-contain"
                         />
                       </div>
-                      <div className="flex-1 flex justify-between items-start min-w-0">
+                      <div className="flex-1 flex justify-between min-w-0">
                         <div>
-                          <span className="font-medium">UX Management</span>
-                          <div className="text-sm text-muted-foreground">Nielsen Norman Group</div>
+                          <div className="flex items-center gap-2">
+                            <span className="font-medium leading-none">UX Management</span>
+                          </div>
+                          <div className="text-sm text-muted-foreground mt-1">Nielsen Norman Group</div>
                         </div>
-                        <span className="text-sm text-muted-foreground flex-shrink-0 ml-2">2020</span>
+                        <span className="text-sm text-muted-foreground flex-shrink-0 ml-2 leading-none">2020</span>
                       </div>
                     </li>
                   </ul>
