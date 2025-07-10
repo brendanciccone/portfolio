@@ -64,69 +64,165 @@ export default function About() {
                 <div className="w-full max-w-[528px] mx-auto border border-border rounded-xl p-4 sm:p-8 h-full flex flex-col">
                   <h2 className="text-xl sm:text-[24px] font-semibold mb-4 sm:mb-6">Experience</h2>
                   <ul className="space-y-4">
-                    <li className="flex justify-between items-start">
-                      <div>
-                        <span className="font-medium">Staff Product Designer</span>
-                        <div className="text-sm text-muted-foreground">Corellium</div>
+                    <li className="flex items-start gap-3">
+                      <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-background border border-border flex items-center justify-center overflow-hidden">
+                        {/* Corellium Logo */}
+                        <Image
+                          src="/about/logos/corellium.jpeg"
+                          alt="Corellium logo"
+                          width={32}
+                          height={32}
+                          className="w-full h-full object-contain"
+                        />
                       </div>
-                      <span className="text-sm text-muted-foreground">2023–Present</span>
+                      <div className="flex-1 flex justify-between items-start min-w-0">
+                        <div>
+                          <span className="font-medium">Staff Product Designer</span>
+                          <div className="text-sm text-muted-foreground">Corellium</div>
+                        </div>
+                        <span className="text-sm text-muted-foreground flex-shrink-0 ml-2">2023–Present</span>
+                      </div>
                     </li>
-                    <li className="flex justify-between items-start">
-                      <div>
-                        <span className="font-medium">Senior Product Designer <span className="font-normal text-muted-foreground">(Contract)</span></span>
-                        <div className="text-sm text-muted-foreground">Spontivly</div>
+                    <li className="flex items-start gap-3">
+                      <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-background border border-border flex items-center justify-center overflow-hidden">
+                        {/* Spontivly Logo */}
+                        <Image
+                          src="/about/logos/spontivly.jpeg"
+                          alt="Spontivly logo"
+                          width={32}
+                          height={32}
+                          className="w-full h-full object-contain"
+                        />
                       </div>
-                      <span className="text-sm text-muted-foreground">2023</span>
+                      <div className="flex-1 flex justify-between items-start min-w-0">
+                        <div>
+                          <span className="font-medium">Senior Product Designer <span className="font-normal text-muted-foreground">(Contract)</span></span>
+                          <div className="text-sm text-muted-foreground">Spontivly</div>
+                        </div>
+                        <span className="text-sm text-muted-foreground flex-shrink-0 ml-2">2023</span>
+                      </div>
                     </li>
-                    <li className="flex justify-between items-start">
-                      <div>
-                        <span className="font-medium">Senior Product Designer <span className="font-normal text-muted-foreground">(Contract)</span></span>
-                        <div className="text-sm text-muted-foreground">FCB Health NY</div>
+                    <li className="flex items-start gap-3">
+                      <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-background border border-border flex items-center justify-center overflow-hidden">
+                        {/* FCB Health Logo */}
+                        <Image
+                          src="/about/logos/fcb_health_ny.jpeg"
+                          alt="FCB Health logo"
+                          width={32}
+                          height={32}
+                          className="w-full h-full object-contain"
+                        />
                       </div>
-                      <span className="text-sm text-muted-foreground">2023</span>
+                      <div className="flex-1 flex justify-between items-start min-w-0">
+                        <div>
+                          <span className="font-medium">Senior Product Designer <span className="font-normal text-muted-foreground">(Contract)</span></span>
+                          <div className="text-sm text-muted-foreground">FCB Health NY</div>
+                        </div>
+                        <span className="text-sm text-muted-foreground flex-shrink-0 ml-2">2023</span>
+                      </div>
                     </li>
-                    <li className="flex justify-between items-start">
-                      <div>
-                        <span className="font-medium">Senior Product Designer</span>
-                        <div className="text-sm text-muted-foreground">Immertec</div>
+                    <li className="flex items-start gap-3">
+                      <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-background border border-border flex items-center justify-center overflow-hidden">
+                        {/* Immertec Logo */}
+                        <Image
+                          src="/about/logos/immertec.jpeg"
+                          alt="Immertec logo"
+                          width={32}
+                          height={32}
+                          className="w-full h-full object-contain"
+                        />
                       </div>
-                      <span className="text-sm text-muted-foreground">2020–2023</span>
+                      <div className="flex-1 flex justify-between items-start min-w-0">
+                        <div>
+                          <span className="font-medium">Senior Product Designer</span>
+                          <div className="text-sm text-muted-foreground">Immertec</div>
+                        </div>
+                        <span className="text-sm text-muted-foreground flex-shrink-0 ml-2">2020–2023</span>
+                      </div>
                     </li>
-                    <li className="flex justify-between items-start">
-                      <div>
-                        <span className="font-medium">Product Designer</span>
-                        <div className="text-sm text-muted-foreground">Immertec</div>
+                    <li className="flex items-start gap-3">
+                      <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-background border border-border flex items-center justify-center overflow-hidden">
+                        {/* Immertec Logo */}
+                        <Image
+                          src="/about/logos/immertec.jpeg"
+                          alt="Immertec logo"
+                          width={32}
+                          height={32}
+                          className="w-full h-full object-contain"
+                        />
                       </div>
-                      <span className="text-sm text-muted-foreground">2018–2020</span>
+                      <div className="flex-1 flex justify-between items-start min-w-0">
+                        <div>
+                          <span className="font-medium">Product Designer</span>
+                          <div className="text-sm text-muted-foreground">Immertec</div>
+                        </div>
+                        <span className="text-sm text-muted-foreground flex-shrink-0 ml-2">2018–2020</span>
+                      </div>
                     </li>
                   </ul>
                   <div className="h-px bg-border my-8" />
                   <h3 className="text-lg font-medium mb-4 sm:mb-6">Side projects</h3>
                   <ul className="space-y-4">
-                    <li className="flex justify-between items-start">
-                      <div>
-                        <span className="font-medium">Founder <span className="font-normal text-muted-foreground">(Acquired)</span></span>
-                        <div className="text-sm text-muted-foreground">Magier</div>
+                    <li className="flex items-start gap-3">
+                      <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-background border border-border flex items-center justify-center overflow-hidden">
+                        {/* Magier Logo */}
+                        <Image
+                          src="/about/logos/magier.jpeg?v=2"
+                          alt="Magier logo"
+                          width={32}
+                          height={32}
+                          className="w-full h-full object-contain"
+                        />
                       </div>
-                      <span className="text-sm text-muted-foreground">2023</span>
+                      <div className="flex-1 flex justify-between items-start min-w-0">
+                        <div>
+                          <span className="font-medium">Founder <span className="font-normal text-muted-foreground">(Acquired)</span></span>
+                          <div className="text-sm text-muted-foreground">Magier</div>
+                        </div>
+                        <span className="text-sm text-muted-foreground flex-shrink-0 ml-2">2023</span>
+                      </div>
                     </li>
-                    <li className="flex justify-between items-start">
-                      <div>
-                        <span className="font-medium">Founder</span>
-                        <div className="text-sm text-muted-foreground">Paidly</div>
+                    <li className="flex items-start gap-3">
+                      <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-background border border-border flex items-center justify-center overflow-hidden">
+                        {/* Paidly Logo */}
+                        <Image
+                          src="/about/logos/paidly.jpeg"
+                          alt="Paidly logo"
+                          width={32}
+                          height={32}
+                          className="w-full h-full object-contain"
+                        />
                       </div>
-                      <span className="text-sm text-muted-foreground">2020</span>
+                      <div className="flex-1 flex justify-between items-start min-w-0">
+                        <div>
+                          <span className="font-medium">Founder</span>
+                          <div className="text-sm text-muted-foreground">Paidly</div>
+                        </div>
+                        <span className="text-sm text-muted-foreground flex-shrink-0 ml-2">2020</span>
+                      </div>
                     </li>
                   </ul>
                   <div className="h-px bg-border my-8" />
                   <h3 className="text-lg font-medium mb-4 sm:mb-6">Certificates</h3>
                   <ul className="space-y-4">
-                    <li className="flex justify-between items-start">
-                      <div>
-                        <span className="font-medium">UX Management</span>
-                        <div className="text-sm text-muted-foreground">Nielsen Norman Group</div>
+                    <li className="flex items-start gap-3">
+                      <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-background border border-border flex items-center justify-center overflow-hidden">
+                        {/* Nielsen Norman Group Logo */}
+                        <Image
+                          src="/about/logos/nielsen_norman_group.jpeg"
+                          alt="Nielsen Norman Group logo"
+                          width={32}
+                          height={32}
+                          className="w-full h-full object-contain"
+                        />
                       </div>
-                      <span className="text-sm text-muted-foreground">2020</span>
+                      <div className="flex-1 flex justify-between items-start min-w-0">
+                        <div>
+                          <span className="font-medium">UX Management</span>
+                          <div className="text-sm text-muted-foreground">Nielsen Norman Group</div>
+                        </div>
+                        <span className="text-sm text-muted-foreground flex-shrink-0 ml-2">2020</span>
+                      </div>
                     </li>
                   </ul>
                 </div>
@@ -134,6 +230,55 @@ export default function About() {
             </div>
           </div>
           <FadeIn delay={0.2} duration={350}>
+            <div className="w-full border border-border rounded-xl p-4 sm:p-8">
+              <h2 className="text-xl sm:text-[24px] font-semibold mb-4 sm:mb-6">Publications</h2>
+              <div className="space-y-6">
+                <div className="border-l-2 border-border pl-4">
+                  <h3 className="font-medium mb-2">
+                    <Link 
+                      href="https://journals.sagepub.com/doi/10.1177/10648046211002578"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:underline"
+                    >
+                      The Next Generation of Virtual Reality: Recommendations for Accessible and Ergonomic Design
+                    </Link>
+                  </h3>
+                  <p className="text-sm text-muted-foreground mb-1">Ergonomics in Design: The Quarterly of Human Factors Applications</p>
+                  <p className="text-xs text-muted-foreground">Mar 23, 2021</p>
+                </div>
+                <div className="border-l-2 border-border pl-4">
+                  <h3 className="font-medium mb-2">
+                    <Link 
+                      href="https://journals.sagepub.com/doi/abs/10.1177/1071181320641514"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:underline"
+                    >
+                      Virtual Reality, Augmented Reality, and Virtual Environments: Demonstrations of Current Technologies and Future Directions
+                    </Link>
+                  </h3>
+                  <p className="text-sm text-muted-foreground mb-1">Proceedings of the Human Factors and Ergonomics Society Annual Meeting</p>
+                  <p className="text-xs text-muted-foreground">Feb 9, 2021</p>
+                </div>
+                <div className="border-l-2 border-border pl-4">
+                  <h3 className="font-medium mb-2">
+                    <Link 
+                      href="https://pubmed.ncbi.nlm.nih.gov/35093978/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:underline"
+                    >
+                      Assessing Usability of Untethered Head-Mounted Displays for Medical Education: A Within-Person Randomized Trial
+                    </Link>
+                  </h3>
+                  <p className="text-sm text-muted-foreground mb-1">Society for Simulation in Healthcare</p>
+                  <p className="text-xs text-muted-foreground">Jan 31, 2021</p>
+                </div>
+              </div>
+            </div>
+          </FadeIn>
+          <FadeIn delay={0.3} duration={350}>
             <div className="w-full border border-border rounded-xl p-4 sm:p-8">
               <h2 className="text-xl sm:text-[24px] font-semibold mb-4 sm:mb-6">Currently</h2>
               <div className="flex flex-col md:flex-row gap-8">
@@ -144,25 +289,25 @@ export default function About() {
                       {
                         name: "Eternal Return",
                         artist: "Windhand",
-                        cover: "/about/album1.webp",
+                        cover: "/about/albums/album1.webp",
                         url: "https://music.apple.com/us/album/eternal-return/1410436187"
                       },
                       {
                         name: "Madvillainy",
                         artist: "Madvillain",
-                        cover: "/about/album2.webp",
+                        cover: "/about/albums/album2.webp",
                         url: "https://music.apple.com/us/album/madvillainy/887699504"
                       },
                       {
                         name: "Wide Awake!",
                         artist: "Parquet Courts",
-                        cover: "/about/album3.webp",
+                        cover: "/about/albums/album3.webp",
                         url: "https://music.apple.com/us/album/wide-awake/1342585603"
                       },
                       {
                         name: "Black Hole Superette",
                         artist: "Aesop Rock",
-                        cover: "/about/album4.webp",
+                        cover: "/about/albums/album4.webp",
                         url: "https://music.apple.com/us/album/black-hole-superette/1792042033"
                       }
                     ].map((album, index) => (
@@ -194,13 +339,13 @@ export default function About() {
                       {
                         name: "Blood Meridian",
                         author: "Cormac McCarthy",
-                        cover: "/about/book1.webp",
+                        cover: "/about/books/book1.webp",
                         url: "https://bookshop.org/p/books/blood-meridian-or-the-evening-redness-in-the-west-cormac-mccarthy/6697128?ean=9780679728757&next=t"
                       },
                       {
                         name: "The Water Knife",
                         author: "Paolo Bacigalupi",
-                        cover: "/about/book2.webp",
+                        cover: "/about/books/book2.webp",
                         url: "https://bookshop.org/p/books/the-water-knife-paolo-bacigalupi/7434664?ean=9780804171533&next=t"
                       }
                     ].map((book, index) => (
