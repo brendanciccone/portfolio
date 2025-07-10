@@ -11,13 +11,6 @@ export default function Portfolio() {
     <div className="min-h-screen bg-background text-foreground">
       <Header />
       <div className="max-w-[1024px] mx-auto px-4 py-6 sm:py-8">
-        <FadeIn delay={0} duration={350}>
-          <p className="text-base sm:text-lg mb-8 sm:mb-12 text-muted-foreground font-medium">
-            <span className="text-foreground">0 → 1 Staff Product Designer</span> with 7 years of experience turning
-            ideas into fully realized B2B products across healthcare, cybersecurity, and finance.
-          </p>
-        </FadeIn>
-
         <div className="space-y-6 sm:space-y-8">
           {/* Project 1 - Immertec */}
           <FadeIn delay={50} duration={350}>
