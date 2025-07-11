@@ -23,7 +23,13 @@ export default function About() {
             <h1 className="text-xl sm:text-[24px] font-semibold mb-4 sm:mb-6">About me</h1>
             <div className="space-y-4 sm:space-y-6 text-muted-foreground">
               <p className="text-sm sm:text-base">
-                I'm a staff product designer with 7 years of experience turning ideas into fully realized B2B products across healthcare, cybersecurity, and finance. As founding designer at Immertec, I led a platform redesign that increased SUS from 68 to 83, hired and managed 2 product designers, and helped secure $12M in Series A funding. At Corellium, I owned end-to-end product design, shipped CI/CD-integrated threat analysis tools, and achieved an 81 SUS score that contributed to a $200M acquisition by Cellebrite. I founded Paidly in 2020, a Stripe-integrated invoicing app used by over 2,000 SMEs, and Magier in 2023, an AI startup that was acquired the same year and accepted into Techstars' 2024 cohort. I've also published research on accessibility and virtual environments in publications by HFES and SSH.
+                I'm a staff product designer with 7 years of experience turning ideas into fully realized B2B products across healthcare, cybersecurity, and finance.
+              </p>
+              <p className="text-sm sm:text-base">
+                As founding designer at Immertec, I led a platform redesign that increased SUS from 68 to 83, hired and managed 2 product designers, and helped secure $12M in Series A funding. At Corellium, I owned end-to-end product design, shipped CI/CD-integrated threat analysis tools, and achieved an 81 SUS score that contributed to a $200M acquisition by Cellebrite.
+              </p>
+              <p className="text-sm sm:text-base">
+                I founded Paidly in 2020, a Stripe-integrated invoicing app used by over 2,000 SMEs, and Magier in 2023, an AI startup that was acquired the same year and accepted into Techstars' 2024 cohort. I've also published research on accessibility and virtual environments in publications by HFES and SSH.
               </p>
             </div>
           </section>
@@ -54,7 +60,14 @@ export default function About() {
                         <span className="font-medium leading-none">Staff Product Designer</span>
                       </div>
                       <div className="text-sm text-muted-foreground flex items-center gap-2 mt-1">
-                        Corellium
+                        <Link 
+                          href="https://www.corellium.com" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="hover:underline transition-colors"
+                        >
+                          Corellium
+                        </Link>
                         <span className="text-xs bg-secondary text-secondary-foreground px-2 py-0.5 rounded-full">Acquired</span>
                       </div>
                     </div>
@@ -77,7 +90,16 @@ export default function About() {
                       <div className="flex items-center gap-2">
                         <span className="font-medium leading-none">Senior Product Designer</span>
                       </div>
-                      <div className="text-sm text-muted-foreground mt-1">Spontivly</div>
+                      <div className="text-sm text-muted-foreground mt-1">
+                        <Link 
+                          href="https://www.spontivly.com"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="hover:underline transition-colors"
+                        >
+                          Spontivly
+                        </Link>
+                      </div>
                     </div>
                     <span className="text-sm text-muted-foreground flex-shrink-0 ml-2 leading-none">2023</span>
                   </div>
@@ -98,7 +120,16 @@ export default function About() {
                       <div className="flex items-center gap-2">
                         <span className="font-medium leading-none">Senior Product Designer</span>
                       </div>
-                      <div className="text-sm text-muted-foreground mt-1">FCB Health NY</div>
+                      <div className="text-sm text-muted-foreground mt-1">
+                        <Link 
+                          href="https://www.fcb.com" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="hover:underline transition-colors"
+                        >
+                          FCB Health NY
+                        </Link>
+                      </div>
                     </div>
                     <span className="text-sm text-muted-foreground flex-shrink-0 ml-2 leading-none">2023</span>
                   </div>
@@ -115,13 +146,22 @@ export default function About() {
                     />
                   </div>
                   {/* Vertical connecting line */}
-                  <div className="absolute left-4 top-8 h-[1.5rem] border-l border-border"></div>
+                  <div className="absolute left-4 top-8 h-[2rem] border-l border-border"></div>
                   <div className="flex-1 flex justify-between min-w-0">
                     <div>
                       <div className="flex items-center gap-2">
                         <span className="font-medium leading-none">Senior Product Designer</span>
                       </div>
-                      <div className="text-sm text-muted-foreground mt-1">Immertec</div>
+                      <div className="text-sm text-muted-foreground mt-1">
+                        <Link 
+                          href="https://www.immertec.com"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="hover:underline transition-colors"
+                        >
+                          Immertec
+                        </Link>
+                      </div>
                     </div>
                     <span className="text-sm text-muted-foreground flex-shrink-0 ml-2 leading-none">2020–2023</span>
                   </div>
@@ -142,7 +182,16 @@ export default function About() {
                       <div className="flex items-center gap-2">
                         <span className="font-medium leading-none">Product Designer</span>
                       </div>
-                      <div className="text-sm text-muted-foreground mt-1">Immertec</div>
+                      <div className="text-sm text-muted-foreground mt-1">
+                        <Link 
+                          href="https://www.immertec.com"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="hover:underline transition-colors"
+                        >
+                          Immertec
+                        </Link>
+                      </div>
                     </div>
                     <span className="text-sm text-muted-foreground flex-shrink-0 ml-2 leading-none">2018–2020</span>
                   </div>
@@ -169,7 +218,14 @@ export default function About() {
                         <span className="font-medium leading-none">Founder</span>
                       </div>
                       <div className="text-sm text-muted-foreground flex items-center gap-2 mt-1">
-                        Magier
+                        <Link 
+                          href="https://magier.ai"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="hover:underline transition-colors"
+                        >
+                          Magier
+                        </Link>
                         <span className="text-xs bg-secondary text-secondary-foreground px-2 py-0.5 rounded-full">Acquired</span>
                       </div>
                     </div>
@@ -192,7 +248,14 @@ export default function About() {
                       <div className="flex items-center gap-2">
                         <span className="font-medium leading-none">Founder</span>
                       </div>
-                      <div className="text-sm text-muted-foreground mt-1">Paidly</div>
+                      <div className="text-sm text-muted-foreground mt-1">
+                        <Link 
+                          href="/work/paidly"
+                          className="hover:underline transition-colors"
+                        >
+                          Paidly
+                        </Link>
+                      </div>
                     </div>
                     <span className="text-sm text-muted-foreground flex-shrink-0 ml-2 leading-none">2020</span>
                   </div>
@@ -272,7 +335,16 @@ export default function About() {
                           <div className="flex items-center gap-2">
                             <span className="font-medium leading-none">UX Management</span>
                           </div>
-                          <div className="text-sm text-muted-foreground mt-1">Nielsen Norman Group</div>
+                          <div className="text-sm text-muted-foreground mt-1">
+                            <Link 
+                              href="https://www.nngroup.com/ux-certification/people/" 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="hover:underline transition-colors"
+                            >
+                              Nielsen Norman Group
+                            </Link>
+                          </div>
                         </div>
                         <span className="text-sm text-muted-foreground flex-shrink-0 ml-2 leading-none">2020</span>
                       </div>
