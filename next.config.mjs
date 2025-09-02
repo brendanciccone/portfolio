@@ -18,10 +18,12 @@ const nextConfig = {
     formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 604800,
   },
-  experimental: {
-    webpackBuildWorker: true,
-    parallelServerBuildTraces: true,
-    parallelServerCompiles: true,
+  webpack: (config) => {
+    // Force a non-WASM hash function to avoid WasmHash crashes on some Node versions
+    if (config.output) {
+      config.output.hashFunction = 'sha256'
+    }
+    return config
   },
   headers: async () => {
     return [
