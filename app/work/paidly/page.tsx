@@ -16,13 +16,15 @@ import { ArrowRight } from "lucide-react"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
 import { FadeIn } from "@/components/fade-in"
 
 export default function PaidlyPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Header />
-      <div className="max-w-[1024px] mx-auto px-4 py-6 sm:py-8">
+      {/* pt-24 accounts for fixed floating header height */}
+      <div className="max-w-[1024px] mx-auto px-4 pt-24 pb-6 sm:pb-8 flex flex-col gap-6">
         <FadeIn delay={0} duration={350}>
           <div className="mb-6 sm:mb-10">
             <div className="flex items-center mb-3">
@@ -43,8 +45,8 @@ export default function PaidlyPage() {
               Stripe-integrated invoicing mobile app for SMEs
             </p>
             <div className="flex flex-wrap gap-2">
-              <span className="text-xs bg-secondary px-3 py-1 rounded-full">2020</span>
-              <span className="text-xs bg-secondary px-3 py-1 rounded-full">Fintech</span>
+              <Badge>2020</Badge>
+              <Badge>Fintech</Badge>
             </div>
           </div>
         </FadeIn>

@@ -1,8 +1,7 @@
 import Header from "@/components/header"
 import Link from "next/link"
-import { ArrowRight } from "lucide-react"
 import Footer from "@/components/footer"
-import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
 import { FadeIn } from "@/components/fade-in"
 import { generatePageMetadata } from "@/lib/metadata"
 import Image from "next/image"
@@ -16,20 +15,21 @@ export default function About() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Header />
-      <div className="max-w-[1024px] mx-auto px-4 py-6 sm:py-8 flex flex-col gap-6">
+      {/* pt-24 accounts for fixed floating header height */}
+      <div className="max-w-[1024px] mx-auto px-4 pt-24 pb-6 sm:pb-8 flex flex-col gap-6">
         {/* About Me */}
         <FadeIn delay={0} duration={350}>
-          <section className="w-full border border-border rounded-xl p-4 sm:p-8 flex flex-col">
+          <section className="w-full bg-card border border-border rounded-xl p-4 sm:p-8 flex flex-col">
             <h1 className="text-xl sm:text-[24px] font-semibold mb-4 sm:mb-6">About me</h1>
             <div className="space-y-4 sm:space-y-6 text-muted-foreground">
               <p className="text-sm sm:text-base">
-                I'm a staff product designer with 7 years of experience turning ideas into fully realized B2B products across healthcare, cybersecurity, and finance.
+                I'm a staff product designer with <span className="text-foreground font-medium">7 years of experience</span> turning ideas into fully realized B2B products across healthcare, cybersecurity, and finance.
               </p>
               <p className="text-sm sm:text-base">
-                As founding designer at Immertec, I led a platform redesign that increased SUS from 68 to 83, hired and managed 2 product designers, and helped secure $12M in Series A funding. At Corellium, I owned end-to-end product design, shipped CI/CD-integrated threat analysis tools, and achieved an 81 SUS score that contributed to a $200M acquisition by Cellebrite.
+                As founding designer at Immertec, I led a platform redesign that <span className="text-foreground font-medium">increased SUS from 68 to 83</span>, hired and managed 2 product designers, and helped secure <span className="text-foreground font-medium">$12M in Series A</span> funding. At Corellium, I owned end-to-end product design, shipped CI/CD-integrated threat analysis tools, and achieved an 81 SUS score that contributed to a <span className="text-foreground font-medium">$200M acquisition</span> by Cellebrite.
               </p>
               <p className="text-sm sm:text-base">
-                I founded Paidly in 2020, a Stripe-integrated invoicing app used by over 2,000 SMEs, and Magier in 2023, an AI startup that was acquired the same year and accepted into Techstars' 2024 cohort. I've also published research on accessibility and virtual environments in publications by HFES and SSH.
+                I founded Paidly in 2020, a Stripe-integrated invoicing app used by <span className="text-foreground font-medium">over 2,000 SMEs</span>, and Magier in 2023, an AI startup that was <span className="text-foreground font-medium">acquired the same year</span> and accepted into <span className="text-foreground font-medium">Techstars' 2024</span> cohort. I've also published research on accessibility and virtual environments in publications by HFES and SSH.
               </p>
             </div>
           </section>
@@ -39,8 +39,8 @@ export default function About() {
         <div className="flex flex-col md:flex-row gap-6 md:items-stretch min-h-[600px]">
           {/* Experience */}
           <FadeIn delay={0.1} duration={350} className="w-full md:w-1/2 flex">
-            <section className="w-full max-w-[528px] mx-auto border border-border rounded-xl p-4 sm:p-8 flex flex-col flex-1">
-              <h2 className="text-xl sm:text-[24px] font-semibold mb-4 sm:mb-6">Experience</h2>
+            <section className="w-full max-w-[528px] mx-auto bg-card border border-border rounded-xl p-4 sm:p-8 flex flex-col flex-1">
+              <h2 className="text-lg sm:text-xl font-semibold mb-4 sm:mb-6">Experience</h2>
               <div>
                 <ul className="space-y-6">
                 {/* Corellium */}
@@ -68,7 +68,7 @@ export default function About() {
                         >
                           Corellium
                         </Link>
-                        <span className="text-xs bg-secondary text-secondary-foreground px-2 py-0.5 rounded-full">Acquired</span>
+                        <Badge className="px-2 py-0.5">Acquired</Badge>
                       </div>
                     </div>
                     <span className="text-sm text-muted-foreground flex-shrink-0 ml-2 leading-none">2023–Present</span>
@@ -196,6 +196,36 @@ export default function About() {
                     <span className="text-sm text-muted-foreground flex-shrink-0 ml-2 leading-none">2018–2020</span>
                   </div>
                 </li>
+                {/* Four Pixels */}
+                <li className="flex items-start gap-3">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-md bg-background border border-border flex items-center justify-center overflow-hidden">
+                    <Image
+                      src="/about/logos/four_pixels.jpeg"
+                      alt="Four Pixels logo"
+                      width={32}
+                      height={32}
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                  <div className="flex-1 flex justify-between min-w-0">
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <span className="font-medium leading-none">Designer</span>
+                      </div>
+                      <div className="text-sm text-muted-foreground mt-1">
+                        <Link 
+                          href="https://www.fourpixels.xyz"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="hover:underline transition-colors"
+                        >
+                          Four Pixels
+                        </Link>
+                      </div>
+                    </div>
+                    <span className="text-sm text-muted-foreground flex-shrink-0 ml-2 leading-none">2015–2018</span>
+                  </div>
+                </li>
               </ul>
               </div>
               <div className="h-px bg-border my-8" />
@@ -226,10 +256,34 @@ export default function About() {
                         >
                           Magier
                         </Link>
-                        <span className="text-xs bg-secondary text-secondary-foreground px-2 py-0.5 rounded-full">Acquired</span>
+                        <Badge className="px-2 py-0.5">Acquired</Badge>
                       </div>
                     </div>
                     <span className="text-sm text-muted-foreground flex-shrink-0 ml-2 leading-none">2023</span>
+                  </div>
+                </li>
+                {/* Biobox */}
+                <li className="flex items-start gap-3">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-md bg-background border border-border flex items-center justify-center overflow-hidden">
+                    <Image
+                      src="/about/logos/biobox.jpeg"
+                      alt="Biobox logo"
+                      width={32}
+                      height={32}
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                  <div className="flex-1 flex justify-between min-w-0">
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <span className="font-medium leading-none">Cofounder</span>
+                      </div>
+                      <div className="text-sm text-muted-foreground flex items-center gap-2 mt-1">
+                        <span>Biobox</span>
+                        <Badge className="px-2 py-0.5">ETHGlobal Winner</Badge>
+                      </div>
+                    </div>
+                    <span className="text-sm text-muted-foreground flex-shrink-0 ml-2 leading-none">2021</span>
                   </div>
                 </li>
                 {/* Paidly */}
@@ -267,8 +321,8 @@ export default function About() {
           {/* Publications & Certificates */}
           <div className="w-full md:w-1/2 flex flex-col gap-6 flex-1">
             <FadeIn delay={0.15} duration={350} className="flex-1">
-              <section className="w-full border border-border rounded-xl p-4 sm:p-8 flex flex-col flex-1">
-                <h2 className="text-xl sm:text-[24px] font-semibold mb-4 sm:mb-6">Publications</h2>
+              <section className="w-full bg-card border border-border rounded-xl p-4 sm:p-8 flex flex-col flex-1">
+                <h2 className="text-lg sm:text-xl font-semibold mb-4 sm:mb-6">Publications</h2>
                 <div className="space-y-6 flex-1">
                   <div className="border-l border-border pl-4">
                     <h3 className="font-medium mb-2">
@@ -316,8 +370,8 @@ export default function About() {
               </section>
             </FadeIn>
             <FadeIn delay={0.18} duration={350}>
-              <section className="w-full border border-border rounded-xl p-4 sm:p-8">
-                <h2 className="text-xl sm:text-[24px] font-semibold mb-4 sm:mb-6">Certificates</h2>
+              <section className="w-full bg-card border border-border rounded-xl p-4 sm:p-8">
+                <h2 className="text-lg sm:text-xl font-semibold mb-4 sm:mb-6">Certificates</h2>
                 <ul className="space-y-4">
                     <li className="flex items-start gap-3">
                       <div className="flex-shrink-0 w-8 h-8 rounded-md bg-background border border-border flex items-center justify-center overflow-hidden">
@@ -357,36 +411,36 @@ export default function About() {
 
         {/* Currently */}
         <FadeIn delay={0.2} duration={350}>
-          <section className="w-full border border-border rounded-xl p-4 sm:p-8">
-            <h2 className="text-xl sm:text-[24px] font-semibold mb-4 sm:mb-6">Currently</h2>
+          <section className="w-full bg-card border border-border rounded-xl p-4 sm:p-8">
+            <h2 className="text-lg sm:text-xl font-semibold mb-4 sm:mb-6">Currently</h2>
             <div className="flex flex-col md:flex-row gap-8">
               <div className="w-full md:w-1/2">
                 <h3 className="text-lg font-medium mb-4">Listening to</h3>
                 <div className="grid grid-cols-2 gap-4">
                   {[
                     {
-                      name: "Eternal Return",
-                      artist: "Windhand",
+                      name: "Two Hands",
+                      artist: "Big Thief",
                       cover: "/about/albums/album1.webp",
-                      url: "https://music.apple.com/us/album/eternal-return/1410436187"
+                      url: "https://music.apple.com/us/album/two-hands/1473012904"
                     },
                     {
-                      name: "Madvillainy",
-                      artist: "Madvillain",
+                      name: "LOTTO",
+                      artist: "They Are Gutting a Body of Water",
                       cover: "/about/albums/album2.webp",
-                      url: "https://music.apple.com/us/album/madvillainy/887699504"
+                      url: "https://music.apple.com/us/album/lotto/1821845532"
                     },
                     {
-                      name: "Wide Awake!",
-                      artist: "Parquet Courts",
+                      name: "Siamese Dream",
+                      artist: "The Smashing Pumpkins",
                       cover: "/about/albums/album3.webp",
-                      url: "https://music.apple.com/us/album/wide-awake/1342585603"
+                      url: "https://music.apple.com/us/album/siamese-dream/721207206"
                     },
                     {
-                      name: "Black Hole Superette",
-                      artist: "Aesop Rock",
+                      name: "Take Me to Your Leader",
+                      artist: "King Geedorah",
                       cover: "/about/albums/album4.webp",
-                      url: "https://music.apple.com/us/album/black-hole-superette/1792042033"
+                      url: "https://music.apple.com/us/album/take-me-to-your-leader/416318858"
                     }
                   ].map((album, index) => (
                     <Link 
@@ -396,7 +450,7 @@ export default function About() {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <div className="relative w-full aspect-square mb-2 rounded-lg overflow-hidden">
+                      <div className="relative w-full aspect-square mb-2 rounded-lg overflow-hidden ring-1 ring-border">
                         <Image
                           src={album.cover}
                           alt={`${album.name} by ${album.artist}`}
@@ -415,16 +469,16 @@ export default function About() {
                 <div className="grid grid-cols-2 gap-4">
                   {[
                     {
-                      name: "Blood Meridian",
-                      author: "Cormac McCarthy",
+                      name: "Brave New World",
+                      author: "Aldous Huxley",
                       cover: "/about/books/book1.webp",
-                      url: "https://bookshop.org/p/books/blood-meridian-or-the-evening-redness-in-the-west-cormac-mccarthy/6697128?ean=9780679728757&next=t"
+                      url: "https://bookshop.org/p/books/brave-new-world-aldous-huxley/f7c8af7eeabea853?ean=9780060850524&next=t"
                     },
                     {
-                      name: "The Water Knife",
-                      author: "Paolo Bacigalupi",
+                      name: "Blood Meridian",
+                      author: "Cormac McCarthy",
                       cover: "/about/books/book2.webp",
-                      url: "https://bookshop.org/p/books/the-water-knife-paolo-bacigalupi/7434664?ean=9780804171533&next=t"
+                      url: "https://bookshop.org/p/books/blood-meridian-or-the-evening-redness-in-the-west-cormac-mccarthy/6697128?ean=9780679728757&next=t"
                     }
                   ].map((book, index) => (
                     <Link 
@@ -434,7 +488,7 @@ export default function About() {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <div className="relative w-full aspect-[2/3] mb-2 rounded-lg overflow-hidden">
+                      <div className="relative w-full aspect-[2/3] mb-2 rounded-lg overflow-hidden ring-1 ring-border">
                         <Image
                           src={book.cover}
                           alt={`${book.name} by ${book.author}`}

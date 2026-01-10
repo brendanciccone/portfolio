@@ -13,7 +13,8 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Header />
-      <div className="max-w-[1024px] mx-auto px-4 py-6 sm:py-8">
+      {/* pt-24 accounts for fixed floating header height */}
+      <div className="max-w-[1024px] mx-auto px-4 pt-24 pb-6 sm:pb-8 flex flex-col gap-6">
         <div className="flex flex-col items-center">
           <FadeIn delay={0} duration={350}>
             <div className="w-full max-w-[528px] mb-6">
@@ -22,7 +23,7 @@ export default function ContactPage() {
                 Ready to take your product from 0 → 1 or looking to expand your team? Reach out below.
               </p>
             </div>
-            <div className="w-full max-w-[528px] border border-border rounded-xl p-4 sm:p-8">
+            <div className="w-full max-w-[528px] bg-card border border-border rounded-xl p-4 sm:p-8">
               <ContactForm />
             </div>
           </FadeIn>
