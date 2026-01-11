@@ -71,7 +71,7 @@ export default function About() {
                         <Badge className="px-2 py-0.5">Acquired</Badge>
                       </div>
                     </div>
-                    <span className="text-sm text-muted-foreground flex-shrink-0 ml-2 leading-none">2023–Present</span>
+                    <span className="text-sm text-muted-foreground flex-shrink-0 ml-2 leading-none">2023-Present</span>
                   </div>
                 </li>
                 {/* Spontivly */}
@@ -102,7 +102,7 @@ export default function About() {
                         <Badge className="px-2 py-0.5">Contract</Badge>
                       </div>
                     </div>
-                    <span className="text-sm text-muted-foreground flex-shrink-0 ml-2 leading-none">2023–2024</span>
+                    <span className="text-sm text-muted-foreground flex-shrink-0 ml-2 leading-none">2023-2024</span>
                   </div>
                 </li>
                 {/* FCB Health NY */}
@@ -165,7 +165,7 @@ export default function About() {
                         </Link>
                       </div>
                     </div>
-                    <span className="text-sm text-muted-foreground flex-shrink-0 ml-2 leading-none">2020–2023</span>
+                    <span className="text-sm text-muted-foreground flex-shrink-0 ml-2 leading-none">2020-2023</span>
                   </div>
                 </li>
                 {/* Immertec Product Designer */}
@@ -195,7 +195,7 @@ export default function About() {
                         </Link>
                       </div>
                     </div>
-                    <span className="text-sm text-muted-foreground flex-shrink-0 ml-2 leading-none">2018–2020</span>
+                    <span className="text-sm text-muted-foreground flex-shrink-0 ml-2 leading-none">2018-2020</span>
                   </div>
                 </li>
                 {/* Four Pixels */}
@@ -225,13 +225,13 @@ export default function About() {
                         </Link>
                       </div>
                     </div>
-                    <span className="text-sm text-muted-foreground flex-shrink-0 ml-2 leading-none">2015–2018</span>
+                    <span className="text-sm text-muted-foreground flex-shrink-0 ml-2 leading-none">2015-2018</span>
                   </div>
                 </li>
               </ul>
               </div>
               <div className="h-px bg-border my-8" />
-              <h3 className="text-lg font-medium mb-4 sm:mb-6">Side projects</h3>
+              <h3 className="text-lg font-medium mb-4 sm:mb-6">Other experience</h3>
               <ul className="space-y-6">
                 {/* Magier */}
                 <li className="flex items-start gap-3">

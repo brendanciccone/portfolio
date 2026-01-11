@@ -14,7 +14,7 @@ const baseMetadata = {
 export const projectDetails = {
   spontivly: {
     title: "Spontivly",
-    description: "Data dashboards for non-technical users",
+    description: "Analytics dashboards for non-technical users",
     image: {
       url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/7-WhNtJkfUVhAkOhZSBPAbhHNURWpkYU.png",
       alt: "Spontivly social analytics dashboard showing engagement metrics, impression trends, and top performing content",
