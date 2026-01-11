@@ -10,12 +10,31 @@ export default function Portfolio() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Header />
-      {/* pt-24 accounts for fixed floating header height */}
-      <div className="max-w-[1024px] mx-auto px-4 pt-24 pb-6 sm:pb-8 flex flex-col gap-6">
+      
+      {/* Intro Section */}
+      <div className="w-full pt-28 sm:pt-32">
+        <FadeIn delay={0} duration={350}>
+          <div className="max-w-[1024px] mx-auto px-5">
+            <p className="text-base sm:text-lg text-muted-foreground">
+              Hi! 👋 I'm a <span className="font-semibold text-foreground">0 → 1 Staff Product Designer</span> and Founder with 7 years of experience shipping B2B products across healthcare, cybersecurity, and finance. Currently at <Link href="https://www.corellium.com" target="_blank" rel="noopener noreferrer" className="text-foreground font-medium hover:underline">Corellium</Link>, simplifying complex cybersecurity workflows.
+            </p>
+            {/* Centered border */}
+            <div className="border-b border-border mt-6 sm:mt-8"></div>
+          </div>
+        </FadeIn>
+      </div>
+
+      {/* Main content */}
+      <div className="max-w-[1024px] mx-auto px-5 pt-6 sm:pt-8 pb-6 sm:pb-8 flex flex-col gap-6">
+        {/* Selected Work label */}
+        <FadeIn delay={25} duration={350}>
+          <p className="text-sm font-medium text-muted-foreground uppercase tracking-wide">Selected Work</p>
+        </FadeIn>
+
         {/* Grid: 1 column on mobile, 2 columns on md+ screens */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           {/* Project 1 - Spontivly */}
-          <FadeIn delay={50} duration={350}>
+          <FadeIn delay={75} duration={350}>
             <Link href="/work/spontivly" className="group block bg-card border border-border rounded-xl overflow-hidden transition-all hover:border-foreground/20 hover:shadow-lg hover:shadow-black/5">
               <div className="bg-muted border-b border-border">
                 <Image
@@ -38,7 +57,7 @@ export default function Portfolio() {
 
                 {/* Badges */}
                 <div className="flex flex-wrap gap-2 sm:gap-3">
-                  <Badge>2023</Badge>
+                  <Badge>2023–2024</Badge>
                   <Badge>Seed</Badge>
                   <Badge>Analytics</Badge>
                 </div>
@@ -47,7 +66,7 @@ export default function Portfolio() {
           </FadeIn>
 
           {/* Project 2 - Immertec */}
-          <FadeIn delay={75} duration={350}>
+          <FadeIn delay={100} duration={350}>
             <Link href="/work/immertec" className="group block bg-card border border-border rounded-xl overflow-hidden transition-all hover:border-foreground/20 hover:shadow-lg hover:shadow-black/5">
               <div className="bg-muted border-b border-border">
                 <Image
@@ -79,7 +98,7 @@ export default function Portfolio() {
           </FadeIn>
 
           {/* Project 3 - Paidly */}
-          <FadeIn delay={100} duration={350}>
+          <FadeIn delay={125} duration={350}>
             <Link href="/work/paidly" className="group block bg-card border border-border rounded-xl overflow-hidden transition-all hover:border-foreground/20 hover:shadow-lg hover:shadow-black/5">
               <div className="bg-muted border-b border-border">
                 <Image
@@ -110,7 +129,7 @@ export default function Portfolio() {
           </FadeIn>
 
           {/* Project 4 - Magier (Coming soon, not clickable) */}
-          <FadeIn delay={125} duration={350}>
+          <FadeIn delay={150} duration={350}>
             <div className="relative bg-card border border-border rounded-xl overflow-hidden cursor-not-allowed">
               {/* Coming soon indicator - outside the faded content */}
               <div className="absolute top-3 right-3 z-10 bg-background border border-border rounded-full p-2" aria-label="Coming soon">

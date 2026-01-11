@@ -16,201 +16,232 @@ import { ArrowRight } from "lucide-react"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
 import { FadeIn } from "@/components/fade-in"
 
 export default function SpontivlyPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Header />
-      {/* pt-24 accounts for fixed floating header height */}
-      <div className="max-w-[1024px] mx-auto px-4 pt-24 pb-6 sm:pb-8 flex flex-col gap-6">
+      
+      <div className="max-w-[1024px] mx-auto px-5 pt-24 pb-6 sm:pb-8 flex flex-col gap-8 sm:gap-12">
+        
+        {/* Hero Section */}
         <FadeIn delay={0} duration={350}>
-          <div className="mb-6 sm:mb-10">
-            <div className="flex items-center mb-3">
-              <div className="w-10 h-10 rounded-lg border border-border flex items-center justify-center mr-3 bg-transparent overflow-hidden">
+          <div className="flex flex-col gap-6">
+            {/* Title + Description */}
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 rounded-xl border border-border flex items-center justify-center bg-card overflow-hidden flex-shrink-0">
                 <Image
                   src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/sdtEuqGIPQw38owJSawPdDh1myE-dMMHZU0Y0hIYLLG1OoLVxrDe6ZqZlF.webp"
                   alt="Spontivly logo"
-                  width={40}
-                  height={40}
+                  width={48}
+                  height={48}
                   className="w-full h-full object-cover"
                   quality={80}
-                  sizes="40px"
+                  sizes="48px"
                 />
               </div>
-              <h1 className="text-xl sm:text-2xl font-semibold">Spontivly</h1>
+              <div>
+                <h1 className="text-2xl sm:text-3xl font-semibold mb-1">Spontivly</h1>
+                <p className="text-base sm:text-lg text-muted-foreground">
+                  Analytics dashboards for non-technical users
+                </p>
+              </div>
             </div>
-            <p className="text-base sm:text-lg text-muted-foreground mb-4 max-w-2xl">
-              Data dashboards for non-technical users
-            </p>
-            <div className="flex flex-wrap gap-2">
-              <Badge>2023</Badge>
-              <Badge>Seed</Badge>
-              <Badge>Data</Badge>
+            
+            {/* Hero Image */}
+            <div className="bg-muted rounded-xl overflow-hidden">
+              <Image
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1-WdXXd2S7UErPJUOdDGGcki7Gq9r0TN.png"
+                alt="Spontivly social dashboard showing analytics and engagement metrics"
+                width={1200}
+                height={800}
+                className="w-full"
+                priority
+                quality={80}
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
+              />
             </div>
           </div>
         </FadeIn>
 
-        <div className="space-y-12 sm:space-y-16">
-          {/* Overview Section */}
-          <FadeIn delay={50} duration={350}>
-            <section>
-              <h2 className="text-lg sm:text-xl font-semibold mb-4">Overview</h2>
-              <div className="space-y-4 text-muted-foreground">
-                <p>
-                  In 2023, I joined Spontivly as the only designer at a venture-backed startup focused on democratizing
-                  data dashboards. I designed a platform that allowed non-technical users to build custom dashboards
-                  without engineering support, enabling faster, more informed decisions across teams.
-                </p>
-                <ul className="list-disc pl-5 space-y-2">
-                  <li className="text-foreground">Designed a dashboard platform supporting 120+ API integrations for non-technical users</li>
-                  <li className="text-foreground">Collaborated with marketing to redesign the website and reduce onboarding friction</li>
-                  <li className="text-foreground">Built interactive sales prototypes in Figma to support deal flow and shorten the sales cycle</li>
-                </ul>
-              </div>
-            </section>
-          </FadeIn>
+        {/* Project Details Grid */}
+        <FadeIn delay={50} duration={350}>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <div className="bg-card border border-border rounded-xl p-4">
+              <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Role</p>
+              <p className="font-medium">Senior Product Designer</p>
+            </div>
+            <div className="bg-card border border-border rounded-xl p-4">
+              <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Timeline</p>
+              <p className="font-medium">2023–2024</p>
+            </div>
+            <div className="bg-card border border-border rounded-xl p-4">
+              <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Team</p>
+              <p className="font-medium">Solo designer</p>
+            </div>
+            <div className="bg-card border border-border rounded-xl p-4">
+              <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Stage</p>
+              <p className="font-medium">Seed</p>
+            </div>
+          </div>
+        </FadeIn>
 
-          {/* Social Dashboard Section */}
-          <FadeIn delay={75} duration={350}>
-            <section>
-              <div className="bg-muted p-3 sm:p-4 rounded-lg mb-6">
-                <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1-WdXXd2S7UErPJUOdDGGcki7Gq9r0TN.png"
-                  alt="Spontivly social dashboard showing analytics and engagement metrics"
-                  width={1200}
-                  height={800}
-                  className="rounded-lg w-full"
-                  quality={80}
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
-                />
+        {/* Impact Highlights */}
+        <FadeIn delay={75} duration={350}>
+          <div className="bg-card border border-border rounded-xl p-6 sm:p-8">
+            <h2 className="text-sm text-muted-foreground uppercase tracking-wide mb-4">Impact</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+              <div>
+                <p className="text-2xl sm:text-3xl font-semibold mb-1">120+</p>
+                <p className="text-sm text-muted-foreground">API integrations designed for the dashboard platform</p>
               </div>
-            </section>
-          </FadeIn>
+              <div>
+                <p className="text-2xl sm:text-3xl font-semibold mb-1">1 month</p>
+                <p className="text-sm text-muted-foreground">Ahead of schedule on website redesign launch</p>
+              </div>
+              <div>
+                <p className="text-2xl sm:text-3xl font-semibold mb-1">Sales prototypes</p>
+                <p className="text-sm text-muted-foreground">Interactive Figma demos to shorten sales cycles</p>
+              </div>
+            </div>
+          </div>
+        </FadeIn>
 
-          {/* Website Redesign Section */}
-          <FadeIn delay={100} duration={350}>
-            <section>
-              <h2 className="text-lg sm:text-xl font-semibold mb-4">Website Redesign</h2>
-              <div className="space-y-4 text-muted-foreground mb-6">
-                <p>
-                  My first project at Spontivly was redesigning the marketing website to create a more consistent
-                  message and visual language. I collaborated closely with the marketing team and presented concepts to
-                  stakeholders, ensuring the new design aligned with the company's ethos. By advocating for an
-                  accessible CMS, I enabled anyone in the company to manage content like blog posts. I led the
-                  development and hired some of my engineering contacts, and we successfully launched the new site over
-                  a month ahead of schedule.
-                </p>
-              </div>
-              <div className="bg-muted p-3 sm:p-4 rounded-lg mb-6">
-                <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2-WtBgFu7RPx0w5ppbt7HCyV17wHHwsK.png"
-                  alt="Spontivly marketing website showing data dashboards without technical fuss tagline"
-                  width={1200}
-                  height={800}
-                  className="rounded-lg w-full"
-                  priority
-                  quality={80}
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
-                />
-              </div>
-            </section>
-          </FadeIn>
+        {/* Context Section */}
+        <FadeIn delay={100} duration={350}>
+          <section>
+            <h2 className="text-lg sm:text-xl font-semibold mb-4">Context</h2>
+            <p className="text-muted-foreground max-w-3xl">
+              I joined Spontivly as the only designer at a venture-backed startup focused on democratizing 
+              data dashboards. I designed a platform that allowed non-technical users to build custom dashboards 
+              without engineering support, enabling faster, more informed decisions across teams.
+            </p>
+          </section>
+        </FadeIn>
 
-          {/* Dashboard Builder Section */}
-          <FadeIn delay={125} duration={350}>
-            <section>
-              <h2 className="text-lg sm:text-xl font-semibold mb-4">Dashboard Builder</h2>
-              <div className="space-y-4 text-muted-foreground mb-6">
-                <p>
-                  I led the design of the data dashboard builder and an admin dashboard for managing user-created
-                  dashboards and permissions. The goal was to enable users to connect any API from social media, CRMs,
-                  and more and customize the generated charts and tables in a drag-and-drop builder. I collaborated
-                  closely with marketing, engineering, and co-founders to understand our users and their varied goals,
-                  from providing stakeholder reports to making data-driven decisions. I tried to steer the design toward
-                  something that felt familiar while still incorporating all of the features that make Spontivly a
-                  unique platform for data analysis.
-                </p>
-              </div>
-              <div className="bg-muted p-3 sm:p-4 rounded-lg mb-6">
+        {/* Website Redesign Section */}
+        <FadeIn delay={125} duration={350}>
+          <section>
+            <h2 className="text-lg sm:text-xl font-semibold mb-4">Website Redesign</h2>
+            <p className="text-muted-foreground mb-6 max-w-3xl">
+              My first project was redesigning the marketing website to create a more consistent message and visual language. 
+              I collaborated with marketing, advocated for an accessible CMS, and led development with contractors I brought in. 
+              We launched over a month ahead of schedule.
+            </p>
+            <div className="bg-muted rounded-xl overflow-hidden">
+              <Image
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2-WtBgFu7RPx0w5ppbt7HCyV17wHHwsK.png"
+                alt="Spontivly marketing website showing data dashboards without technical fuss tagline"
+                width={1200}
+                height={800}
+                className="w-full"
+                quality={80}
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
+              />
+            </div>
+          </section>
+        </FadeIn>
+
+        {/* Dashboard Builder Section */}
+        <FadeIn delay={150} duration={350}>
+          <section>
+            <h2 className="text-lg sm:text-xl font-semibold mb-4">Dashboard Builder</h2>
+            <p className="text-muted-foreground mb-6 max-w-3xl">
+              I led the design of a drag-and-drop dashboard builder that let users connect APIs from social media, CRMs, 
+              and other tools. The goal was to make something familiar yet powerful enough for data-driven decision making.
+            </p>
+            <div className="grid grid-cols-1 gap-4">
+              <div className="bg-muted rounded-xl overflow-hidden">
                 <Image
                   src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/3-K6zVOHyu0haPpgDtEStbsDrwqDl1Lt.png"
-                  alt="Spontivly dashboard overview showing multiple dashboard cards for different purposes like Recent Events, Sales Leads, and Social Overview, each with their integrated platforms"
+                  alt="Spontivly dashboard overview showing multiple dashboard cards for different purposes"
                   width={1200}
                   height={800}
-                  className="rounded-lg w-full"
+                  className="w-full"
+                  quality={80}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
                 />
               </div>
-              <div className="bg-muted p-3 sm:p-4 rounded-lg mb-6">
-                <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/4-GhS5M97fmuUUo2QbvcNDyiW97xc3bc.png"
-                  alt="Spontivly profile settings interface showing personal information management and profile picture upload"
-                  width={1200}
-                  height={800}
-                  className="rounded-lg w-full"
-                />
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="bg-muted rounded-xl overflow-hidden">
+                  <Image
+                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/4-GhS5M97fmuUUo2QbvcNDyiW97xc3bc.png"
+                    alt="Spontivly profile settings interface"
+                    width={600}
+                    height={400}
+                    className="w-full"
+                    quality={80}
+                    sizes="(max-width: 640px) 100vw, 50vw"
+                  />
+                </div>
+                <div className="bg-muted rounded-xl overflow-hidden">
+                  <Image
+                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/5-nAN6iIm4GpTngSI9u7hKN7O5l3tP9L.png"
+                    alt="Spontivly team management interface"
+                    width={600}
+                    height={400}
+                    className="w-full"
+                    quality={80}
+                    sizes="(max-width: 640px) 100vw, 50vw"
+                  />
+                </div>
               </div>
-              <div className="bg-muted p-3 sm:p-4 rounded-lg mb-6">
-                <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/5-nAN6iIm4GpTngSI9u7hKN7O5l3tP9L.png"
-                  alt="Spontivly team management interface showing member roles, permissions, and workspace access controls"
-                  width={1200}
-                  height={800}
-                  className="rounded-lg w-full"
-                />
-              </div>
-            </section>
-          </FadeIn>
+            </div>
+          </section>
+        </FadeIn>
 
-          {/* Insights Section */}
-          <FadeIn delay={150} duration={350}>
-            <section>
-              <h2 className="text-lg sm:text-xl font-semibold mb-4">Insights</h2>
-              <div className="space-y-4 text-muted-foreground mb-6">
-                <p>
-                  This experience taught me a lot about designing data visualization and how crucial it is to balance a
-                  product's complexity to satisfy advanced users without scaring off newcomers. At Spontivly, we struck
-                  that balance, leading to noteworthy teams from various industries becoming users.
-                </p>
-                <p>
-                  My key takeaway is that introducing complex features should be done strategically: prioritize the most
-                  relevant features and push advanced options further into the background while still keeping them
-                  within reach. This approach enhances usability for all skill levels and drives deeper engagement and
-                  adoption among mixed user groups.
-                </p>
-              </div>
-              <div className="bg-muted p-3 sm:p-4 rounded-lg mb-6">
-                <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/6-QASqlEIRz1pkUNGGxmLRjjUfAqOjDq.png"
-                  alt="Spontivly chart builder interface showing customization options for data visualization"
-                  width={1200}
-                  height={800}
-                  className="rounded-lg w-full"
-                />
-              </div>
-            </section>
-          </FadeIn>
+        {/* Chart Builder Section */}
+        <FadeIn delay={175} duration={350}>
+          <section>
+            <h2 className="text-lg sm:text-xl font-semibold mb-4">Chart Customization</h2>
+            <p className="text-muted-foreground mb-6 max-w-3xl">
+              Users needed granular control over their visualizations. I designed a chart builder that balanced 
+              power-user features with approachability for non-technical users.
+            </p>
+            <div className="bg-muted rounded-xl overflow-hidden">
+              <Image
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/6-QASqlEIRz1pkUNGGxmLRjjUfAqOjDq.png"
+                alt="Spontivly chart builder interface showing customization options"
+                width={1200}
+                height={800}
+                className="w-full"
+                quality={80}
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
+              />
+            </div>
+          </section>
+        </FadeIn>
 
-          {/* CTA Section */}
-          <FadeIn delay={175} duration={350}>
-            <section className="py-10 sm:py-16 text-center mt-12">
-              <h2 className="text-xl sm:text-2xl font-semibold mb-2">Let's go to market</h2>
-              <p className="text-muted-foreground mb-6">
-                Ready to take your product from 0 → 1 or looking to expand your team?
-              </p>
-              <Button asChild size="lg" className="px-4">
-                <Link href="/contact">
-                  Contact Me <ArrowRight className="ml-1 h-4 w-4 transition-all duration-200" />
-                </Link>
-              </Button>
-            </section>
-          </FadeIn>
-        </div>
+        {/* Takeaway */}
+        <FadeIn delay={200} duration={350}>
+          <section className="bg-card border border-border rounded-xl p-6 sm:p-8">
+            <h2 className="text-lg sm:text-xl font-semibold mb-3">Takeaway</h2>
+            <p className="text-muted-foreground">
+              This project taught me how to balance complexity for power users without alienating newcomers. 
+              The key is progressive disclosure—prioritize the most relevant features upfront and keep advanced 
+              options within reach but not in the way.
+            </p>
+          </section>
+        </FadeIn>
+
+        {/* CTA Section */}
+        <FadeIn delay={225} duration={350}>
+          <section className="py-10 sm:py-16 text-center">
+            <h2 className="text-xl sm:text-2xl font-semibold mb-2">Let's go to market</h2>
+            <p className="text-muted-foreground mb-6">
+              Ready to take your product from 0 → 1 or looking to expand your team?
+            </p>
+            <Button asChild size="lg" className="px-4">
+              <Link href="/contact">
+                Contact Me <ArrowRight className="ml-1 h-4 w-4 transition-all duration-200" />
+              </Link>
+            </Button>
+          </section>
+        </FadeIn>
 
         <Footer />
       </div>
     </div>
   )
 }
-

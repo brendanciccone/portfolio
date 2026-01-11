@@ -47,7 +47,7 @@ export default function Header() {
         }`}
       >
         {/* Floating container */}
-        <div className="max-w-[1024px] mx-auto px-4">
+        <div className="max-w-[1024px] mx-auto px-5">
           {/* Single unified container for mobile menu */}
           <div
             className={`transition-all duration-150 ease-in-out ${

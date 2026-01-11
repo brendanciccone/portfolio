@@ -16,7 +16,7 @@ export default function About() {
     <div className="min-h-screen bg-background text-foreground">
       <Header />
       {/* pt-24 accounts for fixed floating header height */}
-      <div className="max-w-[1024px] mx-auto px-4 pt-24 pb-6 sm:pb-8 flex flex-col gap-6">
+      <div className="max-w-[1024px] mx-auto px-5 pt-24 pb-6 sm:pb-8 flex flex-col gap-6">
         {/* About Me */}
         <FadeIn delay={0} duration={350}>
           <section className="w-full bg-card border border-border rounded-xl p-4 sm:p-8 flex flex-col">
@@ -90,7 +90,7 @@ export default function About() {
                       <div className="flex items-center gap-2">
                         <span className="font-medium leading-none">Senior Product Designer</span>
                       </div>
-                      <div className="text-sm text-muted-foreground mt-1">
+                      <div className="text-sm text-muted-foreground flex items-center gap-2 mt-1">
                         <Link 
                           href="https://www.spontivly.com"
                           target="_blank"
@@ -99,9 +99,10 @@ export default function About() {
                         >
                           Spontivly
                         </Link>
+                        <Badge className="px-2 py-0.5">Contract</Badge>
                       </div>
                     </div>
-                    <span className="text-sm text-muted-foreground flex-shrink-0 ml-2 leading-none">2023</span>
+                    <span className="text-sm text-muted-foreground flex-shrink-0 ml-2 leading-none">2023–2024</span>
                   </div>
                 </li>
                 {/* FCB Health NY */}
@@ -120,7 +121,7 @@ export default function About() {
                       <div className="flex items-center gap-2">
                         <span className="font-medium leading-none">Senior Product Designer</span>
                       </div>
-                      <div className="text-sm text-muted-foreground mt-1">
+                      <div className="text-sm text-muted-foreground flex items-center gap-2 mt-1">
                         <Link 
                           href="https://www.fcb.com" 
                           target="_blank" 
@@ -129,6 +130,7 @@ export default function About() {
                         >
                           FCB Health NY
                         </Link>
+                        <Badge className="px-2 py-0.5">Contract</Badge>
                       </div>
                     </div>
                     <span className="text-sm text-muted-foreground flex-shrink-0 ml-2 leading-none">2023</span>

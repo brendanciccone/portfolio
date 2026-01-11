@@ -9,7 +9,7 @@ export default function NotFound() {
     <div className="min-h-screen bg-background text-foreground flex flex-col">
       <Header />
       {/* pt-24 accounts for fixed floating header height */}
-      <div className="max-w-[1024px] mx-auto px-4 pt-24 pb-6 sm:pb-8 w-full flex flex-col gap-6">
+      <div className="max-w-[1024px] mx-auto px-5 pt-24 pb-6 sm:pb-8 w-full flex flex-col gap-6">
         <div className="flex-1 flex items-center justify-center my-12 sm:my-24">
           <FadeIn delay={0} duration={350}>
             <div className="w-full border border-border rounded-xl p-6 sm:p-8">
