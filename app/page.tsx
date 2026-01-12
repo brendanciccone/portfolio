@@ -56,7 +56,7 @@ export default function Portfolio() {
                 </div>
 
                 {/* Badges */}
-                <div className="flex flex-wrap gap-2 sm:gap-3">
+                <div className="flex flex-wrap gap-2">
                   <Badge>2023-2024</Badge>
                   <Badge>Seed</Badge>
                   <Badge>Analytics</Badge>
@@ -88,7 +88,7 @@ export default function Portfolio() {
                 </div>
 
                 {/* Badges */}
-                <div className="flex flex-wrap gap-2 sm:gap-3">
+                <div className="flex flex-wrap gap-2">
                   <Badge>2018-2023</Badge>
                   <Badge>Series A</Badge>
                   <Badge>Healthcare</Badge>
@@ -120,7 +120,7 @@ export default function Portfolio() {
                 </div>
 
                 {/* Badges */}
-                <div className="flex flex-wrap gap-2 sm:gap-3">
+                <div className="flex flex-wrap gap-2">
                   <Badge>2020</Badge>
                   <Badge>Finance</Badge>
                 </div>
@@ -157,7 +157,7 @@ export default function Portfolio() {
                   </div>
 
                   {/* Badges */}
-                  <div className="flex flex-wrap gap-2 sm:gap-3">
+                  <div className="flex flex-wrap gap-2">
                     <Badge>2023</Badge>
                     <Badge>Acquired</Badge>
                     <Badge>AI</Badge>

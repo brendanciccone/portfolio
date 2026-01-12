@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils"
 
 const badgeVariants = cva(
   // Base styles - fully rounded, flat, no border/shadow
-  "inline-flex items-center gap-x-1.5 rounded-full px-3 py-1 text-xs font-medium transition-colors",
+  "inline-flex items-center gap-x-1.5 rounded-full px-2 py-0.5 text-xs font-medium transition-colors",
   {
     variants: {
       variant: {

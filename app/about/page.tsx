@@ -68,7 +68,7 @@ export default function About() {
                         >
                           Corellium
                         </Link>
-                        <Badge className="px-2 py-0.5">Acquired</Badge>
+                        <Badge>Acquired</Badge>
                       </div>
                     </div>
                     <span className="text-sm text-muted-foreground flex-shrink-0 ml-2 leading-none">2023-Present</span>
@@ -99,7 +99,7 @@ export default function About() {
                         >
                           Spontivly
                         </Link>
-                        <Badge className="px-2 py-0.5">Contract</Badge>
+                        <Badge>Contract</Badge>
                       </div>
                     </div>
                     <span className="text-sm text-muted-foreground flex-shrink-0 ml-2 leading-none">2023-2024</span>
@@ -130,7 +130,7 @@ export default function About() {
                         >
                           FCB Health NY
                         </Link>
-                        <Badge className="px-2 py-0.5">Contract</Badge>
+                        <Badge>Contract</Badge>
                       </div>
                     </div>
                     <span className="text-sm text-muted-foreground flex-shrink-0 ml-2 leading-none">2023</span>
@@ -258,7 +258,7 @@ export default function About() {
                         >
                           Magier
                         </Link>
-                        <Badge className="px-2 py-0.5">Acquired</Badge>
+                        <Badge>Acquired</Badge>
                       </div>
                     </div>
                     <span className="text-sm text-muted-foreground flex-shrink-0 ml-2 leading-none">2023</span>
@@ -282,7 +282,7 @@ export default function About() {
                       </div>
                       <div className="text-sm text-muted-foreground flex items-center gap-2 mt-1">
                         <span>Biobox</span>
-                        <Badge className="px-2 py-0.5">ETHGlobal Winner</Badge>
+                        <Badge>ETHGlobal Winner</Badge>
                       </div>
                     </div>
                     <span className="text-sm text-muted-foreground flex-shrink-0 ml-2 leading-none">2021</span>
