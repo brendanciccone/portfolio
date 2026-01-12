@@ -102,7 +102,7 @@ export default function SpontivlyPage() {
               </div>
             </div>
             <ul className="list-disc pl-5 space-y-2 text-muted-foreground mt-6">
-              <li>Adopted by professional sports teams including the Tampa Bay Rowdies and Tampa Bay Rays</li>
+              <li>Adopted by professional sports teams including MLB teams like the Tampa Bay Rays</li>
               <li>Used by Carta and other notable B2B companies for stakeholder reporting</li>
             </ul>
           </section>
