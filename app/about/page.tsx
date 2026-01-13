@@ -19,7 +19,7 @@ export default function About() {
       <div className="max-w-[1024px] mx-auto px-5 pt-24 pb-6 sm:pb-8 flex flex-col gap-6">
         {/* About Me */}
         <FadeIn delay={0} duration={350}>
-          <section className="w-full bg-card border border-border rounded-xl p-4 sm:p-8 flex flex-col">
+          <section className="w-full bg-card rounded-xl p-4 sm:p-8 flex flex-col">
             <h1 className="text-xl sm:text-[24px] font-semibold mb-4 sm:mb-6">About me</h1>
             <div className="space-y-4 sm:space-y-6 text-muted-foreground">
               <p className="text-sm sm:text-base">
@@ -39,7 +39,7 @@ export default function About() {
         <div className="flex flex-col md:flex-row gap-6 md:items-stretch min-h-[600px]">
           {/* Experience */}
           <FadeIn delay={0.1} duration={350} className="w-full md:w-1/2 flex">
-            <section className="w-full max-w-[528px] mx-auto bg-card border border-border rounded-xl p-4 sm:p-8 flex flex-col flex-1">
+            <section className="w-full max-w-[528px] mx-auto bg-card rounded-xl p-4 sm:p-8 flex flex-col flex-1">
               <h2 className="text-lg sm:text-xl font-semibold mb-4 sm:mb-6">Experience</h2>
               <div>
                 <ul className="space-y-6">
@@ -323,7 +323,7 @@ export default function About() {
           {/* Publications & Certificates */}
           <div className="w-full md:w-1/2 flex flex-col gap-6 flex-1">
             <FadeIn delay={0.15} duration={350} className="flex-1">
-              <section className="w-full bg-card border border-border rounded-xl p-4 sm:p-8 flex flex-col flex-1">
+              <section className="w-full bg-card rounded-xl p-4 sm:p-8 flex flex-col flex-1">
                 <h2 className="text-lg sm:text-xl font-semibold mb-4 sm:mb-6">Publications</h2>
                 <div className="space-y-6 flex-1">
                   <div className="border-l border-border pl-4">
@@ -372,7 +372,7 @@ export default function About() {
               </section>
             </FadeIn>
             <FadeIn delay={0.18} duration={350}>
-              <section className="w-full bg-card border border-border rounded-xl p-4 sm:p-8">
+              <section className="w-full bg-card rounded-xl p-4 sm:p-8">
                 <h2 className="text-lg sm:text-xl font-semibold mb-4 sm:mb-6">Certificates</h2>
                 <ul className="space-y-4">
                     <li className="flex items-start gap-3">
@@ -413,7 +413,7 @@ export default function About() {
 
         {/* Currently */}
         <FadeIn delay={0.2} duration={350}>
-          <section className="w-full bg-card border border-border rounded-xl p-4 sm:p-8">
+          <section className="w-full bg-card rounded-xl p-4 sm:p-8">
             <h2 className="text-lg sm:text-xl font-semibold mb-4 sm:mb-6">Currently</h2>
             <div className="flex flex-col md:flex-row gap-8">
               <div className="w-full md:w-1/2">

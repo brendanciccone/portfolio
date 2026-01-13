@@ -27,51 +27,54 @@ export default function PaidlyPage() {
       
       <div className="max-w-[1024px] mx-auto px-5 pt-24 pb-6 sm:pb-8 flex flex-col gap-8 sm:gap-12">
         
-        {/* Hero Image */}
-        <FadeIn delay={0} duration={350}>
-          <div className="bg-muted rounded-xl overflow-hidden">
-            <LightboxImage
-              src="/work/paidly/1.png"
-              alt="Paidly mobile app showing invoice screens"
-              width={1200}
-              height={800}
-              className="w-full"
-              priority
-              quality={80}
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
-            />
-          </div>
-        </FadeIn>
+        {/* Page Header - Hero + Title + Badges */}
+        <header className="pb-8 sm:pb-12 border-b border-border">
+          {/* Hero Image */}
+          <FadeIn delay={0} duration={350}>
+            <div className="bg-muted rounded-xl overflow-hidden">
+              <LightboxImage
+                src="/work/paidly/1.png"
+                alt="Paidly mobile app showing invoice screens"
+                width={1200}
+                height={800}
+                className="w-full"
+                priority
+                quality={80}
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
+              />
+            </div>
+          </FadeIn>
 
-        {/* Title + Description + Badges */}
-        <FadeIn delay={25} duration={350}>
-          <div>
-            <div className="flex items-center gap-4 mb-4">
-              <div className="w-12 h-12 rounded-lg border border-border flex items-center justify-center bg-card overflow-hidden flex-shrink-0">
-                <Image
-                  src="/about/logos/paidly.jpeg"
-                  alt="Paidly logo"
-                  width={48}
-                  height={48}
-                  className="w-full h-full object-cover"
-                  quality={80}
-                  sizes="48px"
-                />
+          {/* Title + Description + Badges */}
+          <FadeIn delay={25} duration={350}>
+            <div className="mt-8 sm:mt-12">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-12 h-12 rounded-lg border border-border flex items-center justify-center bg-card overflow-hidden flex-shrink-0">
+                  <Image
+                    src="/about/logos/paidly.jpeg"
+                    alt="Paidly logo"
+                    width={48}
+                    height={48}
+                    className="w-full h-full object-cover"
+                    quality={80}
+                    sizes="48px"
+                  />
+                </div>
+                <div>
+                  <h1 className="text-lg sm:text-xl font-semibold">Paidly</h1>
+                  <p className="text-sm sm:text-base text-muted-foreground">
+                    Stripe-integrated invoicing mobile app for SMEs
+                  </p>
+                </div>
               </div>
-              <div>
-                <h1 className="text-lg sm:text-xl font-semibold">Paidly</h1>
-                <p className="text-sm sm:text-base text-muted-foreground">
-                  Stripe-integrated invoicing mobile app for SMEs
-                </p>
+              <div className="flex flex-wrap gap-2">
+                <Badge>Founder</Badge>
+                <Badge>2020</Badge>
+                <Badge>Finance</Badge>
               </div>
             </div>
-            <div className="flex flex-wrap gap-2">
-              <Badge>Founder</Badge>
-              <Badge>2020</Badge>
-              <Badge>Finance</Badge>
-            </div>
-          </div>
-        </FadeIn>
+          </FadeIn>
+        </header>
 
         {/* Overview + Highlights */}
         <FadeIn delay={50} duration={350}>

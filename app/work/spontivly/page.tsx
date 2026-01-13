@@ -28,52 +28,55 @@ export default function SpontivlyPage() {
       
       <div className="max-w-[1024px] mx-auto px-5 pt-24 pb-6 sm:pb-8 flex flex-col gap-8 sm:gap-12">
         
-        {/* Hero Image */}
-        <FadeIn delay={0} duration={350}>
-          <div className="bg-muted rounded-xl overflow-hidden">
-            <LightboxImage
-              src="/work/spontivly/1.png"
-              alt="Spontivly social dashboard showing analytics and engagement metrics"
-              width={1200}
-              height={800}
-              className="w-full"
-              priority
-              quality={80}
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
-            />
-          </div>
-        </FadeIn>
+        {/* Page Header - Hero + Title + Badges */}
+        <header className="pb-8 sm:pb-12 border-b border-border">
+          {/* Hero Image */}
+          <FadeIn delay={0} duration={350}>
+            <div className="bg-muted rounded-xl overflow-hidden">
+              <LightboxImage
+                src="/work/spontivly/1.png"
+                alt="Spontivly social dashboard showing analytics and engagement metrics"
+                width={1200}
+                height={800}
+                className="w-full"
+                priority
+                quality={80}
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
+              />
+            </div>
+          </FadeIn>
 
-        {/* Title + Description + Badges */}
-        <FadeIn delay={25} duration={350}>
-          <div>
-            <div className="flex items-center gap-4 mb-4">
-              <div className="w-12 h-12 rounded-lg border border-border flex items-center justify-center bg-card overflow-hidden flex-shrink-0">
-                <Image
-                  src="/about/logos/spontivly.jpeg"
-                  alt="Spontivly logo"
-                  width={48}
-                  height={48}
-                  className="w-full h-full object-cover"
-                  quality={80}
-                  sizes="48px"
-                />
+          {/* Title + Description + Badges */}
+          <FadeIn delay={25} duration={350}>
+            <div className="mt-8 sm:mt-12">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-12 h-12 rounded-lg border border-border flex items-center justify-center bg-card overflow-hidden flex-shrink-0">
+                  <Image
+                    src="/about/logos/spontivly.jpeg"
+                    alt="Spontivly logo"
+                    width={48}
+                    height={48}
+                    className="w-full h-full object-cover"
+                    quality={80}
+                    sizes="48px"
+                  />
+                </div>
+                <div>
+                  <h1 className="text-lg sm:text-xl font-semibold">Spontivly</h1>
+                  <p className="text-sm sm:text-base text-muted-foreground">
+                    Analytics dashboards for non-technical users
+                  </p>
+                </div>
               </div>
-              <div>
-                <h1 className="text-lg sm:text-xl font-semibold">Spontivly</h1>
-                <p className="text-sm sm:text-base text-muted-foreground">
-                  Analytics dashboards for non-technical users
-                </p>
+              <div className="flex flex-wrap gap-2">
+                <Badge>Senior Product Designer</Badge>
+                <Badge>2023-2024</Badge>
+                <Badge>Seed</Badge>
+                <Badge>Analytics</Badge>
               </div>
             </div>
-            <div className="flex flex-wrap gap-2">
-              <Badge>Senior Product Designer</Badge>
-              <Badge>2023-2024</Badge>
-              <Badge>Seed</Badge>
-              <Badge>Analytics</Badge>
-            </div>
-          </div>
-        </FadeIn>
+          </FadeIn>
+        </header>
 
         {/* Overview + Highlights */}
         <FadeIn delay={50} duration={350}>
@@ -85,6 +88,10 @@ export default function SpontivlyPage() {
               team and cofounders to shape the product. I designed a platform that allowed non-technical users to 
               build custom dashboards without engineering support, enabling faster, more informed decisions across teams.
             </p>
+            <ul className="list-disc pl-5 space-y-2 text-muted-foreground mb-6">
+              <li>Adopted by professional sports teams including MLB teams like the Tampa Bay Rays</li>
+              <li>Used by Carta and other notable B2B companies for stakeholder reporting</li>
+            </ul>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div className="bg-card border border-border rounded-xl p-4">
                 <Plug className="w-4 h-4 text-muted-foreground mb-2" />
@@ -102,10 +109,6 @@ export default function SpontivlyPage() {
                 <p className="text-sm text-muted-foreground">Interactive Figma prototypes used in nearly every sales demo</p>
               </div>
             </div>
-            <ul className="list-disc pl-5 space-y-2 text-muted-foreground mt-6">
-              <li>Adopted by professional sports teams including MLB teams like the Tampa Bay Rays</li>
-              <li>Used by Carta and other notable B2B companies for stakeholder reporting</li>
-            </ul>
           </section>
         </FadeIn>
 

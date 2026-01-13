@@ -27,52 +27,55 @@ export default function ImmertecPage() {
       
       <div className="max-w-[1024px] mx-auto px-5 pt-24 pb-6 sm:pb-8 flex flex-col gap-8 sm:gap-12">
         
-        {/* Hero Image */}
-        <FadeIn delay={0} duration={350}>
-          <div className="bg-muted rounded-xl overflow-hidden">
-            <LightboxImage
-              src="/work/immertec/1.png"
-              alt="Immertec platform showing a live surgical procedure with multiple participants"
-              width={1200}
-              height={800}
-              className="w-full"
-              priority
-              quality={80}
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
-            />
-          </div>
-        </FadeIn>
+        {/* Page Header - Hero + Title + Badges */}
+        <header className="pb-8 sm:pb-12 border-b border-border">
+          {/* Hero Image */}
+          <FadeIn delay={0} duration={350}>
+            <div className="bg-muted rounded-xl overflow-hidden">
+              <LightboxImage
+                src="/work/immertec/1.png"
+                alt="Immertec platform showing a live surgical procedure with multiple participants"
+                width={1200}
+                height={800}
+                className="w-full"
+                priority
+                quality={80}
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
+              />
+            </div>
+          </FadeIn>
 
-        {/* Title + Description + Badges */}
-        <FadeIn delay={25} duration={350}>
-          <div>
-            <div className="flex items-center gap-4 mb-4">
-              <div className="w-12 h-12 rounded-lg border border-border flex items-center justify-center bg-card overflow-hidden flex-shrink-0">
-                <Image
-                  src="/about/logos/immertec.jpeg"
-                  alt="Immertec logo"
-                  width={48}
-                  height={48}
-                  className="w-full h-full object-cover"
-                  quality={80}
-                  sizes="48px"
-                />
+          {/* Title + Description + Badges */}
+          <FadeIn delay={25} duration={350}>
+            <div className="mt-8 sm:mt-12">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-12 h-12 rounded-lg border border-border flex items-center justify-center bg-card overflow-hidden flex-shrink-0">
+                  <Image
+                    src="/about/logos/immertec.jpeg"
+                    alt="Immertec logo"
+                    width={48}
+                    height={48}
+                    className="w-full h-full object-cover"
+                    quality={80}
+                    sizes="48px"
+                  />
+                </div>
+                <div>
+                  <h1 className="text-lg sm:text-xl font-semibold">Immertec</h1>
+                  <p className="text-sm sm:text-base text-muted-foreground">
+                    VR medical training for live surgical procedures
+                  </p>
+                </div>
               </div>
-              <div>
-                <h1 className="text-lg sm:text-xl font-semibold">Immertec</h1>
-                <p className="text-sm sm:text-base text-muted-foreground">
-                  VR medical training for live surgical procedures
-                </p>
+              <div className="flex flex-wrap gap-2">
+                <Badge>Founding Designer</Badge>
+                <Badge>2018-2023</Badge>
+                <Badge>Series A</Badge>
+                <Badge>Healthcare</Badge>
               </div>
             </div>
-            <div className="flex flex-wrap gap-2">
-              <Badge>Founding Designer</Badge>
-              <Badge>2018-2023</Badge>
-              <Badge>Series A</Badge>
-              <Badge>Healthcare</Badge>
-            </div>
-          </div>
-        </FadeIn>
+          </FadeIn>
+        </header>
 
         {/* Overview + Highlights */}
         <FadeIn delay={50} duration={350}>
@@ -83,6 +86,12 @@ export default function ImmertecPage() {
               and mobile for over five years. During that time, we grew to 50+ team members, secured a $12M Series A, 
               and worked with top medtech companies to train surgical teams using real-time VR simulations.
             </p>
+            <ul className="list-disc pl-5 space-y-2 text-muted-foreground mb-6">
+              <li>Created pitch decks and investor materials to assist in securing $12M Series A</li>
+              <li>Hired and mentored 2 designers during product expansion</li>
+              <li>Published 3 papers on accessibility and VR in HFES and SSH journals</li>
+              <li>Contributed to 4 company awards, including Startup of the Year (2019)</li>
+            </ul>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div className="bg-card border border-border rounded-xl p-4">
                 <TrendingUp className="w-4 h-4 text-muted-foreground mb-2" />
@@ -100,12 +109,6 @@ export default function ImmertecPage() {
                 <p className="text-sm text-muted-foreground">Maintained exceptional user satisfaction and retention</p>
               </div>
             </div>
-            <ul className="list-disc pl-5 space-y-2 text-muted-foreground mt-6">
-              <li>Created pitch decks and investor materials to assist in securing $12M Series A</li>
-              <li>Hired and mentored 2 designers during product expansion</li>
-              <li>Published 3 papers on accessibility and VR in HFES and SSH journals</li>
-              <li>Contributed to 4 company awards, including Startup of the Year (2019)</li>
-            </ul>
           </section>
         </FadeIn>
 
