@@ -23,7 +23,7 @@ export default function ContactPage() {
                 Ready to take your product from 0 → 1 or looking to expand your team? Reach out below.
               </p>
             </div>
-            <div className="w-full max-w-[528px] bg-card rounded-xl p-4 sm:p-8">
+            <div className="w-full max-w-[528px] bg-card border border-border rounded-xl p-4 sm:p-8">
               <ContactForm />
             </div>
           </FadeIn>
