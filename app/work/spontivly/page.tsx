@@ -12,6 +12,7 @@ export const metadata = generatePageMetadata({
 
 import Image from "next/image"
 import { LightboxImage } from "@/components/lightbox"
+import { ImageComparison } from "@/components/image-comparison"
 import Link from "next/link"
 import { ArrowRight, Plug, Rocket, MousePointerClick } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
@@ -30,8 +31,8 @@ export default function SpontivlyPage() {
         {/* Hero Image */}
         <FadeIn delay={0} duration={350}>
           <div className="bg-muted rounded-xl overflow-hidden">
-            <Image
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1-WdXXd2S7UErPJUOdDGGcki7Gq9r0TN.png"
+            <LightboxImage
+              src="/work/spontivly/1.png"
               alt="Spontivly social dashboard showing analytics and engagement metrics"
               width={1200}
               height={800}
@@ -49,7 +50,7 @@ export default function SpontivlyPage() {
             <div className="flex items-center gap-4 mb-4">
               <div className="w-12 h-12 rounded-lg border border-border flex items-center justify-center bg-card overflow-hidden flex-shrink-0">
                 <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/sdtEuqGIPQw38owJSawPdDh1myE-dMMHZU0Y0hIYLLG1OoLVxrDe6ZqZlF.webp"
+                  src="/about/logos/spontivly.jpeg"
                   alt="Spontivly logo"
                   width={48}
                   height={48}
@@ -120,15 +121,15 @@ export default function SpontivlyPage() {
               development and hired some of my engineering contacts, and we successfully launched the new site over
               a month ahead of schedule.
             </p>
+            {/* Before/After comparison slider */}
             <div className="bg-muted rounded-xl overflow-hidden">
-              <LightboxImage
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2-WtBgFu7RPx0w5ppbt7HCyV17wHHwsK.png"
-                alt="Spontivly marketing website showing data dashboards without technical fuss tagline"
+              <ImageComparison
+                beforeSrc="/work/spontivly/2a.png"
+                afterSrc="/work/spontivly/2b.png"
+                beforeAlt="Spontivly website before redesign"
+                afterAlt="Spontivly website after redesign"
                 width={1200}
                 height={800}
-                className="w-full"
-                quality={80}
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
               />
             </div>
           </section>
@@ -148,9 +149,10 @@ export default function SpontivlyPage() {
               unique platform for data analysis.
             </p>
             <div className="grid grid-cols-1 gap-4">
+              {/* Full width - Dashboard overview */}
               <div className="bg-muted rounded-xl overflow-hidden">
                 <LightboxImage
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/3-K6zVOHyu0haPpgDtEStbsDrwqDl1Lt.png"
+                  src="/work/spontivly/3.png"
                   alt="Spontivly dashboard overview showing multiple dashboard cards for different purposes"
                   width={1200}
                   height={800}
@@ -159,10 +161,11 @@ export default function SpontivlyPage() {
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
                 />
               </div>
+              {/* 2-column grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="bg-muted rounded-xl overflow-hidden">
                   <LightboxImage
-                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/4-GhS5M97fmuUUo2QbvcNDyiW97xc3bc.png"
+                    src="/work/spontivly/4.png"
                     alt="Spontivly profile settings interface"
                     width={600}
                     height={400}
@@ -173,7 +176,7 @@ export default function SpontivlyPage() {
                 </div>
                 <div className="bg-muted rounded-xl overflow-hidden">
                   <LightboxImage
-                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/5-nAN6iIm4GpTngSI9u7hKN7O5l3tP9L.png"
+                    src="/work/spontivly/5.png"
                     alt="Spontivly team management interface"
                     width={600}
                     height={400}
@@ -182,6 +185,43 @@ export default function SpontivlyPage() {
                     sizes="(max-width: 640px) 100vw, 50vw"
                   />
                 </div>
+              </div>
+              {/* 2-column grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="bg-muted rounded-xl overflow-hidden">
+                  <LightboxImage
+                    src="/work/spontivly/6.png"
+                    alt="Spontivly dashboard interface"
+                    width={600}
+                    height={400}
+                    className="w-full"
+                    quality={80}
+                    sizes="(max-width: 640px) 100vw, 50vw"
+                  />
+                </div>
+                <div className="bg-muted rounded-xl overflow-hidden">
+                  <LightboxImage
+                    src="/work/spontivly/7.png"
+                    alt="Spontivly data visualization interface"
+                    width={600}
+                    height={400}
+                    className="w-full"
+                    quality={80}
+                    sizes="(max-width: 640px) 100vw, 50vw"
+                  />
+                </div>
+              </div>
+              {/* Full width */}
+              <div className="bg-muted rounded-xl overflow-hidden">
+                <LightboxImage
+                  src="/work/spontivly/8.png"
+                  alt="Spontivly dashboard builder interface"
+                  width={1200}
+                  height={800}
+                  className="w-full"
+                  quality={80}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
+                />
               </div>
             </div>
           </section>
@@ -199,7 +239,7 @@ export default function SpontivlyPage() {
             </p>
             <div className="bg-muted rounded-xl overflow-hidden">
               <LightboxImage
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/6-QASqlEIRz1pkUNGGxmLRjjUfAqOjDq.png"
+                src="/work/spontivly/9.png"
                 alt="Spontivly chart builder interface showing customization options"
                 width={1200}
                 height={800}
@@ -215,7 +255,7 @@ export default function SpontivlyPage() {
         <FadeIn delay={150} duration={350}>
           <section>
             <h2 className="text-lg sm:text-xl font-semibold mb-4">Insights</h2>
-            <div className="space-y-4 text-muted-foreground">
+            <div className="space-y-4 text-muted-foreground mb-6">
               <p>
                 This experience taught me a lot about designing data visualization and how crucial it is to balance a
                 product's complexity to satisfy advanced users without scaring off newcomers. At Spontivly, we struck
@@ -227,6 +267,17 @@ export default function SpontivlyPage() {
                 within reach. This approach enhances usability for all skill levels and drives deeper engagement and
                 adoption among mixed user groups.
               </p>
+            </div>
+            <div className="bg-muted rounded-xl overflow-hidden">
+              <LightboxImage
+                src="/work/spontivly/10.png"
+                alt="Spontivly platform interface"
+                width={1200}
+                height={800}
+                className="w-full"
+                quality={80}
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
+              />
             </div>
           </section>
         </FadeIn>

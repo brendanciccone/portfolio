@@ -72,7 +72,7 @@ export const LightboxImage = ({
       {/* Lightbox overlay */}
       {isOpen && (
         <div
-          className="fixed inset-0 z-50 bg-black/60 backdrop-blur-md flex items-center justify-center p-4 sm:p-8 animate-in fade-in duration-200"
+          className="fixed inset-0 z-50 bg-black/60 backdrop-blur-md flex items-center justify-center p-4 sm:p-8 animate-in fade-in duration-200 cursor-pointer"
           onClick={() => setIsOpen(false)}
           role="dialog"
           aria-modal="true"
@@ -88,11 +88,8 @@ export const LightboxImage = ({
             <X className="w-6 h-6 text-white" />
           </button>
 
-          {/* Full size image */}
-          <div
-            className="relative max-w-full max-h-full animate-in fade-in slide-in-from-bottom-4 duration-300 ease-out"
-            onClick={(e) => e.stopPropagation()}
-          >
+          {/* Full size image - clicking also closes */}
+          <div className="relative max-w-full max-h-full animate-in fade-in slide-in-from-bottom-4 duration-300 ease-out">
             <Image
               src={src}
               alt={alt}

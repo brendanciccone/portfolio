@@ -30,8 +30,8 @@ export default function PaidlyPage() {
         {/* Hero Image */}
         <FadeIn delay={0} duration={350}>
           <div className="bg-muted rounded-xl overflow-hidden">
-            <Image
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/6-ZvLOgtuigyMw4YHmpEcm0a6xW4SS0t.png"
+            <LightboxImage
+              src="/work/paidly/1.png"
               alt="Paidly mobile app showing invoice screens"
               width={1200}
               height={800}
@@ -49,7 +49,7 @@ export default function PaidlyPage() {
             <div className="flex items-center gap-4 mb-4">
               <div className="w-12 h-12 rounded-lg border border-border flex items-center justify-center bg-card overflow-hidden flex-shrink-0">
                 <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/uvNlfL0W1id65iarhG9wcUaT3aA-wvwBeKadRSwDEpSkFpeHnvcna1xp85.webp"
+                  src="/about/logos/paidly.jpeg"
                   alt="Paidly logo"
                   width={48}
                   height={48}
@@ -126,7 +126,7 @@ export default function PaidlyPage() {
             <div className="grid grid-cols-1 gap-4">
               <div className="bg-muted rounded-xl overflow-hidden">
                 <LightboxImage
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/7-KqqHEHgnDGs24Q3dtjmHD3eReZb68N.png"
+                  src="/work/paidly/2.png"
                   alt="Paidly app screens showing onboarding flow, invoice creation, business setup, and Stripe integration"
                   width={1200}
                   height={800}
@@ -137,7 +137,7 @@ export default function PaidlyPage() {
               </div>
               <div className="bg-muted rounded-xl overflow-hidden">
                 <LightboxImage
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/8-Pc0Tpc99z68zE31Dw1IGIZ5heLRbum.png"
+                  src="/work/paidly/3.png"
                   alt="Paidly brand identity showing the full logo and app icon variations"
                   width={1200}
                   height={800}
@@ -169,7 +169,7 @@ export default function PaidlyPage() {
             </div>
             <div className="bg-muted rounded-xl overflow-hidden">
               <LightboxImage
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/4-ZhXGY50aBYRlkHytNcqwMPoUEOqrxA.png"
+                src="/work/paidly/4.png"
                 alt="Paidly app screens showing item management: adding items, empty state, and item creation form"
                 width={1200}
                 height={800}
@@ -200,7 +200,7 @@ export default function PaidlyPage() {
             </div>
             <div className="bg-muted rounded-xl overflow-hidden">
               <LightboxImage
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/10-0qjyaHWB67eHnejL4hiWKJ13XJ32o0.png"
+                src="/work/paidly/5.png"
                 alt="Paidly app screens showing customer management: customer list, success confirmation, and customer details form"
                 width={1200}
                 height={800}

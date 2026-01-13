@@ -30,8 +30,8 @@ export default function ImmertecPage() {
         {/* Hero Image */}
         <FadeIn delay={0} duration={350}>
           <div className="bg-muted rounded-xl overflow-hidden">
-            <Image
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/10-meLdgxzKW20Eu2GIZjlUfNS9shlB6f.png"
+            <LightboxImage
+              src="/work/immertec/1.png"
               alt="Immertec platform showing a live surgical procedure with multiple participants"
               width={1200}
               height={800}
@@ -49,7 +49,7 @@ export default function ImmertecPage() {
             <div className="flex items-center gap-4 mb-4">
               <div className="w-12 h-12 rounded-lg border border-border flex items-center justify-center bg-card overflow-hidden flex-shrink-0">
                 <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ZB46OTsYlyreitEnm0AF94HXml0-xaEm3pRxEPLnB9hDdXRiA2ZaOQk1K2.webp"
+                  src="/about/logos/immertec.jpeg"
                   alt="Immertec logo"
                   width={48}
                   height={48}
@@ -127,7 +127,7 @@ export default function ImmertecPage() {
             </div>
             <div className="bg-muted rounded-xl overflow-hidden">
               <LightboxImage
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/11-LA41LuF5sSIT62tpvxty89U9pXq6fI.png"
+                src="/work/immertec/2.png"
                 alt="Immertec VR interface showing participant list, medical imaging with annotations, and surgical procedure views"
                 width={1200}
                 height={800}
@@ -162,7 +162,7 @@ export default function ImmertecPage() {
             <div className="grid grid-cols-1 gap-4">
               <div className="bg-muted rounded-xl overflow-hidden">
                 <LightboxImage
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/12-KU0EwkEyzN9ysxcYRZ58fyGf6ZfgR8.png"
+                  src="/work/immertec/3.png"
                   alt="Immertec admin dashboard showing analytics overview, attendance trends, and user management interface"
                   width={1200}
                   height={800}
@@ -174,7 +174,7 @@ export default function ImmertecPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="bg-muted rounded-xl overflow-hidden">
                   <LightboxImage
-                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/13-oXK3wJmwKyi6QagP3qI4uu9I6qlIeG.png"
+                    src="/work/immertec/4.png"
                     alt="Immertec event metrics and calendar interface"
                     width={600}
                     height={400}
@@ -185,7 +185,7 @@ export default function ImmertecPage() {
                 </div>
                 <div className="bg-muted rounded-xl overflow-hidden">
                   <LightboxImage
-                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/14-abrW9mE5W3Cjk0AXupxWYF5AQQMmBT.png"
+                    src="/work/immertec/5.png"
                     alt="Immertec headset request management interface"
                     width={600}
                     height={400}
@@ -198,7 +198,7 @@ export default function ImmertecPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="bg-muted rounded-xl overflow-hidden">
                   <LightboxImage
-                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/15-UYFYy1BDnDYurjBLbGTRNYF62se158.png"
+                    src="/work/immertec/6.png"
                     alt="Immertec event list interface"
                     width={600}
                     height={400}
@@ -209,7 +209,7 @@ export default function ImmertecPage() {
                 </div>
                 <div className="bg-muted rounded-xl overflow-hidden">
                   <LightboxImage
-                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/16-7oCkNwC6dfvy2m4Fc5dqbrHad89C8d.png"
+                    src="/work/immertec/7.png"
                     alt="Immertec media library interface"
                     width={600}
                     height={400}
@@ -245,7 +245,7 @@ export default function ImmertecPage() {
             </div>
             <div className="bg-muted rounded-xl overflow-hidden">
               <LightboxImage
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/17-min-bEqAYIUXZdyTO6YiwToLYQIQ7wwetJ.png"
+                src="/work/immertec/8.png"
                 alt="Immertec web viewer interface showing live surgical procedure with participant list and interactive controls"
                 width={1200}
                 height={800}
@@ -275,7 +275,7 @@ export default function ImmertecPage() {
             </div>
             <div className="bg-muted rounded-xl overflow-hidden">
               <LightboxImage
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/18-k1AacMyxarBVQjXec4gdARQddduncR.png"
+                src="/work/immertec/9.png"
                 alt="Immertec sign-in interface showing streamlined authentication options"
                 width={1200}
                 height={800}

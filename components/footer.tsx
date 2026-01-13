@@ -45,31 +45,6 @@ export default function Footer() {
               />
             </svg>
           </Link>
-          <Link href="https://dribbble.com/brendanciccone" aria-label="Dribbble" target="_blank" rel="noopener noreferrer">
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="text-muted-foreground"
-            >
-              <g clipPath="url(#clip0_579_405)">
-                <path
-                  d="M19.7717 4.46829C15.5098 8.88279 9.82 10.2998 1.3725 10.8448M22.6276 12.9158C15.4118 11.3789 9.39503 14.0058 4.77343 19.8046M8.25046 1.9176C13.0138 8.4576 14.7905 12.1854 16.9705 21.2324M22.9 12.0001C22.9 18.02 18.0199 22.9001 12 22.9001C5.9801 22.9001 1.1 18.02 1.1 12.0001C1.1 5.98019 5.9801 1.1001 12 1.1001C18.0199 1.1001 22.9 5.98019 22.9 12.0001Z"
-                  className="stroke-current"
-                  strokeWidth="2.18"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </g>
-              <defs>
-                <clipPath id="clip0_579_405">
-                  <rect width="24" height="24" fill="white" />
-                </clipPath>
-              </defs>
-            </svg>
-          </Link>
           <Link href="https://www.producthunt.com/@brendanciccone" aria-label="Product Hunt" target="_blank" rel="noopener noreferrer">
             <svg
               width="20"

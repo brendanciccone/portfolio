@@ -38,7 +38,7 @@ export default function Portfolio() {
             <Link href="/work/spontivly" className="group block bg-card border border-border rounded-xl overflow-hidden transition-all hover:border-foreground/20 hover:shadow-lg hover:shadow-black/5">
               <div className="bg-muted border-b border-border">
                 <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/7-WhNtJkfUVhAkOhZSBPAbhHNURWpkYU.png"
+                  src="/work/spontivly/1.png"
                   alt="Spontivly social analytics dashboard showing engagement metrics, impression trends, and top performing content"
                   width={1200}
                   height={800}
@@ -70,7 +70,7 @@ export default function Portfolio() {
             <Link href="/work/immertec" className="group block bg-card border border-border rounded-xl overflow-hidden transition-all hover:border-foreground/20 hover:shadow-lg hover:shadow-black/5">
               <div className="bg-muted border-b border-border">
                 <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/10-REigS5TLwDhOSRkjUpSoZzM0XHLPy1.png"
+                  src="/work/immertec/1.png"
                   alt="Immertec VR medical training platform showing a live surgical procedure with multiple participating doctors, medical imaging views, and interactive controls for remote learning"
                   width={1200}
                   height={800}
@@ -102,7 +102,7 @@ export default function Portfolio() {
             <Link href="/work/paidly" className="group block bg-card border border-border rounded-xl overflow-hidden transition-all hover:border-foreground/20 hover:shadow-lg hover:shadow-black/5">
               <div className="bg-muted border-b border-border">
                 <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/6-T3wsvxOlM1iRLfYYJAzhzlAlH5YblJ.png"
+                  src="/work/paidly/1.png"
                   alt="Paidly mobile app showing invoice list, automatic reminders feature, and customer creation form"
                   width={1200}
                   height={800}
@@ -139,7 +139,7 @@ export default function Portfolio() {
               <div className="opacity-50">
                 <div className="bg-muted border-b border-border">
                   <Image
-                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1-WtDzPw61Kv4Intp9oftbRM5XbqtNAi.png"
+                    src="/work/magier/1.png"
                     alt="Magier AI chatbot mobile app screens showing settings, chat interface, and subscription options"
                     width={1200}
                     height={800}

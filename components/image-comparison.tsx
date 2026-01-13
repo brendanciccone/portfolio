@@ -59,7 +59,7 @@ export const ImageComparison = ({
   return (
     <div
       ref={containerRef}
-      className="relative w-full overflow-hidden rounded-xl cursor-ew-resize select-none"
+      className="relative w-full overflow-hidden cursor-ew-resize select-none"
       style={{ aspectRatio: `${width}/${height}` }}
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}
@@ -88,14 +88,13 @@ export const ImageComparison = ({
       {/* Before image (clipped) */}
       <div
         className="absolute inset-0 overflow-hidden"
-        style={{ width: `${sliderPosition}%` }}
+        style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
       >
         <Image
           src={beforeSrc}
           alt={beforeAlt}
           fill
           className="object-cover"
-          style={{ width: `${100 / (sliderPosition / 100)}%`, maxWidth: "none" }}
           quality={80}
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
         />
@@ -116,10 +115,10 @@ export const ImageComparison = ({
       </div>
 
       {/* Labels */}
-      <div className="absolute bottom-3 left-3 bg-black/60 text-white text-xs px-2 py-1 rounded">
+      <div className="absolute bottom-3 left-3 bg-black/70 text-white text-xs font-medium px-3 py-1 rounded-full">
         Before
       </div>
-      <div className="absolute bottom-3 right-3 bg-black/60 text-white text-xs px-2 py-1 rounded">
+      <div className="absolute bottom-3 right-3 bg-black/70 text-white text-xs font-medium px-3 py-1 rounded-full">
         After
       </div>
     </div>
