@@ -26,7 +26,7 @@ export default function About() {
                 I'm a staff product designer with <span className="text-foreground font-medium">7 years of experience</span> turning ideas into fully realized B2B products across healthcare, cybersecurity, and finance.
               </p>
               <p className="text-sm sm:text-base">
-                As founding designer at Immertec, I led a platform redesign that <span className="text-foreground font-medium">increased SUS from 68 to 83</span>, hired and managed 2 product designers, and helped secure <span className="text-foreground font-medium">$12M in Series A</span> funding. At Corellium, I owned end-to-end product design, shipped CI/CD-integrated threat analysis tools, and achieved an 81 SUS score that contributed to a <span className="text-foreground font-medium">$200M acquisition</span> by Cellebrite.
+                As founding product designer at Immertec, I led a platform redesign that <span className="text-foreground font-medium">increased SUS from 68 to 83</span>, hired and managed 2 product designers, and helped secure <span className="text-foreground font-medium">$12M in Series A</span> funding. At Corellium, I owned end-to-end product design, shipped CI/CD-integrated threat analysis tools, and achieved an 81 SUS score that contributed to a <span className="text-foreground font-medium">$200M acquisition</span> by Cellebrite.
               </p>
               <p className="text-sm sm:text-base">
                 I founded Paidly in 2020, a Stripe-integrated invoicing app used by <span className="text-foreground font-medium">over 2,000 SMEs</span>, and Magier in 2023, an AI startup that was <span className="text-foreground font-medium">acquired the same year</span> and accepted into <span className="text-foreground font-medium">Techstars' 2024</span> cohort. I've also published research on accessibility and virtual environments in publications by HFES and SSH.
@@ -102,7 +102,7 @@ export default function About() {
                         <Badge>Contract</Badge>
                       </div>
                     </div>
-                    <span className="text-sm text-muted-foreground flex-shrink-0 ml-2 leading-none">2023-2024</span>
+                    <span className="text-sm text-muted-foreground flex-shrink-0 ml-2 leading-none">2023</span>
                   </div>
                 </li>
                 {/* FCB Health NY */}
@@ -168,7 +168,7 @@ export default function About() {
                     <span className="text-sm text-muted-foreground flex-shrink-0 ml-2 leading-none">2020-2023</span>
                   </div>
                 </li>
-                {/* Immertec Product Designer */}
+                {/* Immertec Founding Product Designer */}
                 <li className="flex items-start gap-3">
                   <div className="flex-shrink-0 w-8 h-8 rounded-md bg-background border border-border flex items-center justify-center overflow-hidden">
                     <Image
@@ -182,7 +182,7 @@ export default function About() {
                   <div className="flex-1 flex justify-between min-w-0">
                     <div>
                       <div className="flex items-center gap-2">
-                        <span className="font-medium leading-none">Product Designer</span>
+                        <span className="font-medium leading-none">Founding Product Designer</span>
                       </div>
                       <div className="text-sm text-muted-foreground mt-1">
                         <Link 

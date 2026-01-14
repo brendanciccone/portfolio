@@ -82,13 +82,11 @@ export default function ImmertecPage() {
           <section>
             <h2 className="text-lg sm:text-xl font-semibold mb-4">Overview</h2>
             <p className="text-muted-foreground mb-6">
-              In 2018, I joined Immertec as the founding designer and second hire, leading design across VR, web, 
-              and mobile for over five years. During that time, we grew to 50+ team members, secured a $12M Series A, 
-              and worked with top medtech companies to train surgical teams using real-time VR simulations.
+              In 2018, I joined Immertec as the <span className="text-foreground font-medium">founding designer and second hire</span>. For the first two years, there was no product team. It was the cofounders and me shaping the product together across VR, web, and mobile. Over five years, we grew to <span className="text-foreground font-medium">50+ team members</span>, secured a <span className="text-foreground font-medium">$12M Series A</span>, and worked with top medtech companies to train surgical teams using real-time VR.
             </p>
             <ul className="list-disc pl-5 space-y-2 text-muted-foreground mb-6">
-              <li>Created pitch decks and investor materials to assist in securing $12M Series A</li>
-              <li>Hired and mentored 2 designers during product expansion</li>
+              <li>Participated in investor meetings and created materials that contributed to $12M Series A</li>
+              <li>Hired and managed 2 designers, establishing critique practices and documentation standards</li>
               <li>Published 3 papers on accessibility and VR in HFES and SSH journals</li>
               <li>Contributed to 4 company awards, including Startup of the Year (2019)</li>
             </ul>
@@ -123,9 +121,13 @@ export default function ImmertecPage() {
                 view live medical procedures and engage with peers in real-time from across the world.
               </p>
               <p>
-                Navigating the landscape of VR design was daunting at times, as established norms and testing
-                challenges were present. Despite this, we designed a template that allowed us to rapidly iterate in
-                Sketch or Figma and bring those designs into VR with nearly perfect placement and scaling.
+                We conducted formal and informal research, observing real physicians during live procedures and collecting feedback after. For accessibility, we ran controlled in-person studies. Working with my colleague Dr. Shannon Bailey, we compiled <span className="text-foreground font-medium">30 years of VR human factors research</span> into a reusable design template <span className="text-foreground font-medium">before industry standards existed</span>. This R&D meant the designers I later hired could follow a proven process from day one, even without prior VR experience.
+              </p>
+              <p>
+                I built designs in Sketch and previewed them in a Three.js-based viewer to validate placement and comfort in the actual space. This template became the foundation for future design work, a repeatable system that enabled consistent VR experiences at scale. These improvements contributed to raising the platform's <span className="text-foreground font-medium">SUS score from 68 to 83</span>.
+              </p>
+              <p>
+                One thing I pushed back on was showing a large list of active speakers in the VR environment. In an immersive space, sudden visual changes feel jarring. Instead, I advocated for highlighting speakers within the participant list, which rarely exceeded 10 people in most sessions.
               </p>
             </div>
             <div className="bg-muted rounded-xl overflow-hidden">
@@ -148,18 +150,13 @@ export default function ImmertecPage() {
             <h2 className="text-lg sm:text-xl font-semibold mb-4">Admin Dashboard</h2>
             <div className="space-y-4 text-muted-foreground mb-6">
               <p>
-                I worked closely with the co-founders and internal and external users while building interfaces for
-                mobile, web, and VR platforms.
+                Our primary users were physicians and surgeons in orthopedics, ENT, and other specialties, many from institutions like <span className="text-foreground font-medium">Harvard, Cleveland Clinic, and Baylor</span>. A smaller subset were sales managers and salespeople from medical device companies who scheduled events and managed invitations.
               </p>
               <p>
-                One initial challenge was streamlining event creation and management. While some issues, like user
-                metrics and basic event management capabilities, were obvious, others were more ambiguous, such as
-                merging multiple user workflows or making certain features accessible to non-technical users.
+                Logistics were tracked and managed event-by-event in a mobile app at first. The mobile app existed to maintain <span className="text-foreground font-medium">HIPAA compliance</span>, verifying attendee identities since many of these were <span className="text-foreground font-medium">real surgeries and operations</span>, not simulation labs. Without a unified view of who needed headsets and who confirmed they'd attend, customer success was buried in manual coordination.
               </p>
               <p>
-                Based on our research, we decided to segment functionalities based on user roles in one unified
-                dashboard. The admin dashboard freed up resources and empowered internal and external users to manage
-                events, headsets, organizations, and more.
+                Role-based permissions made sense because medical device sales reps managed events as admins, while physicians led or observed surgeries. One dashboard serving both groups eliminated the friction.
               </p>
             </div>
             <div className="grid grid-cols-1 gap-4">
@@ -238,11 +235,14 @@ export default function ImmertecPage() {
                 complete.
               </p>
               <p>
-                To make joining an event seamless, I introduced a web-based interface, allowing live event access on
-                any device with a browser. It was a technical feat, as our incredible engineering team managed to take
+                To make joining an event seamless, <span className="text-foreground font-medium">I pitched a web-based interface</span>, allowing live event access on
+                any device with a browser. It was a technical feat, as our engineering team managed to take
                 live video initially meant for VR and display it perfectly on a 2D screen. This shift minimized the
                 hassles of headset distribution and simplified event access while allowing for flexibility between VR
                 and web-based experiences.
+              </p>
+              <p>
+                Building a web viewer faced significant pushback internally because the company's core vision was VR and 3D medical training, and some saw it as diluting that. But the results were clear: customer success tickets for missing headsets and registration issues nearly disappeared. It let us get more attendees into events in whatever format worked for them, which <span className="text-foreground font-medium">cut sales cycles by 50%</span> for our medical device partners.
               </p>
               <p>New event? Just send the user a link.</p>
             </div>
@@ -266,14 +266,10 @@ export default function ImmertecPage() {
             <h2 className="text-lg sm:text-xl font-semibold mb-4">Insights</h2>
             <div className="space-y-4 text-muted-foreground mb-6">
               <p>
-                Working with new technology is not easy, but it presents challenges that keep you interested in ways
-                other products may not. Combine that with the healthcare focus, and I felt I had an inherent reason
-                for solving the problems we were working on.
+                Designing in healthcare means navigating legal constraints that most industries don't face. Sometimes the ideal UX option simply isn't legally possible. You learn to find solutions within those boundaries rather than fight them.
               </p>
               <p>
-                While I learned a lot about startups in the early days of the company, I think my biggest lesson was
-                one that can apply to nearly any role at any company: you may have the correct answer or idea, but how
-                you present it and when you present it matters almost as much as whether it's right or wrong.
+                If I approached this today, I'd handle controversial ideas like the web viewer differently. Rather than presenting it as a belief, I'd start with a small MVP to test and validate, then present data-backed results. How you introduce an idea matters as much as whether it's right.
               </p>
             </div>
             <div className="bg-muted rounded-xl overflow-hidden">

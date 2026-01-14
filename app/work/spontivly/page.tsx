@@ -70,7 +70,7 @@ export default function SpontivlyPage() {
               </div>
               <div className="flex flex-wrap gap-2">
                 <Badge>Senior Product Designer</Badge>
-                <Badge>2023-2024</Badge>
+                <Badge>2023</Badge>
                 <Badge>Seed</Badge>
                 <Badge>Analytics</Badge>
               </div>
@@ -83,14 +83,12 @@ export default function SpontivlyPage() {
           <section>
             <h2 className="text-lg sm:text-xl font-semibold mb-4">Overview</h2>
             <p className="text-muted-foreground mb-6">
-              In 2023, I joined Spontivly as the only designer at a venture-backed startup focused on democratizing
-              analytics dashboards. Beyond design, I also took on PM responsibilities, working daily with the engineering 
-              team and cofounders to shape the product. I designed a platform that allowed non-technical users to 
-              build custom dashboards without engineering support, enabling faster, more informed decisions across teams.
+              In 2023, I joined Spontivly as the <span className="text-foreground font-medium">only designer at a venture-backed startup</span> focused on democratizing analytics dashboards. I also took on PM responsibilities: working directly with cofounders to understand vision and business goals, partnering with the head of engineering to prioritize and roadmap features, and <span className="text-foreground font-medium">regularly joining sales calls and talking to customers</span> to inform product direction.
             </p>
             <ul className="list-disc pl-5 space-y-2 text-muted-foreground mb-6">
               <li>Adopted by professional sports teams including MLB teams like the Tampa Bay Rays</li>
               <li>Used by Carta and other notable B2B companies for stakeholder reporting</li>
+              <li>Unified fragmented brand identity across marketing site and core platform</li>
             </ul>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div className="bg-card border border-border rounded-xl p-4">
@@ -106,7 +104,7 @@ export default function SpontivlyPage() {
               <div className="bg-card border border-border rounded-xl p-4">
                 <MousePointerClick className="w-4 h-4 text-muted-foreground mb-2" />
                 <p className="text-base font-semibold mb-1">Powered 90%+ of sales demos</p>
-                <p className="text-sm text-muted-foreground">Interactive Figma prototypes used in nearly every sales demo</p>
+                <p className="text-sm text-muted-foreground">Interactive prototypes I created to personalize demos to each prospect's brand</p>
               </div>
             </div>
           </section>
@@ -117,12 +115,7 @@ export default function SpontivlyPage() {
           <section>
             <h2 className="text-lg sm:text-xl font-semibold mb-4">Website Redesign</h2>
             <p className="text-muted-foreground mb-6">
-              My first project at Spontivly was redesigning the marketing website to create a more consistent
-              message and visual language. I collaborated closely with the marketing team and presented concepts to
-              stakeholders, ensuring the new design aligned with the company's ethos. By advocating for an
-              accessible CMS, I enabled anyone in the company to manage content like blog posts. I led the
-              development and hired some of my engineering contacts, and we successfully launched the new site over
-              a month ahead of schedule.
+              My first project at Spontivly was redesigning the marketing website to <span className="text-foreground font-medium">drive more leads</span> and establish a consistent brand voice. The brand was fragmented, so this redesign extended beyond the site to the core platform's visual identity. I <span className="text-foreground font-medium">managed the project end-to-end</span>: scoping with marketing and founders, designing the system, advocating for an accessible CMS so anyone could manage content, then hiring and leading engineers to build it. We launched <span className="text-foreground font-medium">over a month ahead of schedule</span>.
             </p>
             {/* Before/After comparison slider */}
             <div className="bg-muted rounded-xl overflow-hidden">
@@ -150,6 +143,9 @@ export default function SpontivlyPage() {
               from providing stakeholder reports to making data-driven decisions. I tried to steer the design toward
               something that felt familiar while still incorporating all of the features that make Spontivly a
               unique platform for data analysis.
+            </p>
+            <p className="text-muted-foreground mb-6">
+              I was regularly on sales calls and talking directly to customers, which meant I had a clear view of what users actually needed. The biggest challenge was <span className="text-foreground font-medium">managing outsized demand against a small engineering team</span>. Not everything could ship immediately, so I worked with the engineering lead to prioritize ruthlessly and helped stakeholders understand constraints and timelines.
             </p>
             <div className="grid grid-cols-1 gap-4">
               {/* Full width - Dashboard overview */}
@@ -260,15 +256,13 @@ export default function SpontivlyPage() {
             <h2 className="text-lg sm:text-xl font-semibold mb-4">Insights</h2>
             <div className="space-y-4 text-muted-foreground mb-6">
               <p>
-                This experience taught me a lot about designing data visualization and how crucial it is to balance a
-                product's complexity to satisfy advanced users without scaring off newcomers. At Spontivly, we struck
-                that balance, leading to noteworthy teams from various industries becoming users.
+                This experience taught me a lot about designing data visualization and how crucial it is to <span className="text-foreground font-medium">balance complexity to satisfy advanced users without scaring off newcomers</span>. At Spontivly, we struck that balance, leading to noteworthy teams from various industries becoming users.
               </p>
               <p>
-                My key takeaway is that introducing complex features should be done strategically: prioritize the most
-                relevant features and push advanced options further into the background while still keeping them
-                within reach. This approach enhances usability for all skill levels and drives deeper engagement and
-                adoption among mixed user groups.
+                My key takeaway is that introducing complex features should be done strategically: <span className="text-foreground font-medium">prioritize the most relevant features and push advanced options further into the background</span> while still keeping them within reach. This approach enhances usability for all skill levels and drives deeper engagement and adoption among mixed user groups.
+              </p>
+              <p>
+                At a seed-stage startup, demand always outpaces capacity. The skill isn't just designing solutions; it's <span className="text-foreground font-medium">knowing what to prioritize and what to defer</span>. Clear communication with stakeholders about constraints and timelines builds trust, even when you can't ship everything they want.
               </p>
             </div>
             <div className="bg-muted rounded-xl overflow-hidden">

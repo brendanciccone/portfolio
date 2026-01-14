@@ -33,40 +33,8 @@ export default function Portfolio() {
 
         {/* Grid: 1 column on mobile, 2 columns on md+ screens */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-          {/* Project 1 - Spontivly */}
+          {/* Project 1 - Immertec */}
           <FadeIn delay={75} duration={350}>
-            <Link href="/work/spontivly" className="group block bg-card border border-border rounded-xl overflow-hidden transition-all hover:border-foreground/20 hover:shadow-lg hover:shadow-black/5">
-              <div className="bg-muted border-b border-border">
-                <Image
-                  src="/work/spontivly/1.png"
-                  alt="Spontivly social analytics dashboard showing engagement metrics, impression trends, and top performing content"
-                  width={1200}
-                  height={800}
-                  className="w-full"
-                  priority
-                  quality={80}
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
-                />
-              </div>
-              <div className="p-4 sm:p-6">
-                {/* Group title and description closer together */}
-                <div className="mb-3">
-                  <h2 className="text-lg sm:text-xl font-semibold mb-1">Spontivly</h2>
-                  <p className="text-muted-foreground">Analytics dashboards for non-technical users</p>
-                </div>
-
-                {/* Badges */}
-                <div className="flex flex-wrap gap-2">
-                  <Badge>2023-2024</Badge>
-                  <Badge>Seed</Badge>
-                  <Badge>Analytics</Badge>
-                </div>
-              </div>
-            </Link>
-          </FadeIn>
-
-          {/* Project 2 - Immertec */}
-          <FadeIn delay={100} duration={350}>
             <Link href="/work/immertec" className="group block bg-card border border-border rounded-xl overflow-hidden transition-all hover:border-foreground/20 hover:shadow-lg hover:shadow-black/5">
               <div className="bg-muted border-b border-border">
                 <Image
@@ -92,6 +60,38 @@ export default function Portfolio() {
                   <Badge>2018-2023</Badge>
                   <Badge>Series A</Badge>
                   <Badge>Healthcare</Badge>
+                </div>
+              </div>
+            </Link>
+          </FadeIn>
+
+          {/* Project 2 - Spontivly */}
+          <FadeIn delay={100} duration={350}>
+            <Link href="/work/spontivly" className="group block bg-card border border-border rounded-xl overflow-hidden transition-all hover:border-foreground/20 hover:shadow-lg hover:shadow-black/5">
+              <div className="bg-muted border-b border-border">
+                <Image
+                  src="/work/spontivly/1.png"
+                  alt="Spontivly social analytics dashboard showing engagement metrics, impression trends, and top performing content"
+                  width={1200}
+                  height={800}
+                  className="w-full"
+                  priority
+                  quality={80}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
+                />
+              </div>
+              <div className="p-4 sm:p-6">
+                {/* Group title and description closer together */}
+                <div className="mb-3">
+                  <h2 className="text-lg sm:text-xl font-semibold mb-1">Spontivly</h2>
+                  <p className="text-muted-foreground">Analytics dashboards for non-technical users</p>
+                </div>
+
+                {/* Badges */}
+                <div className="flex flex-wrap gap-2">
+                  <Badge>2023</Badge>
+                  <Badge>Seed</Badge>
+                  <Badge>Analytics</Badge>
                 </div>
               </div>
             </Link>

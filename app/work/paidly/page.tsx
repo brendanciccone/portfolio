@@ -81,11 +81,7 @@ export default function PaidlyPage() {
           <section>
             <h2 className="text-lg sm:text-xl font-semibold mb-4">Overview</h2>
             <p className="text-muted-foreground mb-6">
-              During 2020, I noticed an increase in interest in entrepreneurship and freelancing, likely due to a
-              lack of job security spurred on by the pandemic. I believed this would increase demand for tools like
-              invoicing, and as someone with a freelancer background, I knew the importance. After conducting market
-              research, I founded Paidly and assembled a small team of developers, designing the entire application that
-              launched on iOS and Android.
+              As a freelancer, I experienced a common frustration: no way to send Stripe invoices on the go for free. In 2020, with remote work booming and freelancing on the rise, I saw an opportunity to solve my own problem at scale. After conducting market research, I founded Paidly and assembled a small team of developers, designing the entire application that launched on iOS and Android. From idea to launch took <span className="text-foreground font-medium">2.5 months</span>.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div className="bg-card border border-border rounded-xl p-4">
@@ -100,8 +96,8 @@ export default function PaidlyPage() {
               </div>
               <div className="bg-card border border-border rounded-xl p-4">
                 <Star className="w-4 h-4 text-muted-foreground mb-2" />
-                <p className="text-base font-semibold mb-1">4+ star rating</p>
-                <p className="text-sm text-muted-foreground">Maintained high ratings on the App Store and Play Store</p>
+                <p className="text-base font-semibold mb-1">$500k+ invoicing volume</p>
+                <p className="text-sm text-muted-foreground">Processed over half a million dollars in invoices</p>
               </div>
             </div>
           </section>
@@ -121,9 +117,10 @@ export default function PaidlyPage() {
                 Based upon this discovery and knowing how integral Stripe was to payments on the web, I started diving
                 into hundreds of reviews, uncovering what people liked and disliked about existing applications. I
                 discovered users preferred non-subscription-based access and the ability for all the core functions
-                found on the web version of Stripe. To further validate this project, I surveyed relevant users and
-                found that 90% of respondents were open to switching invoicing apps. The survey gave me the extra
-                confidence to move forward and start designing.
+                found on the web version of Stripe. To further validate, I surveyed <span className="text-foreground font-medium">over 300 users</span> and found that <span className="text-foreground font-medium">90% were open to switching</span> invoicing apps. That gave me the confidence to move forward.
+              </p>
+              <p>
+                For the MVP, I focused on what would satisfy 90%+ of users: core Stripe invoice basics like sending, viewing status, changing amounts, and adding items. I deliberately deprioritized niche features to ship faster and validate demand.
               </p>
             </div>
             <div className="grid grid-cols-1 gap-4">
@@ -164,10 +161,7 @@ export default function PaidlyPage() {
                 screened and hired a capable team of mobile developers.
               </p>
               <p>
-                Our collaboration happened primarily through Slack for daily communication and Trello for tracking our
-                progress and feature implementation. The developers were provided with all the tools and documentation
-                needed, including access to Figma and an extensively user-tested high-fidelity prototype, to ensure a
-                smooth process for the MVP and beyond.
+                Our collaboration happened primarily through Slack for daily communication. I broke the product into a Kanban board, giving developers clear scope and priorities while keeping momentum toward launch. They were provided with all the tools and documentation needed, including access to Figma and an extensively user-tested high-fidelity prototype.
               </p>
             </div>
             <div className="bg-muted rounded-xl overflow-hidden">
@@ -199,6 +193,9 @@ export default function PaidlyPage() {
                 My key takeaway is that any product largely reliant on third-party platforms should have an actively
                 updated plan to become independent if needed. It's hard to predict what can happen, but deviating can
                 be necessary to enhance user experience, gain a broader market reach, or even remain in business.
+              </p>
+              <p>
+                I also learned you can't just build it and expect users to come. A solid go-to-market strategy matters as much as the product itself. Finding a market opportunity that alleviates real pain points is the fastest path to traction.
               </p>
             </div>
             <div className="bg-muted rounded-xl overflow-hidden">
