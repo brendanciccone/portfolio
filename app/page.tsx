@@ -33,37 +33,36 @@ export default function Portfolio() {
 
         {/* Grid: 1 column on mobile, 2 columns on md+ screens */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-          {/* Project 1 - Immertec */}
-          <FadeIn delay={75} duration={350}>
-            <Link href="/work/immertec" className="group block bg-card border border-border rounded-xl overflow-hidden transition-all hover:border-foreground/20 hover:shadow-lg hover:shadow-black/5">
-              <div className="bg-muted border-b border-border">
-                <Image
-                  src="/work/immertec/1.png"
-                  alt="Immertec VR medical training platform showing a live surgical procedure with multiple participating doctors, medical imaging views, and interactive controls for remote learning"
-                  width={1200}
-                  height={800}
-                  className="w-full"
-                  priority
-                  quality={80}
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
-                />
+          {/* Project 1 - Immertec (No FadeIn wrapper to optimize LCP) */}
+          <Link href="/work/immertec" className="group block bg-card border border-border rounded-xl overflow-hidden transition-all hover:border-foreground/20 hover:shadow-lg hover:shadow-black/5">
+            <div className="bg-muted border-b border-border">
+              <Image
+                src="/work/immertec/1.png"
+                alt="Immertec VR medical training platform showing a live surgical procedure with multiple participating doctors, medical imaging views, and interactive controls for remote learning"
+                width={1200}
+                height={800}
+                className="w-full"
+                priority
+                fetchPriority="high"
+                quality={80}
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
+              />
+            </div>
+            <div className="p-4 sm:p-6">
+              {/* Group title and description closer together */}
+              <div className="mb-3">
+                <h2 className="text-lg sm:text-xl font-semibold mb-1">Immertec</h2>
+                <p className="text-muted-foreground">VR medical training for live surgical procedures</p>
               </div>
-              <div className="p-4 sm:p-6">
-                {/* Group title and description closer together */}
-                <div className="mb-3">
-                  <h2 className="text-lg sm:text-xl font-semibold mb-1">Immertec</h2>
-                  <p className="text-muted-foreground">VR medical training for live surgical procedures</p>
-                </div>
 
-                {/* Badges */}
-                <div className="flex flex-wrap gap-2">
-                  <Badge>2018-2023</Badge>
-                  <Badge>Series A</Badge>
-                  <Badge>Healthcare</Badge>
-                </div>
+              {/* Badges */}
+              <div className="flex flex-wrap gap-2">
+                <Badge>2018-2023</Badge>
+                <Badge>Series A</Badge>
+                <Badge>Healthcare</Badge>
               </div>
-            </Link>
-          </FadeIn>
+            </div>
+          </Link>
 
           {/* Project 2 - Spontivly */}
           <FadeIn delay={100} duration={350}>
@@ -132,7 +131,7 @@ export default function Portfolio() {
           <FadeIn delay={150} duration={350}>
             <div className="relative bg-card border border-border rounded-xl overflow-hidden cursor-not-allowed">
               {/* Coming soon indicator - outside the faded content */}
-              <div className="absolute top-3 right-3 z-10 bg-background border border-border rounded-full p-2" aria-label="Coming soon">
+              <div className="absolute top-3 right-3 z-10 bg-background border border-border rounded-full p-2" role="img" aria-label="Coming soon">
                 <Lock className="w-4 h-4 text-foreground" />
               </div>
               {/* Faded content */}
