@@ -134,8 +134,8 @@ export default function Portfolio() {
               <div className="absolute top-3 right-3 z-10 bg-background border border-border rounded-full p-2" role="img" aria-label="Coming soon">
                 <Lock className="w-4 h-4 text-foreground" />
               </div>
-              {/* Faded content */}
-              <div className="opacity-50">
+              {/* Faded content - hidden from screen readers since it's not interactive */}
+              <div className="opacity-50" aria-hidden="true">
                 <div className="bg-muted border-b border-border">
                   <Image
                     src="/work/magier/1.png"
