@@ -70,6 +70,7 @@ export default function PaidlyPage() {
               <div className="flex flex-wrap gap-2">
                 <Badge>Founder</Badge>
                 <Badge>2020</Badge>
+                <Badge>Stripe Partner</Badge>
                 <Badge>Finance</Badge>
               </div>
             </div>
@@ -184,18 +185,10 @@ export default function PaidlyPage() {
             <h2 className="text-lg sm:text-xl font-semibold mb-4">Insights</h2>
             <div className="space-y-4 text-muted-foreground mb-6">
               <p>
-                Building on a 3rd party platform often comes with benefits like an existing user base you can tap
-                into, partnerships, and a powerful underlying API. At the same time, it also comes with the risk of
-                locking your product into an ecosystem where the platform and supported features may not align with
-                the needs of your users or product vision.
+                Paidly was my first attempt at building a startup. After having the platform up for around 6 months, and having 2,000 SMBs trust the product enough to run $500K+ in invoices through it, I decided to end the project earlier than planned after a security issue with a contractor I hired introduced technical issues that became a constant headache.
               </p>
               <p>
-                My key takeaway is that any product largely reliant on third-party platforms should have an actively
-                updated plan to become independent if needed. It's hard to predict what can happen, but deviating can
-                be necessary to enhance user experience, gain a broader market reach, or even remain in business.
-              </p>
-              <p>
-                I also learned you can't just build it and expect users to come. A solid go-to-market strategy matters as much as the product itself. Finding a market opportunity that alleviates real pain points is the fastest path to traction.
+                It taught me that technical vetting is a founder responsibility, not something you can outsource to reputation or references. I now treat security review and code audits as non-negotiable before shipping anything financial or high stakes, even at the MVP stage.
               </p>
             </div>
             <div className="bg-muted rounded-xl overflow-hidden">

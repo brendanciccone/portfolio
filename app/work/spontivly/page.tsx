@@ -69,7 +69,7 @@ export default function SpontivlyPage() {
                 </div>
               </div>
               <div className="flex flex-wrap gap-2">
-                <Badge>Senior Product Designer</Badge>
+                <Badge>Senior Product Designer (Contract)</Badge>
                 <Badge>2023</Badge>
                 <Badge>Seed</Badge>
                 <Badge>Analytics</Badge>
@@ -99,7 +99,7 @@ export default function SpontivlyPage() {
               <div className="bg-card border border-border rounded-xl p-4">
                 <Rocket className="w-4 h-4 text-muted-foreground mb-2" />
                 <p className="text-base font-semibold mb-1">Full website redesign</p>
-                <p className="text-sm text-muted-foreground">Relaunched marketing website 1 month ahead of schedule</p>
+                <p className="text-sm text-muted-foreground">Relaunched marketing website 1 month ahead of schedule, doubling inbound leads</p>
               </div>
               <div className="bg-card border border-border rounded-xl p-4">
                 <MousePointerClick className="w-4 h-4 text-muted-foreground mb-2" />
@@ -115,7 +115,7 @@ export default function SpontivlyPage() {
           <section>
             <h2 className="text-lg sm:text-xl font-semibold mb-4">Website Redesign</h2>
             <p className="text-muted-foreground mb-6">
-              My first project at Spontivly was redesigning the marketing website to <span className="text-foreground font-medium">drive more leads</span> and establish a consistent brand voice. The brand was fragmented, so this redesign extended beyond the site to the core platform's visual identity. I <span className="text-foreground font-medium">managed the project end-to-end</span>: scoping with marketing and founders, designing the system, advocating for an accessible CMS so anyone could manage content, then hiring and leading engineers to build it. We launched <span className="text-foreground font-medium">over a month ahead of schedule</span>.
+              My first project at Spontivly was redesigning the marketing website to <span className="text-foreground font-medium">drive more leads</span> and establish a consistent brand voice. The brand was fragmented, so this redesign extended beyond the site to the core platform's visual identity. I <span className="text-foreground font-medium">managed the project end-to-end</span>: scoping with marketing and founders, designing the system, advocating for an accessible CMS so anyone could manage content, then hiring and leading engineers to build it. We launched <span className="text-foreground font-medium">over a month ahead of schedule</span> and <span className="text-foreground font-medium">doubled inbound leads</span>.
             </p>
             {/* Before/After comparison slider */}
             <div className="bg-muted rounded-xl overflow-hidden">
@@ -231,10 +231,7 @@ export default function SpontivlyPage() {
           <section>
             <h2 className="text-lg sm:text-xl font-semibold mb-4">Chart Customization</h2>
             <p className="text-muted-foreground mb-6">
-              Users needed granular control over their visualizations. The hardest part was designing an approach 
-              that made it easy to pull data from APIs and display it in a way that was intuitive for less technical 
-              users. I designed a chart builder that balanced power-user features with approachability, allowing 
-              anyone to create meaningful visualizations without needing to understand the underlying data structure.
+              Users needed granular control over their visualizations. The challenge was designing an interface that could pull data from APIs with wildly inconsistent structures and display it in a way that made sense to non-technical users. I designed a chart builder that balanced power-user features with approachability, allowing anyone to create meaningful visualizations without needing to understand the underlying data.
             </p>
             <div className="bg-muted rounded-xl overflow-hidden">
               <LightboxImage
@@ -256,13 +253,10 @@ export default function SpontivlyPage() {
             <h2 className="text-lg sm:text-xl font-semibold mb-4">Insights</h2>
             <div className="space-y-4 text-muted-foreground mb-6">
               <p>
-                This experience taught me a lot about designing data visualization and how crucial it is to <span className="text-foreground font-medium">balance complexity to satisfy advanced users without scaring off newcomers</span>. At Spontivly, we struck that balance, leading to noteworthy teams from various industries becoming users.
+                The hardest part wasn't the design work. It was managing a team of developers while keeping founder and customer expectations realistic against what we could actually ship. At a seed-stage startup with strong inbound interest, everyone wants everything now. My job was to absorb that pressure and translate it into a buildable roadmap without burning out the engineering team or losing stakeholder trust.
               </p>
               <p>
-                My key takeaway is that introducing complex features should be done strategically: <span className="text-foreground font-medium">prioritize the most relevant features and push advanced options further into the background</span> while still keeping them within reach. This approach enhances usability for all skill levels and drives deeper engagement and adoption among mixed user groups.
-              </p>
-              <p>
-                At a seed-stage startup, demand always outpaces capacity. The skill isn't just designing solutions; it's <span className="text-foreground font-medium">knowing what to prioritize and what to defer</span>. Clear communication with stakeholders about constraints and timelines builds trust, even when you can't ship everything they want.
+                I also learned how crucial it is to balance complexity when designing for mixed audiences. Advanced users needed granular control; new users needed to not feel overwhelmed. The approach that worked was surfacing the most relevant features and pushing advanced options into the background while keeping them within reach.
               </p>
             </div>
             <div className="bg-muted rounded-xl overflow-hidden">

@@ -124,7 +124,7 @@ export default function ImmertecPage() {
                 We conducted formal and informal research, observing real physicians during live procedures and collecting feedback after. For accessibility, we ran controlled in-person studies. Working with my colleague Dr. Shannon Bailey, we compiled <span className="text-foreground font-medium">30 years of VR human factors research</span> into a reusable design template <span className="text-foreground font-medium">before industry standards existed</span>. This R&D meant the designers I later hired could follow a proven process from day one, even without prior VR experience.
               </p>
               <p>
-                I built designs in Sketch and previewed them in a Three.js-based viewer to validate placement and comfort in the actual space. This template became the foundation for future design work, a repeatable system that enabled consistent VR experiences at scale. These improvements contributed to raising the platform's <span className="text-foreground font-medium">SUS score from 68 to 83</span>.
+                I built designs in Sketch and previewed them using A-Frame, a JavaScript framework built on Three.js, to validate placement and comfort in the actual space. This template became the foundation for future design work, a repeatable system that enabled consistent VR experiences at scale. These improvements contributed to raising the platform's <span className="text-foreground font-medium">SUS score from 68 to 83</span>.
               </p>
               <p>
                 One thing I pushed back on was showing a large list of active speakers in the VR environment. In an immersive space, sudden visual changes feel jarring. Instead, I advocated for highlighting speakers within the participant list, which rarely exceeded 10 people in most sessions.
@@ -269,7 +269,7 @@ export default function ImmertecPage() {
                 Designing in healthcare means navigating legal constraints that most industries don't face. Sometimes the ideal UX option simply isn't legally possible. You learn to find solutions within those boundaries rather than fight them.
               </p>
               <p>
-                If I approached this today, I'd handle controversial ideas like the web viewer differently. Rather than presenting it as a belief, I'd start with a small MVP to test and validate, then present data-backed results. How you introduce an idea matters as much as whether it's right.
+                The web viewer taught me that conviction matters, but so does how you build support. Today I'd pair that conviction with earlier prototypes and data to bring stakeholders along faster.
               </p>
             </div>
             <div className="bg-muted rounded-xl overflow-hidden">

@@ -4,7 +4,7 @@ import Link from "next/link"
 import Footer from "@/components/footer"
 import { Badge } from "@/components/ui/badge"
 import { FadeIn } from "@/components/fade-in"
-import { Lock } from "lucide-react"
+import { LightboxImage } from "@/components/lightbox"
 
 export default function Portfolio() {
   return (
@@ -33,12 +33,12 @@ export default function Portfolio() {
 
         {/* Grid: 1 column on mobile, 2 columns on md+ screens */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-          {/* Project 1 - Immertec (No FadeIn wrapper to optimize LCP) */}
-          <Link href="/work/immertec" className="group block bg-card border border-border rounded-xl overflow-hidden transition-all hover:border-foreground/20 hover:shadow-lg hover:shadow-black/5">
+          {/* Project 1 - Corellium (No FadeIn wrapper to optimize LCP) */}
+          <Link href="/work/corellium" className="group block bg-card border border-border rounded-xl overflow-hidden transition-all hover:border-foreground/20 hover:shadow-lg hover:shadow-black/5">
             <div className="bg-muted border-b border-border">
               <Image
-                src="/work/immertec/1.png"
-                alt="Immertec VR medical training platform showing a live surgical procedure with multiple participating doctors, medical imaging views, and interactive controls for remote learning"
+                src="/work/corellium/1.png"
+                alt="Corellium virtual device platform showing the device creation flow for mobile security testing"
                 width={1200}
                 height={800}
                 className="w-full"
@@ -51,20 +51,52 @@ export default function Portfolio() {
             <div className="p-4 sm:p-6">
               {/* Group title and description closer together */}
               <div className="mb-3">
-                <h2 className="text-lg sm:text-xl font-semibold mb-1">Immertec</h2>
-                <p className="text-muted-foreground">VR medical training for live surgical procedures</p>
+                <h2 className="text-lg sm:text-xl font-semibold mb-1">Corellium</h2>
+                <p className="text-muted-foreground">Mobile virtualization for cybersecurity teams</p>
               </div>
 
               {/* Badges */}
               <div className="flex flex-wrap gap-2">
-                <Badge>2018-2023</Badge>
-                <Badge>Series A</Badge>
-                <Badge>Healthcare</Badge>
+                <Badge>2023-Present</Badge>
+                <Badge>Acquired</Badge>
+                <Badge>Cybersecurity</Badge>
               </div>
             </div>
           </Link>
 
-          {/* Project 2 - Spontivly */}
+          {/* Project 2 - Immertec */}
+          <FadeIn delay={75} duration={350}>
+            <Link href="/work/immertec" className="group block bg-card border border-border rounded-xl overflow-hidden transition-all hover:border-foreground/20 hover:shadow-lg hover:shadow-black/5">
+              <div className="bg-muted border-b border-border">
+                <Image
+                  src="/work/immertec/1.png"
+                  alt="Immertec VR medical training platform showing a live surgical procedure with multiple participating doctors, medical imaging views, and interactive controls for remote learning"
+                  width={1200}
+                  height={800}
+                  className="w-full"
+                  priority
+                  quality={80}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
+                />
+              </div>
+              <div className="p-4 sm:p-6">
+                {/* Group title and description closer together */}
+                <div className="mb-3">
+                  <h2 className="text-lg sm:text-xl font-semibold mb-1">Immertec</h2>
+                  <p className="text-muted-foreground">VR medical training for live surgical procedures</p>
+                </div>
+
+                {/* Badges */}
+                <div className="flex flex-wrap gap-2">
+                  <Badge>2018-2023</Badge>
+                  <Badge>Series A</Badge>
+                  <Badge>Healthcare</Badge>
+                </div>
+              </div>
+            </Link>
+          </FadeIn>
+
+          {/* Project 3 - Spontivly */}
           <FadeIn delay={100} duration={350}>
             <Link href="/work/spontivly" className="group block bg-card border border-border rounded-xl overflow-hidden transition-all hover:border-foreground/20 hover:shadow-lg hover:shadow-black/5">
               <div className="bg-muted border-b border-border">
@@ -96,7 +128,7 @@ export default function Portfolio() {
             </Link>
           </FadeIn>
 
-          {/* Project 3 - Paidly */}
+          {/* Project 4 - Paidly */}
           <FadeIn delay={125} duration={350}>
             <Link href="/work/paidly" className="group block bg-card border border-border rounded-xl overflow-hidden transition-all hover:border-foreground/20 hover:shadow-lg hover:shadow-black/5">
               <div className="bg-muted border-b border-border">
@@ -121,46 +153,77 @@ export default function Portfolio() {
                 {/* Badges */}
                 <div className="flex flex-wrap gap-2">
                   <Badge>2020</Badge>
+                  <Badge>Stripe Partner</Badge>
                   <Badge>Finance</Badge>
                 </div>
               </div>
             </Link>
           </FadeIn>
+        </div>
 
-          {/* Project 4 - Magier (Coming soon, not clickable) */}
-          <FadeIn delay={150} duration={350}>
-            <div className="relative bg-card border border-border rounded-xl overflow-hidden cursor-not-allowed">
-              {/* Coming soon indicator - outside the faded content */}
-              <div className="absolute top-3 right-3 z-10 bg-background border border-border rounded-full p-2" role="img" aria-label="Coming soon">
-                <Lock className="w-4 h-4 text-foreground" />
+        {/* Divider - matches spacing from intro section */}
+        <FadeIn delay={150} duration={350}>
+          <div className="border-t border-border mt-2 sm:mt-4" />
+        </FadeIn>
+
+        {/* Other Work Section */}
+        <FadeIn delay={175} duration={350}>
+          <p className="text-sm font-medium text-muted-foreground uppercase tracking-wide pt-2 sm:pt-4">Other Work</p>
+        </FadeIn>
+
+        {/* Other Work Grid - Simpler, non-interactive presentation */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
+          {/* Magier */}
+          <FadeIn delay={200} duration={350}>
+            <div className="space-y-3">
+              <div className="bg-muted rounded-xl overflow-hidden">
+                <LightboxImage
+                  src="/work/magier/1.png"
+                  alt="Magier AI chatbot mobile app screens showing settings, chat interface, and subscription options"
+                  width={1200}
+                  height={800}
+                  className="w-full"
+                  quality={80}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 512px"
+                />
               </div>
-              {/* Faded content - hidden from screen readers since it's not interactive */}
-              <div className="opacity-50" aria-hidden="true">
-                <div className="bg-muted border-b border-border">
-                  <Image
-                    src="/work/magier/1.png"
-                    alt="Magier AI chatbot mobile app screens showing settings, chat interface, and subscription options"
-                    width={1200}
-                    height={800}
-                    className="w-full"
-                    priority
-                    quality={80}
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
-                  />
+              <div>
+                <div className="mb-3">
+                  <h3 className="text-base sm:text-lg font-semibold mb-1">Magier</h3>
+                  <p className="text-sm text-muted-foreground">Privacy-focused AI chatbot mobile app</p>
                 </div>
-                <div className="p-4 sm:p-6">
-                  {/* Group title and description closer together */}
-                  <div className="mb-3">
-                    <h2 className="text-lg sm:text-xl font-semibold mb-1">Magier</h2>
-                    <p className="text-muted-foreground">Privacy-focused AI chatbot mobile app</p>
-                  </div>
+                <div className="flex flex-wrap gap-2">
+                  <Badge>2023</Badge>
+                  <Badge>Acquired</Badge>
+                  <Badge>AI</Badge>
+                </div>
+              </div>
+            </div>
+          </FadeIn>
 
-                  {/* Badges */}
-                  <div className="flex flex-wrap gap-2">
-                    <Badge>2023</Badge>
-                    <Badge>Acquired</Badge>
-                    <Badge>AI</Badge>
-                  </div>
+          {/* Biobox */}
+          <FadeIn delay={225} duration={350}>
+            <div className="space-y-3">
+              <div className="bg-muted rounded-xl overflow-hidden">
+                <LightboxImage
+                  src="/work/biobox/1.png"
+                  alt="Biobox link-in-bio platform leveraging onchain data"
+                  width={1200}
+                  height={800}
+                  className="w-full"
+                  quality={80}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 512px"
+                />
+              </div>
+              <div>
+                <div className="mb-3">
+                  <h3 className="text-base sm:text-lg font-semibold mb-1">Biobox</h3>
+                  <p className="text-sm text-muted-foreground">Link-in-bio platform leveraging onchain data</p>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  <Badge>2021</Badge>
+                  <Badge>ETHGlobal Winner</Badge>
+                  <Badge>Web3</Badge>
                 </div>
               </div>
             </div>
