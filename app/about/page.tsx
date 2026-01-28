@@ -45,7 +45,7 @@ export default function About() {
                 <ul className="space-y-6">
                 {/* Corellium */}
                 <li className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-8 h-8 rounded-md bg-background border border-border flex items-center justify-center overflow-hidden">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-md bg-card border border-border flex items-center justify-center overflow-hidden">
                     <Image
                       src="/about/logos/corellium.jpeg"
                       alt="Corellium logo"
@@ -76,7 +76,7 @@ export default function About() {
                 </li>
                 {/* Spontivly */}
                 <li className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-8 h-8 rounded-md bg-background border border-border flex items-center justify-center overflow-hidden">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-md bg-card border border-border flex items-center justify-center overflow-hidden">
                     <Image
                       src="/about/logos/spontivly.jpeg"
                       alt="Spontivly logo"
@@ -107,7 +107,7 @@ export default function About() {
                 </li>
                 {/* FCB Health NY */}
                 <li className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-8 h-8 rounded-md bg-background border border-border flex items-center justify-center overflow-hidden">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-md bg-card border border-border flex items-center justify-center overflow-hidden">
                     <Image
                       src="/about/logos/fcb_health_ny.jpeg"
                       alt="FCB Health logo"
@@ -138,7 +138,7 @@ export default function About() {
                 </li>
                 {/* Immertec Senior */}
                 <li className="relative flex items-start gap-3">
-                  <div className="flex-shrink-0 w-8 h-8 rounded-md bg-background border border-border flex items-center justify-center overflow-hidden">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-md bg-card border border-border flex items-center justify-center overflow-hidden">
                     <Image
                       src="/about/logos/immertec.jpeg"
                       alt="Immertec logo"
@@ -170,7 +170,7 @@ export default function About() {
                 </li>
                 {/* Immertec Founding Product Designer */}
                 <li className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-8 h-8 rounded-md bg-background border border-border flex items-center justify-center overflow-hidden">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-md bg-card border border-border flex items-center justify-center overflow-hidden">
                     <Image
                       src="/about/logos/immertec.jpeg"
                       alt="Immertec logo"
@@ -200,7 +200,7 @@ export default function About() {
                 </li>
                 {/* Four Pixels */}
                 <li className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-8 h-8 rounded-md bg-background border border-border flex items-center justify-center overflow-hidden">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-md bg-card border border-border flex items-center justify-center overflow-hidden">
                     <Image
                       src="/about/logos/four_pixels.jpeg"
                       alt="Four Pixels logo"
@@ -235,7 +235,7 @@ export default function About() {
               <ul className="space-y-6">
                 {/* Magier */}
                 <li className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-8 h-8 rounded-md bg-background border border-border flex items-center justify-center overflow-hidden">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-md bg-card border border-border flex items-center justify-center overflow-hidden">
                     <Image
                       src="/about/logos/magier.jpeg"
                       alt="Magier logo"
@@ -266,7 +266,7 @@ export default function About() {
                 </li>
                 {/* Biobox */}
                 <li className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-8 h-8 rounded-md bg-background border border-border flex items-center justify-center overflow-hidden">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-md bg-card border border-border flex items-center justify-center overflow-hidden">
                     <Image
                       src="/about/logos/biobox.jpeg"
                       alt="Biobox logo"
@@ -290,7 +290,7 @@ export default function About() {
                 </li>
                 {/* Paidly */}
                 <li className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-8 h-8 rounded-md bg-background border border-border flex items-center justify-center overflow-hidden">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-md bg-card border border-border flex items-center justify-center overflow-hidden">
                     <Image
                       src="/about/logos/paidly.jpeg"
                       alt="Paidly logo"
@@ -376,7 +376,7 @@ export default function About() {
                 <h2 className="text-lg sm:text-xl font-semibold mb-4 sm:mb-6">Certificates</h2>
                 <ul className="space-y-4">
                     <li className="flex items-start gap-3">
-                      <div className="flex-shrink-0 w-8 h-8 rounded-md bg-background border border-border flex items-center justify-center overflow-hidden">
+                      <div className="flex-shrink-0 w-8 h-8 rounded-md bg-card border border-border flex items-center justify-center overflow-hidden">
                         {/* Nielsen Norman Group Logo */}
                         <Image
                           src="/about/logos/nielsen_norman_group.jpeg"
