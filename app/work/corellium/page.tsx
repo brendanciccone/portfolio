@@ -90,17 +90,17 @@ export default function CorelliumPage() {
               <li>Led WCAG accessibility initiative, enabling enterprise sales and streamlining compliance</li>
             </ul>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div className="bg-card border border-border rounded-xl p-4">
+              <div className="bg-card rounded-xl p-4">
                 <TrendingUp className="w-4 h-4 text-muted-foreground mb-2" />
                 <p className="text-base font-semibold mb-1">SUS 81</p>
                 <p className="text-sm text-muted-foreground">Achieved 81 System Usability Scale score post-launch</p>
               </div>
-              <div className="bg-card border border-border rounded-xl p-4">
+              <div className="bg-card rounded-xl p-4">
                 <Handshake className="w-4 h-4 text-muted-foreground mb-2" />
                 <p className="text-base font-semibold mb-1">$200M acquisition</p>
                 <p className="text-sm text-muted-foreground">WCAG and design system work helped make the platform acquisition-ready</p>
               </div>
-              <div className="bg-card border border-border rounded-xl p-4">
+              <div className="bg-card rounded-xl p-4">
                 <Eye className="w-4 h-4 text-muted-foreground mb-2" />
                 <p className="text-base font-semibold mb-1">WCAG 2.1 AA</p>
                 <p className="text-sm text-muted-foreground">Led accessibility initiative enabling enterprise sales</p>

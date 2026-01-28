@@ -91,17 +91,17 @@ export default function SpontivlyPage() {
               <li>Unified fragmented brand identity across marketing site and core platform</li>
             </ul>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div className="bg-card border border-border rounded-xl p-4">
+              <div className="bg-card rounded-xl p-4">
                 <Plug className="w-4 h-4 text-muted-foreground mb-2" />
                 <p className="text-base font-semibold mb-1">120+ APIs supported</p>
                 <p className="text-sm text-muted-foreground">Over 120 API integrations supported in the newly designed platform</p>
               </div>
-              <div className="bg-card border border-border rounded-xl p-4">
+              <div className="bg-card rounded-xl p-4">
                 <Rocket className="w-4 h-4 text-muted-foreground mb-2" />
                 <p className="text-base font-semibold mb-1">Full website redesign</p>
                 <p className="text-sm text-muted-foreground">Relaunched marketing website 1 month ahead of schedule, doubling inbound leads</p>
               </div>
-              <div className="bg-card border border-border rounded-xl p-4">
+              <div className="bg-card rounded-xl p-4">
                 <MousePointerClick className="w-4 h-4 text-muted-foreground mb-2" />
                 <p className="text-base font-semibold mb-1">Powered 90%+ of sales demos</p>
                 <p className="text-sm text-muted-foreground">Interactive prototypes I created to personalize demos to each prospect's brand</p>
