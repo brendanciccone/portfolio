@@ -74,7 +74,9 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <ErrorBoundary>
             <ScrollToTop />
-            {children}
+            <main id="main-content">
+              {children}
+            </main>
             <Analytics />
             <SpeedInsights />
           </ErrorBoundary>

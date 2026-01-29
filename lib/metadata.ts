@@ -12,9 +12,17 @@ const baseMetadata = {
 
 // Project-specific details
 export const projectDetails = {
+  corellium: {
+    title: "Corellium",
+    description: "Mobile virtualization for cybersecurity teams",
+    image: {
+      url: "/work/corellium/1.png",
+      alt: "Corellium virtual device platform showing the device creation flow for mobile security testing",
+    }
+  },
   spontivly: {
     title: "Spontivly",
-    description: "Data dashboards for non-technical users",
+    description: "Analytics dashboards for non-technical users",
     image: {
       url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/7-WhNtJkfUVhAkOhZSBPAbhHNURWpkYU.png",
       alt: "Spontivly social analytics dashboard showing engagement metrics, impression trends, and top performing content",

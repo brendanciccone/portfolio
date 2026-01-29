@@ -19,14 +19,14 @@ export default function About() {
       <div className="max-w-[1024px] mx-auto px-5 pt-24 pb-6 sm:pb-8 flex flex-col gap-6">
         {/* About Me */}
         <FadeIn delay={0} duration={350}>
-          <section className="w-full bg-card border border-border rounded-xl p-4 sm:p-8 flex flex-col">
+          <section className="w-full bg-card rounded-xl p-4 sm:p-8 flex flex-col">
             <h1 className="text-xl sm:text-[24px] font-semibold mb-4 sm:mb-6">About me</h1>
             <div className="space-y-4 sm:space-y-6 text-muted-foreground">
               <p className="text-sm sm:text-base">
                 I'm a staff product designer with <span className="text-foreground font-medium">7 years of experience</span> turning ideas into fully realized B2B products across healthcare, cybersecurity, and finance.
               </p>
               <p className="text-sm sm:text-base">
-                As founding designer at Immertec, I led a platform redesign that <span className="text-foreground font-medium">increased SUS from 68 to 83</span>, hired and managed 2 product designers, and helped secure <span className="text-foreground font-medium">$12M in Series A</span> funding. At Corellium, I owned end-to-end product design, shipped CI/CD-integrated threat analysis tools, and achieved an 81 SUS score that contributed to a <span className="text-foreground font-medium">$200M acquisition</span> by Cellebrite.
+                As founding product designer at Immertec, I led a platform redesign that <span className="text-foreground font-medium">increased SUS from 68 to 83</span>, hired and managed 2 product designers, and helped secure <span className="text-foreground font-medium">$12M in Series A</span> funding. At Corellium, I owned end-to-end product design, shipped CI/CD-integrated threat analysis tools, and achieved an 81 SUS score that contributed to a <span className="text-foreground font-medium">$200M acquisition</span> by Cellebrite.
               </p>
               <p className="text-sm sm:text-base">
                 I founded Paidly in 2020, a Stripe-integrated invoicing app used by <span className="text-foreground font-medium">over 2,000 SMEs</span>, and Magier in 2023, an AI startup that was <span className="text-foreground font-medium">acquired the same year</span> and accepted into <span className="text-foreground font-medium">Techstars' 2024</span> cohort. I've also published research on accessibility and virtual environments in publications by HFES and SSH.
@@ -39,13 +39,13 @@ export default function About() {
         <div className="flex flex-col md:flex-row gap-6 md:items-stretch min-h-[600px]">
           {/* Experience */}
           <FadeIn delay={0.1} duration={350} className="w-full md:w-1/2 flex">
-            <section className="w-full max-w-[528px] mx-auto bg-card border border-border rounded-xl p-4 sm:p-8 flex flex-col flex-1">
+            <section className="w-full max-w-[528px] mx-auto bg-card rounded-xl p-4 sm:p-8 flex flex-col flex-1">
               <h2 className="text-lg sm:text-xl font-semibold mb-4 sm:mb-6">Experience</h2>
               <div>
                 <ul className="space-y-6">
                 {/* Corellium */}
                 <li className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-8 h-8 rounded-md bg-background border border-border flex items-center justify-center overflow-hidden">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-md bg-card border border-border flex items-center justify-center overflow-hidden">
                     <Image
                       src="/about/logos/corellium.jpeg"
                       alt="Corellium logo"
@@ -68,15 +68,15 @@ export default function About() {
                         >
                           Corellium
                         </Link>
-                        <Badge className="px-2 py-0.5">Acquired</Badge>
+                        <Badge>Acquired</Badge>
                       </div>
                     </div>
-                    <span className="text-sm text-muted-foreground flex-shrink-0 ml-2 leading-none">2023–Present</span>
+                    <span className="text-sm text-muted-foreground flex-shrink-0 ml-2 leading-none">2023-Present</span>
                   </div>
                 </li>
                 {/* Spontivly */}
                 <li className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-8 h-8 rounded-md bg-background border border-border flex items-center justify-center overflow-hidden">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-md bg-card border border-border flex items-center justify-center overflow-hidden">
                     <Image
                       src="/about/logos/spontivly.jpeg"
                       alt="Spontivly logo"
@@ -99,15 +99,15 @@ export default function About() {
                         >
                           Spontivly
                         </Link>
-                        <Badge className="px-2 py-0.5">Contract</Badge>
+                        <Badge>Contract</Badge>
                       </div>
                     </div>
-                    <span className="text-sm text-muted-foreground flex-shrink-0 ml-2 leading-none">2023–2024</span>
+                    <span className="text-sm text-muted-foreground flex-shrink-0 ml-2 leading-none">2023</span>
                   </div>
                 </li>
                 {/* FCB Health NY */}
                 <li className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-8 h-8 rounded-md bg-background border border-border flex items-center justify-center overflow-hidden">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-md bg-card border border-border flex items-center justify-center overflow-hidden">
                     <Image
                       src="/about/logos/fcb_health_ny.jpeg"
                       alt="FCB Health logo"
@@ -130,7 +130,7 @@ export default function About() {
                         >
                           FCB Health NY
                         </Link>
-                        <Badge className="px-2 py-0.5">Contract</Badge>
+                        <Badge>Contract</Badge>
                       </div>
                     </div>
                     <span className="text-sm text-muted-foreground flex-shrink-0 ml-2 leading-none">2023</span>
@@ -138,7 +138,7 @@ export default function About() {
                 </li>
                 {/* Immertec Senior */}
                 <li className="relative flex items-start gap-3">
-                  <div className="flex-shrink-0 w-8 h-8 rounded-md bg-background border border-border flex items-center justify-center overflow-hidden">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-md bg-card border border-border flex items-center justify-center overflow-hidden">
                     <Image
                       src="/about/logos/immertec.jpeg"
                       alt="Immertec logo"
@@ -165,12 +165,12 @@ export default function About() {
                         </Link>
                       </div>
                     </div>
-                    <span className="text-sm text-muted-foreground flex-shrink-0 ml-2 leading-none">2020–2023</span>
+                    <span className="text-sm text-muted-foreground flex-shrink-0 ml-2 leading-none">2020-2023</span>
                   </div>
                 </li>
-                {/* Immertec Product Designer */}
+                {/* Immertec Founding Product Designer */}
                 <li className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-8 h-8 rounded-md bg-background border border-border flex items-center justify-center overflow-hidden">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-md bg-card border border-border flex items-center justify-center overflow-hidden">
                     <Image
                       src="/about/logos/immertec.jpeg"
                       alt="Immertec logo"
@@ -182,7 +182,7 @@ export default function About() {
                   <div className="flex-1 flex justify-between min-w-0">
                     <div>
                       <div className="flex items-center gap-2">
-                        <span className="font-medium leading-none">Product Designer</span>
+                        <span className="font-medium leading-none">Founding Product Designer</span>
                       </div>
                       <div className="text-sm text-muted-foreground mt-1">
                         <Link 
@@ -195,12 +195,12 @@ export default function About() {
                         </Link>
                       </div>
                     </div>
-                    <span className="text-sm text-muted-foreground flex-shrink-0 ml-2 leading-none">2018–2020</span>
+                    <span className="text-sm text-muted-foreground flex-shrink-0 ml-2 leading-none">2018-2020</span>
                   </div>
                 </li>
                 {/* Four Pixels */}
                 <li className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-8 h-8 rounded-md bg-background border border-border flex items-center justify-center overflow-hidden">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-md bg-card border border-border flex items-center justify-center overflow-hidden">
                     <Image
                       src="/about/logos/four_pixels.jpeg"
                       alt="Four Pixels logo"
@@ -225,17 +225,17 @@ export default function About() {
                         </Link>
                       </div>
                     </div>
-                    <span className="text-sm text-muted-foreground flex-shrink-0 ml-2 leading-none">2015–2018</span>
+                    <span className="text-sm text-muted-foreground flex-shrink-0 ml-2 leading-none">2015-2018</span>
                   </div>
                 </li>
               </ul>
               </div>
               <div className="h-px bg-border my-8" />
-              <h3 className="text-lg font-medium mb-4 sm:mb-6">Side projects</h3>
+              <h3 className="text-lg font-medium mb-4 sm:mb-6">Other experience</h3>
               <ul className="space-y-6">
                 {/* Magier */}
                 <li className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-8 h-8 rounded-md bg-background border border-border flex items-center justify-center overflow-hidden">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-md bg-card border border-border flex items-center justify-center overflow-hidden">
                     <Image
                       src="/about/logos/magier.jpeg"
                       alt="Magier logo"
@@ -258,7 +258,7 @@ export default function About() {
                         >
                           Magier
                         </Link>
-                        <Badge className="px-2 py-0.5">Acquired</Badge>
+                        <Badge>Acquired</Badge>
                       </div>
                     </div>
                     <span className="text-sm text-muted-foreground flex-shrink-0 ml-2 leading-none">2023</span>
@@ -266,7 +266,7 @@ export default function About() {
                 </li>
                 {/* Biobox */}
                 <li className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-8 h-8 rounded-md bg-background border border-border flex items-center justify-center overflow-hidden">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-md bg-card border border-border flex items-center justify-center overflow-hidden">
                     <Image
                       src="/about/logos/biobox.jpeg"
                       alt="Biobox logo"
@@ -282,7 +282,7 @@ export default function About() {
                       </div>
                       <div className="text-sm text-muted-foreground flex items-center gap-2 mt-1">
                         <span>Biobox</span>
-                        <Badge className="px-2 py-0.5">ETHGlobal Winner</Badge>
+                        <Badge>ETHGlobal Winner</Badge>
                       </div>
                     </div>
                     <span className="text-sm text-muted-foreground flex-shrink-0 ml-2 leading-none">2021</span>
@@ -290,7 +290,7 @@ export default function About() {
                 </li>
                 {/* Paidly */}
                 <li className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-8 h-8 rounded-md bg-background border border-border flex items-center justify-center overflow-hidden">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-md bg-card border border-border flex items-center justify-center overflow-hidden">
                     <Image
                       src="/about/logos/paidly.jpeg"
                       alt="Paidly logo"
@@ -323,7 +323,7 @@ export default function About() {
           {/* Publications & Certificates */}
           <div className="w-full md:w-1/2 flex flex-col gap-6 flex-1">
             <FadeIn delay={0.15} duration={350} className="flex-1">
-              <section className="w-full bg-card border border-border rounded-xl p-4 sm:p-8 flex flex-col flex-1">
+              <section className="w-full bg-card rounded-xl p-4 sm:p-8 flex flex-col flex-1">
                 <h2 className="text-lg sm:text-xl font-semibold mb-4 sm:mb-6">Publications</h2>
                 <div className="space-y-6 flex-1">
                   <div className="border-l border-border pl-4">
@@ -372,11 +372,11 @@ export default function About() {
               </section>
             </FadeIn>
             <FadeIn delay={0.18} duration={350}>
-              <section className="w-full bg-card border border-border rounded-xl p-4 sm:p-8">
+              <section className="w-full bg-card rounded-xl p-4 sm:p-8">
                 <h2 className="text-lg sm:text-xl font-semibold mb-4 sm:mb-6">Certificates</h2>
                 <ul className="space-y-4">
                     <li className="flex items-start gap-3">
-                      <div className="flex-shrink-0 w-8 h-8 rounded-md bg-background border border-border flex items-center justify-center overflow-hidden">
+                      <div className="flex-shrink-0 w-8 h-8 rounded-md bg-card border border-border flex items-center justify-center overflow-hidden">
                         {/* Nielsen Norman Group Logo */}
                         <Image
                           src="/about/logos/nielsen_norman_group.jpeg"
@@ -413,7 +413,7 @@ export default function About() {
 
         {/* Currently */}
         <FadeIn delay={0.2} duration={350}>
-          <section className="w-full bg-card border border-border rounded-xl p-4 sm:p-8">
+          <section className="w-full bg-card rounded-xl p-4 sm:p-8">
             <h2 className="text-lg sm:text-xl font-semibold mb-4 sm:mb-6">Currently</h2>
             <div className="flex flex-col md:flex-row gap-8">
               <div className="w-full md:w-1/2">
