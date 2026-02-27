@@ -1,4 +1,4 @@
-import { GeistSans } from "geist/font/sans"
+import { Space_Mono, Space_Grotesk } from "next/font/google"
 import type React from "react"
 import type { Metadata } from "next"
 import "./globals.css"
@@ -7,6 +7,17 @@ import ScrollToTop from "@/components/scroll-to-top"
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { ErrorBoundary } from "@/components/error-boundary"
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-space-grotesk",
+})
+
+const spaceMono = Space_Mono({
+  weight: ["400", "700"],
+  subsets: ["latin"],
+  variable: "--font-space-mono",
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://brendanciccone.com"),
@@ -63,7 +74,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={GeistSans.className}>
+    <html lang="en" suppressHydrationWarning className={`${spaceGrotesk.variable} ${spaceGrotesk.className} ${spaceMono.variable}`}>
       <head>
         <link
           rel="preconnect"
@@ -71,7 +82,7 @@ export default function RootLayout({
         />
       </head>
       <body suppressHydrationWarning>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem storageKey="theme-v2" disableTransitionOnChange>
           <ErrorBoundary>
             <ScrollToTop />
             <main id="main-content">

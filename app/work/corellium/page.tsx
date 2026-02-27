@@ -31,17 +31,21 @@ export default function CorelliumPage() {
         <header className="pb-8 sm:pb-12 border-b border-border">
           {/* Hero Image */}
           <FadeIn delay={0} duration={350}>
-            <div className="bg-muted rounded-xl overflow-hidden">
-              <LightboxImage
-                src="/work/corellium/1.png"
-                alt="Corellium virtual device platform dashboard"
-                width={1200}
-                height={800}
-                className="w-full"
-                priority
-                quality={80}
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
-              />
+            <div className="sys-panel overflow-hidden group">
+              <div className="p-1">
+                <div className="relative w-full overflow-hidden rounded-sm">
+                  <LightboxImage
+                    src="/work/corellium/1.png"
+                    alt="Corellium virtual device platform dashboard"
+                    width={1200}
+                    height={800}
+                    className="w-full"
+                    priority
+                    quality={80}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
+                  />
+                </div>
+              </div>
             </div>
           </FadeIn>
 
@@ -49,7 +53,7 @@ export default function CorelliumPage() {
           <FadeIn delay={25} duration={350}>
             <div className="mt-8 sm:mt-12">
               <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 rounded-lg border border-border flex items-center justify-center bg-card overflow-hidden flex-shrink-0">
+                <div className="w-12 h-12 rounded-sm border border-border flex items-center justify-center bg-muted/50 overflow-hidden flex-shrink-0">
                   <Image
                     src="/about/logos/corellium.jpeg"
                     alt="Corellium logo"
@@ -61,7 +65,7 @@ export default function CorelliumPage() {
                   />
                 </div>
                 <div>
-                  <h1 className="text-lg sm:text-xl font-semibold">Corellium</h1>
+                  <h1 className="text-lg sm:text-xl font-heading font-semibold uppercase tracking-wide">Corellium</h1>
                   <p className="text-sm sm:text-base text-muted-foreground">
                     Mobile virtualization for cybersecurity teams
                   </p>
@@ -79,8 +83,11 @@ export default function CorelliumPage() {
 
         {/* Overview + Highlights */}
         <FadeIn delay={50} duration={350}>
-          <section>
-            <h2 className="text-lg sm:text-xl font-semibold mb-4">Overview</h2>
+          <section className="sys-panel p-4 sm:p-8">
+            <div className="sys-section-header mb-6">
+              <h2 className="sys-section-label">Overview</h2>
+              <div className="sys-section-line" />
+            </div>
             <p className="text-muted-foreground mb-6">
               In 2023, I joined Corellium as the <span className="text-foreground font-medium">solo designer</span> on a virtualization platform used by security researchers, enterprises, and government agencies to test mobile applications and firmware. I owned end-to-end product design across web and mobile, partnering with product and engineering teams to ship improvements while navigating the constraints of a complex platform.
             </p>
@@ -90,17 +97,17 @@ export default function CorelliumPage() {
               <li>Led WCAG accessibility initiative, enabling enterprise sales and streamlining compliance</li>
             </ul>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div className="bg-card rounded-xl p-4">
+              <div className="bg-muted/30 border border-border rounded-sm p-4">
                 <TrendingUp className="w-4 h-4 text-muted-foreground mb-2" />
                 <p className="text-base font-semibold mb-1">SUS 81</p>
                 <p className="text-sm text-muted-foreground">Achieved 81 System Usability Scale score post-launch</p>
               </div>
-              <div className="bg-card rounded-xl p-4">
+              <div className="bg-muted/30 border border-border rounded-sm p-4">
                 <Handshake className="w-4 h-4 text-muted-foreground mb-2" />
                 <p className="text-base font-semibold mb-1">$200M acquisition</p>
                 <p className="text-sm text-muted-foreground">WCAG and design system work helped make the platform acquisition-ready</p>
               </div>
-              <div className="bg-card rounded-xl p-4">
+              <div className="bg-muted/30 border border-border rounded-sm p-4">
                 <Eye className="w-4 h-4 text-muted-foreground mb-2" />
                 <p className="text-base font-semibold mb-1">WCAG 2.1 AA</p>
                 <p className="text-sm text-muted-foreground">Led accessibility initiative enabling enterprise sales</p>
@@ -111,8 +118,11 @@ export default function CorelliumPage() {
 
         {/* The Problem - Old Flow */}
         <FadeIn delay={75} duration={350}>
-          <section>
-            <h2 className="text-lg sm:text-xl font-semibold mb-4">Device Creation: The Core Experience</h2>
+          <section className="sys-panel p-4 sm:p-8">
+            <div className="sys-section-header mb-6">
+              <h2 className="sys-section-label">Device Creation: The Core Experience</h2>
+              <div className="sys-section-line" />
+            </div>
             <div className="space-y-4 text-muted-foreground mb-6">
               <p>
                 Device creation is the most critical flow in the platform. It's how every user starts their work. But the existing experience required a <span className="text-foreground font-medium">minimum of 6 steps</span>, and no changes were saved between steps. Going back to change something as simple as which project a device belonged to would revert all your selections, adding up to 6 more steps. That's 12 steps worst case for a flow every single user hits.
@@ -122,25 +132,32 @@ export default function CorelliumPage() {
               </p>
             </div>
             {/* FigJam - Original Flow */}
-            <div className="bg-muted rounded-xl overflow-hidden">
-              <LightboxImage
-                src="/work/corellium/2.png"
-                alt="FigJam diagram showing the original device creation flow with multiple steps and decision points"
-                width={1200}
-                height={800}
-                className="w-full"
-                quality={80}
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
-              />
+            <div className="sys-panel overflow-hidden group">
+              <div className="p-1">
+                <div className="relative w-full overflow-hidden rounded-sm">
+                  <LightboxImage
+                    src="/work/corellium/2.png"
+                    alt="FigJam diagram showing the original device creation flow with multiple steps and decision points"
+                    width={1200}
+                    height={800}
+                    className="w-full"
+                    quality={80}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
+                  />
+                </div>
+              </div>
             </div>
           </section>
         </FadeIn>
 
         {/* Finding the Right Moment */}
         <FadeIn delay={100} duration={350}>
-          <section>
-            <h2 className="text-lg sm:text-xl font-semibold mb-4">Bringing the Idea Forward</h2>
-            <div className="space-y-4 text-muted-foreground mb-6">
+          <section className="sys-panel p-4 sm:p-8">
+            <div className="sys-section-header mb-6">
+              <h2 className="sys-section-label">Bringing the Idea Forward</h2>
+              <div className="sys-section-line" />
+            </div>
+            <div className="space-y-4 text-muted-foreground">
               <p>
                 This is a core feature that affects every user on the platform. The whole point of Corellium is to create virtual devices to test on. If this flow is painful, the entire product feels painful, every time you create a new device.
               </p>
@@ -153,8 +170,11 @@ export default function CorelliumPage() {
 
         {/* The Redesign - New Flow */}
         <FadeIn delay={125} duration={350}>
-          <section>
-            <h2 className="text-lg sm:text-xl font-semibold mb-4">Simplifying the Experience</h2>
+          <section className="sys-panel p-4 sm:p-8">
+            <div className="sys-section-header mb-6">
+              <h2 className="sys-section-label">Simplifying the Experience</h2>
+              <div className="sys-section-line" />
+            </div>
             <div className="space-y-4 text-muted-foreground mb-6">
               <p>
                 The goal was to reduce cognitive load and eliminate unnecessary steps without sacrificing flexibility. I redesigned the flow to <span className="text-foreground font-medium">3 steps</span>. One click gives you the latest iOS, Android, or IoT device with smart defaults. Power users can still customize everything, but the common path is now fast.
@@ -164,24 +184,31 @@ export default function CorelliumPage() {
               </p>
             </div>
             {/* FigJam - New Flow */}
-            <div className="bg-muted rounded-xl overflow-hidden">
-              <LightboxImage
-                src="/work/corellium/3.png"
-                alt="FigJam diagram showing the redesigned device creation flow with simplified steps"
-                width={1200}
-                height={800}
-                className="w-full"
-                quality={80}
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
-              />
+            <div className="sys-panel overflow-hidden group">
+              <div className="p-1">
+                <div className="relative w-full overflow-hidden rounded-sm">
+                  <LightboxImage
+                    src="/work/corellium/3.png"
+                    alt="FigJam diagram showing the redesigned device creation flow with simplified steps"
+                    width={1200}
+                    height={800}
+                    className="w-full"
+                    quality={80}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
+                  />
+                </div>
+              </div>
             </div>
           </section>
         </FadeIn>
 
         {/* The Shipped Design */}
         <FadeIn delay={150} duration={350}>
-          <section>
-            <h2 className="text-lg sm:text-xl font-semibold mb-4">The Result</h2>
+          <section className="sys-panel p-4 sm:p-8">
+            <div className="sys-section-header mb-6">
+              <h2 className="sys-section-label">The Result</h2>
+              <div className="sys-section-line" />
+            </div>
             <div className="space-y-4 text-muted-foreground mb-6">
               <p>
                 The redesigned flow shipped. What previously took a minimum of 6 steps (and up to 12 if you needed to go back) now takes <span className="text-foreground font-medium">3</span>. Device creation takes <span className="text-foreground font-medium">half the time or less</span> compared to the previous setup. The product team finally had something flexible that simplified the experience for end users while enabling future feature requests without rearchitecting.
@@ -192,52 +219,68 @@ export default function CorelliumPage() {
             </div>
             <div className="grid grid-cols-1 gap-4">
               {/* Select a project */}
-              <div className="bg-muted rounded-xl overflow-hidden">
-                <LightboxImage
-                  src="/work/corellium/4.png"
-                  alt="Corellium project selection interface"
-                  width={1200}
-                  height={800}
-                  className="w-full"
-                  quality={80}
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
-                />
+              <div className="sys-panel overflow-hidden group">
+                <div className="p-1">
+                  <div className="relative w-full overflow-hidden rounded-sm">
+                    <LightboxImage
+                      src="/work/corellium/4.png"
+                      alt="Corellium project selection interface"
+                      width={1200}
+                      height={800}
+                      className="w-full"
+                      quality={80}
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
+                    />
+                  </div>
+                </div>
               </div>
               {/* Device selection - iOS full width */}
-              <div className="bg-muted rounded-xl overflow-hidden">
-                <LightboxImage
-                  src="/work/corellium/5.png"
-                  alt="Corellium iOS device selection interface"
-                  width={1200}
-                  height={800}
-                  className="w-full"
-                  quality={80}
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
-                />
+              <div className="sys-panel overflow-hidden group">
+                <div className="p-1">
+                  <div className="relative w-full overflow-hidden rounded-sm">
+                    <LightboxImage
+                      src="/work/corellium/5.png"
+                      alt="Corellium iOS device selection interface"
+                      width={1200}
+                      height={800}
+                      className="w-full"
+                      quality={80}
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
+                    />
+                  </div>
+                </div>
               </div>
               {/* Android + Modal side by side */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="bg-muted rounded-xl overflow-hidden">
-                  <LightboxImage
-                    src="/work/corellium/6.png"
-                    alt="Corellium Android device selection"
-                    width={600}
-                    height={400}
-                    className="w-full"
-                    quality={80}
-                    sizes="(max-width: 640px) 100vw, 50vw"
-                  />
+                <div className="sys-panel overflow-hidden group">
+                  <div className="p-1">
+                    <div className="relative w-full overflow-hidden rounded-sm">
+                      <LightboxImage
+                        src="/work/corellium/6.png"
+                        alt="Corellium Android device selection"
+                        width={600}
+                        height={400}
+                        className="w-full"
+                        quality={80}
+                        sizes="(max-width: 640px) 100vw, 50vw"
+                      />
+                    </div>
+                  </div>
                 </div>
-                <div className="bg-muted rounded-xl overflow-hidden">
-                  <LightboxImage
-                    src="/work/corellium/8.png"
-                    alt="Corellium device creation modal"
-                    width={600}
-                    height={400}
-                    className="w-full"
-                    quality={80}
-                    sizes="(max-width: 640px) 100vw, 50vw"
-                  />
+                <div className="sys-panel overflow-hidden group">
+                  <div className="p-1">
+                    <div className="relative w-full overflow-hidden rounded-sm">
+                      <LightboxImage
+                        src="/work/corellium/8.png"
+                        alt="Corellium device creation modal"
+                        width={600}
+                        height={400}
+                        className="w-full"
+                        quality={80}
+                        sizes="(max-width: 640px) 100vw, 50vw"
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -246,8 +289,11 @@ export default function CorelliumPage() {
 
         {/* Insights */}
         <FadeIn delay={175} duration={350}>
-          <section>
-            <h2 className="text-lg sm:text-xl font-semibold mb-4">Insights</h2>
+          <section className="sys-panel p-4 sm:p-8">
+            <div className="sys-section-header mb-6">
+              <h2 className="sys-section-label">Insights</h2>
+              <div className="sys-section-line" />
+            </div>
             <div className="space-y-4 text-muted-foreground mb-6">
               <p>
                 In B2B enterprise, customer requests translate directly to revenue, which means platform-wide UX improvements often lose the prioritization battle. This took over a year to land. Find the intersection between what users need and what a PM can justify on their roadmap to get foundational work shipped.
@@ -257,16 +303,20 @@ export default function CorelliumPage() {
               </p>
             </div>
             {/* IoT device selection - demonstrates modular system */}
-            <div className="bg-muted rounded-xl overflow-hidden">
-              <LightboxImage
-                src="/work/corellium/7.png"
-                alt="Corellium IoT device selection showing modular configuration"
-                width={1200}
-                height={800}
-                className="w-full"
-                quality={80}
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
-              />
+            <div className="sys-panel overflow-hidden group">
+              <div className="p-1">
+                <div className="relative w-full overflow-hidden rounded-sm">
+                  <LightboxImage
+                    src="/work/corellium/7.png"
+                    alt="Corellium IoT device selection showing modular configuration"
+                    width={1200}
+                    height={800}
+                    className="w-full"
+                    quality={80}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
+                  />
+                </div>
+              </div>
             </div>
           </section>
         </FadeIn>
@@ -274,7 +324,7 @@ export default function CorelliumPage() {
         {/* CTA Section */}
         <FadeIn delay={200} duration={350}>
           <section className="py-10 sm:py-16 text-center">
-            <h2 className="text-xl sm:text-2xl font-semibold mb-2">Let's go to market</h2>
+            <h2 className="text-xl sm:text-2xl font-heading font-semibold mb-2 uppercase tracking-wide">Let's go to market</h2>
             <p className="text-muted-foreground mb-6">
               Ready to take your product from 0 → 1 or looking to expand your team?
             </p>

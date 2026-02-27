@@ -32,17 +32,21 @@ export default function SpontivlyPage() {
         <header className="pb-8 sm:pb-12 border-b border-border">
           {/* Hero Image */}
           <FadeIn delay={0} duration={350}>
-            <div className="bg-muted rounded-xl overflow-hidden">
-              <LightboxImage
-                src="/work/spontivly/1.png"
-                alt="Spontivly social dashboard showing analytics and engagement metrics"
-                width={1200}
-                height={800}
-                className="w-full"
-                priority
-                quality={80}
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
-              />
+            <div className="sys-panel overflow-hidden group">
+              <div className="p-1">
+                <div className="relative w-full overflow-hidden rounded-sm">
+                  <LightboxImage
+                    src="/work/spontivly/1.png"
+                    alt="Spontivly social analytics dashboard showing engagement metrics, impression trends, and top performing content"
+                    width={1200}
+                    height={800}
+                    className="w-full"
+                    priority
+                    quality={80}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
+                  />
+                </div>
+              </div>
             </div>
           </FadeIn>
 
@@ -50,7 +54,7 @@ export default function SpontivlyPage() {
           <FadeIn delay={25} duration={350}>
             <div className="mt-8 sm:mt-12">
               <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 rounded-lg border border-border flex items-center justify-center bg-card overflow-hidden flex-shrink-0">
+                <div className="w-12 h-12 rounded-sm border border-border flex items-center justify-center bg-card overflow-hidden flex-shrink-0">
                   <Image
                     src="/about/logos/spontivly.jpeg"
                     alt="Spontivly logo"
@@ -62,7 +66,7 @@ export default function SpontivlyPage() {
                   />
                 </div>
                 <div>
-                  <h1 className="text-lg sm:text-xl font-semibold">Spontivly</h1>
+                  <h1 className="text-lg sm:text-xl font-heading font-semibold">Spontivly</h1>
                   <p className="text-sm sm:text-base text-muted-foreground">
                     Analytics dashboards for non-technical users
                   </p>
@@ -80,8 +84,11 @@ export default function SpontivlyPage() {
 
         {/* Overview + Highlights */}
         <FadeIn delay={50} duration={350}>
-          <section>
-            <h2 className="text-lg sm:text-xl font-semibold mb-4">Overview</h2>
+          <section className="sys-panel p-4 sm:p-8">
+            <div className="sys-section-header mb-6">
+              <h2 className="sys-section-label">Overview</h2>
+              <div className="sys-section-line" />
+            </div>
             <p className="text-muted-foreground mb-6">
               In 2023, I joined Spontivly as the <span className="text-foreground font-medium">only designer at a venture-backed startup</span> focused on democratizing analytics dashboards. I also took on PM responsibilities: working directly with cofounders to understand vision and business goals, partnering with the head of engineering to prioritize and roadmap features, and <span className="text-foreground font-medium">regularly joining sales calls and talking to customers</span> to inform product direction.
             </p>
@@ -91,17 +98,17 @@ export default function SpontivlyPage() {
               <li>Unified fragmented brand identity across marketing site and core platform</li>
             </ul>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div className="bg-card rounded-xl p-4">
+              <div className="bg-card rounded-sm p-4">
                 <Plug className="w-4 h-4 text-muted-foreground mb-2" />
                 <p className="text-base font-semibold mb-1">120+ APIs supported</p>
                 <p className="text-sm text-muted-foreground">Over 120 API integrations supported in the newly designed platform</p>
               </div>
-              <div className="bg-card rounded-xl p-4">
+              <div className="bg-card rounded-sm p-4">
                 <Rocket className="w-4 h-4 text-muted-foreground mb-2" />
                 <p className="text-base font-semibold mb-1">Full website redesign</p>
                 <p className="text-sm text-muted-foreground">Relaunched marketing website 1 month ahead of schedule, doubling inbound leads</p>
               </div>
-              <div className="bg-card rounded-xl p-4">
+              <div className="bg-card rounded-sm p-4">
                 <MousePointerClick className="w-4 h-4 text-muted-foreground mb-2" />
                 <p className="text-base font-semibold mb-1">Powered 90%+ of sales demos</p>
                 <p className="text-sm text-muted-foreground">Interactive prototypes I created to personalize demos to each prospect's brand</p>
@@ -112,13 +119,16 @@ export default function SpontivlyPage() {
 
         {/* Website Redesign Section */}
         <FadeIn delay={75} duration={350}>
-          <section>
-            <h2 className="text-lg sm:text-xl font-semibold mb-4">Website Redesign</h2>
+          <section className="sys-panel p-4 sm:p-8">
+            <div className="sys-section-header mb-6">
+              <h2 className="sys-section-label">Website Redesign</h2>
+              <div className="sys-section-line" />
+            </div>
             <p className="text-muted-foreground mb-6">
               My first project at Spontivly was redesigning the marketing website to <span className="text-foreground font-medium">drive more leads</span> and establish a consistent brand voice. The brand was fragmented, so this redesign extended beyond the site to the core platform's visual identity. I <span className="text-foreground font-medium">managed the project end-to-end</span>: scoping with marketing and founders, designing the system, advocating for an accessible CMS so anyone could manage content, then hiring and leading engineers to build it. We launched <span className="text-foreground font-medium">over a month ahead of schedule</span> and <span className="text-foreground font-medium">doubled inbound leads</span>.
             </p>
             {/* Before/After comparison slider */}
-            <div className="bg-muted rounded-xl overflow-hidden">
+            <div className="bg-muted rounded-sm overflow-hidden">
               <ImageComparison
                 beforeSrc="/work/spontivly/2a.png"
                 afterSrc="/work/spontivly/2b.png"
@@ -133,8 +143,11 @@ export default function SpontivlyPage() {
 
         {/* Dashboard Builder Section */}
         <FadeIn delay={100} duration={350}>
-          <section>
-            <h2 className="text-lg sm:text-xl font-semibold mb-4">Dashboard Builder</h2>
+          <section className="sys-panel p-4 sm:p-8">
+            <div className="sys-section-header mb-6">
+              <h2 className="sys-section-label">Dashboard Builder</h2>
+              <div className="sys-section-line" />
+            </div>
             <p className="text-muted-foreground mb-6">
               I led the design of the analytics dashboard builder and an admin dashboard for managing user-created
               dashboards and permissions. The goal was to enable users to connect any API from social media, CRMs,
@@ -149,7 +162,7 @@ export default function SpontivlyPage() {
             </p>
             <div className="grid grid-cols-1 gap-4">
               {/* Full width - Dashboard overview */}
-              <div className="bg-muted rounded-xl overflow-hidden">
+              <div className="bg-muted rounded-sm overflow-hidden">
                 <LightboxImage
                   src="/work/spontivly/3.png"
                   alt="Spontivly dashboard overview showing multiple dashboard cards for different purposes"
@@ -162,7 +175,7 @@ export default function SpontivlyPage() {
               </div>
               {/* 2-column grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="bg-muted rounded-xl overflow-hidden">
+                <div className="bg-muted rounded-sm overflow-hidden">
                   <LightboxImage
                     src="/work/spontivly/4.png"
                     alt="Spontivly profile settings interface"
@@ -173,7 +186,7 @@ export default function SpontivlyPage() {
                     sizes="(max-width: 640px) 100vw, 50vw"
                   />
                 </div>
-                <div className="bg-muted rounded-xl overflow-hidden">
+                <div className="bg-muted rounded-sm overflow-hidden">
                   <LightboxImage
                     src="/work/spontivly/5.png"
                     alt="Spontivly team management interface"
@@ -187,7 +200,7 @@ export default function SpontivlyPage() {
               </div>
               {/* 2-column grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="bg-muted rounded-xl overflow-hidden">
+                <div className="bg-muted rounded-sm overflow-hidden">
                   <LightboxImage
                     src="/work/spontivly/6.png"
                     alt="Spontivly dashboard interface"
@@ -198,7 +211,7 @@ export default function SpontivlyPage() {
                     sizes="(max-width: 640px) 100vw, 50vw"
                   />
                 </div>
-                <div className="bg-muted rounded-xl overflow-hidden">
+                <div className="bg-muted rounded-sm overflow-hidden">
                   <LightboxImage
                     src="/work/spontivly/7.png"
                     alt="Spontivly data visualization interface"
@@ -211,7 +224,7 @@ export default function SpontivlyPage() {
                 </div>
               </div>
               {/* Full width */}
-              <div className="bg-muted rounded-xl overflow-hidden">
+              <div className="bg-muted rounded-sm overflow-hidden">
                 <LightboxImage
                   src="/work/spontivly/8.png"
                   alt="Spontivly dashboard builder interface"
@@ -228,12 +241,15 @@ export default function SpontivlyPage() {
 
         {/* Chart Builder Section */}
         <FadeIn delay={125} duration={350}>
-          <section>
-            <h2 className="text-lg sm:text-xl font-semibold mb-4">Chart Customization</h2>
+          <section className="sys-panel p-4 sm:p-8">
+            <div className="sys-section-header mb-6">
+              <h2 className="sys-section-label">Chart Customization</h2>
+              <div className="sys-section-line" />
+            </div>
             <p className="text-muted-foreground mb-6">
               Users needed granular control over their visualizations. The challenge was designing an interface that could pull data from APIs with wildly inconsistent structures and display it in a way that made sense to non-technical users. I designed a chart builder that balanced power-user features with approachability, allowing anyone to create meaningful visualizations without needing to understand the underlying data.
             </p>
-            <div className="bg-muted rounded-xl overflow-hidden">
+            <div className="bg-muted rounded-sm overflow-hidden">
               <LightboxImage
                 src="/work/spontivly/9.png"
                 alt="Spontivly chart builder interface showing customization options"
@@ -249,8 +265,11 @@ export default function SpontivlyPage() {
 
         {/* Insights */}
         <FadeIn delay={150} duration={350}>
-          <section>
-            <h2 className="text-lg sm:text-xl font-semibold mb-4">Insights</h2>
+          <section className="sys-panel p-4 sm:p-8">
+            <div className="sys-section-header mb-6">
+              <h2 className="sys-section-label">Insights</h2>
+              <div className="sys-section-line" />
+            </div>
             <div className="space-y-4 text-muted-foreground mb-6">
               <p>
                 The hardest part wasn't the design work. It was managing a team of developers while keeping founder and customer expectations realistic against what we could actually ship. At a seed-stage startup with strong inbound interest, everyone wants everything now. My job was to absorb that pressure and translate it into a buildable roadmap without burning out the engineering team or losing stakeholder trust.
@@ -259,7 +278,7 @@ export default function SpontivlyPage() {
                 I also learned how crucial it is to balance complexity when designing for mixed audiences. Advanced users needed granular control; new users needed to not feel overwhelmed. The approach that worked was surfacing the most relevant features and pushing advanced options into the background while keeping them within reach.
               </p>
             </div>
-            <div className="bg-muted rounded-xl overflow-hidden">
+            <div className="bg-muted rounded-sm overflow-hidden">
               <LightboxImage
                 src="/work/spontivly/10.png"
                 alt="Spontivly platform interface"
@@ -276,7 +295,7 @@ export default function SpontivlyPage() {
         {/* CTA Section */}
         <FadeIn delay={175} duration={350}>
           <section className="py-10 sm:py-16 text-center">
-            <h2 className="text-xl sm:text-2xl font-semibold mb-2">Let's go to market</h2>
+            <h2 className="text-xl sm:text-2xl font-heading font-semibold mb-2">Let's go to market</h2>
             <p className="text-muted-foreground mb-6">
               Ready to take your product from 0 → 1 or looking to expand your team?
             </p>

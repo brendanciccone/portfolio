@@ -31,17 +31,21 @@ export default function PaidlyPage() {
         <header className="pb-8 sm:pb-12 border-b border-border">
           {/* Hero Image */}
           <FadeIn delay={0} duration={350}>
-            <div className="bg-muted rounded-xl overflow-hidden">
-              <LightboxImage
-                src="/work/paidly/1.png"
-                alt="Paidly mobile app showing invoice screens"
-                width={1200}
-                height={800}
-                className="w-full"
-                priority
-                quality={80}
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
-              />
+            <div className="sys-panel overflow-hidden group">
+              <div className="p-1">
+                <div className="relative w-full overflow-hidden rounded-sm">
+                  <LightboxImage
+                    src="/work/paidly/1.png"
+                    alt="Paidly mobile app showing invoice screens"
+                    width={1200}
+                    height={800}
+                    className="w-full"
+                    priority
+                    quality={80}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
+                  />
+                </div>
+              </div>
             </div>
           </FadeIn>
 
@@ -49,7 +53,7 @@ export default function PaidlyPage() {
           <FadeIn delay={25} duration={350}>
             <div className="mt-8 sm:mt-12">
               <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 rounded-lg border border-border flex items-center justify-center bg-card overflow-hidden flex-shrink-0">
+                <div className="w-12 h-12 rounded-sm border border-border flex items-center justify-center bg-card overflow-hidden flex-shrink-0">
                   <Image
                     src="/about/logos/paidly.jpeg"
                     alt="Paidly logo"
@@ -61,7 +65,7 @@ export default function PaidlyPage() {
                   />
                 </div>
                 <div>
-                  <h1 className="text-lg sm:text-xl font-semibold">Paidly</h1>
+                  <h1 className="text-lg sm:text-xl font-heading font-semibold">Paidly</h1>
                   <p className="text-sm sm:text-base text-muted-foreground">
                     Stripe-integrated invoicing mobile app for SMEs
                   </p>
@@ -79,23 +83,26 @@ export default function PaidlyPage() {
 
         {/* Overview + Highlights */}
         <FadeIn delay={50} duration={350}>
-          <section>
-            <h2 className="text-lg sm:text-xl font-semibold mb-4">Overview</h2>
+          <section className="sys-panel p-4 sm:p-8">
+            <div className="sys-section-header mb-6">
+              <h2 className="sys-section-label">Overview</h2>
+              <div className="sys-section-line" />
+            </div>
             <p className="text-muted-foreground mb-6">
               As a freelancer, I experienced a common frustration: no way to send Stripe invoices on the go for free. In 2020, with remote work booming and freelancing on the rise, I saw an opportunity to solve my own problem at scale. After conducting market research, I founded Paidly and assembled a small team of developers, designing the entire application that launched on iOS and Android. From idea to launch took <span className="text-foreground font-medium">2.5 months</span>.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div className="bg-card rounded-xl p-4">
+              <div className="bg-card rounded-sm p-4">
                 <Users className="w-4 h-4 text-muted-foreground mb-2" />
                 <p className="text-base font-semibold mb-1">2,000+ users served</p>
                 <p className="text-sm text-muted-foreground">Served over 2,000 small and medium business clients</p>
               </div>
-              <div className="bg-card rounded-xl p-4">
+              <div className="bg-card rounded-sm p-4">
                 <Handshake className="w-4 h-4 text-muted-foreground mb-2" />
                 <p className="text-base font-semibold mb-1">Stripe partner</p>
                 <p className="text-sm text-muted-foreground">Became an official Stripe integration partner</p>
               </div>
-              <div className="bg-card rounded-xl p-4">
+              <div className="bg-card rounded-sm p-4">
                 <Star className="w-4 h-4 text-muted-foreground mb-2" />
                 <p className="text-base font-semibold mb-1">$500k+ invoicing volume</p>
                 <p className="text-sm text-muted-foreground">Processed over half a million dollars in invoices</p>
@@ -106,8 +113,11 @@ export default function PaidlyPage() {
 
         {/* Research Section */}
         <FadeIn delay={75} duration={350}>
-          <section>
-            <h2 className="text-lg sm:text-xl font-semibold mb-4">Research</h2>
+          <section className="sys-panel p-4 sm:p-8">
+            <div className="sys-section-header mb-6">
+              <h2 className="sys-section-label">Research</h2>
+              <div className="sys-section-line" />
+            </div>
             <div className="space-y-4 text-muted-foreground mb-6">
               <p>
                 Drawing on my experiences with invoicing, I looked into what was available in the market for iOS and
@@ -125,7 +135,7 @@ export default function PaidlyPage() {
               </p>
             </div>
             <div className="grid grid-cols-1 gap-4">
-              <div className="bg-muted rounded-xl overflow-hidden">
+              <div className="bg-muted rounded-sm overflow-hidden">
                 <LightboxImage
                   src="/work/paidly/2.png"
                   alt="Paidly app screens showing onboarding flow, invoice creation, business setup, and Stripe integration"
@@ -136,7 +146,7 @@ export default function PaidlyPage() {
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
                 />
               </div>
-              <div className="bg-muted rounded-xl overflow-hidden">
+              <div className="bg-muted rounded-sm overflow-hidden">
                 <LightboxImage
                   src="/work/paidly/3.png"
                   alt="Paidly brand identity showing the full logo and app icon variations"
@@ -153,8 +163,11 @@ export default function PaidlyPage() {
 
         {/* Stripe-Based Invoicing App Section */}
         <FadeIn delay={100} duration={350}>
-          <section>
-            <h2 className="text-lg sm:text-xl font-semibold mb-4">Bringing Stripe Invoices to Mobile</h2>
+          <section className="sys-panel p-4 sm:p-8">
+            <div className="sys-section-header mb-6">
+              <h2 className="sys-section-label">Bringing Stripe Invoices to Mobile</h2>
+              <div className="sys-section-line" />
+            </div>
             <div className="space-y-4 text-muted-foreground mb-6">
               <p>
                 Using a prototype in Figma and testing it in Maze, I was ready to take things to development and build
@@ -165,7 +178,7 @@ export default function PaidlyPage() {
                 Our collaboration happened primarily through Slack for daily communication. I broke the product into a Kanban board, giving developers clear scope and priorities while keeping momentum toward launch. They were provided with all the tools and documentation needed, including access to Figma and an extensively user-tested high-fidelity prototype.
               </p>
             </div>
-            <div className="bg-muted rounded-xl overflow-hidden">
+            <div className="bg-muted rounded-sm overflow-hidden">
               <LightboxImage
                 src="/work/paidly/4.png"
                 alt="Paidly app screens showing item management: adding items, empty state, and item creation form"
@@ -181,8 +194,11 @@ export default function PaidlyPage() {
 
         {/* Insights Section */}
         <FadeIn delay={125} duration={350}>
-          <section>
-            <h2 className="text-lg sm:text-xl font-semibold mb-4">Insights</h2>
+          <section className="sys-panel p-4 sm:p-8">
+            <div className="sys-section-header mb-6">
+              <h2 className="sys-section-label">Insights</h2>
+              <div className="sys-section-line" />
+            </div>
             <div className="space-y-4 text-muted-foreground mb-6">
               <p>
                 Paidly was my first attempt at building a startup. After having the platform up for around 6 months, and having 2,000 SMBs trust the product enough to run $500K+ in invoices through it, I decided to end the project earlier than planned after a security issue with a contractor I hired introduced technical issues that became a constant headache.
@@ -191,7 +207,7 @@ export default function PaidlyPage() {
                 It taught me that technical vetting is a founder responsibility, not something you can outsource to reputation or references. I now treat security review and code audits as non-negotiable before shipping anything financial or high stakes, even at the MVP stage.
               </p>
             </div>
-            <div className="bg-muted rounded-xl overflow-hidden">
+            <div className="bg-muted rounded-sm overflow-hidden">
               <LightboxImage
                 src="/work/paidly/5.png"
                 alt="Paidly app screens showing customer management: customer list, success confirmation, and customer details form"
@@ -208,7 +224,7 @@ export default function PaidlyPage() {
         {/* CTA Section */}
         <FadeIn delay={150} duration={350}>
           <section className="py-10 sm:py-16 text-center">
-            <h2 className="text-xl sm:text-2xl font-semibold mb-2">Let's go to market</h2>
+            <h2 className="text-xl sm:text-2xl font-heading font-semibold mb-2">Let's go to market</h2>
             <p className="text-muted-foreground mb-6">
               Ready to take your product from 0 → 1 or looking to expand your team?
             </p>

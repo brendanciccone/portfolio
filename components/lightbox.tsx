@@ -72,7 +72,7 @@ export const LightboxImage = ({
       {/* Lightbox overlay */}
       {isOpen && (
         <div
-          className="fixed inset-0 z-50 bg-black/60 backdrop-blur-md flex items-center justify-center p-4 sm:p-8 animate-in fade-in duration-200 cursor-pointer"
+          className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 sm:p-8 animate-in fade-in duration-200 cursor-pointer"
           onClick={() => setIsOpen(false)}
           role="dialog"
           aria-modal="true"
@@ -82,7 +82,7 @@ export const LightboxImage = ({
           <button
             type="button"
             onClick={() => setIsOpen(false)}
-            className="absolute top-4 right-4 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors animate-in fade-in duration-300 delay-100"
+            className="absolute top-4 right-4 p-2 rounded-sm bg-white/10 hover:bg-white/20 transition-colors animate-in fade-in duration-300 delay-100"
             aria-label="Close lightbox"
           >
             <X className="w-6 h-6 text-white" />
@@ -95,7 +95,7 @@ export const LightboxImage = ({
               alt={alt}
               width={width * 2}
               height={height * 2}
-              className="max-w-full max-h-[90vh] w-auto h-auto object-contain rounded-lg"
+              className="max-w-full max-h-[90vh] w-auto h-auto object-contain rounded-sm"
               quality={95}
               sizes="100vw"
             />

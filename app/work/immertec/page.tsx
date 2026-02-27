@@ -31,17 +31,21 @@ export default function ImmertecPage() {
         <header className="pb-8 sm:pb-12 border-b border-border">
           {/* Hero Image */}
           <FadeIn delay={0} duration={350}>
-            <div className="bg-muted rounded-xl overflow-hidden">
-              <LightboxImage
-                src="/work/immertec/1.png"
-                alt="Immertec platform showing a live surgical procedure with multiple participants"
-                width={1200}
-                height={800}
-                className="w-full"
-                priority
-                quality={80}
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
-              />
+            <div className="sys-panel overflow-hidden group">
+              <div className="p-1">
+                <div className="relative w-full overflow-hidden rounded-sm">
+                  <LightboxImage
+                    src="/work/immertec/1.png"
+                    alt="Immertec platform showing a live surgical procedure with multiple participants"
+                    width={1200}
+                    height={800}
+                    className="w-full"
+                    priority
+                    quality={80}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
+                  />
+                </div>
+              </div>
             </div>
           </FadeIn>
 
@@ -49,7 +53,7 @@ export default function ImmertecPage() {
           <FadeIn delay={25} duration={350}>
             <div className="mt-8 sm:mt-12">
               <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 rounded-lg border border-border flex items-center justify-center bg-card overflow-hidden flex-shrink-0">
+                <div className="w-12 h-12 rounded-sm border border-border flex items-center justify-center bg-card overflow-hidden flex-shrink-0">
                   <Image
                     src="/about/logos/immertec.jpeg"
                     alt="Immertec logo"
@@ -61,7 +65,7 @@ export default function ImmertecPage() {
                   />
                 </div>
                 <div>
-                  <h1 className="text-lg sm:text-xl font-semibold">Immertec</h1>
+                  <h1 className="text-lg sm:text-xl font-heading font-semibold">Immertec</h1>
                   <p className="text-sm sm:text-base text-muted-foreground">
                     VR medical training for live surgical procedures
                   </p>
@@ -79,8 +83,11 @@ export default function ImmertecPage() {
 
         {/* Overview + Highlights */}
         <FadeIn delay={50} duration={350}>
-          <section>
-            <h2 className="text-lg sm:text-xl font-semibold mb-4">Overview</h2>
+          <section className="sys-panel p-4 sm:p-8">
+            <div className="sys-section-header mb-6">
+              <h2 className="sys-section-label">Overview</h2>
+              <div className="sys-section-line" />
+            </div>
             <p className="text-muted-foreground mb-6">
               In 2018, I joined Immertec as the <span className="text-foreground font-medium">founding designer and second hire</span>. For the first two years, there was no product team. It was the cofounders and me shaping the product together across VR, web, and mobile. Over five years, we grew to <span className="text-foreground font-medium">50+ team members</span>, secured a <span className="text-foreground font-medium">$12M Series A</span>, and worked with top medtech companies to train surgical teams using real-time VR.
             </p>
@@ -91,17 +98,17 @@ export default function ImmertecPage() {
               <li>Contributed to 4 company awards, including Startup of the Year (2019)</li>
             </ul>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div className="bg-card rounded-xl p-4">
+              <div className="bg-card rounded-sm p-4">
                 <TrendingUp className="w-4 h-4 text-muted-foreground mb-2" />
                 <p className="text-base font-semibold mb-1">SUS 68 → 83</p>
                 <p className="text-sm text-muted-foreground">Increased usability score by 15 points through full redesign</p>
               </div>
-              <div className="bg-card rounded-xl p-4">
+              <div className="bg-card rounded-sm p-4">
                 <Timer className="w-4 h-4 text-muted-foreground mb-2" />
                 <p className="text-base font-semibold mb-1">Sales cycles cut 50%</p>
                 <p className="text-sm text-muted-foreground">Reduced average customer sales cycles by half</p>
               </div>
-              <div className="bg-card rounded-xl p-4">
+              <div className="bg-card rounded-sm p-4">
                 <ThumbsUp className="w-4 h-4 text-muted-foreground mb-2" />
                 <p className="text-base font-semibold mb-1">NPS 80+</p>
                 <p className="text-sm text-muted-foreground">Maintained exceptional user satisfaction and retention</p>
@@ -112,8 +119,11 @@ export default function ImmertecPage() {
 
         {/* Virtual Reality Section */}
         <FadeIn delay={75} duration={350}>
-          <section>
-            <h2 className="text-lg sm:text-xl font-semibold mb-4">Virtual Reality Viewer</h2>
+          <section className="sys-panel p-4 sm:p-8">
+            <div className="sys-section-header mb-6">
+              <h2 className="sys-section-label">Virtual Reality Viewer</h2>
+              <div className="sys-section-line" />
+            </div>
             <div className="space-y-4 text-muted-foreground mb-6">
               <p>
                 At the core of our platform was the Virtual Reality Viewer, immersing healthcare professionals as if
@@ -130,7 +140,7 @@ export default function ImmertecPage() {
                 One thing I pushed back on was showing a large list of active speakers in the VR environment. In an immersive space, sudden visual changes feel jarring. Instead, I advocated for highlighting speakers within the participant list, which rarely exceeded 10 people in most sessions.
               </p>
             </div>
-            <div className="bg-muted rounded-xl overflow-hidden">
+            <div className="bg-muted rounded-sm overflow-hidden">
               <LightboxImage
                 src="/work/immertec/2.png"
                 alt="Immertec VR interface showing participant list, medical imaging with annotations, and surgical procedure views"
@@ -146,8 +156,11 @@ export default function ImmertecPage() {
 
         {/* Admin Dashboard Section */}
         <FadeIn delay={100} duration={350}>
-          <section>
-            <h2 className="text-lg sm:text-xl font-semibold mb-4">Admin Dashboard</h2>
+          <section className="sys-panel p-4 sm:p-8">
+            <div className="sys-section-header mb-6">
+              <h2 className="sys-section-label">Admin Dashboard</h2>
+              <div className="sys-section-line" />
+            </div>
             <div className="space-y-4 text-muted-foreground mb-6">
               <p>
                 Our primary users were physicians and surgeons in orthopedics, ENT, and other specialties, including those from <span className="text-foreground font-medium">Cleveland Clinic and Baylor</span>. A smaller subset were sales managers and salespeople from medical device companies who scheduled events and managed invitations.
@@ -160,7 +173,7 @@ export default function ImmertecPage() {
               </p>
             </div>
             <div className="grid grid-cols-1 gap-4">
-              <div className="bg-muted rounded-xl overflow-hidden">
+              <div className="bg-muted rounded-sm overflow-hidden">
                 <LightboxImage
                   src="/work/immertec/3.png"
                   alt="Immertec admin dashboard showing analytics overview, attendance trends, and user management interface"
@@ -172,7 +185,7 @@ export default function ImmertecPage() {
                 />
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="bg-muted rounded-xl overflow-hidden">
+                <div className="bg-muted rounded-sm overflow-hidden">
                   <LightboxImage
                     src="/work/immertec/4.png"
                     alt="Immertec event metrics and calendar interface"
@@ -183,7 +196,7 @@ export default function ImmertecPage() {
                     sizes="(max-width: 640px) 100vw, 50vw"
                   />
                 </div>
-                <div className="bg-muted rounded-xl overflow-hidden">
+                <div className="bg-muted rounded-sm overflow-hidden">
                   <LightboxImage
                     src="/work/immertec/5.png"
                     alt="Immertec headset request management interface"
@@ -196,7 +209,7 @@ export default function ImmertecPage() {
                 </div>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="bg-muted rounded-xl overflow-hidden">
+                <div className="bg-muted rounded-sm overflow-hidden">
                   <LightboxImage
                     src="/work/immertec/6.png"
                     alt="Immertec event list interface"
@@ -207,7 +220,7 @@ export default function ImmertecPage() {
                     sizes="(max-width: 640px) 100vw, 50vw"
                   />
                 </div>
-                <div className="bg-muted rounded-xl overflow-hidden">
+                <div className="bg-muted rounded-sm overflow-hidden">
                   <LightboxImage
                     src="/work/immertec/7.png"
                     alt="Immertec media library interface"
@@ -225,8 +238,11 @@ export default function ImmertecPage() {
 
         {/* Interactive Web Player Section */}
         <FadeIn delay={125} duration={350}>
-          <section>
-            <h2 className="text-lg sm:text-xl font-semibold mb-4">Interactive Web Viewer</h2>
+          <section className="sys-panel p-4 sm:p-8">
+            <div className="sys-section-header mb-6">
+              <h2 className="sys-section-label">Interactive Web Viewer</h2>
+              <div className="sys-section-line" />
+            </div>
             <div className="space-y-4 text-muted-foreground mb-6">
               <p>
                 I noticed recurring issues while collaborating with customer success where users struggled to access
@@ -246,7 +262,7 @@ export default function ImmertecPage() {
               </p>
               <p>New event? Just send the user a link.</p>
             </div>
-            <div className="bg-muted rounded-xl overflow-hidden">
+            <div className="bg-muted rounded-sm overflow-hidden">
               <LightboxImage
                 src="/work/immertec/8.png"
                 alt="Immertec web viewer interface showing live surgical procedure with participant list and interactive controls"
@@ -262,8 +278,11 @@ export default function ImmertecPage() {
 
         {/* Insights Section */}
         <FadeIn delay={150} duration={350}>
-          <section>
-            <h2 className="text-lg sm:text-xl font-semibold mb-4">Insights</h2>
+          <section className="sys-panel p-4 sm:p-8">
+            <div className="sys-section-header mb-6">
+              <h2 className="sys-section-label">Insights</h2>
+              <div className="sys-section-line" />
+            </div>
             <div className="space-y-4 text-muted-foreground mb-6">
               <p>
                 Designing in healthcare means navigating legal constraints that most industries don't face. Sometimes the ideal UX option simply isn't legally possible. You learn to find solutions within those boundaries rather than fight them.
@@ -272,7 +291,7 @@ export default function ImmertecPage() {
                 The web viewer taught me that conviction matters, but so does how you build support. Today I'd pair that conviction with earlier prototypes and data to bring stakeholders along faster.
               </p>
             </div>
-            <div className="bg-muted rounded-xl overflow-hidden">
+            <div className="bg-muted rounded-sm overflow-hidden">
               <LightboxImage
                 src="/work/immertec/9.png"
                 alt="Immertec sign-in interface showing streamlined authentication options"
@@ -289,7 +308,7 @@ export default function ImmertecPage() {
         {/* CTA Section */}
         <FadeIn delay={175} duration={350}>
           <section className="py-10 sm:py-16 text-center">
-            <h2 className="text-xl sm:text-2xl font-semibold mb-2">Let's go to market</h2>
+            <h2 className="text-xl sm:text-2xl font-heading font-semibold mb-2">Let's go to market</h2>
             <p className="text-muted-foreground mb-6">
               Ready to take your product from 0 → 1 or looking to expand your team?
             </p>

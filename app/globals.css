@@ -1,29 +1,26 @@
 @import "tailwindcss";
 
-/* Tailwind v4 theme configuration */
 @theme {
-  /* Font family */
-  --font-sans: var(--font-inter);
+  --font-sans: var(--font-space-grotesk);
+  --font-heading: var(--font-space-mono);
+  --font-mono: var(--font-space-mono);
 
-  /* Border radius */
   --radius-lg: var(--radius);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 1px);
+  --radius-sm: calc(var(--radius) - 2px);
 
-  /* Olive color palette */
-  --color-olive-50: oklch(98.8% 0.003 106.5);
-  --color-olive-100: oklch(96.6% 0.005 106.5);
-  --color-olive-200: oklch(93% 0.007 106.5);
-  --color-olive-300: oklch(88% 0.011 106.6);
-  --color-olive-400: oklch(73.7% 0.021 106.9);
-  --color-olive-500: oklch(58% 0.031 107.3);
-  --color-olive-600: oklch(46.6% 0.025 107.3);
-  --color-olive-700: oklch(39.4% 0.023 107.4);
-  --color-olive-800: oklch(28.6% 0.016 107.4);
-  --color-olive-900: oklch(22.8% 0.013 107.4);
-  --color-olive-950: oklch(15.3% 0.006 107.1);
+  --color-slate-50: oklch(97.5% 0.001 260);
+  --color-slate-100: oklch(94% 0.002 260);
+  --color-slate-200: oklch(88% 0.003 260);
+  --color-slate-300: oklch(78% 0.005 260);
+  --color-slate-400: oklch(64% 0.006 260);
+  --color-slate-500: oklch(55% 0.008 260);
+  --color-slate-600: oklch(45% 0.01 260);
+  --color-slate-700: oklch(35% 0.01 260);
+  --color-slate-800: oklch(25% 0.008 260);
+  --color-slate-900: oklch(17.5% 0.006 260);
+  --color-slate-950: oklch(13% 0.005 260);
 
-  /* Colors - using CSS variables for light/dark mode support */
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
@@ -51,12 +48,10 @@
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
 
-  /* Animations (previously from tailwindcss-animate) */
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
 }
 
-/* Accordion keyframes */
 @keyframes accordion-down {
   from {
     height: 0;
@@ -75,58 +70,157 @@
   }
 }
 
-/* Light mode (default) CSS variables - Olive palette */
 :root {
-  --background: oklch(96.6% 0.005 106.5); /* olive-100 - slightly darker */
-  --foreground: oklch(15.3% 0.006 107.1); /* olive-950 */
-  --card: oklch(98.8% 0.003 106.5); /* olive-50 - lighter than bg */
-  --card-foreground: oklch(15.3% 0.006 107.1); /* olive-950 */
-  --popover: oklch(98.8% 0.003 106.5); /* olive-50 */
-  --popover-foreground: oklch(15.3% 0.006 107.1); /* olive-950 */
-  --primary: oklch(22.8% 0.013 107.4); /* olive-900 */
-  --primary-foreground: oklch(98.8% 0.003 106.5); /* olive-50 */
-  --secondary: oklch(93% 0.007 106.5); /* olive-200 */
-  --secondary-foreground: oklch(22.8% 0.013 107.4); /* olive-900 */
-  --muted: oklch(93% 0.007 106.5); /* olive-200 */
-  --muted-foreground: oklch(46.6% 0.025 107.3); /* olive-600 */
-  --accent: oklch(93% 0.007 106.5); /* olive-200 */
-  --accent-foreground: oklch(22.8% 0.013 107.4); /* olive-900 */
-  --destructive: oklch(53% 0.19 27); /* red tone */
-  --destructive-foreground: oklch(98.8% 0.003 106.5); /* olive-50 */
-  --border: oklch(88% 0.011 106.6); /* olive-300 */
-  --input: oklch(88% 0.011 106.6); /* olive-300 */
-  --ring: oklch(22.8% 0.013 107.4); /* olive-900 */
-  --radius: 0.5rem;
+  --background: oklch(98% 0.002 260);
+  --foreground: oklch(15% 0.01 260);
+  --card: oklch(100% 0 0);
+  --card-foreground: oklch(15% 0.01 260);
+  --popover: oklch(100% 0 0);
+  --popover-foreground: oklch(15% 0.01 260);
+  --primary: oklch(15% 0.01 260);
+  --primary-foreground: oklch(98% 0.002 260);
+  --secondary: oklch(94% 0.005 260);
+  --secondary-foreground: oklch(15% 0.01 260);
+  --muted: oklch(94% 0.005 260);
+  --muted-foreground: oklch(45% 0.01 260);
+  --accent: oklch(94% 0.005 260);
+  --accent-foreground: oklch(15% 0.01 260);
+  --destructive: oklch(60% 0.15 27);
+  --destructive-foreground: oklch(98% 0.002 260);
+  --border: oklch(88% 0.005 260);
+  --input: oklch(88% 0.005 260);
+  --ring: oklch(15% 0.01 260);
+  --radius: 0.1875rem;
 }
 
-/* Dark mode CSS variables - Olive palette */
 .dark {
-  --background: oklch(15.3% 0.006 107.1); /* olive-950 */
-  --foreground: oklch(96.6% 0.005 106.5); /* olive-100 */
-  --card: oklch(22.8% 0.013 107.4); /* olive-900 - slightly lighter than bg */
-  --card-foreground: oklch(96.6% 0.005 106.5); /* olive-100 */
-  --popover: oklch(15.3% 0.006 107.1); /* olive-950 */
-  --popover-foreground: oklch(96.6% 0.005 106.5); /* olive-100 */
-  --primary: oklch(96.6% 0.005 106.5); /* olive-100 */
-  --primary-foreground: oklch(22.8% 0.013 107.4); /* olive-900 */
-  --secondary: oklch(22.8% 0.013 107.4); /* olive-900 */
-  --secondary-foreground: oklch(96.6% 0.005 106.5); /* olive-100 */
-  --muted: oklch(22.8% 0.013 107.4); /* olive-900 */
-  --muted-foreground: oklch(73.7% 0.021 106.9); /* olive-400 */
-  --accent: oklch(22.8% 0.013 107.4); /* olive-900 */
-  --accent-foreground: oklch(96.6% 0.005 106.5); /* olive-100 */
-  --destructive: oklch(40% 0.15 27); /* darker red tone for dark mode */
-  --destructive-foreground: oklch(96.6% 0.005 106.5); /* olive-100 */
-  --border: oklch(28.6% 0.016 107.4); /* olive-800 */
-  --input: oklch(28.6% 0.016 107.4); /* olive-800 */
-  --ring: oklch(88% 0.011 106.6); /* olive-300 */
+  --background: oklch(10% 0.005 260);
+  --foreground: oklch(95% 0.002 260);
+  --card: oklch(13% 0.005 260);
+  --card-foreground: oklch(95% 0.002 260);
+  --popover: oklch(10% 0.005 260);
+  --popover-foreground: oklch(95% 0.002 260);
+  --primary: oklch(95% 0.002 260);
+  --primary-foreground: oklch(13% 0.005 260);
+  --secondary: oklch(18% 0.006 260);
+  --secondary-foreground: oklch(95% 0.002 260);
+  --muted: oklch(18% 0.006 260);
+  --muted-foreground: oklch(60% 0.006 260);
+  --accent: oklch(18% 0.006 260);
+  --accent-foreground: oklch(95% 0.002 260);
+  --destructive: oklch(40% 0.15 27);
+  --destructive-foreground: oklch(95% 0.002 260);
+  --border: oklch(22% 0.008 260);
+  --input: oklch(22% 0.008 260);
+  --ring: oklch(50% 0.008 260);
 }
 
-/* Base styles */
 * {
   @apply border-border;
 }
 
 body {
-  @apply bg-background text-foreground;
+  @apply bg-background text-foreground min-h-screen relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    radial-gradient(circle, color-mix(in oklab, var(--foreground) 8%, transparent) 0.5px, transparent 0.5px);
+  background-size: 24px 24px;
+  background-position: center center;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    linear-gradient(var(--foreground), var(--foreground)),
+    linear-gradient(var(--foreground), var(--foreground)),
+    linear-gradient(var(--foreground), var(--foreground)),
+    linear-gradient(var(--foreground), var(--foreground)),
+    linear-gradient(var(--foreground), var(--foreground)),
+    linear-gradient(var(--foreground), var(--foreground)),
+    linear-gradient(var(--foreground), var(--foreground)),
+    linear-gradient(var(--foreground), var(--foreground));
+  background-size:
+    48px 1px, 1px 48px,
+    48px 1px, 1px 48px,
+    48px 1px, 1px 48px,
+    48px 1px, 1px 48px;
+  background-position:
+    left 16px top 16px, left 16px top 16px,
+    right 16px top 16px, right 16px top 16px,
+    left 16px bottom 16px, left 16px bottom 16px,
+    right 16px bottom 16px, right 16px bottom 16px;
+  background-repeat: no-repeat;
+  opacity: 0.15;
+}
+
+.sys-panel {
+  @apply border border-border bg-card rounded-sm relative;
+}
+
+.sys-panel::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  pointer-events: none;
+  z-index: 10;
+  background-image:
+    linear-gradient(var(--foreground), var(--foreground)),
+    linear-gradient(var(--foreground), var(--foreground)),
+    linear-gradient(var(--foreground), var(--foreground)),
+    linear-gradient(var(--foreground), var(--foreground)),
+    linear-gradient(var(--foreground), var(--foreground)),
+    linear-gradient(var(--foreground), var(--foreground)),
+    linear-gradient(var(--foreground), var(--foreground)),
+    linear-gradient(var(--foreground), var(--foreground));
+  background-size:
+    7px 1px, 1px 7px,
+    7px 1px, 1px 7px,
+    7px 1px, 1px 7px,
+    7px 1px, 1px 7px;
+  background-position:
+    left -3px top 0px, left 0px top -3px,
+    right -3px top 0px, right 0px top -3px,
+    left -3px bottom 0px, left 0px bottom -3px,
+    right -3px bottom 0px, right 0px bottom -3px;
+  background-repeat: no-repeat;
+  opacity: 0.6;
+}
+
+.sys-section-label {
+  @apply text-xs font-mono uppercase tracking-[0.2em] text-muted-foreground flex items-center gap-2;
+}
+
+.sys-section-label::before {
+  content: "//";
+  @apply text-foreground/30 font-bold;
+}
+
+.sys-section-header {
+  @apply flex items-center gap-3 w-full;
+}
+
+.sys-section-line {
+  @apply h-px bg-border flex-1 relative;
+}
+
+.sys-section-line::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: -1.5px;
+  width: 4px;
+  height: 4px;
+  background-color: var(--foreground);
+  opacity: 0.4;
 }

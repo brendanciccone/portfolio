@@ -4,28 +4,18 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const badgeVariants = cva(
-  // Base styles - fully rounded, flat, no border/shadow
-  "inline-flex items-center gap-x-1.5 rounded-full px-2 py-0.5 text-xs font-medium transition-colors",
+  "inline-flex items-center gap-x-1.5 rounded-sm px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider transition-colors",
   {
     variants: {
       variant: {
-        // Olive (default) - semi-transparent bg with solid text
-        default: [
-          "bg-olive-600/10 text-olive-700",
-          "dark:bg-white/10 dark:text-olive-300",
-        ],
-        secondary: [
-          "bg-olive-600/5 text-olive-600",
-          "dark:bg-white/5 dark:text-olive-400",
-        ],
-        outline: [
-          "bg-transparent text-olive-700 ring-1 ring-inset ring-olive-950/10",
-          "dark:text-olive-300 dark:ring-white/10",
-        ],
-        destructive: [
-          "bg-red-500/15 text-red-700",
-          "dark:bg-red-500/10 dark:text-red-400",
-        ],
+        default:
+          "border border-border bg-transparent text-muted-foreground",
+        secondary:
+          "border border-border/50 bg-muted/50 text-muted-foreground",
+        outline:
+          "bg-transparent text-muted-foreground border border-border",
+        destructive:
+          "border border-destructive/30 bg-transparent text-destructive",
       },
     },
     defaultVariants: {

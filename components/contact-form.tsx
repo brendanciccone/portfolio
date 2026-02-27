@@ -73,7 +73,6 @@ export default function ContactForm() {
       ...prev,
       [id]: value,
     }))
-    // Clear error when user starts typing
     if (errors[id as keyof FormErrors]) {
       setErrors((prev) => ({
         ...prev,
@@ -119,7 +118,6 @@ export default function ContactForm() {
         throw new Error(data.error || "Failed to send message")
       }
 
-      // Reset form
       setFormData({
         name: "",
         email: "",
@@ -130,7 +128,6 @@ export default function ContactForm() {
       setIsSuccess(true)
     } catch (error) {
       console.error("Form submission error:", error)
-      // Show error in the form
       setErrors((prev) => ({
         ...prev,
         submit: error instanceof Error ? error.message : "Failed to send message. Please try again later.",
@@ -143,12 +140,12 @@ export default function ContactForm() {
   if (isSuccess) {
     return (
       <div className="w-full flex flex-col items-center justify-center space-y-4 text-center">
-        <div className="rounded-full bg-green-100 p-3 dark:bg-green-900">
-          <Send className="h-6 w-6 text-green-600 dark:text-green-400" />
+        <div className="rounded-sm bg-muted p-3">
+          <Send className="h-6 w-6 text-foreground" />
         </div>
-        <h3 className="text-xl font-semibold">Thank you for your message!</h3>
+        <h3 className="text-xl font-heading font-semibold">Thank you for your message!</h3>
         <p className="text-sm text-muted-foreground">
-          I'll get back to you as soon as possible.
+          I&apos;ll get back to you as soon as possible.
         </p>
         <Button 
           onClick={() => setIsSuccess(false)}
@@ -164,7 +161,7 @@ export default function ContactForm() {
   return (
     <div className="w-full">
       {errors.submit && (
-        <div className="mb-4 p-3 bg-red-50 text-red-700 rounded-md border border-red-200 text-sm">
+        <div className="mb-4 p-3 bg-destructive/10 text-destructive rounded-sm border border-destructive/20 text-sm">
           <p className="font-medium">Error sending message:</p>
           <p>{errors.submit}</p>
         </div>
@@ -174,7 +171,7 @@ export default function ContactForm() {
         <div>
           <label
             htmlFor="name"
-            className="block text-[13px] sm:text-[14px] mb-1 sm:mb-2"
+            className="block text-xs font-mono uppercase tracking-wider mb-1 sm:mb-2 text-muted-foreground"
           >
             Name
           </label>
@@ -188,7 +185,7 @@ export default function ContactForm() {
             aria-describedby={errors.name ? "name-error" : undefined}
           />
           {errors.name && (
-            <p className="text-red-500 text-xs mt-1" id="name-error">
+            <p className="text-destructive text-xs mt-1" id="name-error">
               {errors.name}
             </p>
           )}
@@ -196,7 +193,7 @@ export default function ContactForm() {
         <div>
           <label
             htmlFor="email"
-            className="block text-[13px] sm:text-[14px] mb-1 sm:mb-2"
+            className="block text-xs font-mono uppercase tracking-wider mb-1 sm:mb-2 text-muted-foreground"
           >
             Email
           </label>
@@ -211,7 +208,7 @@ export default function ContactForm() {
             aria-describedby={errors.email ? "email-error" : undefined}
           />
           {errors.email && (
-            <p className="text-red-500 text-xs mt-1" id="email-error">
+            <p className="text-destructive text-xs mt-1" id="email-error">
               {errors.email}
             </p>
           )}
@@ -219,7 +216,7 @@ export default function ContactForm() {
         <div>
           <label
             htmlFor="company"
-            className="block text-[13px] sm:text-[14px] mb-1 sm:mb-2"
+            className="block text-xs font-mono uppercase tracking-wider mb-1 sm:mb-2 text-muted-foreground"
           >
             Company
           </label>
@@ -232,7 +229,7 @@ export default function ContactForm() {
             aria-describedby={errors.company ? "company-error" : undefined}
           />
           {errors.company && (
-            <p className="text-red-500 text-xs mt-1" id="company-error">
+            <p className="text-destructive text-xs mt-1" id="company-error">
               {errors.company}
             </p>
           )}
@@ -240,7 +237,7 @@ export default function ContactForm() {
         <div>
           <label
             htmlFor="message"
-            className="block text-[13px] sm:text-[14px] mb-1 sm:mb-2"
+            className="block text-xs font-mono uppercase tracking-wider mb-1 sm:mb-2 text-muted-foreground"
           >
             Message
           </label>
@@ -255,7 +252,7 @@ export default function ContactForm() {
             aria-describedby={errors.message ? "message-error" : undefined}
           />
           {errors.message && (
-            <p className="text-red-500 text-xs mt-1" id="message-error">
+            <p className="text-destructive text-xs mt-1" id="message-error">
               {errors.message}
             </p>
           )}
@@ -277,7 +274,7 @@ export default function ContactForm() {
           </label>
         </div>
         {errors.termsAccepted && (
-          <p className="text-red-500 text-xs -mt-2" id="terms-error">
+          <p className="text-destructive text-xs -mt-2" id="terms-error">
             {errors.termsAccepted}
           </p>
         )}
@@ -289,7 +286,7 @@ export default function ContactForm() {
         >
           {isSubmitting ? (
             <span className="flex items-center">
-              <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <svg className="animate-spin -ml-1 mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
               </svg>
@@ -306,5 +303,4 @@ export default function ContactForm() {
   )
 }
 
-// Add named export for backward compatibility
-export { ContactForm } 
+export { ContactForm }
