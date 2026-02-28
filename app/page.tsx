@@ -5,27 +5,22 @@ import Footer from "@/components/footer"
 import { Badge } from "@/components/ui/badge"
 import { FadeIn } from "@/components/fade-in"
 import { LightboxImage } from "@/components/lightbox"
+import { Search } from "lucide-react"
 
 export default function Portfolio() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Header />
       
-      {/* Intro Section */}
-      <div className="w-full pt-24">
-        <FadeIn delay={0} duration={350}>
-          <div className="max-w-[1024px] mx-auto px-5">
-            <div className="sys-panel p-6 sm:p-8">
-              <p className="text-base sm:text-lg text-muted-foreground">
-                Hi! 👋 I&apos;m a <span className="font-semibold text-foreground">0 → 1 Staff Product Designer</span> and Founder with 7 years of experience shipping B2B products across healthcare, cybersecurity, and finance. Currently at <Link href="https://www.corellium.com" target="_blank" rel="noopener noreferrer" className="text-foreground font-medium hover:underline">Corellium</Link>, simplifying complex cybersecurity workflows.
-              </p>
-            </div>
-          </div>
-        </FadeIn>
-      </div>
-
       {/* Main content */}
-      <div className="max-w-[1024px] mx-auto px-5 pt-6 sm:pt-8 pb-6 sm:pb-8 flex flex-col gap-6">
+      <div className="max-w-[1024px] mx-auto px-5 pt-24 pb-6 sm:pb-8 flex flex-col gap-6">
+        {/* Intro Section */}
+        <FadeIn delay={0} duration={350}>
+          <p className="text-sm sm:text-base text-muted-foreground">
+            0 → 1 Staff Product Designer and Founder with 7 years of experience shipping B2B products across healthcare, cybersecurity, and finance. Currently at <Link href="https://www.corellium.com" target="_blank" rel="noopener noreferrer" className="text-foreground font-medium hover:underline">Corellium</Link>, simplifying complex cybersecurity workflows.
+          </p>
+        </FadeIn>
+
         {/* Selected Work label */}
         <FadeIn delay={25} duration={350}>
             <div className="sys-section-header">
@@ -45,7 +40,7 @@ export default function Portfolio() {
                   alt="Corellium virtual device platform showing the device creation flow for mobile security testing"
                   width={1200}
                   height={800}
-                  className="w-full"
+                  className="w-full transition-transform duration-300 ease-out transform-gpu group-hover:scale-[1.03] group-hover:-translate-y-0.5"
                   priority
                   fetchPriority="high"
                   quality={80}
@@ -53,7 +48,7 @@ export default function Portfolio() {
                 />
               </div>
             </div>
-            <div className="p-4 sm:p-5">
+            <div className="p-4 sm:p-6">
               <div className="mb-4">
                 <h2 className="text-lg sm:text-xl font-heading font-semibold mb-1 uppercase tracking-wide">Corellium</h2>
                 <p className="text-muted-foreground text-sm">Mobile virtualization for cybersecurity teams</p>
@@ -76,14 +71,14 @@ export default function Portfolio() {
                     alt="Immertec VR medical training platform showing a live surgical procedure with multiple participating doctors, medical imaging views, and interactive controls for remote learning"
                     width={1200}
                     height={800}
-                    className="w-full"
+                    className="w-full transition-transform duration-300 ease-out transform-gpu group-hover:scale-[1.03] group-hover:-translate-y-0.5"
                     priority
                     quality={80}
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
                   />
                 </div>
               </div>
-              <div className="p-4 sm:p-5">
+              <div className="p-4 sm:p-6">
                 <div className="mb-4">
                   <h2 className="text-lg sm:text-xl font-heading font-semibold mb-1 uppercase tracking-wide">Immertec</h2>
                   <p className="text-muted-foreground text-sm">VR medical training for live surgical procedures</p>
@@ -107,14 +102,14 @@ export default function Portfolio() {
                     alt="Spontivly social analytics dashboard showing engagement metrics, impression trends, and top performing content"
                     width={1200}
                     height={800}
-                    className="w-full"
+                    className="w-full transition-transform duration-300 ease-out transform-gpu group-hover:scale-[1.03] group-hover:-translate-y-0.5"
                     priority
                     quality={80}
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
                   />
                 </div>
               </div>
-              <div className="p-4 sm:p-5">
+              <div className="p-4 sm:p-6">
                 <div className="mb-4">
                   <h2 className="text-lg sm:text-xl font-heading font-semibold mb-1 uppercase tracking-wide">Spontivly</h2>
                   <p className="text-muted-foreground text-sm">Analytics dashboards for non-technical users</p>
@@ -138,14 +133,14 @@ export default function Portfolio() {
                     alt="Paidly mobile app showing invoice list, automatic reminders feature, and customer creation form"
                     width={1200}
                     height={800}
-                    className="w-full"
+                    className="w-full transition-transform duration-300 ease-out transform-gpu group-hover:scale-[1.03] group-hover:-translate-y-0.5"
                     priority
                     quality={80}
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
                   />
                 </div>
               </div>
-              <div className="p-4 sm:p-5">
+              <div className="p-4 sm:p-6">
                 <div className="mb-4">
                   <h2 className="text-lg sm:text-xl font-heading font-semibold mb-1 uppercase tracking-wide">Paidly</h2>
                   <p className="text-muted-foreground text-sm">Stripe-integrated invoicing mobile app for SMEs</p>
@@ -180,13 +175,18 @@ export default function Portfolio() {
                     alt="Magier AI chatbot mobile app screens showing settings, chat interface, and subscription options"
                     width={1200}
                     height={800}
-                    className="w-full"
+                    className="w-full transition-transform duration-300 ease-out transform-gpu group-hover:scale-[1.03] group-hover:-translate-y-0.5"
                     quality={80}
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 512px"
                   />
+                  <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+                    <div className="rounded-sm border border-border bg-background/90 p-2">
+                      <Search className="h-4 w-4 text-foreground" />
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div className="p-4">
+              <div className="p-4 sm:p-6">
                 <div className="mb-4">
                   <h3 className="text-base sm:text-lg font-heading font-semibold mb-1 uppercase tracking-wide">Magier</h3>
                   <p className="text-sm text-muted-foreground">Privacy-focused AI chatbot mobile app</p>
@@ -210,13 +210,18 @@ export default function Portfolio() {
                     alt="Biobox link-in-bio platform leveraging onchain data"
                     width={1200}
                     height={800}
-                    className="w-full"
+                    className="w-full transition-transform duration-300 ease-out transform-gpu group-hover:scale-[1.03] group-hover:-translate-y-0.5"
                     quality={80}
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 512px"
                   />
+                  <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+                    <div className="rounded-sm border border-border bg-background/90 p-2">
+                      <Search className="h-4 w-4 text-foreground" />
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div className="p-4">
+              <div className="p-4 sm:p-6">
                 <div className="mb-4">
                   <h3 className="text-base sm:text-lg font-heading font-semibold mb-1 uppercase tracking-wide">Biobox</h3>
                   <p className="text-sm text-muted-foreground">Link-in-bio platform using onchain data</p>

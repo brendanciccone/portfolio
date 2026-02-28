@@ -63,19 +63,19 @@ export default function Header() {
             <div
               className={`flex h-14 items-center justify-between transition-all duration-150 ease-in-out ${
                 mobileMenuOpen
-                  ? "px-4"
+                  ? "px-4 md:px-5"
                   : isScrolled
-                    ? "px-4 bg-background/90 backdrop-blur-xl rounded-sm border border-border"
+                    ? "px-4 md:px-6 bg-background/90 backdrop-blur-xl rounded-sm border border-border"
                     : "bg-transparent"
               }`}
             >
               <Link href="/" className="flex items-center gap-2">
                 <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Profile.jpg-al2nGt8LMiAxExrg2Jeb9tDq6VnRHb.jpeg"
+                  src="/avatar-dithered.png"
                   alt="Profile picture of Brendan Ciccone"
                   width={40}
                   height={40}
-                  className="rounded-sm object-cover"
+                  className="rounded-sm object-cover border border-border"
                   priority
                   quality={80}
                   sizes="40px"

@@ -18,7 +18,7 @@ export default function About() {
       <div className="max-w-[1024px] mx-auto px-5 pt-24 pb-6 sm:pb-8 flex flex-col gap-6">
         {/* Intro Section */}
         <FadeIn delay={0} duration={350}>
-          <section className="w-full sys-panel p-4 sm:p-8 flex flex-col">
+          <section className="w-full sys-panel p-4 sm:p-7 flex flex-col">
             <div className="sys-section-header mb-6">
               <h1 className="sys-section-label">About me</h1>
               <div className="sys-section-line" />
@@ -41,7 +41,7 @@ export default function About() {
         <div className="flex flex-col md:flex-row gap-6 md:items-stretch min-h-[600px]">
           {/* Experience */}
           <FadeIn delay={0.1} duration={350} className="w-full md:w-1/2 flex">
-            <section className="w-full sys-panel p-4 sm:p-8 flex flex-col flex-1">
+            <section className="w-full sys-panel p-4 sm:p-7 flex flex-col flex-1">
               <div className="sys-section-header mb-6">
                 <h2 className="sys-section-label">Experience</h2>
                 <div className="sys-section-line" />
@@ -329,7 +329,7 @@ export default function About() {
           {/* Publications & Certificates */}
           <div className="w-full md:w-1/2 flex flex-col gap-6 flex-1">
             <FadeIn delay={0.15} duration={350} className="flex-1">
-              <section className="w-full sys-panel p-4 sm:p-8 flex flex-col flex-1">
+              <section className="w-full sys-panel p-4 sm:p-7 flex flex-col flex-1">
                 <div className="sys-section-header mb-6">
                   <h2 className="sys-section-label">Publications</h2>
                   <div className="sys-section-line" />
@@ -381,7 +381,7 @@ export default function About() {
               </section>
             </FadeIn>
             <FadeIn delay={0.18} duration={350}>
-              <section className="w-full sys-panel p-4 sm:p-8">
+              <section className="w-full sys-panel p-4 sm:p-7">
                 <div className="sys-section-header mb-6">
                   <h2 className="sys-section-label">Certificates</h2>
                   <div className="sys-section-line" />
@@ -424,7 +424,7 @@ export default function About() {
 
         {/* Currently */}
         <FadeIn delay={0.2} duration={350}>
-          <section className="w-full sys-panel p-4 sm:p-8">
+          <section className="w-full sys-panel p-4 sm:p-7">
             <div className="sys-section-header mb-6">
               <h2 className="sys-section-label">Currently</h2>
               <div className="sys-section-line" />

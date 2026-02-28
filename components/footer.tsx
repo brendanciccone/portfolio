@@ -4,9 +4,12 @@ export default function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="sys-panel py-4 px-5">
+    <footer className="sys-panel py-4 px-4 md:px-6">
       <div className="flex justify-between items-center">
-        <div className="text-sm font-mono text-muted-foreground uppercase tracking-wider">&copy; {currentYear} Brendan Ciccone</div>
+        <div className="text-sm font-mono text-muted-foreground uppercase tracking-wider flex items-center gap-1">
+          <span className="font-sans text-base leading-none">&copy;</span>
+          <span>{currentYear} Brendan Ciccone</span>
+        </div>
         <div className="flex gap-4">
           <Link href="https://www.linkedin.com/in/brendanciccone/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
             <svg

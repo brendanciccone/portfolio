@@ -25,10 +25,10 @@ export default function PaidlyPage() {
     <div className="min-h-screen bg-background text-foreground">
       <Header />
       
-      <div className="max-w-[1024px] mx-auto px-5 pt-24 pb-6 sm:pb-8 flex flex-col gap-8 sm:gap-12">
+      <div className="max-w-[1024px] mx-auto px-5 pt-24 pb-6 sm:pb-8 flex flex-col gap-6">
         
         {/* Page Header - Hero + Title + Badges */}
-        <header className="pb-8 sm:pb-12 border-b border-border">
+        <header>
           {/* Hero Image */}
           <FadeIn delay={0} duration={350}>
             <div className="sys-panel overflow-hidden group">
@@ -46,36 +46,32 @@ export default function PaidlyPage() {
                   />
                 </div>
               </div>
-            </div>
-          </FadeIn>
-
-          {/* Title + Description + Badges */}
-          <FadeIn delay={25} duration={350}>
-            <div className="mt-8 sm:mt-12">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 rounded-sm border border-border flex items-center justify-center bg-card overflow-hidden flex-shrink-0">
-                  <Image
-                    src="/about/logos/paidly.jpeg"
-                    alt="Paidly logo"
-                    width={48}
-                    height={48}
-                    className="w-full h-full object-cover"
-                    quality={80}
-                    sizes="48px"
-                  />
+              <div className="p-4 sm:p-7">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 rounded-sm border border-border flex items-center justify-center bg-card overflow-hidden flex-shrink-0">
+                    <Image
+                      src="/about/logos/paidly.jpeg"
+                      alt="Paidly logo"
+                      width={48}
+                      height={48}
+                      className="w-full h-full object-cover"
+                      quality={80}
+                      sizes="48px"
+                    />
+                  </div>
+                  <div>
+                    <h1 className="text-lg sm:text-xl font-heading font-semibold">Paidly</h1>
+                    <p className="text-sm sm:text-base text-muted-foreground">
+                      Stripe-integrated invoicing mobile app for SMEs
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h1 className="text-lg sm:text-xl font-heading font-semibold">Paidly</h1>
-                  <p className="text-sm sm:text-base text-muted-foreground">
-                    Stripe-integrated invoicing mobile app for SMEs
-                  </p>
+                <div className="flex flex-wrap gap-2">
+                  <Badge>Founder</Badge>
+                  <Badge>2020</Badge>
+                  <Badge>Stripe Partner</Badge>
+                  <Badge>Finance</Badge>
                 </div>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                <Badge>Founder</Badge>
-                <Badge>2020</Badge>
-                <Badge>Stripe Partner</Badge>
-                <Badge>Finance</Badge>
               </div>
             </div>
           </FadeIn>
@@ -83,7 +79,7 @@ export default function PaidlyPage() {
 
         {/* Overview + Highlights */}
         <FadeIn delay={50} duration={350}>
-          <section className="sys-panel p-4 sm:p-8">
+          <section className="sys-panel p-4 sm:p-7">
             <div className="sys-section-header mb-6">
               <h2 className="sys-section-label">Overview</h2>
               <div className="sys-section-line" />
@@ -113,7 +109,7 @@ export default function PaidlyPage() {
 
         {/* Research Section */}
         <FadeIn delay={75} duration={350}>
-          <section className="sys-panel p-4 sm:p-8">
+          <section className="sys-panel p-4 sm:p-7">
             <div className="sys-section-header mb-6">
               <h2 className="sys-section-label">Research</h2>
               <div className="sys-section-line" />
@@ -163,7 +159,7 @@ export default function PaidlyPage() {
 
         {/* Stripe-Based Invoicing App Section */}
         <FadeIn delay={100} duration={350}>
-          <section className="sys-panel p-4 sm:p-8">
+          <section className="sys-panel p-4 sm:p-7">
             <div className="sys-section-header mb-6">
               <h2 className="sys-section-label">Bringing Stripe Invoices to Mobile</h2>
               <div className="sys-section-line" />
@@ -194,7 +190,7 @@ export default function PaidlyPage() {
 
         {/* Insights Section */}
         <FadeIn delay={125} duration={350}>
-          <section className="sys-panel p-4 sm:p-8">
+          <section className="sys-panel p-4 sm:p-7">
             <div className="sys-section-header mb-6">
               <h2 className="sys-section-label">Insights</h2>
               <div className="sys-section-line" />
