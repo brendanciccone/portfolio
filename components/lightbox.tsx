@@ -54,7 +54,7 @@ export const LightboxImage = ({
       <button
         type="button"
         onClick={() => setIsOpen(true)}
-        className="cursor-pointer w-full block"
+        className="cursor-pointer w-full block bg-muted"
         aria-label={`View ${alt} in fullscreen`}
       >
         <Image

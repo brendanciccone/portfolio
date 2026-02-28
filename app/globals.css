@@ -81,9 +81,9 @@
   --primary-foreground: oklch(98% 0.002 260);
   --secondary: oklch(94% 0.005 260);
   --secondary-foreground: oklch(15% 0.01 260);
-  --muted: oklch(94% 0.005 260);
+  --muted: oklch(95% 0.003 260);
   --muted-foreground: oklch(45% 0.01 260);
-  --accent: oklch(94% 0.005 260);
+  --accent: oklch(95% 0.003 260);
   --accent-foreground: oklch(15% 0.01 260);
   --destructive: oklch(60% 0.15 27);
   --destructive-foreground: oklch(98% 0.002 260);
@@ -91,6 +91,7 @@
   --input: oklch(88% 0.005 260);
   --ring: oklch(15% 0.01 260);
   --radius: 0.1875rem;
+  --sys-corner-opacity: 0.22;
 }
 
 .dark {
@@ -113,6 +114,7 @@
   --border: oklch(22% 0.008 260);
   --input: oklch(22% 0.008 260);
   --ring: oklch(50% 0.008 260);
+  --sys-corner-opacity: 0.35;
 }
 
 * {
@@ -123,46 +125,7 @@ body {
   @apply bg-background text-foreground min-h-screen relative;
 }
 
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  background-image:
-    radial-gradient(circle, color-mix(in oklab, var(--foreground) 8%, transparent) 0.5px, transparent 0.5px);
-  background-size: 24px 24px;
-  background-position: center center;
-}
 
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  background-image:
-    linear-gradient(var(--foreground), var(--foreground)),
-    linear-gradient(var(--foreground), var(--foreground)),
-    linear-gradient(var(--foreground), var(--foreground)),
-    linear-gradient(var(--foreground), var(--foreground)),
-    linear-gradient(var(--foreground), var(--foreground)),
-    linear-gradient(var(--foreground), var(--foreground)),
-    linear-gradient(var(--foreground), var(--foreground)),
-    linear-gradient(var(--foreground), var(--foreground));
-  background-size:
-    48px 1px, 1px 48px,
-    48px 1px, 1px 48px,
-    48px 1px, 1px 48px,
-    48px 1px, 1px 48px;
-  background-position:
-    left 16px top 16px, left 16px top 16px,
-    right 16px top 16px, right 16px top 16px,
-    left 16px bottom 16px, left 16px bottom 16px,
-    right 16px bottom 16px, right 16px bottom 16px;
-  background-repeat: no-repeat;
-  opacity: 0.15;
-}
 
 .sys-panel {
   @apply border border-border bg-card rounded-sm relative;
@@ -184,17 +147,17 @@ body::after {
     linear-gradient(var(--foreground), var(--foreground)),
     linear-gradient(var(--foreground), var(--foreground));
   background-size:
-    7px 1px, 1px 7px,
-    7px 1px, 1px 7px,
-    7px 1px, 1px 7px,
-    7px 1px, 1px 7px;
+    10px 1px, 1px 10px,
+    10px 1px, 1px 10px,
+    10px 1px, 1px 10px,
+    10px 1px, 1px 10px;
   background-position:
-    left -3px top 0px, left 0px top -3px,
-    right -3px top 0px, right 0px top -3px,
-    left -3px bottom 0px, left 0px bottom -3px,
-    right -3px bottom 0px, right 0px bottom -3px;
+    left -4px top 0px, left 0px top -4px,
+    right -4px top 0px, right 0px top -4px,
+    left -4px bottom 0px, left 0px bottom -4px,
+    right -4px bottom 0px, right 0px bottom -4px;
   background-repeat: no-repeat;
-  opacity: 0.6;
+  opacity: var(--sys-corner-opacity);
 }
 
 .sys-section-label {
@@ -212,15 +175,4 @@ body::after {
 
 .sys-section-line {
   @apply h-px bg-border flex-1 relative;
-}
-
-.sys-section-line::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  top: -1.5px;
-  width: 4px;
-  height: 4px;
-  background-color: var(--foreground);
-  opacity: 0.4;
 }

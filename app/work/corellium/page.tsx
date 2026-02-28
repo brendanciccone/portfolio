@@ -32,7 +32,7 @@ export default function CorelliumPage() {
           {/* Hero Image */}
           <FadeIn delay={0} duration={350}>
             <div className="sys-panel overflow-hidden group">
-              <div className="p-1">
+              <div className="bg-muted p-1">
                 <div className="relative w-full overflow-hidden rounded-sm">
                   <LightboxImage
                     src="/work/corellium/1.png"
@@ -133,7 +133,7 @@ export default function CorelliumPage() {
             </div>
             {/* FigJam - Original Flow */}
             <div className="sys-panel overflow-hidden group">
-              <div className="p-1">
+              <div className="bg-muted p-1">
                 <div className="relative w-full overflow-hidden rounded-sm">
                   <LightboxImage
                     src="/work/corellium/2.png"
@@ -185,7 +185,7 @@ export default function CorelliumPage() {
             </div>
             {/* FigJam - New Flow */}
             <div className="sys-panel overflow-hidden group">
-              <div className="p-1">
+              <div className="bg-muted p-1">
                 <div className="relative w-full overflow-hidden rounded-sm">
                   <LightboxImage
                     src="/work/corellium/3.png"
@@ -220,7 +220,7 @@ export default function CorelliumPage() {
             <div className="grid grid-cols-1 gap-4">
               {/* Select a project */}
               <div className="sys-panel overflow-hidden group">
-                <div className="p-1">
+                <div className="bg-muted p-1">
                   <div className="relative w-full overflow-hidden rounded-sm">
                     <LightboxImage
                       src="/work/corellium/4.png"
@@ -236,7 +236,7 @@ export default function CorelliumPage() {
               </div>
               {/* Device selection - iOS full width */}
               <div className="sys-panel overflow-hidden group">
-                <div className="p-1">
+                <div className="bg-muted p-1">
                   <div className="relative w-full overflow-hidden rounded-sm">
                     <LightboxImage
                       src="/work/corellium/5.png"
@@ -253,7 +253,7 @@ export default function CorelliumPage() {
               {/* Android + Modal side by side */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="sys-panel overflow-hidden group">
-                  <div className="p-1">
+                  <div className="bg-muted p-1">
                     <div className="relative w-full overflow-hidden rounded-sm">
                       <LightboxImage
                         src="/work/corellium/6.png"
@@ -268,7 +268,7 @@ export default function CorelliumPage() {
                   </div>
                 </div>
                 <div className="sys-panel overflow-hidden group">
-                  <div className="p-1">
+                  <div className="bg-muted p-1">
                     <div className="relative w-full overflow-hidden rounded-sm">
                       <LightboxImage
                         src="/work/corellium/8.png"
@@ -304,7 +304,7 @@ export default function CorelliumPage() {
             </div>
             {/* IoT device selection - demonstrates modular system */}
             <div className="sys-panel overflow-hidden group">
-              <div className="p-1">
+              <div className="bg-muted p-1">
                 <div className="relative w-full overflow-hidden rounded-sm">
                   <LightboxImage
                     src="/work/corellium/7.png"
@@ -324,7 +324,7 @@ export default function CorelliumPage() {
         {/* CTA Section */}
         <FadeIn delay={200} duration={350}>
           <section className="py-10 sm:py-16 text-center">
-            <h2 className="text-xl sm:text-2xl font-heading font-semibold mb-2 uppercase tracking-wide">Let's go to market</h2>
+            <h2 className="text-xl sm:text-[24px] font-semibold mb-1 sm:mb-2 text-center">Let's go to market</h2>
             <p className="text-muted-foreground mb-6">
               Ready to take your product from 0 → 1 or looking to expand your team?
             </p>

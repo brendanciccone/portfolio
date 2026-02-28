@@ -37,7 +37,7 @@ export default function Portfolio() {
         {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           {/* Project 1 - Corellium */}
-          <Link href="/work/corellium" className="group block sys-panel overflow-hidden transition-colors hover:border-foreground/30">
+          <Link href="/work/corellium" className="group block sys-panel overflow-hidden transition-colors duration-200 hover:border-foreground">
             <div className="bg-muted overflow-hidden border-b border-border p-1">
               <div className="relative w-full overflow-hidden rounded-sm">
                 <Image
@@ -68,7 +68,7 @@ export default function Portfolio() {
 
           {/* Project 2 - Immertec */}
           <FadeIn delay={75} duration={350}>
-            <Link href="/work/immertec" className="group block sys-panel overflow-hidden transition-colors hover:border-foreground/30">
+            <Link href="/work/immertec" className="group block sys-panel overflow-hidden transition-colors duration-200 hover:border-foreground">
               <div className="bg-muted overflow-hidden border-b border-border p-1">
                 <div className="relative w-full overflow-hidden rounded-sm">
                   <Image
@@ -99,7 +99,7 @@ export default function Portfolio() {
 
           {/* Project 3 - Spontivly */}
           <FadeIn delay={100} duration={350}>
-            <Link href="/work/spontivly" className="group block sys-panel overflow-hidden transition-colors hover:border-foreground/30">
+            <Link href="/work/spontivly" className="group block sys-panel overflow-hidden transition-colors duration-200 hover:border-foreground">
               <div className="bg-muted overflow-hidden border-b border-border p-1">
                 <div className="relative w-full overflow-hidden rounded-sm">
                   <Image
@@ -130,7 +130,7 @@ export default function Portfolio() {
 
           {/* Project 4 - Paidly */}
           <FadeIn delay={125} duration={350}>
-            <Link href="/work/paidly" className="group block sys-panel overflow-hidden transition-colors hover:border-foreground/30">
+            <Link href="/work/paidly" className="group block sys-panel overflow-hidden transition-colors duration-200 hover:border-foreground">
               <div className="bg-muted overflow-hidden border-b border-border p-1">
                 <div className="relative w-full overflow-hidden rounded-sm">
                   <Image
@@ -177,7 +177,7 @@ export default function Portfolio() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
           {/* Magier */}
           <FadeIn delay={200} duration={350}>
-            <div className="group sys-panel overflow-hidden transition-colors hover:border-foreground/30">
+            <div className="group sys-panel overflow-hidden transition-colors duration-200 hover:border-foreground">
               <div className="bg-muted overflow-hidden border-b border-border p-1">
                 <div className="relative w-full overflow-hidden rounded-sm">
                   <LightboxImage
@@ -207,7 +207,7 @@ export default function Portfolio() {
 
           {/* Biobox */}
           <FadeIn delay={225} duration={350}>
-            <div className="group sys-panel overflow-hidden transition-colors hover:border-foreground/30">
+            <div className="group sys-panel overflow-hidden transition-colors duration-200 hover:border-foreground">
               <div className="bg-muted overflow-hidden border-b border-border p-1">
                 <div className="relative w-full overflow-hidden rounded-sm">
                   <LightboxImage
@@ -224,7 +224,7 @@ export default function Portfolio() {
               <div className="p-4">
                 <div className="mb-4">
                   <h3 className="text-base sm:text-lg font-heading font-semibold mb-1 uppercase tracking-wide">Biobox</h3>
-                  <p className="text-sm text-muted-foreground">Link-in-bio platform leveraging onchain data</p>
+                  <p className="text-sm text-muted-foreground">Link-in-bio platform using onchain data</p>
                 </div>
                 <div className="flex flex-wrap gap-2 pt-4 border-t border-border/50">
                   <Badge>2021</Badge>

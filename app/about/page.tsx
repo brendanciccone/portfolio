@@ -41,7 +41,7 @@ export default function About() {
         <div className="flex flex-col md:flex-row gap-6 md:items-stretch min-h-[600px]">
           {/* Experience */}
           <FadeIn delay={0.1} duration={350} className="w-full md:w-1/2 flex">
-            <section className="w-full max-w-[528px] mx-auto sys-panel p-4 sm:p-8 flex flex-col flex-1">
+            <section className="w-full sys-panel p-4 sm:p-8 flex flex-col flex-1">
               <div className="sys-section-header mb-6">
                 <h2 className="sys-section-label">Experience</h2>
                 <div className="sys-section-line" />
@@ -234,8 +234,7 @@ export default function About() {
                 </li>
               </ul>
               </div>
-              <div className="h-px bg-border my-8" />
-              <div className="sys-section-header mb-6">
+              <div className="sys-section-header mt-8 mb-6">
                 <h3 className="sys-section-label">Other experience</h3>
                 <div className="h-px bg-border flex-1" />
               </div>
@@ -436,28 +435,28 @@ export default function About() {
                 <div className="grid grid-cols-2 gap-4">
                   {[
                     {
-                      name: "Two Hands",
-                      artist: "Big Thief",
+                      name: "I Used to Go to This Bar",
+                      artist: "Joyce Manor",
                       cover: "/about/albums/album1.webp",
-                      url: "https://music.apple.com/us/album/two-hands/1473012904"
+                      url: "https://music.apple.com/us/album/i-used-to-go-to-this-bar/1839918836"
+                    },
+                    {
+                      name: "I Love People",
+                      artist: "Cory Hanson",
+                      cover: "/about/albums/album2.webp",
+                      url: "https://music.apple.com/us/album/i-love-people/1806705948"
+                    },
+                    {
+                      name: "Burnover",
+                      artist: "Greg Freeman",
+                      cover: "/about/albums/album3.webp",
+                      url: "https://music.apple.com/us/album/burnover/1803343332"
                     },
                     {
                       name: "LOTTO",
                       artist: "They Are Gutting a Body of Water",
-                      cover: "/about/albums/album2.webp",
-                      url: "https://music.apple.com/us/album/lotto/1821845532"
-                    },
-                    {
-                      name: "Siamese Dream",
-                      artist: "The Smashing Pumpkins",
-                      cover: "/about/albums/album3.webp",
-                      url: "https://music.apple.com/us/album/siamese-dream/721207206"
-                    },
-                    {
-                      name: "Take Me to Your Leader",
-                      artist: "King Geedorah",
                       cover: "/about/albums/album4.webp",
-                      url: "https://music.apple.com/us/album/take-me-to-your-leader/416318858"
+                      url: "https://music.apple.com/us/album/lotto/1821845532"
                     }
                   ].map((album, index) => (
                     <Link 
