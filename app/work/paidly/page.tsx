@@ -92,17 +92,17 @@ export default function PaidlyPage() {
               As a freelancer, I experienced a common frustration: no way to send Stripe invoices on the go for free. In 2020, with remote work booming and freelancing on the rise, I saw an opportunity to solve my own problem at scale. After conducting market research, I founded Paidly and assembled a small team of developers, designing the entire application that launched on iOS and Android. From idea to launch took <span className="text-foreground font-medium">2.5 months</span>.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div className="bg-card rounded-sm p-4">
+              <div className="bg-muted/30 border border-border rounded-sm p-4">
                 <Users className="w-4 h-4 text-muted-foreground mb-2" />
                 <p className="text-base font-semibold mb-1">2,000+ users served</p>
                 <p className="text-sm text-muted-foreground">Served over 2,000 small and medium business clients</p>
               </div>
-              <div className="bg-card rounded-sm p-4">
+              <div className="bg-muted/30 border border-border rounded-sm p-4">
                 <Handshake className="w-4 h-4 text-muted-foreground mb-2" />
                 <p className="text-base font-semibold mb-1">Stripe partner</p>
                 <p className="text-sm text-muted-foreground">Became an official Stripe integration partner</p>
               </div>
-              <div className="bg-card rounded-sm p-4">
+              <div className="bg-muted/30 border border-border rounded-sm p-4">
                 <Star className="w-4 h-4 text-muted-foreground mb-2" />
                 <p className="text-base font-semibold mb-1">$500k+ invoicing volume</p>
                 <p className="text-sm text-muted-foreground">Processed over half a million dollars in invoices</p>

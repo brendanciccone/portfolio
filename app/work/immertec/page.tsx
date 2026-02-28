@@ -98,17 +98,17 @@ export default function ImmertecPage() {
               <li>Contributed to 4 company awards, including Startup of the Year (2019)</li>
             </ul>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div className="bg-card rounded-sm p-4">
+              <div className="bg-muted/30 border border-border rounded-sm p-4">
                 <TrendingUp className="w-4 h-4 text-muted-foreground mb-2" />
                 <p className="text-base font-semibold mb-1">SUS 68 → 83</p>
                 <p className="text-sm text-muted-foreground">Increased usability score by 15 points through full redesign</p>
               </div>
-              <div className="bg-card rounded-sm p-4">
+              <div className="bg-muted/30 border border-border rounded-sm p-4">
                 <Timer className="w-4 h-4 text-muted-foreground mb-2" />
                 <p className="text-base font-semibold mb-1">Sales cycles cut 50%</p>
                 <p className="text-sm text-muted-foreground">Reduced average customer sales cycles by half</p>
               </div>
-              <div className="bg-card rounded-sm p-4">
+              <div className="bg-muted/30 border border-border rounded-sm p-4">
                 <ThumbsUp className="w-4 h-4 text-muted-foreground mb-2" />
                 <p className="text-base font-semibold mb-1">NPS 80+</p>
                 <p className="text-sm text-muted-foreground">Maintained exceptional user satisfaction and retention</p>

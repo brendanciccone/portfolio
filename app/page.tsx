@@ -12,7 +12,7 @@ export default function Portfolio() {
       <Header />
       
       {/* Intro Section */}
-      <div className="w-full pt-28 sm:pt-32">
+      <div className="w-full pt-24">
         <FadeIn delay={0} duration={350}>
           <div className="max-w-[1024px] mx-auto px-5">
             <div className="sys-panel p-6 sm:p-8">
@@ -159,11 +159,6 @@ export default function Portfolio() {
             </Link>
           </FadeIn>
         </div>
-
-        {/* Divider */}
-        <FadeIn delay={150} duration={350}>
-          <div className="border-t border-border mt-2 sm:mt-4" />
-        </FadeIn>
 
         {/* Other Work Section */}
         <FadeIn delay={175} duration={350}>

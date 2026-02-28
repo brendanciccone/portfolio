@@ -3,9 +3,20 @@
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { ArrowRight, Menu, X } from "lucide-react"
+import { Menu, X } from "lucide-react"
 import { useEffect, useState, useCallback } from "react"
 import { Button } from "@/components/ui/button"
+
+const navItems = [
+  { href: "/", label: "Work" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
+]
+
+function isActive(pathname: string, href: string) {
+  if (href === "/") return pathname === "/" || pathname.startsWith("/work")
+  return pathname === href || pathname.startsWith(href + "/")
+}
 
 export default function Header() {
   const pathname = usePathname()
@@ -72,56 +83,31 @@ export default function Header() {
                 <span className="font-heading font-medium">Brendan Ciccone</span>
               </Link>
 
-              <nav className="hidden md:flex items-center">
-                <div className="flex space-x-1">
-                  <Link
-                    href="/"
-                    className={`text-sm h-10 px-4 flex items-center justify-center rounded-sm transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
-                      pathname === "/"
-                        ? "font-medium text-foreground border-b-2 border-foreground"
-                        : "text-muted-foreground hover:text-foreground"
-                    }`}
-                    aria-current={pathname === "/" ? "page" : undefined}
-                    prefetch={true}
-                  >
-                    Work
-                  </Link>
-                  <Link
-                    href="/about"
-                    className={`text-sm h-10 px-4 flex items-center justify-center rounded-sm transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
-                      pathname === "/about"
-                        ? "font-medium text-foreground border-b-2 border-foreground"
-                        : "text-muted-foreground hover:text-foreground"
-                    }`}
-                    aria-current={pathname === "/about" ? "page" : undefined}
-                    prefetch={true}
-                  >
-                    About
-                  </Link>
-                  <Link
-                    href="/contact"
-                    className={`text-sm h-10 px-4 flex items-center justify-center rounded-sm transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
-                      pathname === "/contact"
-                        ? "font-medium text-foreground border-b-2 border-foreground"
-                        : "text-muted-foreground hover:text-foreground"
-                    }`}
-                    aria-current={pathname === "/contact" ? "page" : undefined}
-                    prefetch={true}
-                  >
-                    Contact
-                  </Link>
+              {/* Desktop nav — button group */}
+              <nav className="hidden md:flex items-center" aria-label="Main Navigation">
+                <div className="flex border border-border rounded-sm overflow-hidden divide-x divide-border">
+                  {navItems.map((item) => {
+                    const active = isActive(pathname, item.href)
+                    return (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        className={`text-sm font-heading uppercase tracking-wide h-9 px-5 flex items-center justify-center transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
+                          active
+                            ? "bg-foreground text-background font-medium"
+                            : "bg-transparent text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                        }`}
+                        aria-current={active ? "page" : undefined}
+                        prefetch={true}
+                      >
+                        {item.label}
+                      </Link>
+                    )
+                  })}
                 </div>
               </nav>
 
-              <div className="hidden md:flex items-center gap-2">
-                <Button asChild variant="outline">
-                  <Link href="/contact" prefetch={true}>
-                    Let&apos;s chat
-                    <ArrowRight className="ml-1 h-4 w-4 transition-all duration-200" />
-                  </Link>
-                </Button>
-              </div>
-
+              {/* Mobile hamburger */}
               <div className="flex md:hidden items-center gap-2">
                 <Button
                   variant="default"
@@ -145,65 +131,36 @@ export default function Header() {
               </div>
             </div>
 
+            {/* Mobile menu */}
             <div
               className={`md:hidden overflow-hidden transition-all duration-150 ease-out ${
-                mobileMenuOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0"
+                mobileMenuOpen ? "max-h-60 opacity-100" : "max-h-0 opacity-0"
               }`}
               id="mobile-menu"
               aria-hidden={!mobileMenuOpen}
               role="navigation"
               aria-label="Mobile Navigation"
             >
-              <div className="px-4 py-5 flex flex-col items-center space-y-4">
-                <Link
-                  href="/"
-                  className={`text-sm inline-flex py-2 px-4 rounded-sm transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
-                    pathname === "/"
-                      ? "font-medium text-foreground border-b-2 border-foreground"
-                      : "text-muted-foreground hover:text-foreground"
-                  }`}
-                  aria-current={pathname === "/" ? "page" : undefined}
-                  prefetch={true}
-                  tabIndex={mobileMenuOpen ? 0 : -1}
-                >
-                  Work
-                </Link>
-                <Link
-                  href="/about"
-                  className={`text-sm inline-flex py-2 px-4 rounded-sm transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
-                    pathname === "/about"
-                      ? "font-medium text-foreground border-b-2 border-foreground"
-                      : "text-muted-foreground hover:text-foreground"
-                  }`}
-                  aria-current={pathname === "/about" ? "page" : undefined}
-                  prefetch={true}
-                  tabIndex={mobileMenuOpen ? 0 : -1}
-                >
-                  About
-                </Link>
-                <Link
-                  href="/contact"
-                  className={`text-sm inline-flex py-2 px-4 rounded-sm transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
-                    pathname === "/contact"
-                      ? "font-medium text-foreground border-b-2 border-foreground"
-                      : "text-muted-foreground hover:text-foreground"
-                  }`}
-                  aria-current={pathname === "/contact" ? "page" : undefined}
-                  prefetch={true}
-                  tabIndex={mobileMenuOpen ? 0 : -1}
-                >
-                  Contact
-                </Link>
-                <Button asChild variant="outline">
-                  <Link 
-                    href="/contact" 
-                    prefetch={true}
-                    tabIndex={mobileMenuOpen ? 0 : -1}
-                  >
-                    Let&apos;s chat
-                    <ArrowRight className="ml-1 h-4 w-4 transition-all duration-200" />
-                  </Link>
-                </Button>
+              <div className="px-4 py-4 flex flex-col items-center space-y-1">
+                {navItems.map((item) => {
+                  const active = isActive(pathname, item.href)
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className={`text-sm font-heading uppercase tracking-wide w-full text-center py-2.5 px-4 rounded-sm transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
+                        active
+                          ? "bg-foreground text-background font-medium"
+                          : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                      }`}
+                      aria-current={active ? "page" : undefined}
+                      prefetch={true}
+                      tabIndex={mobileMenuOpen ? 0 : -1}
+                    >
+                      {item.label}
+                    </Link>
+                  )
+                })}
               </div>
             </div>
           </div>
