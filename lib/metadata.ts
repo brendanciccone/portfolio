@@ -5,7 +5,7 @@ const baseMetadata = {
   siteName: "Brendan Ciccone",
   description: "Brendan Ciccone is a 0 → 1 Staff Product Designer with 8 years of experience turning ideas into fully realized B2B products across healthcare, cybersecurity, and finance.",
   baseUrl: "https://brendanciccone.com",
-  defaultImage: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image.jpg-d0SidsvzAZGPwLQFoyhGS1atLlTVa3.jpeg",
+  defaultImage: "https://brendanciccone.com/og.png",
   creator: "@brendanciccone",
   locale: "en_US",
 };
@@ -65,8 +65,8 @@ export function generatePageMetadata({
   path = '',
   imageUrl = baseMetadata.defaultImage,
   imageAlt = "Brendan Ciccone - 0 → 1 Staff Product Designer",
-  imageWidth = 1200,
-  imageHeight = 630,
+  imageWidth = 1024,
+  imageHeight = 537,
 }: PageMetadataParams): Metadata {
   const pageTitle = title 
     ? `${title} - Brendan Ciccone - 0 → 1 Staff Product Designer`
