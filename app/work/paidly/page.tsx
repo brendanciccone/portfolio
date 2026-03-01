@@ -2,7 +2,7 @@ import { generatePageMetadata, projectDetails } from "@/lib/metadata";
 
 export const metadata = generatePageMetadata({
   title: projectDetails.paidly.title,
-  description: `${projectDetails.paidly.description} by Brendan Ciccone, a 0 → 1 Staff Product Designer with 7 years of experience turning ideas into fully realized products.`,
+  description: `${projectDetails.paidly.description} by Brendan Ciccone, a 0 → 1 Staff Product Designer with 8 years of experience turning ideas into fully realized products.`,
   path: "/work/paidly",
   imageUrl: projectDetails.paidly.image.url,
   imageAlt: projectDetails.paidly.image.alt,
@@ -219,14 +219,14 @@ export default function PaidlyPage() {
 
         {/* CTA Section */}
         <FadeIn delay={150} duration={350}>
-          <section className="py-10 sm:py-16 text-center">
-            <h2 className="text-xl sm:text-[24px] font-semibold mb-1 sm:mb-2 text-center">Let's go to market</h2>
+          <section className="sys-panel p-4 sm:p-7 text-center">
+            <h2 className="text-xl sm:text-[24px] font-semibold mb-1 sm:mb-2 text-center">Let's build something great</h2>
             <p className="text-muted-foreground mb-6">
               Ready to take your product from 0 → 1 or looking to expand your team?
             </p>
             <Button asChild size="lg" className="px-4">
               <Link href="/contact">
-                Contact Me <ArrowRight className="ml-1 h-4 w-4 transition-all duration-200" />
+                Reach out <ArrowRight className="ml-1 h-4 w-4 transition-all duration-200" />
               </Link>
             </Button>
           </section>

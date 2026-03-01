@@ -9,17 +9,17 @@
   --radius-md: calc(var(--radius) - 1px);
   --radius-sm: calc(var(--radius) - 2px);
 
-  --color-slate-50: oklch(97.5% 0.001 260);
-  --color-slate-100: oklch(94% 0.002 260);
-  --color-slate-200: oklch(88% 0.003 260);
-  --color-slate-300: oklch(78% 0.005 260);
-  --color-slate-400: oklch(64% 0.006 260);
-  --color-slate-500: oklch(55% 0.008 260);
-  --color-slate-600: oklch(45% 0.01 260);
-  --color-slate-700: oklch(35% 0.01 260);
-  --color-slate-800: oklch(25% 0.008 260);
-  --color-slate-900: oklch(17.5% 0.006 260);
-  --color-slate-950: oklch(13% 0.005 260);
+  --color-slate-50: oklch(97.5% 0.004 260);
+  --color-slate-100: oklch(94% 0.004 260);
+  --color-slate-200: oklch(88% 0.004 260);
+  --color-slate-300: oklch(78% 0.004 260);
+  --color-slate-400: oklch(64% 0.004 260);
+  --color-slate-500: oklch(55% 0.004 260);
+  --color-slate-600: oklch(45% 0.004 260);
+  --color-slate-700: oklch(35% 0.004 260);
+  --color-slate-800: oklch(25% 0.004 260);
+  --color-slate-900: oklch(17.5% 0.004 260);
+  --color-slate-950: oklch(13% 0.004 260);
 
   --color-border: var(--border);
   --color-input: var(--input);
@@ -77,9 +77,9 @@
 :root {
   --background: oklch(98% 0.004 260);
   --foreground: oklch(15% 0.004 260);
-  --card: oklch(100% 0 260);
+  --card: oklch(100% 0.004 260);
   --card-foreground: oklch(15% 0.004 260);
-  --popover: oklch(100% 0 260);
+  --popover: oklch(100% 0.004 260);
   --popover-foreground: oklch(15% 0.004 260);
   --primary: oklch(15% 0.004 260);
   --primary-foreground: oklch(98% 0.004 260);

@@ -1,16 +1,16 @@
-# AI.txt - Instructions for AI crawlers
+# llms.txt - Guidance for LLMs and AI crawlers
 
 # Version: 1.0
-# Last updated: 2025-04-24
+# Last updated: 2026-02-28
 
 # General information
 site_name: Brendan Ciccone's Portfolio
-site_description: A portfolio website showcasing Brendan Ciccone's development work, projects, and professional experience
+site_description: A portfolio website showcasing Brendan Ciccone's product design work, projects, and 8 years of professional experience
 site_owner: Brendan Ciccone
 site_language: en-US
 
-# AI Crawler Instructions
-# Please respect these guidelines when crawling and indexing this site
+# LLM and crawler instructions
+# Please respect these guidelines when crawling, indexing, and summarizing this site
 
 # Allowed AI crawlers
 User-agent: GPTBot
@@ -27,6 +27,12 @@ Allow: /
 
 User-agent: CCBot
 Allow: /
+
+# Priority pages for summarization
+# Home: https://brendanciccone.com/
+# About: https://brendanciccone.com/about
+# Work index: https://brendanciccone.com/work
+# Contact: https://brendanciccone.com/contact
 
 # Crawling preferences
 Crawl-delay: 10
@@ -60,4 +66,4 @@ Request-rate: 1/10
 
 # License
 # Content on this site is protected by copyright law.
-# Unauthorized use or reproduction is prohibited. 
+# Unauthorized use or reproduction is prohibited.

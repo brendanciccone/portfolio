@@ -102,12 +102,12 @@ export const ImageComparison = ({
 
       {/* Slider line */}
       <div
-        className="absolute top-0 bottom-0 w-0.5 bg-white shadow-lg"
+        className="absolute top-0 bottom-0 w-0.5 bg-background shadow-lg"
         style={{ left: `${sliderPosition}%`, transform: "translateX(-50%)" }}
       >
         {/* Slider handle */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-sm flex items-center justify-center">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="text-gray-600">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-background rounded-sm flex items-center justify-center">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="text-muted-foreground">
             <path d="M6 10L2 10M2 10L5 7M2 10L5 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             <path d="M14 10L18 10M18 10L15 7M18 10L15 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
@@ -115,10 +115,10 @@ export const ImageComparison = ({
       </div>
 
       {/* Labels */}
-      <div className="absolute bottom-3 left-3 bg-slate-950/70 text-white text-[10px] font-mono uppercase tracking-wider px-3 py-1 rounded-sm">
+      <div className="absolute bottom-3 left-3 bg-foreground/70 text-background text-[10px] font-mono uppercase tracking-wider px-3 py-1 rounded-sm">
         Before
       </div>
-      <div className="absolute bottom-3 right-3 bg-slate-950/70 text-white text-[10px] font-mono uppercase tracking-wider px-3 py-1 rounded-sm">
+      <div className="absolute bottom-3 right-3 bg-foreground/70 text-background text-[10px] font-mono uppercase tracking-wider px-3 py-1 rounded-sm">
         After
       </div>
     </div>

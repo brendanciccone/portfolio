@@ -54,7 +54,7 @@ export const LightboxImage = ({
       <button
         type="button"
         onClick={() => setIsOpen(true)}
-        className="cursor-pointer w-full block bg-muted"
+        className="cursor-pointer md:cursor-zoom-in w-full block bg-muted"
         aria-label={`View ${alt} in fullscreen`}
       >
         <Image
@@ -72,7 +72,7 @@ export const LightboxImage = ({
       {/* Lightbox overlay */}
       {isOpen && (
         <div
-          className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 sm:p-8 animate-in fade-in duration-200 cursor-pointer"
+          className="fixed inset-0 z-50 bg-foreground/80 backdrop-blur-md flex items-center justify-center p-4 sm:p-8 animate-in fade-in duration-200 cursor-pointer"
           onClick={() => setIsOpen(false)}
           role="dialog"
           aria-modal="true"
@@ -82,10 +82,10 @@ export const LightboxImage = ({
           <button
             type="button"
             onClick={() => setIsOpen(false)}
-            className="absolute top-4 right-4 p-2 rounded-sm bg-white/10 hover:bg-white/20 transition-colors animate-in fade-in duration-300 delay-100"
+            className="absolute top-4 right-4 p-2 rounded-sm bg-background/10 hover:bg-background/20 transition-colors animate-in fade-in duration-300 delay-100"
             aria-label="Close lightbox"
           >
-            <X className="w-6 h-6 text-white" />
+            <X className="w-6 h-6 text-background" />
           </button>
 
           {/* Full size image - clicking also closes */}

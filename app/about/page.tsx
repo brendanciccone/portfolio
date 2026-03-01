@@ -25,7 +25,7 @@ export default function About() {
             </div>
             <div className="space-y-4 sm:space-y-6 text-muted-foreground">
               <p className="text-sm sm:text-base">
-                I&apos;m a staff product designer with <span className="text-foreground font-medium">7 years of experience</span> turning ideas into fully realized B2B products across healthcare, cybersecurity, and finance.
+                I&apos;m a staff product designer with <span className="text-foreground font-medium">8 years of experience</span> turning ideas into fully realized B2B products across healthcare, cybersecurity, and finance.
               </p>
               <p className="text-sm sm:text-base">
                 As founding product designer at Immertec, I led a platform redesign that <span className="text-foreground font-medium">increased SUS from 68 to 83</span>, hired and managed 2 product designers, and helped secure <span className="text-foreground font-medium">$12M in Series A</span> funding. At Corellium, I owned end-to-end product design, shipped CI/CD-integrated threat analysis tools, and achieved an 81 SUS score that contributed to a <span className="text-foreground font-medium">$200M acquisition</span> by Cellebrite.

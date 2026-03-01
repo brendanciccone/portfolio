@@ -5,7 +5,6 @@ import Footer from "@/components/footer"
 import { Badge } from "@/components/ui/badge"
 import { FadeIn } from "@/components/fade-in"
 import { LightboxImage } from "@/components/lightbox"
-import { Search } from "lucide-react"
 
 export default function Portfolio() {
   return (
@@ -17,7 +16,7 @@ export default function Portfolio() {
         {/* Intro Section */}
         <FadeIn delay={0} duration={350}>
           <p className="text-sm sm:text-base text-muted-foreground">
-            0 → 1 Staff Product Designer and Founder with 7 years of experience shipping B2B products across healthcare, cybersecurity, and finance. Currently at <Link href="https://www.corellium.com" target="_blank" rel="noopener noreferrer" className="text-foreground font-medium hover:underline">Corellium</Link>, simplifying complex cybersecurity workflows.
+            0 → 1 Staff Product Designer and Founder with 8 years of experience shipping B2B products across healthcare, cybersecurity, and finance. Currently at <Link href="https://www.corellium.com" target="_blank" rel="noopener noreferrer" className="text-foreground font-medium hover:underline">Corellium</Link>, simplifying complex cybersecurity workflows.
           </p>
         </FadeIn>
 
@@ -32,7 +31,7 @@ export default function Portfolio() {
         {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           {/* Project 1 - Corellium */}
-          <Link href="/work/corellium" className="group block sys-panel overflow-hidden transition-colors duration-200 hover:border-foreground">
+          <Link href="/work/corellium" className="group block sys-panel transition-colors duration-200 hover:border-foreground">
             <div className="bg-muted overflow-hidden border-b border-border p-1">
               <div className="relative w-full overflow-hidden rounded-sm">
                 <Image
@@ -48,7 +47,7 @@ export default function Portfolio() {
                 />
               </div>
             </div>
-            <div className="p-4 sm:p-6">
+            <div className="p-4 sm:p-7">
               <div className="mb-4">
                 <h2 className="text-lg sm:text-xl font-heading font-semibold mb-1 uppercase tracking-wide">Corellium</h2>
                 <p className="text-muted-foreground text-sm">Mobile virtualization for cybersecurity teams</p>
@@ -63,7 +62,7 @@ export default function Portfolio() {
 
           {/* Project 2 - Immertec */}
           <FadeIn delay={75} duration={350}>
-            <Link href="/work/immertec" className="group block sys-panel overflow-hidden transition-colors duration-200 hover:border-foreground">
+            <Link href="/work/immertec" className="group block sys-panel transition-colors duration-200 hover:border-foreground">
               <div className="bg-muted overflow-hidden border-b border-border p-1">
                 <div className="relative w-full overflow-hidden rounded-sm">
                   <Image
@@ -78,7 +77,7 @@ export default function Portfolio() {
                   />
                 </div>
               </div>
-              <div className="p-4 sm:p-6">
+              <div className="p-4 sm:p-7">
                 <div className="mb-4">
                   <h2 className="text-lg sm:text-xl font-heading font-semibold mb-1 uppercase tracking-wide">Immertec</h2>
                   <p className="text-muted-foreground text-sm">VR medical training for live surgical procedures</p>
@@ -94,7 +93,7 @@ export default function Portfolio() {
 
           {/* Project 3 - Spontivly */}
           <FadeIn delay={100} duration={350}>
-            <Link href="/work/spontivly" className="group block sys-panel overflow-hidden transition-colors duration-200 hover:border-foreground">
+            <Link href="/work/spontivly" className="group block sys-panel transition-colors duration-200 hover:border-foreground">
               <div className="bg-muted overflow-hidden border-b border-border p-1">
                 <div className="relative w-full overflow-hidden rounded-sm">
                   <Image
@@ -109,7 +108,7 @@ export default function Portfolio() {
                   />
                 </div>
               </div>
-              <div className="p-4 sm:p-6">
+              <div className="p-4 sm:p-7">
                 <div className="mb-4">
                   <h2 className="text-lg sm:text-xl font-heading font-semibold mb-1 uppercase tracking-wide">Spontivly</h2>
                   <p className="text-muted-foreground text-sm">Analytics dashboards for non-technical users</p>
@@ -125,7 +124,7 @@ export default function Portfolio() {
 
           {/* Project 4 - Paidly */}
           <FadeIn delay={125} duration={350}>
-            <Link href="/work/paidly" className="group block sys-panel overflow-hidden transition-colors duration-200 hover:border-foreground">
+            <Link href="/work/paidly" className="group block sys-panel transition-colors duration-200 hover:border-foreground">
               <div className="bg-muted overflow-hidden border-b border-border p-1">
                 <div className="relative w-full overflow-hidden rounded-sm">
                   <Image
@@ -140,7 +139,7 @@ export default function Portfolio() {
                   />
                 </div>
               </div>
-              <div className="p-4 sm:p-6">
+              <div className="p-4 sm:p-7">
                 <div className="mb-4">
                   <h2 className="text-lg sm:text-xl font-heading font-semibold mb-1 uppercase tracking-wide">Paidly</h2>
                   <p className="text-muted-foreground text-sm">Stripe-integrated invoicing mobile app for SMEs</p>
@@ -167,9 +166,9 @@ export default function Portfolio() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
           {/* Magier */}
           <FadeIn delay={200} duration={350}>
-            <div className="group sys-panel overflow-hidden transition-colors duration-200 hover:border-foreground">
+            <div className="group sys-panel transition-colors duration-200 hover:border-foreground">
               <div className="bg-muted overflow-hidden border-b border-border p-1">
-                <div className="relative w-full overflow-hidden rounded-sm">
+                <div className="relative w-full overflow-hidden rounded-sm [&_button]:cursor-zoom-in">
                   <LightboxImage
                     src="/work/magier/1.png"
                     alt="Magier AI chatbot mobile app screens showing settings, chat interface, and subscription options"
@@ -179,14 +178,9 @@ export default function Portfolio() {
                     quality={80}
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 512px"
                   />
-                  <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-200 group-hover:opacity-100">
-                    <div className="rounded-sm border border-border bg-background/90 p-2">
-                      <Search className="h-4 w-4 text-foreground" />
-                    </div>
-                  </div>
                 </div>
               </div>
-              <div className="p-4 sm:p-6">
+              <div className="p-4 sm:p-7">
                 <div className="mb-4">
                   <h3 className="text-base sm:text-lg font-heading font-semibold mb-1 uppercase tracking-wide">Magier</h3>
                   <p className="text-sm text-muted-foreground">Privacy-focused AI chatbot mobile app</p>
@@ -202,9 +196,9 @@ export default function Portfolio() {
 
           {/* Biobox */}
           <FadeIn delay={225} duration={350}>
-            <div className="group sys-panel overflow-hidden transition-colors duration-200 hover:border-foreground">
+            <div className="group sys-panel transition-colors duration-200 hover:border-foreground">
               <div className="bg-muted overflow-hidden border-b border-border p-1">
-                <div className="relative w-full overflow-hidden rounded-sm">
+                <div className="relative w-full overflow-hidden rounded-sm [&_button]:cursor-zoom-in">
                   <LightboxImage
                     src="/work/biobox/1.png"
                     alt="Biobox link-in-bio platform leveraging onchain data"
@@ -214,17 +208,12 @@ export default function Portfolio() {
                     quality={80}
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 512px"
                   />
-                  <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-200 group-hover:opacity-100">
-                    <div className="rounded-sm border border-border bg-background/90 p-2">
-                      <Search className="h-4 w-4 text-foreground" />
-                    </div>
-                  </div>
                 </div>
               </div>
-              <div className="p-4 sm:p-6">
+              <div className="p-4 sm:p-7">
                 <div className="mb-4">
                   <h3 className="text-base sm:text-lg font-heading font-semibold mb-1 uppercase tracking-wide">Biobox</h3>
-                  <p className="text-sm text-muted-foreground">Link-in-bio platform using onchain data</p>
+                  <p className="text-sm text-muted-foreground">Link-in-bio platform leveraging onchain data</p>
                 </div>
                 <div className="flex flex-wrap gap-2 pt-4 border-t border-border/50">
                   <Badge>2021</Badge>

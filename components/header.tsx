@@ -63,9 +63,9 @@ export default function Header() {
             <div
               className={`flex h-14 items-center justify-between transition-all duration-150 ease-in-out ${
                 mobileMenuOpen
-                  ? "px-4 md:px-5"
+                  ? "px-4 sm:px-7"
                   : isScrolled
-                    ? "px-4 md:px-6 bg-background/90 backdrop-blur-xl rounded-sm border border-border"
+                    ? "px-4 sm:px-7 bg-background/90 backdrop-blur-xl rounded-sm border border-border"
                     : "bg-transparent"
               }`}
             >

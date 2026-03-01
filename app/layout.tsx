@@ -23,9 +23,10 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://brendanciccone.com"),
   title: "Brendan Ciccone - 0 → 1 Staff Product Designer",
   description:
-    "Brendan Ciccone is a 0 → 1 Staff Product Designer with 7 years of experience turning ideas into fully realized B2B products across healthcare, cybersecurity, and finance.",
+    "Brendan Ciccone is a 0 → 1 Staff Product Designer with 8 years of experience turning ideas into fully realized B2B products across healthcare, cybersecurity, and finance.",
   icons: {
     icon: [
+      { url: "/favicon.ico", type: "image/x-icon" },
       { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
       { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
       { url: "/android-chrome-192x192.png", sizes: "192x192", type: "image/png" },
@@ -37,7 +38,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Brendan Ciccone - 0 → 1 Staff Product Designer",
     description:
-      "Brendan Ciccone is a 0 → 1 Staff Product Designer with 7 years of experience turning ideas into fully realized B2B products across healthcare, cybersecurity, and finance.",
+      "Brendan Ciccone is a 0 → 1 Staff Product Designer with 8 years of experience turning ideas into fully realized B2B products across healthcare, cybersecurity, and finance.",
     url: "https://brendanciccone.com",
     siteName: "Brendan Ciccone",
     images: [
@@ -55,7 +56,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Brendan Ciccone - 0 → 1 Staff Product Designer",
     description:
-      "Brendan Ciccone is a 0 → 1 Staff Product Designer with 7 years of experience turning ideas into fully realized B2B products across healthcare, cybersecurity, and finance.",
+      "Brendan Ciccone is a 0 → 1 Staff Product Designer with 8 years of experience turning ideas into fully realized B2B products across healthcare, cybersecurity, and finance.",
     creator: "@brendanciccone",
     images: [
       {

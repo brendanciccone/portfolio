@@ -35,14 +35,14 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
     if (this.state.hasError) {
       // You can render any custom fallback UI
       return this.props.fallback || (
-        <div className="p-4 rounded-md bg-red-50 border border-red-200">
-          <h2 className="text-lg font-medium text-red-800">Something went wrong</h2>
-          <p className="mt-2 text-sm text-red-700">
+        <div className="p-4 rounded-md bg-destructive/10 border border-destructive/30">
+          <h2 className="text-lg font-medium text-destructive">Something went wrong</h2>
+          <p className="mt-2 text-sm text-destructive/80">
             {this.state.error?.message || "An unexpected error occurred"}
           </p>
           <button
             onClick={() => this.setState({ hasError: false, error: null })}
-            className="mt-4 px-4 py-2 bg-red-100 text-red-800 text-sm font-medium rounded-md hover:bg-red-200"
+            className="mt-4 px-4 py-2 bg-destructive/15 text-destructive text-sm font-medium rounded-md hover:bg-destructive/25"
           >
             Try again
           </button>
