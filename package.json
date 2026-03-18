@@ -10,7 +10,8 @@
     "dev": "next dev --turbo",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "og:capture": "pnpm build && node scripts/screenshot-og.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
@@ -39,6 +40,7 @@
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.18",
     "@types/node": "^20.11.24",
+    "playwright": "^1.49.0",
     "postcss": "^8.4.35",
     "tailwindcss": "^4.1.18",
     "typescript": "^5.9.2"

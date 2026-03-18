@@ -63,8 +63,8 @@ export const metadata: Metadata = {
         url: "/og.png",
         width: 1200,
         height: 630,
-        alt: "Brendan Ciccone - 0 → 1 Staff Product Designer"
-      }
+        alt: "Brendan Ciccone - 0 → 1 Staff Product Designer",
+      },
     ],
   },
 }
