@@ -1,0 +1,40 @@
+# Code Standards
+
+## Completeness
+- Fully implement all requested functionality — no TODOs, placeholders, or missing pieces
+- Include all required imports and ensure proper naming of key components
+- Verify code is complete and functional before finishing
+
+## Readability Over Performance
+- Favour clear, readable code over clever optimizations unless performance is explicitly the goal
+- Use early returns to reduce nesting and improve readability
+- Use `const` arrow functions over `function` declarations: `const toggle = () => { ... }`
+
+## Naming
+- Use descriptive variable and function names
+- Prefix event handlers with `handle`: `handleClick`, `handleKeyDown`, `handleSubmit`
+- Component names are PascalCase, hooks start with `use`, utilities are camelCase
+
+## Styling
+- Always use Tailwind classes for styling — never inline `style` props or CSS files
+- Use `cn()` from `lib/utils` to merge conditional classes
+
+## Accessibility
+- Interactive elements need: `tabIndex={0}`, `aria-label`, keyboard event handlers (`onKeyDown`)
+- Buttons need visible focus states
+- Images need `alt` text
+
+## Comments
+- Add comments to explain non-obvious logic, trade-offs, or constraints
+- Do not delete existing comments unless the associated code is also deleted
+- Do not add comments that just narrate what the code does (e.g., `// return the result`)
+
+## Lint Discipline
+- Keep the repo at zero lint warnings/errors; treat new warnings as regressions
+- Never suppress lint rules by default to "make it pass"
+- If suppression is unavoidable, scope it as narrowly as possible and add an inline rationale comment
+- Prefer code fixes (typing/narrowing/refactor) over eslint-disable directives
+
+## Honesty
+- If a correct answer may not exist, say so
+- If you don't know something, say so — never guess
