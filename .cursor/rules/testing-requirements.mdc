@@ -1,0 +1,74 @@
+---
+description: Enforce unit, integration, and security tests for every new feature or change to prevent regressions and bugs by default
+alwaysApply: true
+---
+
+# Testing Requirements
+
+Every feature, bug fix, or behavioral change **must** include corresponding tests across the three existing suites before it is considered complete. Never skip tests or leave them as a follow-up unless the developer explicitly says otherwise.
+
+## Test Suites & When to Use Each
+
+| Suite | Location | Purpose | When required |
+|-------|----------|---------|---------------|
+| **Unit** | `tests/unit/` | Pure function logic, utilities, helpers, validation | Any new or modified function in `lib/` |
+| **Integration** | `tests/integration/` | API route handlers called directly via `new Request(...)` | Any new or modified route in `app/api/` |
+| **Security** | `tests/security/` | Auth guards, SSRF prevention, input sanitization, rate limiting, session handling | Any change touching auth, user input, external URLs, sessions, or access control |
+
+## Rules
+
+1. **Default to writing tests** — if a change touches `lib/**/*.ts` or `app/api/**/*.ts`, tests are required. When in doubt, write the test.
+2. **Match existing patterns** — use `describe`/`it` from `vitest`, the `@/` path alias, and the section-separator comment style (`// ---...`) already established in the codebase.
+3. **One test file per concern** — place tests in the matching suite folder. Name files `<feature>.test.ts` (e.g., `tests/unit/rewards.test.ts`, `tests/integration/rewards.test.ts`).
+4. **Security tests are not optional** — any route that reads user input, checks authentication, or touches external services must have security tests verifying rejection of bad input, missing auth, and spoofed identifiers.
+5. **Cover the sad path first** — every test file must include at least: invalid/missing input, unauthenticated access (if applicable), and boundary/edge cases. Happy path alone is insufficient.
+6. **No regressions** — when fixing a bug, add a test that reproduces the bug *before* fixing it, so the fix is provably correct and the bug cannot silently return.
+7. **Run tests before finishing** — after writing tests, run `pnpm test:unit`, `pnpm test:integration`, and/or `pnpm test:security` (whichever are relevant) to confirm they pass. Do not mark work as complete with failing tests.
+
+## What to Test (Checklist)
+
+### New utility function (`lib/`)
+- [ ] Unit test with valid input (happy path)
+- [ ] Unit test with invalid/edge-case input (empty string, null, boundary values)
+- [ ] Security test if function handles user-generated content, URLs, or tokens
+
+### New API route (`app/api/`)
+- [ ] Integration test: correct response for valid requests
+- [ ] Integration test: 400/401/403 for invalid/missing/unauthorized requests
+- [ ] Security test: auth guard rejects unauthenticated callers
+- [ ] Security test: route does not accept spoofed identity params (e.g., `?fid=`)
+- [ ] Security test: rate limiting is applied (if route is user-facing)
+
+### Bug fix
+- [ ] Regression test reproducing the original bug
+- [ ] Verification that the fix resolves it
+
+## Example: Adding a New API Route
+
+```typescript
+// tests/integration/widgets.test.ts
+import { describe, expect, it } from 'vitest'
+import { GET as getWidgets } from '@/app/api/widgets/route'
+
+describe('GET /api/widgets', () => {
+  it('returns 401 without auth', async () => {
+    const req = new Request('http://localhost:3000/api/widgets')
+    const res = await getWidgets(req)
+    expect(res.status).toBe(401)
+  })
+})
+```
+
+```typescript
+// tests/security/widgets.test.ts
+import { describe, expect, it } from 'vitest'
+import { GET as getWidgets } from '@/app/api/widgets/route'
+
+describe('widgets security', () => {
+  it('rejects identity spoofing via query param', async () => {
+    const req = new Request('http://localhost:3000/api/widgets?fid=123')
+    const res = await getWidgets(req)
+    expect(res.status).toBe(401)
+  })
+})
+```

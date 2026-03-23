@@ -1,0 +1,28 @@
+---
+description: Ensure README.md stays in sync with every feature, fix, or behavioral change
+alwaysApply: true
+---
+
+# README Maintenance
+
+After completing any feature, bug fix, or behavioral change, review `README.md` and update it if the change affects any of the following sections:
+
+## What to Check
+
+| README Section | Update when… |
+|---|---|
+| **Features** (## Features) | A new user-facing feature is added, an existing feature changes behavior, or a feature is removed |
+| **Test counts** (### Test Types) | Tests are added or removed — update the counts and description lists |
+| **Recent Additions** | Any shipped change worth calling out — add a bullet under the current month's heading (create the heading if it doesn't exist) |
+| **Environment Variables** | A new env var is introduced or an existing one is renamed/removed |
+| **Security** | Security-relevant behavior changes (rate limits, auth guards, fail-closed logic, anti-bot measures) |
+| **API routes / endpoints** | A route is added, removed, or its contract changes |
+| **Tech stack / dependencies** | A major dependency is added or replaced |
+
+## Rules
+
+1. **Always check** — even if you believe the change is internal-only, scan the sections above before finishing.
+2. **Keep counts accurate** — when adding tests, grep for the current count strings (e.g., "165 tests") and update them to the new totals.
+3. **Match existing style** — use the same emoji-prefixed bullet format, heading hierarchy, and tense already in the README.
+4. **Don't bloat** — only add entries that would help a new contributor or reviewer understand what the project does and what changed. Skip purely internal refactors unless they alter observable behavior.
+5. **Ask if unsure** — if you can't tell whether a change warrants a README update, flag it for the developer rather than silently skipping it.
