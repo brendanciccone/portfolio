@@ -4,8 +4,6 @@ import type { Metadata } from "next"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import ScrollToTop from "@/components/scroll-to-top"
-import { Analytics } from "@vercel/analytics/next"
-import { SpeedInsights } from "@vercel/speed-insights/next"
 import { ErrorBoundary } from "@/components/error-boundary"
 
 const spaceGrotesk = Space_Grotesk({
@@ -76,12 +74,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning className={`${spaceGrotesk.variable} ${spaceGrotesk.className} ${spaceMono.variable}`}>
-      <head>
-        <link
-          rel="preconnect"
-          href="https://hebbkx1anhila5yf.public.blob.vercel-storage.com"
-        />
-      </head>
+      <head />
       <body suppressHydrationWarning>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem storageKey="theme-v2" disableTransitionOnChange>
           <ErrorBoundary>
@@ -89,8 +82,6 @@ export default function RootLayout({
             <main id="main-content">
               {children}
             </main>
-            <Analytics />
-            <SpeedInsights />
           </ErrorBoundary>
         </ThemeProvider>
       </body>
