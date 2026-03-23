@@ -2,6 +2,9 @@
   "name": "brendanciccone-portfolio",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=20.9.0"
+  },
   "browserslist": [
     "defaults and fully supports es6-module",
     "maintained node versions"
