@@ -16,7 +16,7 @@ export default function Portfolio() {
         {/* Intro Section */}
         <FadeIn delay={0} duration={350}>
           <div>
-            <h1 className="text-2xl sm:text-3xl font-heading font-semibold tracking-tight mb-3">Brendan Ciccone</h1>
+            <h1 className="sr-only">Brendan Ciccone</h1>
             <p className="text-sm sm:text-base text-muted-foreground">
               0 → 1 Staff Product Designer and Founder with 8 years of experience shipping B2B products across healthcare, cybersecurity, and finance. Currently at <Link href="https://www.corellium.com" target="_blank" rel="noopener noreferrer" className="text-foreground font-medium hover:underline">Corellium</Link>, simplifying complex cybersecurity workflows.
             </p>
