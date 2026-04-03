@@ -15,9 +15,12 @@ export default function Portfolio() {
       <div className="max-w-[1024px] mx-auto px-5 pt-24 pb-6 sm:pb-8 flex flex-col gap-6">
         {/* Intro Section */}
         <FadeIn delay={0} duration={350}>
-          <p className="text-sm sm:text-base text-muted-foreground">
-            0 → 1 Staff Product Designer and Founder with 8 years of experience shipping B2B products across healthcare, cybersecurity, and finance. Currently at <Link href="https://www.corellium.com" target="_blank" rel="noopener noreferrer" className="text-foreground font-medium hover:underline">Corellium</Link>, simplifying complex cybersecurity workflows.
-          </p>
+          <div>
+            <h1 className="text-2xl sm:text-3xl font-heading font-semibold tracking-tight mb-3">Brendan Ciccone</h1>
+            <p className="text-sm sm:text-base text-muted-foreground">
+              0 → 1 Staff Product Designer and Founder with 8 years of experience shipping B2B products across healthcare, cybersecurity, and finance. Currently at <Link href="https://www.corellium.com" target="_blank" rel="noopener noreferrer" className="text-foreground font-medium hover:underline">Corellium</Link>, simplifying complex cybersecurity workflows.
+            </p>
+          </div>
         </FadeIn>
 
         {/* Selected Work label */}

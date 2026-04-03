@@ -5,6 +5,7 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import ScrollToTop from "@/components/scroll-to-top"
 import { ErrorBoundary } from "@/components/error-boundary"
+import JsonLd from "@/components/json-ld"
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -74,7 +75,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning className={`${spaceGrotesk.variable} ${spaceGrotesk.className} ${spaceMono.variable}`}>
-      <head />
+      <head>
+        <JsonLd />
+      </head>
       <body suppressHydrationWarning>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem storageKey="theme-v2" disableTransitionOnChange>
           <ErrorBoundary>

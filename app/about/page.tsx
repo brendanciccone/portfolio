@@ -20,7 +20,7 @@ export default function About() {
         <FadeIn delay={0} duration={350}>
           <section className="w-full sys-panel p-4 sm:p-7 flex flex-col">
             <div className="sys-section-header mb-6">
-              <h1 className="sys-section-label">About me</h1>
+              <h1 className="sys-section-label">About Brendan Ciccone</h1>
               <div className="sys-section-line" />
             </div>
             <div className="space-y-4 sm:space-y-6 text-muted-foreground">
