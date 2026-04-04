@@ -167,8 +167,38 @@ export default function Portfolio() {
 
         {/* Other Work Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
-          {/* Magier */}
+          {/* Crenel */}
           <FadeIn delay={200} duration={350}>
+            <Link href="https://www.crenel.xyz" target="_blank" rel="noopener noreferrer" className="group block sys-panel transition-colors duration-200 hover:border-foreground">
+              <div className="bg-muted overflow-hidden border-b border-border p-1">
+                <div className="relative w-full overflow-hidden rounded-sm">
+                  <Image
+                    src="/work/crenel/1.png"
+                    alt="Crenel autoposting platform showing cross-posting across Farcaster, Bluesky, X, and Mastodon"
+                    width={1200}
+                    height={800}
+                    className="w-full transition-transform duration-300 ease-out transform-gpu group-hover:scale-[1.03] group-hover:-translate-y-0.5"
+                    quality={80}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 512px"
+                  />
+                </div>
+              </div>
+              <div className="p-4 sm:p-7">
+                <div className="mb-4">
+                  <h3 className="text-base sm:text-lg font-heading font-semibold mb-1 uppercase tracking-wide">Crenel</h3>
+                  <p className="text-sm text-muted-foreground">Post once, reach everywhere with autoposting</p>
+                </div>
+                <div className="flex flex-wrap gap-2 pt-4 border-t border-border/50">
+                  <Badge>2025</Badge>
+                  <Badge>Coinbase Accelerator</Badge>
+                  <Badge>Social</Badge>
+                </div>
+              </div>
+            </Link>
+          </FadeIn>
+
+          {/* Magier */}
+          <FadeIn delay={225} duration={350}>
             <div className="group sys-panel transition-colors duration-200 hover:border-foreground">
               <div className="bg-muted overflow-hidden border-b border-border p-1">
                 <div className="relative w-full overflow-hidden rounded-sm [&_button]:cursor-zoom-in">
@@ -198,7 +228,7 @@ export default function Portfolio() {
           </FadeIn>
 
           {/* Biobox */}
-          <FadeIn delay={225} duration={350}>
+          <FadeIn delay={250} duration={350}>
             <div className="group sys-panel transition-colors duration-200 hover:border-foreground">
               <div className="bg-muted overflow-hidden border-b border-border p-1">
                 <div className="relative w-full overflow-hidden rounded-sm [&_button]:cursor-zoom-in">

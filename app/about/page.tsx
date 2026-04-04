@@ -20,7 +20,7 @@ export default function About() {
         <FadeIn delay={0} duration={350}>
           <section className="w-full sys-panel p-4 sm:p-7 flex flex-col">
             <div className="sys-section-header mb-6">
-              <h1 className="sys-section-label">About Brendan Ciccone</h1>
+              <h1 className="sys-section-label">About</h1>
               <div className="sys-section-line" />
             </div>
             <div className="space-y-4 sm:space-y-6 text-muted-foreground">
@@ -31,7 +31,10 @@ export default function About() {
                 As founding product designer at Immertec, I led a platform redesign that <span className="text-foreground font-medium">increased SUS from 68 to 83</span>, hired and managed 2 product designers, and helped secure <span className="text-foreground font-medium">$12M in Series A</span> funding. At Corellium, I owned end-to-end product design, shipped CI/CD-integrated threat analysis tools, and achieved an 81 SUS score that contributed to a <span className="text-foreground font-medium">$200M acquisition</span> by Cellebrite.
               </p>
               <p className="text-sm sm:text-base">
-                I founded Paidly in 2020, a Stripe-integrated invoicing app used by <span className="text-foreground font-medium">over 2,000 SMEs</span>, and Magier in 2023, an AI startup that was <span className="text-foreground font-medium">acquired the same year</span> and accepted into <span className="text-foreground font-medium">Techstars&apos; 2024</span> cohort. I&apos;ve also published research on accessibility and virtual environments in publications by HFES and SSH.
+                I founded Paidly in 2020, a Stripe-integrated invoicing app used by <span className="text-foreground font-medium">over 2,000 SMEs</span>. In 2023 I started Magier, an AI startup that was <span className="text-foreground font-medium">acquired the same year</span> and accepted into <span className="text-foreground font-medium">Techstars&apos; 2024</span> cohort. In late 2025, I built Crenel, a way to autopost across Farcaster, Bluesky, X, and Mastodon, and was <span className="text-foreground font-medium">selected for Coinbase&apos;s accelerator</span> (50 of 900+ applicants).
+              </p>
+              <p className="text-sm sm:text-base">
+                I&apos;ve also published research on accessibility and virtual environments in publications by HFES and SSH.
               </p>
             </div>
           </section>
@@ -239,6 +242,37 @@ export default function About() {
                 <div className="h-px bg-border flex-1" />
               </div>
               <ul className="space-y-6">
+                {/* Crenel */}
+                <li className="flex items-start gap-3">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-sm bg-muted/50 border border-border flex items-center justify-center overflow-hidden">
+                    <Image
+                      src="/about/logos/crenel.jpeg"
+                      alt="Crenel logo"
+                      width={32}
+                      height={32}
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                  <div className="flex-1 flex justify-between min-w-0">
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <span className="font-medium leading-none">Founder</span>
+                      </div>
+                      <div className="text-sm text-muted-foreground flex items-center gap-2 mt-1">
+                        <Link 
+                          href="https://www.crenel.xyz"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="hover:underline transition-colors"
+                        >
+                          Crenel
+                        </Link>
+                        <Badge>Coinbase Accelerator</Badge>
+                      </div>
+                    </div>
+                    <span className="text-xs font-mono text-muted-foreground flex-shrink-0 ml-2 leading-none uppercase tracking-wider">2025</span>
+                  </div>
+                </li>
                 {/* Magier */}
                 <li className="flex items-start gap-3">
                   <div className="flex-shrink-0 w-8 h-8 rounded-sm bg-muted/50 border border-border flex items-center justify-center overflow-hidden">
@@ -386,7 +420,7 @@ export default function About() {
                   <h2 className="sys-section-label">Certificates</h2>
                   <div className="sys-section-line" />
                 </div>
-                <ul className="space-y-4">
+                <ul className="space-y-6">
                     <li className="flex items-start gap-3">
                       <div className="flex-shrink-0 w-8 h-8 rounded-sm bg-muted/50 border border-border flex items-center justify-center overflow-hidden">
                         <Image
@@ -414,6 +448,28 @@ export default function About() {
                           </div>
                         </div>
                         <span className="text-xs font-mono text-muted-foreground flex-shrink-0 ml-2 leading-none uppercase tracking-wider">2020</span>
+                      </div>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <div className="flex-shrink-0 w-8 h-8 rounded-sm bg-muted/50 border border-border flex items-center justify-center overflow-hidden">
+                        <Image
+                          src="/about/logos/cornell.jpeg"
+                          alt="Cornell University logo"
+                          width={32}
+                          height={32}
+                          className="w-full h-full object-contain"
+                        />
+                      </div>
+                      <div className="flex-1 flex justify-between min-w-0">
+                        <div>
+                          <div className="flex items-center gap-2">
+                            <span className="font-medium leading-none">Design Thinking</span>
+                          </div>
+                          <div className="text-sm text-muted-foreground mt-1">
+                            Cornell University
+                          </div>
+                        </div>
+                        <span className="text-xs font-mono text-muted-foreground flex-shrink-0 ml-2 leading-none uppercase tracking-wider">2019</span>
                       </div>
                     </li>
                   </ul>
