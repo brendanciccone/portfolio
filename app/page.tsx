@@ -191,7 +191,6 @@ export default function Portfolio() {
                 <div className="flex flex-wrap gap-2 pt-4 border-t border-border/50">
                   <Badge>2025</Badge>
                   <Badge>Coinbase Accelerator</Badge>
-                  <Badge>Social</Badge>
                 </div>
               </div>
             </Link>

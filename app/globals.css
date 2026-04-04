@@ -125,12 +125,21 @@
   --sys-corner-opacity: 0.35;
 }
 
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
 * {
   @apply border-border;
 }
 
 body {
   @apply bg-background text-foreground min-h-screen relative;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 
