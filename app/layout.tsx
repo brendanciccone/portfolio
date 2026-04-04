@@ -1,6 +1,6 @@
 import { Space_Mono, Space_Grotesk } from "next/font/google"
 import type React from "react"
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import ScrollToTop from "@/components/scroll-to-top"
@@ -17,6 +17,11 @@ const spaceMono = Space_Mono({
   subsets: ["latin"],
   variable: "--font-space-mono",
 })
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+}
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://brendanciccone.com"),
