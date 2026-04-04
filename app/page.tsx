@@ -186,7 +186,7 @@ export default function Portfolio() {
               <div className="p-4 sm:p-7">
                 <div className="mb-4">
                   <h3 className="text-base sm:text-lg font-heading font-semibold mb-1 uppercase tracking-wide">Crenel</h3>
-                  <p className="text-sm text-muted-foreground">Post once, reach everywhere with autoposting</p>
+                  <p className="text-sm text-muted-foreground">Reach everywhere with automatic crossposting</p>
                 </div>
                 <div className="flex flex-wrap gap-2 pt-4 border-t border-border/50">
                   <Badge>2025</Badge>
