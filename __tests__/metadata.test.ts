@@ -19,6 +19,14 @@ describe('generatePageMetadata', () => {
     expect(og.url).toBe('https://brendanciccone.com/about')
   })
 
+  it('sets alternates canonical to apex path (resolved with metadataBase)', () => {
+    const home = generatePageMetadata({})
+    expect(home.alternates?.canonical).toBe('/')
+
+    const about = generatePageMetadata({ path: '/about' })
+    expect(about.alternates?.canonical).toBe('/about')
+  })
+
   it('includes OpenGraph and Twitter card metadata', () => {
     const meta = generatePageMetadata({ title: 'Contact' })
     expect(meta.openGraph).toBeDefined()

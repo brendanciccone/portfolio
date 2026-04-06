@@ -1,6 +1,6 @@
 # Portfolio
 
-My personal portfolio site. Built with Next.js, TypeScript, and Tailwind. Live at [brendanciccone.com](https://www.brendanciccone.com/).
+My personal portfolio site. Built with Next.js, TypeScript, and Tailwind. Live at [brendanciccone.com](https://brendanciccone.com/).
 
 Preview (screenshot of the top of the site; regenerate with `pnpm og:capture`):
 
@@ -12,7 +12,7 @@ Preview (screenshot of the top of the site; regenerate with `pnpm og:capture`):
 - TypeScript
 - Tailwind CSS
 - shadcn/ui
-- Hosted on Vercel
+- Hosted on Railway — **canonical URL:** `https://brendanciccone.com` (apex; `www` → apex redirect in `next.config.mjs`, `alternates.canonical` + `metadataBase` in app metadata)
 
 ## Run locally
 

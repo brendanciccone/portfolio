@@ -25,6 +25,9 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://brendanciccone.com"),
+  alternates: {
+    canonical: "/",
+  },
   title: "Brendan Ciccone - 0 → 1 Staff Product Designer",
   description:
     "Brendan Ciccone is a 0 → 1 Staff Product Designer with 8 years of experience turning ideas into fully realized B2B products across healthcare, cybersecurity, and finance.",

@@ -73,10 +73,15 @@ export function generatePageMetadata({
     : "Brendan Ciccone - 0 → 1 Staff Product Designer";
   
   const url = `${baseMetadata.baseUrl}${path}`;
+  const canonicalPath =
+    path === '' ? '/' : path.startsWith('/') ? path : `/${path}`;
 
   return {
     title: pageTitle,
     description,
+    alternates: {
+      canonical: canonicalPath,
+    },
     openGraph: {
       title: pageTitle,
       description,
