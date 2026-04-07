@@ -18,7 +18,7 @@ export default function Portfolio() {
           <div>
             <h1 className="sr-only">Brendan Ciccone</h1>
             <p className="text-sm sm:text-base text-muted-foreground">
-              0 → 1 Staff Product Designer and Founder with 8 years of experience shipping API-driven B2B products across fintech, cybersecurity, and healthcare. I specialize in turning complex infrastructure into simple, opinionated workflows. Currently at <Link href="https://www.corellium.com" target="_blank" rel="noopener noreferrer" className="text-foreground font-medium hover:underline">Corellium</Link>, designing tools that automate compliance and security testing.
+              0 → 1 Staff Product Designer and Founder with 8 years of experience shipping B2B products across fintech, cybersecurity, and healthcare. Currently at <Link href="https://www.corellium.com" target="_blank" rel="noopener noreferrer" className="text-foreground font-medium hover:underline">Corellium</Link>, simplifying complex workflows for enterprise security teams.
             </p>
           </div>
         </FadeIn>
@@ -53,7 +53,7 @@ export default function Portfolio() {
             <div className="p-4 sm:p-7">
               <div className="mb-4">
                 <h2 className="text-lg sm:text-xl font-heading font-semibold mb-1 uppercase tracking-wide">Paidly</h2>
-                <p className="text-muted-foreground text-sm">API-driven invoicing platform built on Stripe for SMEs</p>
+                <p className="text-muted-foreground text-sm">Stripe-integrated invoicing app for SMEs</p>
               </div>
               <div className="flex flex-wrap gap-2 pt-4 border-t border-border/50">
                 <Badge>2020</Badge>
@@ -83,7 +83,7 @@ export default function Portfolio() {
               <div className="p-4 sm:p-7">
                 <div className="mb-4">
                   <h2 className="text-lg sm:text-xl font-heading font-semibold mb-1 uppercase tracking-wide">Spontivly</h2>
-                  <p className="text-muted-foreground text-sm">Data-rich operational dashboards for non-technical users</p>
+                  <p className="text-muted-foreground text-sm">Analytics dashboards for non-technical users</p>
                 </div>
                 <div className="flex flex-wrap gap-2 pt-4 border-t border-border/50">
                   <Badge>2023</Badge>
@@ -114,7 +114,7 @@ export default function Portfolio() {
               <div className="p-4 sm:p-7">
                 <div className="mb-4">
                   <h2 className="text-lg sm:text-xl font-heading font-semibold mb-1 uppercase tracking-wide">Corellium</h2>
-                  <p className="text-muted-foreground text-sm">Automated compliance and security workflows for enterprise teams</p>
+                  <p className="text-muted-foreground text-sm">Mobile virtualization for cybersecurity teams</p>
                 </div>
                 <div className="flex flex-wrap gap-2 pt-4 border-t border-border/50">
                   <Badge>2023-Present</Badge>
@@ -145,7 +145,7 @@ export default function Portfolio() {
               <div className="p-4 sm:p-7">
                 <div className="mb-4">
                   <h2 className="text-lg sm:text-xl font-heading font-semibold mb-1 uppercase tracking-wide">Immertec</h2>
-                  <p className="text-muted-foreground text-sm">HIPAA-compliant platform and design system built from day one</p>
+                  <p className="text-muted-foreground text-sm">VR medical training for live surgical procedures</p>
                 </div>
                 <div className="flex flex-wrap gap-2 pt-4 border-t border-border/50">
                   <Badge>2018-2023</Badge>
