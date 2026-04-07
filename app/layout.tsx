@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   },
   title: "Brendan Ciccone - 0 → 1 Staff Product Designer",
   description:
-    "Brendan Ciccone is a 0 → 1 Staff Product Designer with 8 years of experience turning ideas into fully realized B2B products across healthcare, cybersecurity, and finance.",
+    "Brendan Ciccone is a 0 → 1 Staff Product Designer with 8 years of experience turning ideas into fully realized B2B products across healthcare, cybersecurity, and fintech.",
   icons: {
     icon: [
       { url: "/favicon.ico", type: "image/x-icon" },
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Brendan Ciccone - 0 → 1 Staff Product Designer",
     description:
-      "Brendan Ciccone is a 0 → 1 Staff Product Designer with 8 years of experience turning ideas into fully realized B2B products across healthcare, cybersecurity, and finance.",
+      "Brendan Ciccone is a 0 → 1 Staff Product Designer with 8 years of experience turning ideas into fully realized B2B products across healthcare, cybersecurity, and fintech.",
     url: "https://brendanciccone.com",
     siteName: "Brendan Ciccone",
     images: [
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Brendan Ciccone - 0 → 1 Staff Product Designer",
     description:
-      "Brendan Ciccone is a 0 → 1 Staff Product Designer with 8 years of experience turning ideas into fully realized B2B products across healthcare, cybersecurity, and finance.",
+      "Brendan Ciccone is a 0 → 1 Staff Product Designer with 8 years of experience turning ideas into fully realized B2B products across healthcare, cybersecurity, and fintech.",
     creator: "@brendanciccone",
     images: [
       {

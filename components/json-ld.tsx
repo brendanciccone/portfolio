@@ -5,7 +5,7 @@ const personSchema = {
   url: "https://brendanciccone.com",
   jobTitle: "Staff Product Designer",
   description:
-    "0 → 1 Staff Product Designer with 8 years of experience turning ideas into fully realized B2B products across healthcare, cybersecurity, and finance.",
+    "0 → 1 Staff Product Designer with 8 years of experience turning ideas into fully realized B2B products across healthcare, cybersecurity, and fintech.",
   sameAs: [
     "https://www.linkedin.com/in/brendanciccone/",
     "https://github.com/brendanciccone",
@@ -25,7 +25,7 @@ const websiteSchema = {
   name: "Brendan Ciccone",
   url: "https://brendanciccone.com",
   description:
-    "Portfolio of Brendan Ciccone, a 0 → 1 Staff Product Designer with 8 years of experience shipping B2B products across healthcare, cybersecurity, and finance.",
+    "Portfolio of Brendan Ciccone, a 0 → 1 Staff Product Designer with 8 years of experience shipping B2B products across healthcare, cybersecurity, and fintech.",
   publisher: {
     "@type": "Person",
     name: "Brendan Ciccone",

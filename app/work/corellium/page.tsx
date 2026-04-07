@@ -19,6 +19,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { FadeIn } from "@/components/fade-in"
 import { LightboxImage } from "@/components/lightbox"
+import { ImageComparison } from "@/components/image-comparison"
 
 export default function CorelliumPage() {
   return (
@@ -121,51 +122,37 @@ export default function CorelliumPage() {
             </div>
             <div className="space-y-4 text-muted-foreground mb-6">
               <p>
-                Device creation is the most critical flow in the platform. It's how every user starts their work. But the existing experience required a <span className="text-foreground font-medium">minimum of 6 steps</span>, and no changes were saved between steps. Going back to change something as simple as which project a device belonged to would revert all your selections, adding up to 6 more steps. That's 12 steps worst case for a flow every single user hits.
+                Device creation is the most critical flow in the platform. It&apos;s how every user starts their work. If this flow is painful, the entire product feels painful.
               </p>
               <p>
-                The problems were clear from design heuristics alone: unclear decision points, redundant inputs, and a structure that punished users for changing their mind or making the wrong selection. I mapped the existing flow to make the friction tangible for the product team and PMs.
+                I first identified the friction through patterns in{' '}
+                <span className="text-foreground font-medium">Intercom survey responses</span>
+                , then mapped the existing flow to make it tangible for the product team. The existing experience required a{' '}
+                <span className="text-foreground font-medium">minimum of 6 steps</span>, and no changes were saved between steps. Going back to change something as simple as which project a device belonged to would revert all your selections, adding up to 6 more steps. That&apos;s{' '}
+                <span className="text-foreground font-medium">12 steps worst case</span> for a flow every single user hits. Unclear decision points, redundant inputs, and a structure that punished users for changing their mind.
+              </p>
+              <p>
+                I advocated for this redesign for over a year. It was consistently deprioritized because the roadmap favored feature additions that kept us ahead of competitors and that existing customers were actively requesting.{' '}
+                <span className="text-foreground font-medium">Foundational UX work rarely has a customer asking for it by name.</span>{' '}
+                The opportunity came when a PM&apos;s roadmap had capacity and I could demonstrate how the fix would solve pain points for his user segment. I presented first to him and the head of front-end engineering, then shared it with the wider product team. Timing and alignment mattered as much as the solution.
               </p>
             </div>
-            {/* FigJam - Original Flow */}
-            <div className="sys-panel overflow-hidden group">
-              <div className="bg-mockup-frame p-1">
-                <div className="relative w-full overflow-hidden rounded-sm">
-                  <LightboxImage
-                    src="/work/corellium/2.png"
-                    alt="FigJam diagram showing the original device creation flow with multiple steps and decision points"
-                    width={1200}
-                    height={800}
-                    className="w-full"
-                    quality={80}
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
-                  />
-                </div>
-              </div>
+            {/* Before/After: original vs redesigned device creation flow (FigJam) */}
+            <div className="bg-mockup-frame rounded-sm overflow-hidden">
+              <ImageComparison
+                beforeSrc="/work/corellium/2.png"
+                afterSrc="/work/corellium/3.png"
+                beforeAlt="FigJam diagram showing the original device creation flow with multiple steps and decision points"
+                afterAlt="FigJam diagram showing the redesigned device creation flow with simplified steps"
+                width={1200}
+                height={800}
+              />
             </div>
           </section>
         </FadeIn>
 
-        {/* Finding the Right Moment */}
+        {/* Redesign narrative + shipped UI */}
         <FadeIn delay={100} duration={350}>
-          <section className="sys-panel p-4 sm:p-7">
-            <div className="sys-section-header mb-6">
-              <h2 className="sys-section-label">Bringing the Idea Forward</h2>
-              <div className="sys-section-line" />
-            </div>
-            <div className="space-y-4 text-muted-foreground">
-              <p>
-                This is a core feature that affects every user on the platform. The whole point of Corellium is to create virtual devices to test on. If this flow is painful, the entire product feels painful, every time you create a new device.
-              </p>
-              <p>
-                I advocated for this redesign for <span className="text-foreground font-medium">over a year</span>, waiting for the right window. The opportunity came when a PM's roadmap had capacity and I could demonstrate how the fix would solve pain points for his user segment. I presented first to him and the head of front-end engineering to get buy-in, then shared it with the wider product team. Timing and alignment mattered as much as the solution.
-              </p>
-            </div>
-          </section>
-        </FadeIn>
-
-        {/* The Redesign - New Flow */}
-        <FadeIn delay={125} duration={350}>
           <section className="sys-panel p-4 sm:p-7">
             <div className="sys-section-header mb-6">
               <h2 className="sys-section-label">Simplifying the Experience</h2>
@@ -173,44 +160,14 @@ export default function CorelliumPage() {
             </div>
             <div className="space-y-4 text-muted-foreground mb-6">
               <p>
-                The goal was to reduce cognitive load and eliminate unnecessary steps without sacrificing flexibility. I redesigned the flow to <span className="text-foreground font-medium">3 steps</span>. One click gives you the latest iOS, Android, or IoT device with smart defaults. Power users can still customize everything, but the common path is now fast.
+                The goal was to reduce cognitive load and eliminate unnecessary steps without sacrificing flexibility. I redesigned the flow to <span className="text-foreground font-medium">3 steps</span>. One click gives you the latest iOS, Android, or IoT device with smart defaults. Power users can still customize everything, but the common path is now fast. Making changes no longer punished users with extra steps. Users could adjust device type, OS version, project, and advanced options without starting over.
               </p>
               <p>
-                Making changes no longer punished users with extra steps. The new flow let users adjust device type, OS version, project, and even advanced options without starting over.
-              </p>
-            </div>
-            {/* FigJam - New Flow */}
-            <div className="sys-panel overflow-hidden group">
-              <div className="bg-mockup-frame p-1">
-                <div className="relative w-full overflow-hidden rounded-sm">
-                  <LightboxImage
-                    src="/work/corellium/3.png"
-                    alt="FigJam diagram showing the redesigned device creation flow with simplified steps"
-                    width={1200}
-                    height={800}
-                    className="w-full"
-                    quality={80}
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
-                  />
-                </div>
-              </div>
-            </div>
-          </section>
-        </FadeIn>
-
-        {/* The Shipped Design */}
-        <FadeIn delay={150} duration={350}>
-          <section className="sys-panel p-4 sm:p-7">
-            <div className="sys-section-header mb-6">
-              <h2 className="sys-section-label">The Result</h2>
-              <div className="sys-section-line" />
-            </div>
-            <div className="space-y-4 text-muted-foreground mb-6">
-              <p>
-                The redesigned flow shipped. What previously took a minimum of 6 steps (and up to 12 if you needed to go back) now takes <span className="text-foreground font-medium">3</span>. Device creation takes <span className="text-foreground font-medium">half the time or less</span> compared to the previous setup. The product team finally had something flexible that simplified the experience for end users while enabling future feature requests without rearchitecting.
-              </p>
-              <p>
-                I designed the system to be <span className="text-foreground font-medium">modular</span>. It handles complex IoT devices with unique configuration requirements just as easily as straightforward iOS or Android setups. Future device types can be added without rearchitecting the experience, whether for niche use cases or entirely new industries and revenue lines.
+                <span className="text-foreground font-medium">
+                  What previously took up to 3 minutes now takes 10 to 30 seconds
+                </span>
+                {' '}depending on complexity.{' '}
+                I designed the system to be modular, handling complex IoT devices with unique configuration requirements just as easily as standard iOS or Android setups. Future device types can be added without rearchitecting the experience, whether for new use cases or entirely new revenue lines.
               </p>
             </div>
             <div className="grid grid-cols-1 gap-4">
@@ -284,7 +241,7 @@ export default function CorelliumPage() {
         </FadeIn>
 
         {/* Insights */}
-        <FadeIn delay={175} duration={350}>
+        <FadeIn delay={125} duration={350}>
           <section className="sys-panel p-4 sm:p-7">
             <div className="sys-section-header mb-6">
               <h2 className="sys-section-label">Insights</h2>
@@ -292,10 +249,18 @@ export default function CorelliumPage() {
             </div>
             <div className="space-y-4 text-muted-foreground mb-6">
               <p>
-                In B2B enterprise, customer requests translate directly to revenue, which means platform-wide UX improvements often lose the prioritization battle. This took over a year to land. Find the intersection between what users need and what a PM can justify on their roadmap to get foundational work shipped.
+                In B2B enterprise, customer requests translate directly to revenue, which means platform-wide UX improvements often lose the prioritization battle. Find the intersection between what users need and what a PM can justify on their roadmap to get foundational work shipped.
               </p>
               <p>
-                Beyond this project, I partnered with the head of front-end engineering to lead the <span className="text-foreground font-medium">WCAG accessibility initiative</span> that unblocked enterprise sales. He handled engineering, I handled design, and together we aligned the entire design system. I also <span className="text-foreground font-medium">standardized the product design process</span> across 3 PMs, 2 POs, and their respective teams. The previous setup relied on one large file that was constantly out of sync. I created a system that fit into their existing workflows while ensuring design specs were always current for specific tickets and bodies of work.
+                Beyond this project, I partnered with the head of front-end engineering to lead the{' '}
+                <span className="text-foreground font-medium">
+                  WCAG accessibility initiative that unblocked enterprise sales
+                </span>
+                . He handled engineering, I handled design, and together we aligned the entire design system. I also{' '}
+                <span className="text-foreground font-medium">
+                  standardized the product design process across 3 PMs, 2 POs, and their teams
+                </span>
+                , replacing one constantly out-of-sync file with a system that kept design specs current for specific tickets and bodies of work.
               </p>
             </div>
             {/* IoT device selection - demonstrates modular system */}
@@ -318,7 +283,7 @@ export default function CorelliumPage() {
         </FadeIn>
 
         {/* CTA Section */}
-        <FadeIn delay={200} duration={350}>
+        <FadeIn delay={150} duration={350}>
           <section className="sys-panel p-4 sm:p-7 text-center">
             <h2 className="text-xl sm:text-[24px] font-semibold mb-1 sm:mb-2 text-center">Let's build something great</h2>
             <p className="text-muted-foreground mb-6">

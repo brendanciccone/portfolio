@@ -18,7 +18,7 @@ export default function Portfolio() {
           <div>
             <h1 className="sr-only">Brendan Ciccone</h1>
             <p className="text-sm sm:text-base text-muted-foreground">
-              0 → 1 Staff Product Designer and Founder with 8 years of experience shipping B2B products across healthcare, cybersecurity, and finance. Currently at <Link href="https://www.corellium.com" target="_blank" rel="noopener noreferrer" className="text-foreground font-medium hover:underline">Corellium</Link>, simplifying complex cybersecurity workflows.
+              0 → 1 Staff Product Designer and Founder with 8 years of experience shipping B2B products across healthcare, cybersecurity, and fintech. Currently at <Link href="https://www.corellium.com" target="_blank" rel="noopener noreferrer" className="text-foreground font-medium hover:underline">Corellium</Link>, simplifying complex cybersecurity workflows.
             </p>
           </div>
         </FadeIn>
@@ -150,7 +150,7 @@ export default function Portfolio() {
                 <div className="flex flex-wrap gap-2 pt-4 border-t border-border/50">
                   <Badge>2020</Badge>
                   <Badge>Stripe Partner</Badge>
-                  <Badge>Finance</Badge>
+                  <Badge>Fintech</Badge>
                 </div>
               </div>
             </Link>

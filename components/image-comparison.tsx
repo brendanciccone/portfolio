@@ -35,7 +35,9 @@ export const ImageComparison = ({
     setSliderPosition(percentage)
   }, [])
 
-  const handleMouseDown = () => {
+  const handleMouseDown = (e: React.MouseEvent) => {
+    // Stops native image drag + selection highlight (blue flash) while dragging
+    e.preventDefault()
     isDragging.current = true
   }
 
@@ -56,10 +58,34 @@ export const ImageComparison = ({
     handleMove(e.clientX)
   }
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    const step = 2
+    if (e.key === "ArrowLeft") {
+      e.preventDefault()
+      setSliderPosition((p) => Math.max(0, p - step))
+      return
+    }
+    if (e.key === "ArrowRight") {
+      e.preventDefault()
+      setSliderPosition((p) => Math.min(100, p + step))
+      return
+    }
+    if (e.key === "Home") {
+      e.preventDefault()
+      setSliderPosition(0)
+      return
+    }
+    if (e.key === "End") {
+      e.preventDefault()
+      setSliderPosition(100)
+    }
+  }
+
   return (
     <div
       ref={containerRef}
-      className="relative w-full overflow-hidden cursor-ew-resize select-none"
+      tabIndex={0}
+      className="relative w-full cursor-ew-resize touch-none overflow-hidden select-none outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background [-webkit-tap-highlight-color:transparent]"
       style={{ aspectRatio: `${width}/${height}` }}
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}
@@ -67,6 +93,7 @@ export const ImageComparison = ({
       onMouseMove={handleMouseMove}
       onTouchMove={handleTouchMove}
       onClick={handleClick}
+      onKeyDown={handleKeyDown}
       role="slider"
       aria-label="Image comparison slider"
       aria-valuemin={0}
@@ -74,12 +101,13 @@ export const ImageComparison = ({
       aria-valuenow={Math.round(sliderPosition)}
     >
       {/* After image (background) */}
-      <div className="absolute inset-0">
+      <div className="pointer-events-none absolute inset-0">
         <Image
           src={afterSrc}
           alt={afterAlt}
           fill
-          className="object-cover"
+          draggable={false}
+          className="object-cover select-none"
           quality={80}
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
         />
@@ -87,27 +115,28 @@ export const ImageComparison = ({
 
       {/* Before image (clipped) */}
       <div
-        className="absolute inset-0 overflow-hidden"
+        className="pointer-events-none absolute inset-0 overflow-hidden"
         style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
       >
         <Image
           src={beforeSrc}
           alt={beforeAlt}
           fill
-          className="object-cover"
+          draggable={false}
+          className="object-cover select-none"
           quality={80}
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
         />
       </div>
 
-      {/* Slider line */}
+      {/* Dark line + handle: case-study shots are mostly light UI; reads clearly over pale backgrounds */}
       <div
-        className="absolute top-0 bottom-0 w-0.5 bg-background shadow-lg"
+        className="absolute top-0 bottom-0 w-0.5 bg-zinc-950 shadow-[0_0_0_1px_rgba(255,255,255,0.35)]"
         style={{ left: `${sliderPosition}%`, transform: "translateX(-50%)" }}
       >
         {/* Slider handle */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-background rounded-sm flex items-center justify-center">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="text-muted-foreground">
+        <div className="absolute top-1/2 left-1/2 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-sm bg-zinc-950 shadow-md ring-1 ring-white/35">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="text-zinc-100">
             <path d="M6 10L2 10M2 10L5 7M2 10L5 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             <path d="M14 10L18 10M18 10L15 7M18 10L15 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>

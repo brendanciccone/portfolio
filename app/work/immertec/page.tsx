@@ -159,13 +159,14 @@ export default function ImmertecPage() {
             </div>
             <div className="space-y-4 text-muted-foreground mb-6">
               <p>
-                Our primary users were physicians and surgeons in orthopedics, ENT, and other specialties, including those from <span className="text-foreground font-medium">Cleveland Clinic and Baylor</span>. A smaller subset were sales managers and salespeople from medical device companies who scheduled events and managed invitations.
+                Our primary users were physicians and surgeons in orthopedics, ENT, and other specialties, including those from Cleveland Clinic and Baylor. A smaller subset were sales managers and salespeople from medical device companies who scheduled events and managed invitations.
               </p>
               <p>
-                Logistics were tracked and managed event-by-event in a mobile app at first. The mobile app existed to maintain <span className="text-foreground font-medium">HIPAA compliance</span>, verifying attendee identities since many of these were <span className="text-foreground font-medium">real surgeries and operations</span>, not simulation labs. Without a unified view of who needed headsets and who confirmed they'd attend, customer success was buried in manual coordination.
+                Logistics were initially tracked event-by-event in a mobile app to maintain HIPAA compliance, verifying attendee identities since many of these were real surgeries. Without a unified view, customer success was buried in manual coordination.
               </p>
               <p>
-                Role-based permissions made sense because medical device sales reps managed events as admins, while physicians led or observed surgeries. One dashboard serving both groups eliminated the friction.
+                I designed the dashboard around three distinct user needs:{' '}
+                <span className="text-foreground font-medium">sales reps creating and managing device training events, instructors preparing to lead live procedures, and attending physicians or students who just needed to show up informed</span>. Role-based permissions let each group see only what was relevant to them, reducing noise and eliminating the friction of one interface trying to serve everyone the same way.
               </p>
             </div>
             <div className="grid grid-cols-1 gap-4">
@@ -281,10 +282,12 @@ export default function ImmertecPage() {
             </div>
             <div className="space-y-4 text-muted-foreground mb-6">
               <p>
-                Designing in healthcare means navigating legal constraints that most industries don't face. Sometimes the ideal UX option simply isn't legally possible. You learn to find solutions within those boundaries rather than fight them.
+                The web viewer taught me that the best design decisions sometimes challenge a company's core assumptions. The entire business was built around VR, but users needed flexibility. I pushed for a browser-based alternative, built support across the team, and the results validated it. Today I'd pair that conviction with earlier prototypes and data to bring stakeholders along faster.
               </p>
               <p>
-                The web viewer taught me that conviction matters, but so does how you build support. Today I'd pair that conviction with earlier prototypes and data to bring stakeholders along faster.
+                Five years as a founding designer in healthcare also shaped how I think about constraints.{' '}
+                <span className="text-foreground font-medium">HIPAA, legal review, and compliance are design inputs from day one</span>
+                , not afterthoughts.
               </p>
             </div>
             <div className="bg-mockup-frame rounded-sm overflow-hidden">
