@@ -18,7 +18,7 @@ export default function Portfolio() {
           <div>
             <h1 className="sr-only">Brendan Ciccone</h1>
             <p className="text-sm sm:text-base text-muted-foreground">
-              0 → 1 Staff Product Designer and Founder with 8 years of experience shipping B2B products across fintech, cybersecurity, and healthcare. Currently at <Link href="https://www.corellium.com" target="_blank" rel="noopener noreferrer" className="text-foreground font-medium hover:underline">Corellium</Link>, simplifying complex workflows for enterprise security teams.
+              0 → 1 Staff Product Designer and Founder with 8 years of experience shipping B2B products across healthcare, cybersecurity, and fintech. Currently at <Link href="https://www.corellium.com" target="_blank" rel="noopener noreferrer" className="text-foreground font-medium hover:underline">Corellium</Link>, simplifying complex cybersecurity workflows.
             </p>
           </div>
         </FadeIn>
@@ -33,13 +33,13 @@ export default function Portfolio() {
 
         {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-          {/* Project 1 - Paidly */}
-          <Link href="/work/paidly" className="group block sys-panel transition-colors duration-200 hover:border-foreground">
+          {/* Project 1 - Corellium */}
+          <Link href="/work/corellium" className="group block sys-panel transition-colors duration-200 hover:border-foreground">
             <div className="bg-mockup-frame overflow-hidden border-b border-border p-1">
               <div className="relative w-full overflow-hidden rounded-sm">
                 <Image
-                  src="/work/paidly/1.png"
-                  alt="Paidly mobile app showing invoice list, automatic reminders feature, and customer creation form"
+                  src="/work/corellium/1.png"
+                  alt="Corellium virtual device platform showing the device creation flow for mobile security testing"
                   width={1200}
                   height={800}
                   className="w-full transition-transform duration-300 ease-out transform-gpu group-hover:scale-[1.03] group-hover:-translate-y-0.5"
@@ -52,81 +52,19 @@ export default function Portfolio() {
             </div>
             <div className="p-4 sm:p-7">
               <div className="mb-4">
-                <h2 className="text-lg sm:text-xl font-heading font-semibold mb-1 uppercase tracking-wide">Paidly</h2>
-                <p className="text-muted-foreground text-sm">Stripe-integrated invoicing app for SMEs</p>
+                <h2 className="text-lg sm:text-xl font-heading font-semibold mb-1 uppercase tracking-wide">Corellium</h2>
+                <p className="text-muted-foreground text-sm">Mobile virtualization for cybersecurity teams</p>
               </div>
               <div className="flex flex-wrap gap-2 pt-4 border-t border-border/50">
-                <Badge>2020</Badge>
-                <Badge>Stripe Partner</Badge>
-                <Badge>Fintech</Badge>
+                <Badge>2023-Present</Badge>
+                <Badge>Acquired</Badge>
+                <Badge>Cybersecurity</Badge>
               </div>
             </div>
           </Link>
 
-          {/* Project 2 - Spontivly */}
+          {/* Project 2 - Immertec */}
           <FadeIn delay={75} duration={350}>
-            <Link href="/work/spontivly" className="group block sys-panel transition-colors duration-200 hover:border-foreground">
-              <div className="bg-mockup-frame overflow-hidden border-b border-border p-1">
-                <div className="relative w-full overflow-hidden rounded-sm">
-                  <Image
-                    src="/work/spontivly/1.png"
-                    alt="Spontivly social analytics dashboard showing engagement metrics, impression trends, and top performing content"
-                    width={1200}
-                    height={800}
-                    className="w-full transition-transform duration-300 ease-out transform-gpu group-hover:scale-[1.03] group-hover:-translate-y-0.5"
-                    priority
-                    quality={80}
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
-                  />
-                </div>
-              </div>
-              <div className="p-4 sm:p-7">
-                <div className="mb-4">
-                  <h2 className="text-lg sm:text-xl font-heading font-semibold mb-1 uppercase tracking-wide">Spontivly</h2>
-                  <p className="text-muted-foreground text-sm">Analytics dashboards for non-technical users</p>
-                </div>
-                <div className="flex flex-wrap gap-2 pt-4 border-t border-border/50">
-                  <Badge>2023</Badge>
-                  <Badge>Seed</Badge>
-                  <Badge>Dashboards</Badge>
-                </div>
-              </div>
-            </Link>
-          </FadeIn>
-
-          {/* Project 3 - Corellium */}
-          <FadeIn delay={100} duration={350}>
-            <Link href="/work/corellium" className="group block sys-panel transition-colors duration-200 hover:border-foreground">
-              <div className="bg-mockup-frame overflow-hidden border-b border-border p-1">
-                <div className="relative w-full overflow-hidden rounded-sm">
-                  <Image
-                    src="/work/corellium/1.png"
-                    alt="Corellium virtual device platform showing the device creation flow for mobile security testing"
-                    width={1200}
-                    height={800}
-                    className="w-full transition-transform duration-300 ease-out transform-gpu group-hover:scale-[1.03] group-hover:-translate-y-0.5"
-                    priority
-                    quality={80}
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
-                  />
-                </div>
-              </div>
-              <div className="p-4 sm:p-7">
-                <div className="mb-4">
-                  <h2 className="text-lg sm:text-xl font-heading font-semibold mb-1 uppercase tracking-wide">Corellium</h2>
-                  <p className="text-muted-foreground text-sm">Mobile virtualization for cybersecurity teams</p>
-                </div>
-                <div className="flex flex-wrap gap-2 pt-4 border-t border-border/50">
-                  <Badge>2023-Present</Badge>
-                  <Badge>Acquired</Badge>
-                  <Badge>Infrastructure</Badge>
-                </div>
-              </div>
-            </Link>
-          </FadeIn>
-
-          {/* Project 4 - Immertec */}
-          <FadeIn delay={125} duration={350}>
             <Link href="/work/immertec" className="group block sys-panel transition-colors duration-200 hover:border-foreground">
               <div className="bg-mockup-frame overflow-hidden border-b border-border p-1">
                 <div className="relative w-full overflow-hidden rounded-sm">
@@ -151,6 +89,68 @@ export default function Portfolio() {
                   <Badge>2018-2023</Badge>
                   <Badge>Series A</Badge>
                   <Badge>Healthcare</Badge>
+                </div>
+              </div>
+            </Link>
+          </FadeIn>
+
+          {/* Project 3 - Spontivly */}
+          <FadeIn delay={100} duration={350}>
+            <Link href="/work/spontivly" className="group block sys-panel transition-colors duration-200 hover:border-foreground">
+              <div className="bg-mockup-frame overflow-hidden border-b border-border p-1">
+                <div className="relative w-full overflow-hidden rounded-sm">
+                  <Image
+                    src="/work/spontivly/1.png"
+                    alt="Spontivly social analytics dashboard showing engagement metrics, impression trends, and top performing content"
+                    width={1200}
+                    height={800}
+                    className="w-full transition-transform duration-300 ease-out transform-gpu group-hover:scale-[1.03] group-hover:-translate-y-0.5"
+                    priority
+                    quality={80}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
+                  />
+                </div>
+              </div>
+              <div className="p-4 sm:p-7">
+                <div className="mb-4">
+                  <h2 className="text-lg sm:text-xl font-heading font-semibold mb-1 uppercase tracking-wide">Spontivly</h2>
+                  <p className="text-muted-foreground text-sm">Analytics dashboards for non-technical users</p>
+                </div>
+                <div className="flex flex-wrap gap-2 pt-4 border-t border-border/50">
+                  <Badge>2023</Badge>
+                  <Badge>Seed</Badge>
+                  <Badge>Analytics</Badge>
+                </div>
+              </div>
+            </Link>
+          </FadeIn>
+
+          {/* Project 4 - Paidly */}
+          <FadeIn delay={125} duration={350}>
+            <Link href="/work/paidly" className="group block sys-panel transition-colors duration-200 hover:border-foreground">
+              <div className="bg-mockup-frame overflow-hidden border-b border-border p-1">
+                <div className="relative w-full overflow-hidden rounded-sm">
+                  <Image
+                    src="/work/paidly/1.png"
+                    alt="Paidly mobile app showing invoice list, automatic reminders feature, and customer creation form"
+                    width={1200}
+                    height={800}
+                    className="w-full transition-transform duration-300 ease-out transform-gpu group-hover:scale-[1.03] group-hover:-translate-y-0.5"
+                    priority
+                    quality={80}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
+                  />
+                </div>
+              </div>
+              <div className="p-4 sm:p-7">
+                <div className="mb-4">
+                  <h2 className="text-lg sm:text-xl font-heading font-semibold mb-1 uppercase tracking-wide">Paidly</h2>
+                  <p className="text-muted-foreground text-sm">Stripe-integrated invoicing app for SMEs</p>
+                </div>
+                <div className="flex flex-wrap gap-2 pt-4 border-t border-border/50">
+                  <Badge>2020</Badge>
+                  <Badge>Stripe Partner</Badge>
+                  <Badge>Fintech</Badge>
                 </div>
               </div>
             </Link>
