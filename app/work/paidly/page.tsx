@@ -70,7 +70,7 @@ export default function PaidlyPage() {
                   <Badge>Founder</Badge>
                   <Badge>2020</Badge>
                   <Badge>Stripe Partner</Badge>
-                  <Badge>Finance</Badge>
+                  <Badge>Fintech</Badge>
                 </div>
               </div>
             </div>
@@ -171,7 +171,9 @@ export default function PaidlyPage() {
                 screened and hired a capable team of mobile developers.
               </p>
               <p>
-                Our collaboration happened primarily through Slack for daily communication. I broke the product into a Kanban board, giving developers clear scope and priorities while keeping momentum toward launch. They were provided with all the tools and documentation needed, including access to Figma and an extensively user-tested high-fidelity prototype.
+                Our collaboration happened primarily through Slack for daily communication. I broke the product into a Kanban board,{' '}
+                <span className="text-foreground font-medium">giving developers clear scope and priorities</span>
+                {' '}while keeping momentum toward launch. They were provided with all the tools and documentation needed, including access to Figma and an extensively user-tested high-fidelity prototype.
               </p>
             </div>
             <div className="bg-mockup-frame rounded-sm overflow-hidden">
@@ -195,14 +197,11 @@ export default function PaidlyPage() {
               <h2 className="sys-section-label">Insights</h2>
               <div className="sys-section-line" />
             </div>
-            <div className="space-y-4 text-muted-foreground mb-6">
-              <p>
-                Paidly was my first attempt at building a startup. After having the platform up for around 6 months, and having 2,000 SMBs trust the product enough to run $500K+ in invoices through it, I decided to end the project earlier than planned after a security issue with a contractor I hired introduced technical issues that became a constant headache.
-              </p>
-              <p>
-                It taught me that technical vetting is a founder responsibility, not something you can outsource to reputation or references. I now treat security review and code audits as non-negotiable before shipping anything financial or high stakes, even at the MVP stage.
-              </p>
-            </div>
+            <p className="text-muted-foreground mb-6">
+              After 6 months live and 2,000 SMBs running $500K+ in invoices through the platform, a contractor issue forced me to wind it down. It taught me that technical{' '}
+              <span className="text-foreground font-medium">vetting and code audits are non-negotiable</span>
+              {' '}for anything high-stakes. That mindset now carries into every project I touch, especially in compliance-driven products.
+            </p>
             <div className="bg-mockup-frame rounded-sm overflow-hidden">
               <LightboxImage
                 src="/work/paidly/5.png"

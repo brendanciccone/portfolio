@@ -243,7 +243,8 @@ export default function SpontivlyPage() {
               <div className="sys-section-line" />
             </div>
             <p className="text-muted-foreground mb-6">
-              Users needed granular control over their visualizations. The challenge was designing an interface that could pull data from APIs with wildly inconsistent structures and display it in a way that made sense to non-technical users. I designed a chart builder that balanced power-user features with approachability, allowing anyone to create meaningful visualizations without needing to understand the underlying data.
+              Users needed granular control over their visualizations, but APIs returned data in wildly inconsistent formats. I worked with engineering to design{' '}
+              <span className="text-foreground font-medium">smart defaults and fallback states</span> so the charting experience felt consistent regardless of the data source. The goal was balancing power-user features with approachability so anyone could create meaningful visualizations without understanding the underlying data.
             </p>
             <div className="bg-mockup-frame rounded-sm overflow-hidden">
               <LightboxImage
@@ -266,14 +267,13 @@ export default function SpontivlyPage() {
               <h2 className="sys-section-label">Insights</h2>
               <div className="sys-section-line" />
             </div>
-            <div className="space-y-4 text-muted-foreground mb-6">
-              <p>
-                The hardest part wasn't the design work. It was managing a team of developers while keeping founder and customer expectations realistic against what we could actually ship. At a seed-stage startup with strong inbound interest, everyone wants everything now. My job was to absorb that pressure and translate it into a buildable roadmap without burning out the engineering team or losing stakeholder trust.
-              </p>
-              <p>
-                I also learned how crucial it is to balance complexity when designing for mixed audiences. Advanced users needed granular control; new users needed to not feel overwhelmed. The approach that worked was surfacing the most relevant features and pushing advanced options into the background while keeping them within reach.
-              </p>
-            </div>
+            <p className="text-muted-foreground mb-6">
+              The hardest part wasn't the design work. It was managing a team of developers while keeping founder and customer expectations realistic against what we could actually ship. At a seed-stage startup with strong inbound interest, everyone wants everything now. My job was to absorb that pressure and translate it into a{' '}
+              <span className="text-foreground font-medium">buildable roadmap</span>
+              {' '}without burning out the engineering team or losing stakeholder trust. I built the prioritization process across design, engineering, and founders:{' '}
+              <span className="text-foreground font-medium">shared criteria for what shipped next</span>
+              , explicit tradeoffs when scope conflicted, and a rhythm that kept build capacity aligned with business goals.
+            </p>
             <div className="bg-mockup-frame rounded-sm overflow-hidden">
               <LightboxImage
                 src="/work/spontivly/10.png"
