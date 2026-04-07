@@ -1,7 +1,9 @@
 "use client"
 
-import { useState, useRef, useCallback } from "react"
+import { useState, useRef, useCallback, useEffect } from "react"
 import Image from "next/image"
+import { Skeleton } from "@/components/ui/skeleton"
+import { cn } from "@/lib/utils"
 
 interface ImageComparisonProps {
   beforeSrc: string
@@ -24,6 +26,22 @@ export const ImageComparison = ({
   const [sliderPosition, setSliderPosition] = useState(50)
   const containerRef = useRef<HTMLDivElement>(null)
   const isDragging = useRef(false)
+  const beforeRef = useRef<HTMLImageElement | null>(null)
+  const afterRef = useRef<HTMLImageElement | null>(null)
+  const [isBeforeLoaded, setIsBeforeLoaded] = useState(false)
+  const [isAfterLoaded, setIsAfterLoaded] = useState(false)
+
+  const isLoaded = isBeforeLoaded && isAfterLoaded
+
+  // Catch images that finished loading before React hydrated
+  useEffect(() => {
+    if (beforeRef.current?.complete) {
+      setIsBeforeLoaded(true)
+    }
+    if (afterRef.current?.complete) {
+      setIsAfterLoaded(true)
+    }
+  }, [])
 
   // Handle mouse/touch movement
   const handleMove = useCallback((clientX: number) => {
@@ -100,9 +118,18 @@ export const ImageComparison = ({
       aria-valuemax={100}
       aria-valuenow={Math.round(sliderPosition)}
     >
+      {/* Skeleton overlay while images load */}
+      {!isLoaded && (
+        <Skeleton
+          aria-hidden
+          className="absolute inset-0 z-10 rounded-sm"
+        />
+      )}
+
       {/* After image (background) */}
-      <div className="pointer-events-none absolute inset-0">
+      <div className={cn("pointer-events-none absolute inset-0", !isLoaded && "opacity-0")}>
         <Image
+          ref={afterRef}
           src={afterSrc}
           alt={afterAlt}
           fill
@@ -110,15 +137,17 @@ export const ImageComparison = ({
           className="object-cover select-none"
           quality={80}
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
+          onLoad={() => setIsAfterLoaded(true)}
         />
       </div>
 
       {/* Before image (clipped) */}
       <div
-        className="pointer-events-none absolute inset-0 overflow-hidden"
+        className={cn("pointer-events-none absolute inset-0 overflow-hidden", !isLoaded && "opacity-0")}
         style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
       >
         <Image
+          ref={beforeRef}
           src={beforeSrc}
           alt={beforeAlt}
           fill
@@ -126,6 +155,7 @@ export const ImageComparison = ({
           className="object-cover select-none"
           quality={80}
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
+          onLoad={() => setIsBeforeLoaded(true)}
         />
       </div>
 
