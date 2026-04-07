@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useRef, useEffect } from "react"
 import Image from "next/image"
 import { Skeleton } from "@/components/ui/skeleton"
 import { cn } from "@/lib/utils"
@@ -26,17 +26,26 @@ export const MockupImage = ({
   quality = 80,
   sizes,
 }: MockupImageProps) => {
+  const imgRef = useRef<HTMLImageElement | null>(null)
   const [isLoaded, setIsLoaded] = useState(false)
+
+  // Catch images that finished loading before React hydrated
+  useEffect(() => {
+    if (imgRef.current?.complete) {
+      setIsLoaded(true)
+    }
+  }, [])
 
   return (
     <div className="relative">
       {!isLoaded && (
         <Skeleton
           aria-hidden
-          className="absolute inset-0 z-10 rounded-sm"
+          className="absolute inset-0 z-10 rounded-sm bg-slate-200 dark:bg-slate-800"
         />
       )}
       <Image
+        ref={imgRef}
         src={src}
         alt={alt}
         width={width}

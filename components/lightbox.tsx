@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useCallback, useEffect } from "react"
+import { useState, useCallback, useEffect, useRef } from "react"
 import Image from "next/image"
 import { X } from "lucide-react"
 import { Skeleton } from "@/components/ui/skeleton"
@@ -28,9 +28,17 @@ export const LightboxImage = ({
   quality = 80,
   sizes,
 }: LightboxImageProps) => {
+  const thumbnailRef = useRef<HTMLImageElement | null>(null)
   const [isOpen, setIsOpen] = useState(false)
   const [isLightboxImageLoaded, setIsLightboxImageLoaded] = useState(false)
   const [isThumbnailLoaded, setIsThumbnailLoaded] = useState(false)
+
+  // Catch thumbnails that finished loading before React hydrated
+  useEffect(() => {
+    if (thumbnailRef.current?.complete) {
+      setIsThumbnailLoaded(true)
+    }
+  }, [])
 
   useEffect(() => {
     if (isOpen) {
@@ -71,10 +79,11 @@ export const LightboxImage = ({
           {!isThumbnailLoaded && (
             <Skeleton
               aria-hidden
-              className="absolute inset-0 z-10 rounded-sm"
+              className="absolute inset-0 z-10 rounded-sm bg-slate-200 dark:bg-slate-800"
             />
           )}
           <Image
+            ref={thumbnailRef}
             src={src}
             alt={alt}
             width={width}
@@ -130,7 +139,7 @@ export const LightboxImage = ({
               )}
               quality={95}
               sizes="100vw"
-              onLoadingComplete={() => setIsLightboxImageLoaded(true)}
+              onLoad={() => setIsLightboxImageLoaded(true)}
             />
           </div>
         </div>
