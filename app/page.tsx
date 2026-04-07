@@ -1,10 +1,10 @@
 import Header from "@/components/header"
-import Image from "next/image"
 import Link from "next/link"
 import Footer from "@/components/footer"
 import { Badge } from "@/components/ui/badge"
 import { FadeIn } from "@/components/fade-in"
 import { LightboxImage } from "@/components/lightbox"
+import { MockupImage } from "@/components/mockup-image"
 
 export default function Portfolio() {
   return (
@@ -37,14 +37,13 @@ export default function Portfolio() {
           <Link href="/work/corellium" className="group block sys-panel transition-colors duration-200 hover:border-foreground">
             <div className="bg-mockup-frame overflow-hidden border-b border-border p-1">
               <div className="relative w-full overflow-hidden rounded-sm">
-                <Image
+                <MockupImage
                   src="/work/corellium/1.png"
                   alt="Corellium virtual device platform showing the device creation flow for mobile security testing"
                   width={1200}
                   height={800}
                   className="w-full transition-transform duration-300 ease-out transform-gpu group-hover:scale-[1.03] group-hover:-translate-y-0.5"
                   priority
-                  fetchPriority="high"
                   quality={80}
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
                 />
@@ -68,7 +67,7 @@ export default function Portfolio() {
             <Link href="/work/immertec" className="group block sys-panel transition-colors duration-200 hover:border-foreground">
               <div className="bg-mockup-frame overflow-hidden border-b border-border p-1">
                 <div className="relative w-full overflow-hidden rounded-sm">
-                  <Image
+                  <MockupImage
                     src="/work/immertec/1.png"
                     alt="Immertec VR medical training platform showing a live surgical procedure with multiple participating doctors, medical imaging views, and interactive controls for remote learning"
                     width={1200}
@@ -99,7 +98,7 @@ export default function Portfolio() {
             <Link href="/work/spontivly" className="group block sys-panel transition-colors duration-200 hover:border-foreground">
               <div className="bg-mockup-frame overflow-hidden border-b border-border p-1">
                 <div className="relative w-full overflow-hidden rounded-sm">
-                  <Image
+                  <MockupImage
                     src="/work/spontivly/1.png"
                     alt="Spontivly social analytics dashboard showing engagement metrics, impression trends, and top performing content"
                     width={1200}
@@ -130,7 +129,7 @@ export default function Portfolio() {
             <Link href="/work/paidly" className="group block sys-panel transition-colors duration-200 hover:border-foreground">
               <div className="bg-mockup-frame overflow-hidden border-b border-border p-1">
                 <div className="relative w-full overflow-hidden rounded-sm">
-                  <Image
+                  <MockupImage
                     src="/work/paidly/1.png"
                     alt="Paidly mobile app showing invoice list, automatic reminders feature, and customer creation form"
                     width={1200}
@@ -172,7 +171,7 @@ export default function Portfolio() {
             <Link href="https://www.crenel.xyz" target="_blank" rel="noopener noreferrer" className="group block sys-panel transition-colors duration-200 hover:border-foreground">
               <div className="bg-mockup-frame overflow-hidden border-b border-border p-1">
                 <div className="relative w-full overflow-hidden rounded-sm">
-                  <Image
+                  <MockupImage
                     src="/work/crenel/1.png"
                     alt="Crenel autoposting platform showing cross-posting across Farcaster, Bluesky, X, and Mastodon"
                     width={1200}

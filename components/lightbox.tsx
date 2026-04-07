@@ -30,6 +30,7 @@ export const LightboxImage = ({
 }: LightboxImageProps) => {
   const [isOpen, setIsOpen] = useState(false)
   const [isLightboxImageLoaded, setIsLightboxImageLoaded] = useState(false)
+  const [isThumbnailLoaded, setIsThumbnailLoaded] = useState(false)
 
   useEffect(() => {
     if (isOpen) {
@@ -66,16 +67,29 @@ export const LightboxImage = ({
         className="cursor-pointer md:cursor-zoom-in w-full block bg-mockup-frame"
         aria-label={`View ${alt} in fullscreen`}
       >
-        <Image
-          src={src}
-          alt={alt}
-          width={width}
-          height={height}
-          className={className}
-          priority={priority}
-          quality={quality}
-          sizes={sizes}
-        />
+        <div className="relative">
+          {!isThumbnailLoaded && (
+            <Skeleton
+              aria-hidden
+              className="absolute inset-0 z-10 rounded-sm"
+            />
+          )}
+          <Image
+            src={src}
+            alt={alt}
+            width={width}
+            height={height}
+            className={cn(
+              "transition-opacity duration-300",
+              isThumbnailLoaded ? "opacity-100" : "opacity-0",
+              className,
+            )}
+            priority={priority}
+            quality={quality}
+            sizes={sizes}
+            onLoad={() => setIsThumbnailLoaded(true)}
+          />
+        </div>
       </button>
 
       {/* Lightbox overlay */}
