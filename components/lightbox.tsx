@@ -3,6 +3,8 @@
 import { useState, useCallback, useEffect } from "react"
 import Image from "next/image"
 import { X } from "lucide-react"
+import { Skeleton } from "@/components/ui/skeleton"
+import { cn } from "@/lib/utils"
 
 interface LightboxImageProps {
   src: string
@@ -27,6 +29,13 @@ export const LightboxImage = ({
   sizes,
 }: LightboxImageProps) => {
   const [isOpen, setIsOpen] = useState(false)
+  const [isLightboxImageLoaded, setIsLightboxImageLoaded] = useState(false)
+
+  useEffect(() => {
+    if (isOpen) {
+      setIsLightboxImageLoaded(false)
+    }
+  }, [isOpen])
 
   // Handle escape key to close
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
@@ -72,32 +81,42 @@ export const LightboxImage = ({
       {/* Lightbox overlay */}
       {isOpen && (
         <div
-          className="fixed inset-0 z-50 bg-foreground/80 backdrop-blur-md flex items-center justify-center p-4 sm:p-8 animate-in fade-in duration-200 cursor-pointer"
+          className="fixed inset-0 z-50 flex cursor-pointer items-center justify-center bg-black/80 p-4 backdrop-blur-md animate-in fade-in duration-200 sm:p-8"
           onClick={() => setIsOpen(false)}
           role="dialog"
           aria-modal="true"
           aria-label="Image lightbox"
         >
-          {/* Close button */}
+          {/* Close button — scrim is always dark; use light chrome in both themes */}
           <button
             type="button"
             onClick={() => setIsOpen(false)}
-            className="absolute top-4 right-4 p-2 rounded-sm bg-background/10 hover:bg-background/20 transition-colors animate-in fade-in duration-300 delay-100"
+            className="absolute top-4 right-4 rounded-sm bg-white/10 p-2 transition-colors hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black animate-in fade-in duration-300 delay-100"
             aria-label="Close lightbox"
           >
-            <X className="w-6 h-6 text-background" />
+            <X className="size-6 text-white" aria-hidden />
           </button>
 
           {/* Full size image - clicking also closes */}
           <div className="relative max-w-full max-h-full animate-in fade-in slide-in-from-bottom-4 duration-300 ease-out">
+            {!isLightboxImageLoaded && (
+              <Skeleton
+                aria-hidden
+                className="pointer-events-none absolute left-1/2 top-1/2 z-10 h-[min(45vh,400px)] w-[min(85vw,960px)] max-h-[90vh] max-w-full -translate-x-1/2 -translate-y-1/2 rounded-sm bg-white/15"
+              />
+            )}
             <Image
               src={src}
               alt={alt}
               width={width * 2}
               height={height * 2}
-              className="max-w-full max-h-[90vh] w-auto h-auto object-contain rounded-sm"
+              className={cn(
+                "max-w-full max-h-[90vh] w-auto h-auto object-contain rounded-sm transition-opacity duration-300",
+                isLightboxImageLoaded ? "opacity-100" : "opacity-0",
+              )}
               quality={95}
               sizes="100vw"
+              onLoadingComplete={() => setIsLightboxImageLoaded(true)}
             />
           </div>
         </div>

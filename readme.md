@@ -25,10 +25,6 @@ Then open [localhost:3000](http://localhost:3000).
 
 ## Recent additions
 
-### April 2026
-
-- Light mode: product mockup / screenshot frames use a dedicated surface color (`#EAEDF0`) via the `mockup-frame` theme token (`app/globals.css`).
-
 ## Updating the OG / README preview image
 
 The OpenGraph image and README preview are a **real screenshot** of the top of the site. After design or copy changes, regenerate it:
