@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 // Base metadata that's common across all pages
 const baseMetadata = {
   siteName: "Brendan Ciccone",
-  description: "Brendan Ciccone is a 0 → 1 Staff Product Designer with 8 years of experience turning ideas into fully realized B2B products across healthcare, cybersecurity, and finance.",
+  description: "Brendan Ciccone is a 0 → 1 Staff Product Designer with 8 years of experience shipping API-driven B2B products across fintech, cybersecurity, and healthcare.",
   baseUrl: "https://brendanciccone.com",
   defaultImage: "https://brendanciccone.com/og.png",
   creator: "@brendanciccone",
@@ -22,7 +22,7 @@ export const projectDetails = {
   },
   spontivly: {
     title: "Spontivly",
-    description: "Analytics dashboards for non-technical users",
+    description: "Data-rich operational dashboards for non-technical users",
     image: {
       url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/7-WhNtJkfUVhAkOhZSBPAbhHNURWpkYU.png",
       alt: "Spontivly social analytics dashboard showing engagement metrics, impression trends, and top performing content",
@@ -38,7 +38,7 @@ export const projectDetails = {
   },
   paidly: {
     title: "Paidly",
-    description: "Stripe-integrated invoicing mobile app for SMEs",
+    description: "API-driven invoicing platform built on Stripe for SMEs",
     image: {
       url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/6-T3wsvxOlM1iRLfYYJAzhzlAlH5YblJ.png",
       alt: "Paidly mobile app showing invoice list, automatic reminders feature, and customer creation form",
