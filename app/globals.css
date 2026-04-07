@@ -39,6 +39,8 @@
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
 
+  --color-mockup-frame: var(--mockup-frame);
+
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
 
@@ -86,6 +88,8 @@
   --secondary: oklch(94% 0.004 260);
   --secondary-foreground: oklch(15% 0.004 260);
   --muted: oklch(96% 0.004 260);
+  /* Slightly cooler/lighter slab behind product mockups (screenshots) in light mode */
+  --mockup-frame: #eaedf0;
   --muted-foreground: oklch(45% 0.004 260);
   --accent: oklch(94% 0.004 260);
   --accent-foreground: oklch(15% 0.004 260);
@@ -114,6 +118,7 @@
   --secondary: oklch(20% 0.004 260);
   --secondary-foreground: oklch(95% 0.004 260);
   --muted: oklch(18% 0.004 260);
+  --mockup-frame: var(--muted);
   --muted-foreground: oklch(60% 0.004 260);
   --accent: oklch(20% 0.004 260);
   --accent-foreground: oklch(95% 0.004 260);

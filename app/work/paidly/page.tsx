@@ -32,7 +32,7 @@ export default function PaidlyPage() {
           {/* Hero Image */}
           <FadeIn delay={0} duration={350}>
             <div className="sys-panel overflow-hidden group">
-              <div className="bg-muted p-1">
+              <div className="bg-mockup-frame p-1">
                 <div className="relative w-full overflow-hidden rounded-sm">
                   <LightboxImage
                     src="/work/paidly/1.png"
@@ -131,7 +131,7 @@ export default function PaidlyPage() {
               </p>
             </div>
             <div className="grid grid-cols-1 gap-4">
-              <div className="bg-muted rounded-sm overflow-hidden">
+              <div className="bg-mockup-frame rounded-sm overflow-hidden">
                 <LightboxImage
                   src="/work/paidly/2.png"
                   alt="Paidly app screens showing onboarding flow, invoice creation, business setup, and Stripe integration"
@@ -142,7 +142,7 @@ export default function PaidlyPage() {
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
                 />
               </div>
-              <div className="bg-muted rounded-sm overflow-hidden">
+              <div className="bg-mockup-frame rounded-sm overflow-hidden">
                 <LightboxImage
                   src="/work/paidly/3.png"
                   alt="Paidly brand identity showing the full logo and app icon variations"
@@ -174,7 +174,7 @@ export default function PaidlyPage() {
                 Our collaboration happened primarily through Slack for daily communication. I broke the product into a Kanban board, giving developers clear scope and priorities while keeping momentum toward launch. They were provided with all the tools and documentation needed, including access to Figma and an extensively user-tested high-fidelity prototype.
               </p>
             </div>
-            <div className="bg-muted rounded-sm overflow-hidden">
+            <div className="bg-mockup-frame rounded-sm overflow-hidden">
               <LightboxImage
                 src="/work/paidly/4.png"
                 alt="Paidly app screens showing item management: adding items, empty state, and item creation form"
@@ -203,7 +203,7 @@ export default function PaidlyPage() {
                 It taught me that technical vetting is a founder responsibility, not something you can outsource to reputation or references. I now treat security review and code audits as non-negotiable before shipping anything financial or high stakes, even at the MVP stage.
               </p>
             </div>
-            <div className="bg-muted rounded-sm overflow-hidden">
+            <div className="bg-mockup-frame rounded-sm overflow-hidden">
               <LightboxImage
                 src="/work/paidly/5.png"
                 alt="Paidly app screens showing customer management: customer list, success confirmation, and customer details form"

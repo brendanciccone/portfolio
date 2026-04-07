@@ -33,7 +33,7 @@ export default function SpontivlyPage() {
           {/* Hero Image */}
           <FadeIn delay={0} duration={350}>
             <div className="sys-panel overflow-hidden group">
-              <div className="bg-muted p-1">
+              <div className="bg-mockup-frame p-1">
                 <div className="relative w-full overflow-hidden rounded-sm">
                   <LightboxImage
                     src="/work/spontivly/1.png"
@@ -124,7 +124,7 @@ export default function SpontivlyPage() {
               My first project at Spontivly was redesigning the marketing website to <span className="text-foreground font-medium">drive more leads</span> and establish a consistent brand voice. The brand was fragmented, so this redesign extended beyond the site to the core platform's visual identity. I <span className="text-foreground font-medium">managed the project end-to-end</span>: scoping with marketing and founders, designing the system, advocating for an accessible CMS so anyone could manage content, then hiring and leading engineers to build it. We launched <span className="text-foreground font-medium">over a month ahead of schedule</span> and <span className="text-foreground font-medium">doubled inbound leads</span>.
             </p>
             {/* Before/After comparison slider */}
-            <div className="bg-muted rounded-sm overflow-hidden">
+            <div className="bg-mockup-frame rounded-sm overflow-hidden">
               <ImageComparison
                 beforeSrc="/work/spontivly/2a.png"
                 afterSrc="/work/spontivly/2b.png"
@@ -158,7 +158,7 @@ export default function SpontivlyPage() {
             </p>
             <div className="grid grid-cols-1 gap-4">
               {/* Full width - Dashboard overview */}
-              <div className="bg-muted rounded-sm overflow-hidden">
+              <div className="bg-mockup-frame rounded-sm overflow-hidden">
                 <LightboxImage
                   src="/work/spontivly/3.png"
                   alt="Spontivly dashboard overview showing multiple dashboard cards for different purposes"
@@ -171,7 +171,7 @@ export default function SpontivlyPage() {
               </div>
               {/* 2-column grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="bg-muted rounded-sm overflow-hidden">
+                <div className="bg-mockup-frame rounded-sm overflow-hidden">
                   <LightboxImage
                     src="/work/spontivly/4.png"
                     alt="Spontivly profile settings interface"
@@ -182,7 +182,7 @@ export default function SpontivlyPage() {
                     sizes="(max-width: 640px) 100vw, 50vw"
                   />
                 </div>
-                <div className="bg-muted rounded-sm overflow-hidden">
+                <div className="bg-mockup-frame rounded-sm overflow-hidden">
                   <LightboxImage
                     src="/work/spontivly/5.png"
                     alt="Spontivly team management interface"
@@ -196,7 +196,7 @@ export default function SpontivlyPage() {
               </div>
               {/* 2-column grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="bg-muted rounded-sm overflow-hidden">
+                <div className="bg-mockup-frame rounded-sm overflow-hidden">
                   <LightboxImage
                     src="/work/spontivly/6.png"
                     alt="Spontivly dashboard interface"
@@ -207,7 +207,7 @@ export default function SpontivlyPage() {
                     sizes="(max-width: 640px) 100vw, 50vw"
                   />
                 </div>
-                <div className="bg-muted rounded-sm overflow-hidden">
+                <div className="bg-mockup-frame rounded-sm overflow-hidden">
                   <LightboxImage
                     src="/work/spontivly/7.png"
                     alt="Spontivly data visualization interface"
@@ -220,7 +220,7 @@ export default function SpontivlyPage() {
                 </div>
               </div>
               {/* Full width */}
-              <div className="bg-muted rounded-sm overflow-hidden">
+              <div className="bg-mockup-frame rounded-sm overflow-hidden">
                 <LightboxImage
                   src="/work/spontivly/8.png"
                   alt="Spontivly dashboard builder interface"
@@ -245,7 +245,7 @@ export default function SpontivlyPage() {
             <p className="text-muted-foreground mb-6">
               Users needed granular control over their visualizations. The challenge was designing an interface that could pull data from APIs with wildly inconsistent structures and display it in a way that made sense to non-technical users. I designed a chart builder that balanced power-user features with approachability, allowing anyone to create meaningful visualizations without needing to understand the underlying data.
             </p>
-            <div className="bg-muted rounded-sm overflow-hidden">
+            <div className="bg-mockup-frame rounded-sm overflow-hidden">
               <LightboxImage
                 src="/work/spontivly/9.png"
                 alt="Spontivly chart builder interface showing customization options"
@@ -274,7 +274,7 @@ export default function SpontivlyPage() {
                 I also learned how crucial it is to balance complexity when designing for mixed audiences. Advanced users needed granular control; new users needed to not feel overwhelmed. The approach that worked was surfacing the most relevant features and pushing advanced options into the background while keeping them within reach.
               </p>
             </div>
-            <div className="bg-muted rounded-sm overflow-hidden">
+            <div className="bg-mockup-frame rounded-sm overflow-hidden">
               <LightboxImage
                 src="/work/spontivly/10.png"
                 alt="Spontivly platform interface"

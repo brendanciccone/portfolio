@@ -32,7 +32,7 @@ export default function ImmertecPage() {
           {/* Hero Image */}
           <FadeIn delay={0} duration={350}>
             <div className="sys-panel overflow-hidden group">
-              <div className="bg-muted p-1">
+              <div className="bg-mockup-frame p-1">
                 <div className="relative w-full overflow-hidden rounded-sm">
                   <LightboxImage
                     src="/work/immertec/1.png"
@@ -136,7 +136,7 @@ export default function ImmertecPage() {
                 One thing I pushed back on was showing a large list of active speakers in the VR environment. In an immersive space, sudden visual changes feel jarring. Instead, I advocated for highlighting speakers within the participant list, which rarely exceeded 10 people in most sessions.
               </p>
             </div>
-            <div className="bg-muted rounded-sm overflow-hidden">
+            <div className="bg-mockup-frame rounded-sm overflow-hidden">
               <LightboxImage
                 src="/work/immertec/2.png"
                 alt="Immertec VR interface showing participant list, medical imaging with annotations, and surgical procedure views"
@@ -169,7 +169,7 @@ export default function ImmertecPage() {
               </p>
             </div>
             <div className="grid grid-cols-1 gap-4">
-              <div className="bg-muted rounded-sm overflow-hidden">
+              <div className="bg-mockup-frame rounded-sm overflow-hidden">
                 <LightboxImage
                   src="/work/immertec/3.png"
                   alt="Immertec admin dashboard showing analytics overview, attendance trends, and user management interface"
@@ -181,7 +181,7 @@ export default function ImmertecPage() {
                 />
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="bg-muted rounded-sm overflow-hidden">
+                <div className="bg-mockup-frame rounded-sm overflow-hidden">
                   <LightboxImage
                     src="/work/immertec/4.png"
                     alt="Immertec event metrics and calendar interface"
@@ -192,7 +192,7 @@ export default function ImmertecPage() {
                     sizes="(max-width: 640px) 100vw, 50vw"
                   />
                 </div>
-                <div className="bg-muted rounded-sm overflow-hidden">
+                <div className="bg-mockup-frame rounded-sm overflow-hidden">
                   <LightboxImage
                     src="/work/immertec/5.png"
                     alt="Immertec headset request management interface"
@@ -205,7 +205,7 @@ export default function ImmertecPage() {
                 </div>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="bg-muted rounded-sm overflow-hidden">
+                <div className="bg-mockup-frame rounded-sm overflow-hidden">
                   <LightboxImage
                     src="/work/immertec/6.png"
                     alt="Immertec event list interface"
@@ -216,7 +216,7 @@ export default function ImmertecPage() {
                     sizes="(max-width: 640px) 100vw, 50vw"
                   />
                 </div>
-                <div className="bg-muted rounded-sm overflow-hidden">
+                <div className="bg-mockup-frame rounded-sm overflow-hidden">
                   <LightboxImage
                     src="/work/immertec/7.png"
                     alt="Immertec media library interface"
@@ -258,7 +258,7 @@ export default function ImmertecPage() {
               </p>
               <p>New event? Just send the user a link.</p>
             </div>
-            <div className="bg-muted rounded-sm overflow-hidden">
+            <div className="bg-mockup-frame rounded-sm overflow-hidden">
               <LightboxImage
                 src="/work/immertec/8.png"
                 alt="Immertec web viewer interface showing live surgical procedure with participant list and interactive controls"
@@ -287,7 +287,7 @@ export default function ImmertecPage() {
                 The web viewer taught me that conviction matters, but so does how you build support. Today I'd pair that conviction with earlier prototypes and data to bring stakeholders along faster.
               </p>
             </div>
-            <div className="bg-muted rounded-sm overflow-hidden">
+            <div className="bg-mockup-frame rounded-sm overflow-hidden">
               <LightboxImage
                 src="/work/immertec/9.png"
                 alt="Immertec sign-in interface showing streamlined authentication options"

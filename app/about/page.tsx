@@ -491,22 +491,22 @@ export default function About() {
                 <div className="grid grid-cols-2 gap-4">
                   {[
                     {
-                      name: "I Used to Go to This Bar",
-                      artist: "Joyce Manor",
+                      name: "Take Me to Your Leader",
+                      artist: "King Geedorah",
                       cover: "/about/albums/album1.webp",
-                      url: "https://music.apple.com/us/album/i-used-to-go-to-this-bar/1839918836"
+                      url: "https://music.apple.com/us/album/take-me-to-your-leader/416318858"
                     },
                     {
-                      name: "I Love People",
-                      artist: "Cory Hanson",
-                      cover: "/about/albums/album2.webp",
-                      url: "https://music.apple.com/us/album/i-love-people/1806705948"
-                    },
-                    {
-                      name: "Burnover",
+                      name: "I Looked Out",
                       artist: "Greg Freeman",
+                      cover: "/about/albums/album2.webp",
+                      url: "https://music.apple.com/us/album/i-looked-out/1776689075"
+                    },
+                    {
+                      name: "Love Is Not Enough",
+                      artist: "Converge",
                       cover: "/about/albums/album3.webp",
-                      url: "https://music.apple.com/us/album/burnover/1803343332"
+                      url: "https://music.apple.com/us/album/love-is-not-enough/1848413292"
                     },
                     {
                       name: "LOTTO",
