@@ -79,7 +79,7 @@ export const LightboxImage = ({
           {!isThumbnailLoaded && (
             <Skeleton
               aria-hidden
-              className="absolute inset-0 z-10 rounded-sm bg-slate-200 dark:bg-slate-800"
+              className="absolute inset-0 z-10 rounded-sm bg-slate-300 dark:bg-slate-700"
             />
           )}
           <Image
@@ -120,27 +120,31 @@ export const LightboxImage = ({
             <X className="size-6 text-white" aria-hidden />
           </button>
 
-          {/* Full size image - clicking also closes */}
+          {/* Full size image with mockup frame - clicking also closes */}
           <div className="relative max-w-full max-h-full animate-in fade-in slide-in-from-bottom-4 duration-300 ease-out">
-            {!isLightboxImageLoaded && (
-              <Skeleton
-                aria-hidden
-                className="pointer-events-none absolute left-1/2 top-1/2 z-10 h-[min(45vh,400px)] w-[min(85vw,960px)] max-h-[90vh] max-w-full -translate-x-1/2 -translate-y-1/2 rounded-sm bg-white/15"
-              />
-            )}
-            <Image
-              src={src}
-              alt={alt}
-              width={width * 2}
-              height={height * 2}
-              className={cn(
-                "max-w-full max-h-[90vh] w-auto h-auto object-contain rounded-sm transition-opacity duration-300",
-                isLightboxImageLoaded ? "opacity-100" : "opacity-0",
-              )}
-              quality={95}
-              sizes="100vw"
-              onLoad={() => setIsLightboxImageLoaded(true)}
-            />
+            <div className="bg-mockup-frame rounded-sm p-1">
+              <div className="relative">
+                {!isLightboxImageLoaded && (
+                  <Skeleton
+                    aria-hidden
+                    className="pointer-events-none absolute inset-0 z-10 rounded-sm bg-slate-300 dark:bg-slate-700"
+                  />
+                )}
+                <Image
+                  src={src}
+                  alt={alt}
+                  width={width * 2}
+                  height={height * 2}
+                  className={cn(
+                    "max-w-full max-h-[90vh] w-auto h-auto object-contain rounded-sm transition-opacity duration-300",
+                    isLightboxImageLoaded ? "opacity-100" : "opacity-0",
+                  )}
+                  quality={95}
+                  sizes="100vw"
+                  onLoad={() => setIsLightboxImageLoaded(true)}
+                />
+              </div>
+            </div>
           </div>
         </div>
       )}
