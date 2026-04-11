@@ -173,7 +173,7 @@ export default function Portfolio() {
                 <div className="relative w-full overflow-hidden rounded-sm">
                   <MockupImage
                     src="/work/crenel/1.png"
-                    alt="Crenel autoposting platform showing cross-posting across Farcaster, Bluesky, X, and Mastodon"
+                    alt="Crenel autoposting platform showing automatic crossposting across social platforms"
                     width={1200}
                     height={800}
                     className="w-full transition-transform duration-300 ease-out transform-gpu group-hover:scale-[1.03] group-hover:-translate-y-0.5"
