@@ -1,24 +1,43 @@
 "use client"
 
-import * as React from "react"
+import { useEffect, useState } from "react"
 import { Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
 
-import { Button } from "@/components/ui/button"
-
 export function ThemeToggle() {
-  const { theme, setTheme, resolvedTheme } = useTheme()
+  const { resolvedTheme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  const isDark = mounted && resolvedTheme === "dark"
+
+  const handleToggle = () => {
+    setTheme(isDark ? "light" : "dark")
+  }
 
   return (
-    <Button
-      variant="outline"
-      size="icon"
-      onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
-      aria-label="Toggle theme"
+    <button
+      type="button"
+      onClick={handleToggle}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault()
+          handleToggle()
+        }
+      }}
+      aria-label={isDark ? "Switch to light theme" : "Switch to dark theme"}
+      tabIndex={0}
+      className="h-9 w-9 inline-flex items-center justify-center border-l border-foreground bg-transparent text-foreground transition-colors hover:bg-foreground hover:text-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
     >
-      <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-      <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+      {mounted ? (
+        isDark ? <Sun className="h-4 w-4" aria-hidden /> : <Moon className="h-4 w-4" aria-hidden />
+      ) : (
+        <span className="h-4 w-4" aria-hidden />
+      )}
       <span className="sr-only">Toggle theme</span>
-    </Button>
+    </button>
   )
 }

@@ -1,25 +1,14 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-space-grotesk);
-  --font-heading: var(--font-space-mono);
-  --font-mono: var(--font-space-mono);
+  --font-sans: var(--font-jetbrains-mono);
+  --font-mono: var(--font-jetbrains-mono);
+  --font-display: var(--font-archivo-black);
+  --font-heading: var(--font-archivo-black);
 
-  --radius-lg: var(--radius);
-  --radius-md: calc(var(--radius) - 1px);
-  --radius-sm: calc(var(--radius) - 2px);
-
-  --color-slate-50: oklch(97.5% 0.004 260);
-  --color-slate-100: oklch(94% 0.004 260);
-  --color-slate-200: oklch(88% 0.004 260);
-  --color-slate-300: oklch(78% 0.004 260);
-  --color-slate-400: oklch(64% 0.004 260);
-  --color-slate-500: oklch(55% 0.004 260);
-  --color-slate-600: oklch(45% 0.004 260);
-  --color-slate-700: oklch(35% 0.004 260);
-  --color-slate-800: oklch(25% 0.004 260);
-  --color-slate-900: oklch(17.5% 0.004 260);
-  --color-slate-950: oklch(13% 0.004 260);
+  --radius-lg: 0px;
+  --radius-md: 0px;
+  --radius-sm: 0px;
 
   --color-border: var(--border);
   --color-input: var(--input);
@@ -50,6 +39,8 @@
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
 
+  --color-live: var(--live);
+
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
 }
@@ -73,61 +64,66 @@
 }
 
 /*
- * Light mode — oklch(L% 0.004 260)
- * Scale: 100 / 98 / 96 / 94 / 92 / 90 … 45 … 15
+ * Light — paper / ink
+ * Pure achromatic: #f1f1ee paper, #0a0a0a ink. Two rule weights — ink (0.92)
+ * for cell outlines, soft (0.18) for internal subdivisions.
  */
 :root {
-  --background: oklch(98% 0.004 260);
-  --foreground: oklch(15% 0.004 260);
-  --card: oklch(100% 0.004 260);
-  --card-foreground: oklch(15% 0.004 260);
-  --popover: oklch(100% 0.004 260);
-  --popover-foreground: oklch(15% 0.004 260);
-  --primary: oklch(15% 0.004 260);
-  --primary-foreground: oklch(98% 0.004 260);
-  --secondary: oklch(94% 0.004 260);
-  --secondary-foreground: oklch(15% 0.004 260);
-  --muted: oklch(96% 0.004 260);
-  /* Slightly cooler/lighter slab behind product mockups (screenshots) in light mode */
-  --mockup-frame: #eaedf0;
-  --muted-foreground: oklch(45% 0.004 260);
-  --accent: oklch(94% 0.004 260);
-  --accent-foreground: oklch(15% 0.004 260);
-  --destructive: oklch(60% 0.15 27);
-  --destructive-foreground: oklch(98% 0.004 260);
-  --border: oklch(90% 0.004 260);
-  --input: oklch(92% 0.004 260);
-  --ring: oklch(15% 0.004 260);
-  --radius: 0.1875rem;
-  --sys-corner-opacity: 0.22;
+  --background: #f1f1ee;
+  --foreground: #0a0a0a;
+  --card: #f1f1ee;
+  --card-foreground: #0a0a0a;
+  --popover: #f1f1ee;
+  --popover-foreground: #0a0a0a;
+  --primary: #0a0a0a;
+  --primary-foreground: #f1f1ee;
+  --secondary: #e7e7e3;
+  --secondary-foreground: #0a0a0a;
+  --muted: #e7e7e3;
+  --mockup-frame: #e7e7e3;
+  --muted-foreground: rgba(10, 10, 10, 0.62);
+  --accent: #e7e7e3;
+  --accent-foreground: #0a0a0a;
+  --destructive: #b91c1c;
+  --destructive-foreground: #f1f1ee;
+  --border: rgba(10, 10, 10, 0.92);
+  --input: rgba(10, 10, 10, 0.92);
+  --ring: #0a0a0a;
+  --radius: 0px;
+
+  --rule-soft: rgba(10, 10, 10, 0.18);
+  --rule-ink: rgba(10, 10, 10, 0.92);
+  --live: #d1410c;
 }
 
 /*
- * Dark mode — oklch(L% 0.004 260)
- * Scale: 10 / 13 / 18 / 20 / 22 / 24 … 50 / 60 … 95
+ * Dark — ground / ink
  */
 .dark {
-  --background: oklch(10% 0.004 260);
-  --foreground: oklch(95% 0.004 260);
-  --card: oklch(13% 0.004 260);
-  --card-foreground: oklch(95% 0.004 260);
-  --popover: oklch(13% 0.004 260);
-  --popover-foreground: oklch(95% 0.004 260);
-  --primary: oklch(95% 0.004 260);
-  --primary-foreground: oklch(13% 0.004 260);
-  --secondary: oklch(20% 0.004 260);
-  --secondary-foreground: oklch(95% 0.004 260);
-  --muted: oklch(18% 0.004 260);
-  --mockup-frame: var(--muted);
-  --muted-foreground: oklch(60% 0.004 260);
-  --accent: oklch(20% 0.004 260);
-  --accent-foreground: oklch(95% 0.004 260);
-  --destructive: oklch(40% 0.15 27);
-  --destructive-foreground: oklch(95% 0.004 260);
-  --border: oklch(24% 0.004 260);
-  --input: oklch(22% 0.004 260);
-  --ring: oklch(50% 0.004 260);
-  --sys-corner-opacity: 0.35;
+  --background: #0a0a0a;
+  --foreground: #f1f1ee;
+  --card: #0a0a0a;
+  --card-foreground: #f1f1ee;
+  --popover: #0a0a0a;
+  --popover-foreground: #f1f1ee;
+  --primary: #f1f1ee;
+  --primary-foreground: #0a0a0a;
+  --secondary: #1a1a1a;
+  --secondary-foreground: #f1f1ee;
+  --muted: #161616;
+  --mockup-frame: #141414;
+  --muted-foreground: rgba(241, 241, 238, 0.62);
+  --accent: #1a1a1a;
+  --accent-foreground: #f1f1ee;
+  --destructive: #ef4444;
+  --destructive-foreground: #f1f1ee;
+  --border: rgba(241, 241, 238, 0.92);
+  --input: rgba(241, 241, 238, 0.92);
+  --ring: #f1f1ee;
+
+  --rule-soft: rgba(241, 241, 238, 0.18);
+  --rule-ink: rgba(241, 241, 238, 0.92);
+  --live: #ff6a2b;
 }
 
 html {
@@ -145,56 +141,232 @@ body {
   @apply bg-background text-foreground min-h-screen relative;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  letter-spacing: 0;
 }
 
-
-
-.sys-panel {
-  @apply border border-border bg-card rounded-sm relative;
+::selection {
+  background: var(--foreground);
+  color: var(--background);
 }
 
-.sys-panel::after {
-  content: "";
-  position: absolute;
-  inset: -1px;
+/* ----------------------------------------------------------------------------
+ * Technical-document type system
+ * ------------------------------------------------------------------------- */
+
+.sys-display {
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  line-height: 0.95;
+}
+
+.sys-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--muted-foreground);
+  line-height: 1;
+}
+
+.sys-label-ink {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--foreground);
+  line-height: 1;
+}
+
+/* ----------------------------------------------------------------------------
+ * Numbered section header — [01] TITLE ─────── meta
+ * ------------------------------------------------------------------------- */
+
+.sys-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.sys-section-num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--foreground);
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.sys-section-title {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--foreground);
+  line-height: 1;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.sys-section-rule {
+  flex: 1;
+  height: 1px;
+  background: var(--rule-ink);
+}
+
+.sys-section-meta {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--muted-foreground);
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+/* ----------------------------------------------------------------------------
+ * Cells — bordered, square, hairline divisions inside
+ * ------------------------------------------------------------------------- */
+
+.sys-cell {
+  border: 1px solid var(--rule-ink);
+  background: var(--card);
+  position: relative;
+}
+
+.sys-cell-link {
+  display: block;
+  border: 1px solid var(--rule-ink);
+  background: var(--card);
+  position: relative;
+  transition: transform 150ms ease-out, box-shadow 150ms ease-out;
+}
+
+.sys-cell-link:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 0 var(--rule-ink);
+}
+
+.sys-cell-link:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.sys-cell-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--rule-ink);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--muted-foreground);
+  line-height: 1;
+  min-height: 28px;
+}
+
+.sys-cell-header > .sys-cell-meta {
+  margin-left: auto;
+  color: var(--muted-foreground);
+}
+
+.sys-cell-header .sys-cell-id {
+  color: var(--foreground);
+}
+
+.sys-cell-media {
+  background: var(--mockup-frame);
+  border-bottom: 1px solid var(--rule-ink);
+  position: relative;
+  overflow: hidden;
+}
+
+.sys-cell-body {
+  padding: 18px 14px;
+}
+
+.sys-cell-body-tight {
+  padding: 14px;
+}
+
+/* Inverted block for rhythm — used sparingly (e.g. one cell per region) */
+.sys-cell-inverted {
+  background: var(--foreground);
+  color: var(--background);
+}
+
+.sys-cell-inverted .sys-cell-header {
+  border-bottom-color: var(--background);
+  color: var(--background);
+}
+
+/* ----------------------------------------------------------------------------
+ * Tags — bordered, never filled
+ * ------------------------------------------------------------------------- */
+
+.sys-tag {
+  display: inline-flex;
+  align-items: center;
+  height: 22px;
+  padding: 0 8px;
+  border: 1px solid var(--rule-ink);
+  background: transparent;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--foreground);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* ----------------------------------------------------------------------------
+ * Dividers
+ * ------------------------------------------------------------------------- */
+
+.sys-rule {
+  height: 1px;
+  background: var(--rule-ink);
+  width: 100%;
+}
+
+.sys-rule-soft {
+  height: 1px;
+  background: var(--rule-soft);
+  width: 100%;
+}
+
+/* ----------------------------------------------------------------------------
+ * Page frame — corner brackets at viewport corners
+ * ------------------------------------------------------------------------- */
+
+.sys-frame {
+  position: fixed;
+  inset: 0;
+  z-index: 5;
   pointer-events: none;
-  z-index: 10;
-  background-image:
-    linear-gradient(var(--foreground), var(--foreground)),
-    linear-gradient(var(--foreground), var(--foreground)),
-    linear-gradient(var(--foreground), var(--foreground)),
-    linear-gradient(var(--foreground), var(--foreground)),
-    linear-gradient(var(--foreground), var(--foreground)),
-    linear-gradient(var(--foreground), var(--foreground)),
-    linear-gradient(var(--foreground), var(--foreground)),
-    linear-gradient(var(--foreground), var(--foreground));
-  background-size:
-    10px 1px, 1px 10px,
-    10px 1px, 1px 10px,
-    10px 1px, 1px 10px,
-    10px 1px, 1px 10px;
-  background-position:
-    left -4px top 0px, left 0px top -4px,
-    right -4px top 0px, right 0px top -4px,
-    left -4px bottom 0px, left 0px bottom -4px,
-    right -4px bottom 0px, right 0px bottom -4px;
-  background-repeat: no-repeat;
-  opacity: var(--sys-corner-opacity);
 }
 
-.sys-section-label {
-  @apply text-xs font-mono uppercase tracking-[0.2em] text-muted-foreground flex items-center gap-2;
+.sys-frame-corner {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  color: var(--foreground);
+  opacity: 0.55;
 }
 
-.sys-section-label::before {
-  content: "//";
-  @apply text-foreground/30 font-bold;
+.sys-frame-corner svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1;
 }
 
-.sys-section-header {
-  @apply flex items-center gap-3 w-full;
-}
-
-.sys-section-line {
-  @apply h-px bg-border flex-1 relative;
-}

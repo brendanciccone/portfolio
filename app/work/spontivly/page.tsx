@@ -10,121 +10,79 @@ export const metadata = generatePageMetadata({
   imageHeight: 800,
 });
 
-import Image from "next/image"
-import { LightboxImage } from "@/components/lightbox"
-import { ImageComparison } from "@/components/image-comparison"
 import Link from "next/link"
-import { ArrowRight, Plug, Rocket, MousePointerClick } from "lucide-react"
-import { Badge } from "@/components/ui/badge"
+import { ArrowRight } from "lucide-react"
+import { ImageComparison } from "@/components/image-comparison"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { FadeIn } from "@/components/fade-in"
+import {
+  WorkSection,
+  WorkHero,
+  MetricGrid,
+  WorkProse,
+  WorkFigure,
+  WorkFigureSmall,
+} from "@/components/work-section"
 
 export default function SpontivlyPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Header />
-      
-      <div className="max-w-[1024px] mx-auto px-5 pt-24 pb-6 sm:pb-8 flex flex-col gap-6">
-        
-        {/* Page Header - Hero + Title + Badges */}
-        <header>
-          {/* Hero Image */}
-          <FadeIn delay={0} duration={350}>
-            <div className="sys-panel overflow-hidden group">
-              <div className="bg-mockup-frame p-1">
-                <div className="relative w-full overflow-hidden rounded-sm">
-                  <LightboxImage
-                    src="/work/spontivly/1.png"
-                    alt="Spontivly social analytics dashboard showing engagement metrics, impression trends, and top performing content"
-                    width={1200}
-                    height={800}
-                    className="w-full"
-                    priority
-                    quality={80}
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
-                  />
-                </div>
-              </div>
-              <div className="p-4 sm:p-7">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 rounded-sm border border-border flex items-center justify-center bg-card overflow-hidden flex-shrink-0">
-                    <Image
-                      src="/about/logos/spontivly.jpeg"
-                      alt="Spontivly logo"
-                      width={48}
-                      height={48}
-                      className="w-full h-full object-cover"
-                      quality={80}
-                      sizes="48px"
-                    />
-                  </div>
-                  <div>
-                    <h1 className="text-lg sm:text-xl font-heading font-semibold">Spontivly</h1>
-                    <p className="text-sm sm:text-base text-muted-foreground">
-                      Analytics dashboards for non-technical users
-                    </p>
-                  </div>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  <Badge>Senior Product Designer (Contract)</Badge>
-                  <Badge>2023</Badge>
-                  <Badge>Seed</Badge>
-                  <Badge>Analytics</Badge>
-                </div>
-              </div>
-            </div>
-          </FadeIn>
-        </header>
 
-        {/* Overview + Highlights */}
-        <FadeIn delay={50} duration={350}>
-          <section className="sys-panel p-4 sm:p-7">
-            <div className="sys-section-header mb-6">
-              <h2 className="sys-section-label">Overview</h2>
-              <div className="sys-section-line" />
-            </div>
-            <p className="text-muted-foreground mb-6">
-              In 2023, I joined Spontivly as the <span className="text-foreground font-medium">only designer at a venture-backed startup</span> focused on democratizing analytics dashboards. I also took on PM responsibilities: working directly with cofounders to understand vision and business goals, partnering with the head of engineering to prioritize and roadmap features, and <span className="text-foreground font-medium">regularly joining sales calls and talking to customers</span> to inform product direction.
-            </p>
-            <ul className="list-disc pl-5 space-y-2 text-muted-foreground mb-6">
-              <li>Adopted by professional sports teams including the Tampa Bay Rowdies</li>
-              <li>Used by Carta and other notable B2B companies for stakeholder reporting</li>
-              <li>Unified fragmented brand identity across marketing site and core platform</li>
-            </ul>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div className="bg-muted/30 border border-border rounded-sm p-4">
-                <Plug className="w-4 h-4 text-muted-foreground mb-2" />
-                <p className="text-base font-semibold mb-1">120+ APIs supported</p>
-                <p className="text-sm text-muted-foreground">Over 120 API integrations supported in the newly designed platform</p>
-              </div>
-              <div className="bg-muted/30 border border-border rounded-sm p-4">
-                <Rocket className="w-4 h-4 text-muted-foreground mb-2" />
-                <p className="text-base font-semibold mb-1">Full website redesign</p>
-                <p className="text-sm text-muted-foreground">Relaunched marketing website 1 month ahead of schedule, doubling inbound leads</p>
-              </div>
-              <div className="bg-muted/30 border border-border rounded-sm p-4">
-                <MousePointerClick className="w-4 h-4 text-muted-foreground mb-2" />
-                <p className="text-base font-semibold mb-1">Powered 90%+ of sales demos</p>
-                <p className="text-sm text-muted-foreground">Interactive prototypes I created to personalize demos to each prospect's brand</p>
-              </div>
-            </div>
-          </section>
+      <div className="max-w-[1024px] mx-auto px-5 pt-24 pb-6 sm:pb-8 flex flex-col gap-6">
+        <FadeIn delay={0} duration={350}>
+          <WorkHero
+            num="003"
+            name="Spontivly"
+            description="Analytics dashboards for non-technical users."
+            logo="/about/logos/spontivly.jpeg"
+            image="/work/spontivly/1.png"
+            imageAlt="Spontivly social analytics dashboard showing engagement metrics, impression trends, and top performing content"
+            tags={["Senior Designer (Contract)", "2023", "Seed", "Analytics"]}
+          />
         </FadeIn>
 
-        {/* Website Redesign Section */}
+        <FadeIn delay={50} duration={350}>
+          <WorkSection num="01" title="Overview" meta="Context">
+            <WorkProse>
+              <p>
+                In 2023, I joined Spontivly as the{" "}
+                <span className="text-foreground font-medium">only designer at a venture-backed startup</span> focused on democratizing analytics dashboards. I also took on PM responsibilities: working directly with cofounders to understand vision and business goals, partnering with the head of engineering to prioritize and roadmap features, and{" "}
+                <span className="text-foreground font-medium">regularly joining sales calls and talking to customers</span> to inform product direction.
+              </p>
+            </WorkProse>
+            <ul className="list-none border-t border-foreground/15 divide-y divide-foreground/15">
+              {[
+                "Adopted by professional sports teams including the Tampa Bay Rowdies.",
+                "Used by Carta and other notable B2B companies for stakeholder reporting.",
+                "Unified fragmented brand identity across marketing site and core platform.",
+              ].map((line) => (
+                <li key={line} className="py-2.5 flex gap-3 font-mono text-[13px] leading-relaxed text-muted-foreground">
+                  <span className="text-foreground/40 flex-shrink-0">→</span>
+                  <span>{line}</span>
+                </li>
+              ))}
+            </ul>
+            <MetricGrid
+              items={[
+                { label: "Integrations", value: "120+", description: "API integrations supported in the newly designed platform." },
+                { label: "Site Relaunch", value: "−1 Month", description: "Relaunched marketing website ahead of schedule, doubling inbound leads." },
+                { label: "Demo Coverage", value: "90%+", description: "Interactive prototypes powering personalized sales demos." },
+              ]}
+            />
+          </WorkSection>
+        </FadeIn>
+
         <FadeIn delay={75} duration={350}>
-          <section className="sys-panel p-4 sm:p-7">
-            <div className="sys-section-header mb-6">
-              <h2 className="sys-section-label">Website Redesign</h2>
-              <div className="sys-section-line" />
-            </div>
-            <p className="text-muted-foreground mb-6">
-              My first project at Spontivly was redesigning the marketing website to <span className="text-foreground font-medium">drive more leads</span> and establish a consistent brand voice. The brand was fragmented, so this redesign extended beyond the site to the core platform's visual identity. I <span className="text-foreground font-medium">managed the project end-to-end</span>: scoping with marketing and founders, designing the system, advocating for an accessible CMS so anyone could manage content, then hiring and leading engineers to build it. We launched <span className="text-foreground font-medium">over a month ahead of schedule</span> and <span className="text-foreground font-medium">doubled inbound leads</span>.
-            </p>
-            {/* Before/After comparison slider */}
-            <div className="bg-mockup-frame rounded-sm overflow-hidden">
+          <WorkSection num="02" title="Website Redesign" meta="Brand">
+            <WorkProse>
+              <p>
+                My first project at Spontivly was redesigning the marketing website to <span className="text-foreground font-medium">drive more leads</span> and establish a consistent brand voice. The brand was fragmented, so this redesign extended beyond the site to the core platform&apos;s visual identity. I <span className="text-foreground font-medium">managed the project end-to-end</span>: scoping with marketing and founders, designing the system, advocating for an accessible CMS so anyone could manage content, then hiring and leading engineers to build it. We launched <span className="text-foreground font-medium">over a month ahead of schedule</span> and <span className="text-foreground font-medium">doubled inbound leads</span>.
+              </p>
+            </WorkProse>
+            <div className="border border-foreground/30 bg-mockup-frame">
               <ImageComparison
                 beforeSrc="/work/spontivly/2a.png"
                 afterSrc="/work/spontivly/2b.png"
@@ -134,172 +92,78 @@ export default function SpontivlyPage() {
                 height={800}
               />
             </div>
-          </section>
+          </WorkSection>
         </FadeIn>
 
-        {/* Dashboard Builder Section */}
         <FadeIn delay={100} duration={350}>
-          <section className="sys-panel p-4 sm:p-7">
-            <div className="sys-section-header mb-6">
-              <h2 className="sys-section-label">Dashboard Builder</h2>
-              <div className="sys-section-line" />
-            </div>
-            <p className="text-muted-foreground mb-6">
-              I led the design of the analytics dashboard builder and an admin dashboard for managing user-created
-              dashboards and permissions. The goal was to enable users to connect any API from social media, CRMs,
-              and more and customize the generated charts and tables in a drag-and-drop builder. I collaborated
-              closely with marketing, engineering, and co-founders to understand our users and their varied goals,
-              from providing stakeholder reports to making data-driven decisions. I tried to steer the design toward
-              something that felt familiar while still incorporating all of the features that make Spontivly a
-              unique platform for data analysis.
-            </p>
-            <p className="text-muted-foreground mb-6">
-              I was regularly on sales calls and talking directly to customers, which meant I had a clear view of what users actually needed. The biggest challenge was <span className="text-foreground font-medium">managing outsized demand against a small engineering team</span>. Not everything could ship immediately, so I worked with the engineering lead to prioritize ruthlessly and helped stakeholders understand constraints and timelines.
-            </p>
+          <WorkSection num="03" title="Dashboard Builder" meta="Core Surface">
+            <WorkProse>
+              <p>
+                I led the design of the analytics dashboard builder and an admin dashboard for managing user-created dashboards and permissions. The goal was to enable users to connect any API from social media, CRMs, and more and customize the generated charts and tables in a drag-and-drop builder. I collaborated closely with marketing, engineering, and co-founders to understand our users and their varied goals, from providing stakeholder reports to making data-driven decisions. I tried to steer the design toward something that felt familiar while still incorporating all of the features that make Spontivly a unique platform for data analysis.
+              </p>
+              <p>
+                I was regularly on sales calls and talking directly to customers, which meant I had a clear view of what users actually needed. The biggest challenge was{" "}
+                <span className="text-foreground font-medium">managing outsized demand against a small engineering team</span>. Not everything could ship immediately, so I worked with the engineering lead to prioritize ruthlessly and helped stakeholders understand constraints and timelines.
+              </p>
+            </WorkProse>
             <div className="grid grid-cols-1 gap-4">
-              {/* Full width - Dashboard overview */}
-              <div className="bg-mockup-frame rounded-sm overflow-hidden">
-                <LightboxImage
-                  src="/work/spontivly/3.png"
-                  alt="Spontivly dashboard overview showing multiple dashboard cards for different purposes"
-                  width={1200}
-                  height={800}
-                  className="w-full"
-                  quality={80}
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
-                />
-              </div>
-              {/* 2-column grid */}
+              <WorkFigure src="/work/spontivly/3.png" alt="Spontivly dashboard overview showing multiple dashboard cards for different purposes" caption="Dashboard Overview" />
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="bg-mockup-frame rounded-sm overflow-hidden">
-                  <LightboxImage
-                    src="/work/spontivly/4.png"
-                    alt="Spontivly profile settings interface"
-                    width={600}
-                    height={400}
-                    className="w-full"
-                    quality={80}
-                    sizes="(max-width: 640px) 100vw, 50vw"
-                  />
-                </div>
-                <div className="bg-mockup-frame rounded-sm overflow-hidden">
-                  <LightboxImage
-                    src="/work/spontivly/5.png"
-                    alt="Spontivly team management interface"
-                    width={600}
-                    height={400}
-                    className="w-full"
-                    quality={80}
-                    sizes="(max-width: 640px) 100vw, 50vw"
-                  />
-                </div>
+                <WorkFigureSmall src="/work/spontivly/4.png" alt="Spontivly profile settings interface" />
+                <WorkFigureSmall src="/work/spontivly/5.png" alt="Spontivly team management interface" />
               </div>
-              {/* 2-column grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="bg-mockup-frame rounded-sm overflow-hidden">
-                  <LightboxImage
-                    src="/work/spontivly/6.png"
-                    alt="Spontivly dashboard interface"
-                    width={600}
-                    height={400}
-                    className="w-full"
-                    quality={80}
-                    sizes="(max-width: 640px) 100vw, 50vw"
-                  />
-                </div>
-                <div className="bg-mockup-frame rounded-sm overflow-hidden">
-                  <LightboxImage
-                    src="/work/spontivly/7.png"
-                    alt="Spontivly data visualization interface"
-                    width={600}
-                    height={400}
-                    className="w-full"
-                    quality={80}
-                    sizes="(max-width: 640px) 100vw, 50vw"
-                  />
-                </div>
+                <WorkFigureSmall src="/work/spontivly/6.png" alt="Spontivly dashboard interface" />
+                <WorkFigureSmall src="/work/spontivly/7.png" alt="Spontivly data visualization interface" />
               </div>
-              {/* Full width */}
-              <div className="bg-mockup-frame rounded-sm overflow-hidden">
-                <LightboxImage
-                  src="/work/spontivly/8.png"
-                  alt="Spontivly dashboard builder interface"
-                  width={1200}
-                  height={800}
-                  className="w-full"
-                  quality={80}
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
-                />
-              </div>
+              <WorkFigure src="/work/spontivly/8.png" alt="Spontivly dashboard builder interface" caption="Dashboard Builder" />
             </div>
-          </section>
+          </WorkSection>
         </FadeIn>
 
-        {/* Chart Builder Section */}
         <FadeIn delay={125} duration={350}>
-          <section className="sys-panel p-4 sm:p-7">
-            <div className="sys-section-header mb-6">
-              <h2 className="sys-section-label">Chart Customization</h2>
-              <div className="sys-section-line" />
-            </div>
-            <p className="text-muted-foreground mb-6">
-              Users needed granular control over their visualizations, but APIs returned data in wildly inconsistent formats. I worked with engineering to design{' '}
-              <span className="text-foreground font-medium">smart defaults and fallback states</span> so the charting experience felt consistent regardless of the data source. The goal was balancing power-user features with approachability so anyone could create meaningful visualizations without understanding the underlying data.
-            </p>
-            <div className="bg-mockup-frame rounded-sm overflow-hidden">
-              <LightboxImage
-                src="/work/spontivly/9.png"
-                alt="Spontivly chart builder interface showing customization options"
-                width={1200}
-                height={800}
-                className="w-full"
-                quality={80}
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
-              />
-            </div>
-          </section>
+          <WorkSection num="04" title="Chart Customization" meta="Detail">
+            <WorkProse>
+              <p>
+                Users needed granular control over their visualizations, but APIs returned data in wildly inconsistent formats. I worked with engineering to design{" "}
+                <span className="text-foreground font-medium">smart defaults and fallback states</span> so the charting experience felt consistent regardless of the data source. The goal was balancing power-user features with approachability so anyone could create meaningful visualizations without understanding the underlying data.
+              </p>
+            </WorkProse>
+            <WorkFigure src="/work/spontivly/9.png" alt="Spontivly chart builder interface showing customization options" caption="Chart Builder" />
+          </WorkSection>
         </FadeIn>
 
-        {/* Insights */}
         <FadeIn delay={150} duration={350}>
-          <section className="sys-panel p-4 sm:p-7">
-            <div className="sys-section-header mb-6">
-              <h2 className="sys-section-label">Insights</h2>
-              <div className="sys-section-line" />
-            </div>
-            <p className="text-muted-foreground mb-6">
-              The hardest part wasn't the design work. It was managing a team of developers while keeping founder and customer expectations realistic against what we could actually ship. At a seed-stage startup with strong inbound interest, everyone wants everything now. My job was to absorb that pressure and translate it into a{' '}
-              <span className="text-foreground font-medium">buildable roadmap</span>
-              {' '}without burning out the engineering team or losing stakeholder trust. I built the prioritization process across design, engineering, and founders:{' '}
-              <span className="text-foreground font-medium">shared criteria for what shipped next</span>
-              , explicit tradeoffs when scope conflicted, and a rhythm that kept build capacity aligned with business goals.
-            </p>
-            <div className="bg-mockup-frame rounded-sm overflow-hidden">
-              <LightboxImage
-                src="/work/spontivly/10.png"
-                alt="Spontivly platform interface"
-                width={1200}
-                height={800}
-                className="w-full"
-                quality={80}
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
-              />
-            </div>
-          </section>
+          <WorkSection num="05" title="Insights" meta="Reflection">
+            <WorkProse>
+              <p>
+                The hardest part wasn&apos;t the design work. It was managing a team of developers while keeping founder and customer expectations realistic against what we could actually ship. At a seed-stage startup with strong inbound interest, everyone wants everything now. My job was to absorb that pressure and translate it into a{" "}
+                <span className="text-foreground font-medium">buildable roadmap</span>{" "}
+                without burning out the engineering team or losing stakeholder trust. I built the prioritization process across design, engineering, and founders:{" "}
+                <span className="text-foreground font-medium">shared criteria for what shipped next</span>
+                , explicit tradeoffs when scope conflicted, and a rhythm that kept build capacity aligned with business goals.
+              </p>
+            </WorkProse>
+            <WorkFigure src="/work/spontivly/10.png" alt="Spontivly platform interface" caption="Platform Surface" />
+          </WorkSection>
         </FadeIn>
 
-        {/* CTA Section */}
         <FadeIn delay={175} duration={350}>
-          <section className="sys-panel p-4 sm:p-7 text-center">
-            <h2 className="text-xl sm:text-[24px] font-semibold mb-1 sm:mb-2 text-center">Let's build something great</h2>
-            <p className="text-muted-foreground mb-6">
-              Ready to take your product from 0 → 1 or looking to expand your team?
-            </p>
-            <Button asChild size="lg" className="px-4">
-              <Link href="/contact">
-                Reach out <ArrowRight className="ml-1 h-4 w-4 transition-all duration-200" />
-              </Link>
-            </Button>
+          <section className="sys-cell sys-cell-inverted">
+            <div className="p-7 sm:p-10 text-center">
+              <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-background/60 mb-3">
+                Next / Contact
+              </p>
+              <h2 className="sys-display text-2xl sm:text-3xl mb-2">Let&apos;s build something great.</h2>
+              <p className="font-mono text-[13px] text-background/80 mb-6">
+                Ready to take your product from 0 → 1 or looking to expand your team?
+              </p>
+              <Button asChild variant="outline" size="lg" className="border-background bg-transparent text-background hover:bg-background hover:text-foreground hover:shadow-[4px_4px_0_0_var(--background)]">
+                <Link href="/contact">
+                  Reach out <ArrowRight className="ml-1 h-4 w-4" />
+                </Link>
+              </Button>
+            </div>
           </section>
         </FadeIn>
 

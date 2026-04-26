@@ -10,224 +10,123 @@ export const metadata = generatePageMetadata({
   imageHeight: 800,
 });
 
-import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, Users, Star, Handshake } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
 import { FadeIn } from "@/components/fade-in"
-import { LightboxImage } from "@/components/lightbox"
+import {
+  WorkSection,
+  WorkHero,
+  MetricGrid,
+  WorkProse,
+  WorkFigure,
+} from "@/components/work-section"
 
 export default function PaidlyPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Header />
-      
-      <div className="max-w-[1024px] mx-auto px-5 pt-24 pb-6 sm:pb-8 flex flex-col gap-6">
-        
-        {/* Page Header - Hero + Title + Badges */}
-        <header>
-          {/* Hero Image */}
-          <FadeIn delay={0} duration={350}>
-            <div className="sys-panel overflow-hidden group">
-              <div className="bg-mockup-frame p-1">
-                <div className="relative w-full overflow-hidden rounded-sm">
-                  <LightboxImage
-                    src="/work/paidly/1.png"
-                    alt="Paidly mobile app showing invoice screens"
-                    width={1200}
-                    height={800}
-                    className="w-full"
-                    priority
-                    quality={80}
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
-                  />
-                </div>
-              </div>
-              <div className="p-4 sm:p-7">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 rounded-sm border border-border flex items-center justify-center bg-card overflow-hidden flex-shrink-0">
-                    <Image
-                      src="/about/logos/paidly.jpeg"
-                      alt="Paidly logo"
-                      width={48}
-                      height={48}
-                      className="w-full h-full object-cover"
-                      quality={80}
-                      sizes="48px"
-                    />
-                  </div>
-                  <div>
-                    <h1 className="text-lg sm:text-xl font-heading font-semibold">Paidly</h1>
-                    <p className="text-sm sm:text-base text-muted-foreground">
-                      Stripe-integrated invoicing mobile app for SMEs
-                    </p>
-                  </div>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  <Badge>Founder</Badge>
-                  <Badge>2020</Badge>
-                  <Badge>Stripe Partner</Badge>
-                  <Badge>Fintech</Badge>
-                </div>
-              </div>
-            </div>
-          </FadeIn>
-        </header>
 
-        {/* Overview + Highlights */}
-        <FadeIn delay={50} duration={350}>
-          <section className="sys-panel p-4 sm:p-7">
-            <div className="sys-section-header mb-6">
-              <h2 className="sys-section-label">Overview</h2>
-              <div className="sys-section-line" />
-            </div>
-            <p className="text-muted-foreground mb-6">
-              As a freelancer, I experienced a common frustration: no way to send Stripe invoices on the go for free. In 2020, with remote work booming and freelancing on the rise, I saw an opportunity to solve my own problem at scale. After conducting market research, I founded Paidly and assembled a small team of developers, designing the entire application that launched on iOS and Android. From idea to launch took <span className="text-foreground font-medium">2.5 months</span>.
-            </p>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div className="bg-muted/30 border border-border rounded-sm p-4">
-                <Users className="w-4 h-4 text-muted-foreground mb-2" />
-                <p className="text-base font-semibold mb-1">2,000+ users served</p>
-                <p className="text-sm text-muted-foreground">Served over 2,000 small and medium business clients</p>
-              </div>
-              <div className="bg-muted/30 border border-border rounded-sm p-4">
-                <Handshake className="w-4 h-4 text-muted-foreground mb-2" />
-                <p className="text-base font-semibold mb-1">Stripe partner</p>
-                <p className="text-sm text-muted-foreground">Became an official Stripe integration partner</p>
-              </div>
-              <div className="bg-muted/30 border border-border rounded-sm p-4">
-                <Star className="w-4 h-4 text-muted-foreground mb-2" />
-                <p className="text-base font-semibold mb-1">$500k+ invoicing volume</p>
-                <p className="text-sm text-muted-foreground">Processed over half a million dollars in invoices</p>
-              </div>
-            </div>
-          </section>
+      <div className="max-w-[1024px] mx-auto px-5 pt-24 pb-6 sm:pb-8 flex flex-col gap-6">
+        <FadeIn delay={0} duration={350}>
+          <WorkHero
+            num="004"
+            name="Paidly"
+            description="Stripe-integrated invoicing mobile app for SMEs."
+            logo="/about/logos/paidly.jpeg"
+            image="/work/paidly/1.png"
+            imageAlt="Paidly mobile app showing invoice screens"
+            tags={["Founder", "2020", "Stripe Partner", "Fintech"]}
+          />
         </FadeIn>
 
-        {/* Research Section */}
-        <FadeIn delay={75} duration={350}>
-          <section className="sys-panel p-4 sm:p-7">
-            <div className="sys-section-header mb-6">
-              <h2 className="sys-section-label">Research</h2>
-              <div className="sys-section-line" />
-            </div>
-            <div className="space-y-4 text-muted-foreground mb-6">
+        <FadeIn delay={50} duration={350}>
+          <WorkSection num="01" title="Overview" meta="Context">
+            <WorkProse>
               <p>
-                Drawing on my experiences with invoicing, I looked into what was available in the market for iOS and
-                Android. While many industry leaders had comprehensive invoicing in their mobile apps, I was surprised
-                to find Stripe's app ecosystem lacking even the most basic features.
+                As a freelancer, I experienced a common frustration: no way to send Stripe invoices on the go for free. In 2020, with remote work booming and freelancing on the rise, I saw an opportunity to solve my own problem at scale. After conducting market research, I founded Paidly and assembled a small team of developers, designing the entire application that launched on iOS and Android. From idea to launch took{" "}
+                <span className="text-foreground font-medium">2.5 months</span>.
+              </p>
+            </WorkProse>
+            <MetricGrid
+              items={[
+                { label: "Users", value: "2,000+", description: "Served over 2,000 small and medium business clients." },
+                { label: "Partner", value: "Stripe", description: "Became an official Stripe integration partner." },
+                { label: "Volume", value: "$500k+", description: "Processed over half a million dollars in invoices." },
+              ]}
+            />
+          </WorkSection>
+        </FadeIn>
+
+        <FadeIn delay={75} duration={350}>
+          <WorkSection num="02" title="Research" meta="Discovery">
+            <WorkProse>
+              <p>
+                Drawing on my experiences with invoicing, I looked into what was available in the market for iOS and Android. While many industry leaders had comprehensive invoicing in their mobile apps, I was surprised to find Stripe&apos;s app ecosystem lacking even the most basic features.
               </p>
               <p>
-                Based upon this discovery and knowing how integral Stripe was to payments on the web, I started diving
-                into hundreds of reviews, uncovering what people liked and disliked about existing applications. I
-                discovered users preferred non-subscription-based access and the ability for all the core functions
-                found on the web version of Stripe. To further validate, I surveyed <span className="text-foreground font-medium">over 300 users</span> and found that <span className="text-foreground font-medium">90% were open to switching</span> invoicing apps. That gave me the confidence to move forward.
+                Based upon this discovery and knowing how integral Stripe was to payments on the web, I started diving into hundreds of reviews, uncovering what people liked and disliked about existing applications. I discovered users preferred non-subscription-based access and the ability for all the core functions found on the web version of Stripe. To further validate, I surveyed{" "}
+                <span className="text-foreground font-medium">over 300 users</span> and found that{" "}
+                <span className="text-foreground font-medium">90% were open to switching</span> invoicing apps. That gave me the confidence to move forward.
               </p>
               <p>
                 For the MVP, I focused on what would satisfy 90%+ of users: core Stripe invoice basics like sending, viewing status, changing amounts, and adding items. I deliberately deprioritized niche features to ship faster and validate demand.
               </p>
-            </div>
+            </WorkProse>
             <div className="grid grid-cols-1 gap-4">
-              <div className="bg-mockup-frame rounded-sm overflow-hidden">
-                <LightboxImage
-                  src="/work/paidly/2.png"
-                  alt="Paidly app screens showing onboarding flow, invoice creation, business setup, and Stripe integration"
-                  width={1200}
-                  height={800}
-                  className="w-full"
-                  quality={80}
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
-                />
-              </div>
-              <div className="bg-mockup-frame rounded-sm overflow-hidden">
-                <LightboxImage
-                  src="/work/paidly/3.png"
-                  alt="Paidly brand identity showing the full logo and app icon variations"
-                  width={1200}
-                  height={800}
-                  className="w-full"
-                  quality={80}
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
-                />
-              </div>
+              <WorkFigure src="/work/paidly/2.png" alt="Paidly app screens showing onboarding flow, invoice creation, business setup, and Stripe integration" caption="Onboarding & Invoice Flow" />
+              <WorkFigure src="/work/paidly/3.png" alt="Paidly brand identity showing the full logo and app icon variations" caption="Brand Identity" />
             </div>
-          </section>
+          </WorkSection>
         </FadeIn>
 
-        {/* Stripe-Based Invoicing App Section */}
         <FadeIn delay={100} duration={350}>
-          <section className="sys-panel p-4 sm:p-7">
-            <div className="sys-section-header mb-6">
-              <h2 className="sys-section-label">Bringing Stripe Invoices to Mobile</h2>
-              <div className="sys-section-line" />
-            </div>
-            <div className="space-y-4 text-muted-foreground mb-6">
+          <WorkSection num="03" title="Bringing Stripe Invoices to Mobile" meta="Build">
+            <WorkProse>
               <p>
-                Using a prototype in Figma and testing it in Maze, I was ready to take things to development and build
-                an MVP. Realizing my development knowledge was not deep enough for the technical challenges ahead, I
-                screened and hired a capable team of mobile developers.
+                Using a prototype in Figma and testing it in Maze, I was ready to take things to development and build an MVP. Realizing my development knowledge was not deep enough for the technical challenges ahead, I screened and hired a capable team of mobile developers.
               </p>
               <p>
-                Our collaboration happened primarily through Slack for daily communication. I broke the product into a Kanban board,{' '}
-                <span className="text-foreground font-medium">giving developers clear scope and priorities</span>
-                {' '}while keeping momentum toward launch. They were provided with all the tools and documentation needed, including access to Figma and an extensively user-tested high-fidelity prototype.
+                Our collaboration happened primarily through Slack for daily communication. I broke the product into a Kanban board,{" "}
+                <span className="text-foreground font-medium">giving developers clear scope and priorities</span>{" "}
+                while keeping momentum toward launch. They were provided with all the tools and documentation needed, including access to Figma and an extensively user-tested high-fidelity prototype.
               </p>
-            </div>
-            <div className="bg-mockup-frame rounded-sm overflow-hidden">
-              <LightboxImage
-                src="/work/paidly/4.png"
-                alt="Paidly app screens showing item management: adding items, empty state, and item creation form"
-                width={1200}
-                height={800}
-                className="w-full"
-                quality={80}
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
-              />
-            </div>
-          </section>
+            </WorkProse>
+            <WorkFigure src="/work/paidly/4.png" alt="Paidly app screens showing item management: adding items, empty state, and item creation form" caption="Item Management" />
+          </WorkSection>
         </FadeIn>
 
-        {/* Insights Section */}
         <FadeIn delay={125} duration={350}>
-          <section className="sys-panel p-4 sm:p-7">
-            <div className="sys-section-header mb-6">
-              <h2 className="sys-section-label">Insights</h2>
-              <div className="sys-section-line" />
-            </div>
-            <p className="text-muted-foreground mb-6">
-              After 6 months live and 2,000 SMBs running $500K+ in invoices through the platform, a contractor issue forced me to wind it down. It taught me that technical{' '}
-              <span className="text-foreground font-medium">vetting and code audits are non-negotiable</span>
-              {' '}for anything high-stakes. That mindset now carries into every project I touch, especially in compliance-driven products.
-            </p>
-            <div className="bg-mockup-frame rounded-sm overflow-hidden">
-              <LightboxImage
-                src="/work/paidly/5.png"
-                alt="Paidly app screens showing customer management: customer list, success confirmation, and customer details form"
-                width={1200}
-                height={800}
-                className="w-full"
-                quality={80}
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
-              />
-            </div>
-          </section>
+          <WorkSection num="04" title="Insights" meta="Reflection">
+            <WorkProse>
+              <p>
+                After 6 months live and 2,000 SMBs running $500K+ in invoices through the platform, a contractor issue forced me to wind it down. It taught me that technical{" "}
+                <span className="text-foreground font-medium">vetting and code audits are non-negotiable</span>{" "}
+                for anything high-stakes. That mindset now carries into every project I touch, especially in compliance-driven products.
+              </p>
+            </WorkProse>
+            <WorkFigure src="/work/paidly/5.png" alt="Paidly app screens showing customer management: customer list, success confirmation, and customer details form" caption="Customer Management" />
+          </WorkSection>
         </FadeIn>
 
-        {/* CTA Section */}
         <FadeIn delay={150} duration={350}>
-          <section className="sys-panel p-4 sm:p-7 text-center">
-            <h2 className="text-xl sm:text-[24px] font-semibold mb-1 sm:mb-2 text-center">Let's build something great</h2>
-            <p className="text-muted-foreground mb-6">
-              Ready to take your product from 0 → 1 or looking to expand your team?
-            </p>
-            <Button asChild size="lg" className="px-4">
-              <Link href="/contact">
-                Reach out <ArrowRight className="ml-1 h-4 w-4 transition-all duration-200" />
-              </Link>
-            </Button>
+          <section className="sys-cell sys-cell-inverted">
+            <div className="p-7 sm:p-10 text-center">
+              <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-background/60 mb-3">
+                Next / Contact
+              </p>
+              <h2 className="sys-display text-2xl sm:text-3xl mb-2">Let&apos;s build something great.</h2>
+              <p className="font-mono text-[13px] text-background/80 mb-6">
+                Ready to take your product from 0 → 1 or looking to expand your team?
+              </p>
+              <Button asChild variant="outline" size="lg" className="border-background bg-transparent text-background hover:bg-background hover:text-foreground hover:shadow-[4px_4px_0_0_var(--background)]">
+                <Link href="/contact">
+                  Reach out <ArrowRight className="ml-1 h-4 w-4" />
+                </Link>
+              </Button>
+            </div>
           </section>
         </FadeIn>
 

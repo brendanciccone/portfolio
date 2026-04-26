@@ -14,7 +14,6 @@ interface ImageComparisonProps {
   height: number
 }
 
-// Before/After image comparison slider
 export const ImageComparison = ({
   beforeSrc,
   afterSrc,
@@ -33,7 +32,6 @@ export const ImageComparison = ({
 
   const isLoaded = isBeforeLoaded && isAfterLoaded
 
-  // Catch images that finished loading before React hydrated
   useEffect(() => {
     if (beforeRef.current?.complete) {
       setIsBeforeLoaded(true)
@@ -43,10 +41,9 @@ export const ImageComparison = ({
     }
   }, [])
 
-  // Handle mouse/touch movement
   const handleMove = useCallback((clientX: number) => {
     if (!containerRef.current) return
-    
+
     const rect = containerRef.current.getBoundingClientRect()
     const x = clientX - rect.left
     const percentage = Math.max(0, Math.min(100, (x / rect.width) * 100))
@@ -54,7 +51,6 @@ export const ImageComparison = ({
   }, [])
 
   const handleMouseDown = (e: React.MouseEvent) => {
-    // Stops native image drag + selection highlight (blue flash) while dragging
     e.preventDefault()
     isDragging.current = true
   }
@@ -118,15 +114,10 @@ export const ImageComparison = ({
       aria-valuemax={100}
       aria-valuenow={Math.round(sliderPosition)}
     >
-      {/* Skeleton overlay while images load */}
-      {!isLoaded && (
-        <Skeleton
-          aria-hidden
-          className="absolute inset-0 z-10 rounded-sm bg-slate-200 dark:bg-slate-800"
-        />
-      )}
+      {!isLoaded ? (
+        <Skeleton aria-hidden className="absolute inset-0 z-10 bg-mockup-frame" />
+      ) : null}
 
-      {/* After image (background) */}
       <div className={cn("pointer-events-none absolute inset-0", !isLoaded && "opacity-0")}>
         <Image
           ref={afterRef}
@@ -141,7 +132,6 @@ export const ImageComparison = ({
         />
       </div>
 
-      {/* Before image (clipped) */}
       <div
         className={cn("pointer-events-none absolute inset-0 overflow-hidden", !isLoaded && "opacity-0")}
         style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
@@ -159,25 +149,24 @@ export const ImageComparison = ({
         />
       </div>
 
-      {/* Dark line + handle: case-study shots are mostly light UI; reads clearly over pale backgrounds */}
+      {/* Hairline + handle in ink */}
       <div
-        className="absolute top-0 bottom-0 w-0.5 bg-zinc-950 shadow-[0_0_0_1px_rgba(255,255,255,0.35)]"
+        className="absolute top-0 bottom-0 w-px bg-foreground"
         style={{ left: `${sliderPosition}%`, transform: "translateX(-50%)" }}
       >
-        {/* Slider handle */}
-        <div className="absolute top-1/2 left-1/2 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-sm bg-zinc-950 shadow-md ring-1 ring-white/35">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="text-zinc-100">
-            <path d="M6 10L2 10M2 10L5 7M2 10L5 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M14 10L18 10M18 10L15 7M18 10L15 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        <div className="absolute top-1/2 left-1/2 flex h-9 w-9 -translate-x-1/2 -translate-y-1/2 items-center justify-center bg-foreground text-background border border-foreground">
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden>
+            <path d="M6 10L2 10M2 10L5 7M2 10L5 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M14 10L18 10M18 10L15 7M18 10L15 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </div>
       </div>
 
-      {/* Labels */}
-      <div className="absolute bottom-3 left-3 bg-foreground/70 text-background text-[10px] font-mono uppercase tracking-wider px-3 py-1 rounded-sm">
+      {/* Mono labels */}
+      <div className="absolute bottom-3 left-3 bg-foreground text-background text-[10px] font-mono uppercase tracking-[0.16em] px-2 py-1 leading-none">
         Before
       </div>
-      <div className="absolute bottom-3 right-3 bg-foreground/70 text-background text-[10px] font-mono uppercase tracking-wider px-3 py-1 rounded-sm">
+      <div className="absolute bottom-3 right-3 bg-foreground text-background text-[10px] font-mono uppercase tracking-[0.16em] px-2 py-1 leading-none">
         After
       </div>
     </div>

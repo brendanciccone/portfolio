@@ -1,4 +1,4 @@
-import { Space_Mono, Space_Grotesk } from "next/font/google"
+import { Archivo_Black, JetBrains_Mono } from "next/font/google"
 import type React from "react"
 import type { Metadata, Viewport } from "next"
 import "./globals.css"
@@ -6,16 +6,20 @@ import { ThemeProvider } from "@/components/theme-provider"
 import ScrollToTop from "@/components/scroll-to-top"
 import { ErrorBoundary } from "@/components/error-boundary"
 import JsonLd from "@/components/json-ld"
+import { PageFrame } from "@/components/page-frame"
 
-const spaceGrotesk = Space_Grotesk({
+const archivoBlack = Archivo_Black({
+  weight: "400",
   subsets: ["latin"],
-  variable: "--font-space-grotesk",
+  variable: "--font-archivo-black",
+  display: "swap",
 })
 
-const spaceMono = Space_Mono({
-  weight: ["400", "700"],
+const jetbrainsMono = JetBrains_Mono({
+  weight: ["400", "500", "700"],
   subsets: ["latin"],
-  variable: "--font-space-mono",
+  variable: "--font-jetbrains-mono",
+  display: "swap",
 })
 
 export const viewport: Viewport = {
@@ -28,7 +32,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
-  title: "Brendan Ciccone - 0 → 1 Staff Product Designer",
+  title: "Brendan Ciccone — 0 → 1 Staff Product Designer",
   description:
     "Brendan Ciccone is a 0 → 1 Staff Product Designer with 8 years of experience turning ideas into fully realized B2B products across healthcare, cybersecurity, and fintech.",
   icons: {
@@ -43,7 +47,7 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   openGraph: {
-    title: "Brendan Ciccone - 0 → 1 Staff Product Designer",
+    title: "Brendan Ciccone — 0 → 1 Staff Product Designer",
     description:
       "Brendan Ciccone is a 0 → 1 Staff Product Designer with 8 years of experience turning ideas into fully realized B2B products across healthcare, cybersecurity, and fintech.",
     url: "https://brendanciccone.com",
@@ -53,7 +57,7 @@ export const metadata: Metadata = {
         url: "/og.png",
         width: 1200,
         height: 630,
-        alt: "Brendan Ciccone - 0 → 1 Staff Product Designer",
+        alt: "Brendan Ciccone — 0 → 1 Staff Product Designer",
       },
     ],
     locale: "en_US",
@@ -61,7 +65,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Brendan Ciccone - 0 → 1 Staff Product Designer",
+    title: "Brendan Ciccone — 0 → 1 Staff Product Designer",
     description:
       "Brendan Ciccone is a 0 → 1 Staff Product Designer with 8 years of experience turning ideas into fully realized B2B products across healthcare, cybersecurity, and fintech.",
     creator: "@brendanciccone",
@@ -70,7 +74,7 @@ export const metadata: Metadata = {
         url: "/og.png",
         width: 1200,
         height: 630,
-        alt: "Brendan Ciccone - 0 → 1 Staff Product Designer",
+        alt: "Brendan Ciccone — 0 → 1 Staff Product Designer",
       },
     ],
   },
@@ -82,13 +86,18 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${spaceGrotesk.variable} ${spaceGrotesk.className} ${spaceMono.variable}`}>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${archivoBlack.variable} ${jetbrainsMono.variable} ${jetbrainsMono.className}`}
+    >
       <head>
         <JsonLd />
       </head>
       <body suppressHydrationWarning>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem storageKey="theme-v2" disableTransitionOnChange>
           <ErrorBoundary>
+            <PageFrame />
             <ScrollToTop />
             <main id="main-content">
               {children}

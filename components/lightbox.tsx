@@ -17,7 +17,6 @@ interface LightboxImageProps {
   sizes?: string
 }
 
-// Lightbox image component - wraps an image and makes it clickable
 export const LightboxImage = ({
   src,
   alt,
@@ -33,7 +32,6 @@ export const LightboxImage = ({
   const [isLightboxImageLoaded, setIsLightboxImageLoaded] = useState(false)
   const [isThumbnailLoaded, setIsThumbnailLoaded] = useState(false)
 
-  // Catch thumbnails that finished loading before React hydrated
   useEffect(() => {
     if (thumbnailRef.current?.complete) {
       setIsThumbnailLoaded(true)
@@ -46,18 +44,15 @@ export const LightboxImage = ({
     }
   }, [isOpen])
 
-  // Handle escape key to close
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
     if (e.key === "Escape") {
       setIsOpen(false)
     }
   }, [])
 
-  // Add/remove event listener for escape key
   useEffect(() => {
     if (isOpen) {
       document.addEventListener("keydown", handleKeyDown)
-      // Prevent body scroll when lightbox is open
       document.body.style.overflow = "hidden"
     }
     return () => {
@@ -68,7 +63,6 @@ export const LightboxImage = ({
 
   return (
     <>
-      {/* Clickable image */}
       <button
         type="button"
         onClick={() => setIsOpen(true)}
@@ -76,12 +70,9 @@ export const LightboxImage = ({
         aria-label={`View ${alt} in fullscreen`}
       >
         <div className="relative">
-          {!isThumbnailLoaded && (
-            <Skeleton
-              aria-hidden
-              className="absolute inset-0 z-10 rounded-sm bg-slate-200 dark:bg-slate-800"
-            />
-          )}
+          {!isThumbnailLoaded ? (
+            <Skeleton aria-hidden className="absolute inset-0 z-10 bg-mockup-frame" />
+          ) : null}
           <Image
             ref={thumbnailRef}
             src={src}
@@ -101,40 +92,37 @@ export const LightboxImage = ({
         </div>
       </button>
 
-      {/* Lightbox overlay */}
-      {isOpen && (
+      {isOpen ? (
         <div
-          className="fixed inset-0 z-50 flex cursor-pointer items-center justify-center bg-black/80 p-4 backdrop-blur-md animate-in fade-in duration-200 sm:p-8"
+          className="fixed inset-0 z-50 flex cursor-pointer items-center justify-center bg-black/85 p-4 backdrop-blur-md animate-in fade-in duration-200 sm:p-8"
           onClick={() => setIsOpen(false)}
           role="dialog"
           aria-modal="true"
           aria-label="Image lightbox"
         >
-          {/* Close button — scrim is always dark; use light chrome in both themes */}
           <button
             type="button"
             onClick={() => setIsOpen(false)}
-            className="absolute top-4 right-4 rounded-sm bg-white/10 p-2 transition-colors hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black animate-in fade-in duration-300 delay-100"
+            className="absolute top-4 right-4 inline-flex items-center justify-center h-9 w-9 border border-white/40 bg-transparent text-white transition-colors hover:bg-white hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black animate-in fade-in duration-300 delay-100"
             aria-label="Close lightbox"
           >
-            <X className="size-6 text-white" aria-hidden />
+            <X className="size-5" aria-hidden />
           </button>
 
-          {/* Full size image - clicking also closes */}
           <div className="relative max-w-full max-h-full animate-in fade-in slide-in-from-bottom-4 duration-300 ease-out">
-            {!isLightboxImageLoaded && (
+            {!isLightboxImageLoaded ? (
               <Skeleton
                 aria-hidden
-                className="pointer-events-none absolute left-1/2 top-1/2 z-10 h-[min(45vh,400px)] w-[min(85vw,960px)] max-h-[90vh] max-w-full -translate-x-1/2 -translate-y-1/2 rounded-sm bg-white/15"
+                className="pointer-events-none absolute left-1/2 top-1/2 z-10 h-[min(45vh,400px)] w-[min(85vw,960px)] max-h-[90vh] max-w-full -translate-x-1/2 -translate-y-1/2 bg-white/15"
               />
-            )}
+            ) : null}
             <Image
               src={src}
               alt={alt}
               width={width * 2}
               height={height * 2}
               className={cn(
-                "max-w-full max-h-[90vh] w-auto h-auto object-contain rounded-sm transition-opacity duration-300",
+                "max-w-full max-h-[90vh] w-auto h-auto object-contain transition-opacity duration-300",
                 isLightboxImageLoaded ? "opacity-100" : "opacity-0",
               )}
               quality={95}
@@ -143,7 +131,7 @@ export const LightboxImage = ({
             />
           </div>
         </div>
-      )}
+      ) : null}
     </>
   )
 }

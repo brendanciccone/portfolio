@@ -8,33 +8,38 @@ export default function NotFound() {
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col">
       <Header />
-      {/* pt-24 accounts for fixed floating header height */}
-      <div className="max-w-[1024px] mx-auto px-5 pt-24 pb-6 sm:pb-8 w-full flex flex-col gap-6">
-        <div className="flex-1 flex items-center justify-center my-12 sm:my-24">
-          <FadeIn delay={0} duration={350}>
-            <div className="w-full border border-border rounded-sm p-6 sm:p-7">
-              <div className="text-center">
-                <FadeIn delay={50} duration={350}>
-                  <h1 className="text-xl sm:text-[24px] font-heading font-semibold mb-1 sm:mb-2">Page not found</h1>
-                </FadeIn>
-                <FadeIn delay={75} duration={350}>
-                  <p className="text-sm sm:text-base text-muted-foreground mb-6 sm:mb-8">
-                    The page you're looking for could not be found.
-                  </p>
-                </FadeIn>
-                <FadeIn delay={100} duration={350}>
-                  <Button asChild size="sm" className="sm:size-default w-full">
-                    <Link href="/">Go home</Link>
-                  </Button>
-                </FadeIn>
-              </div>
-            </div>
-          </FadeIn>
-        </div>
+      <div className="max-w-[1024px] mx-auto px-5 pt-24 pb-6 sm:pb-8 w-full flex flex-col gap-8 flex-1">
+        <FadeIn delay={0} duration={350}>
+          <div className="sys-section">
+            <span className="sys-section-num">[ER]</span>
+            <span className="sys-section-title">Error / 404</span>
+            <div className="sys-section-rule" />
+            <span className="sys-section-meta">Not Found</span>
+          </div>
+        </FadeIn>
 
-        <Footer />
+        <FadeIn delay={50} duration={350}>
+          <section className="sys-cell">
+            <header className="sys-cell-header">
+              <span className="sys-cell-id">404</span>
+              <span>Resource missing</span>
+            </header>
+            <div className="p-8 sm:p-12 text-center">
+              <p className="sys-display text-5xl sm:text-7xl mb-5">404</p>
+              <p className="font-mono text-[13px] text-muted-foreground mb-7 max-w-[40ch] mx-auto">
+                The page you&apos;re looking for could not be found.
+              </p>
+              <Button asChild size="default">
+                <Link href="/">Go home</Link>
+              </Button>
+            </div>
+          </section>
+        </FadeIn>
+
+        <div className="mt-auto">
+          <Footer />
+        </div>
       </div>
     </div>
   )
 }
-

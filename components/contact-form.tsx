@@ -5,7 +5,6 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Send } from "lucide-react"
 
@@ -25,6 +24,16 @@ interface FormErrors {
   termsAccepted?: string
   submit?: string
 }
+
+const FieldLabel = ({ htmlFor, children, optional }: { htmlFor: string; children: React.ReactNode; optional?: boolean }) => (
+  <label
+    htmlFor={htmlFor}
+    className="flex items-center justify-between text-[10px] font-mono uppercase tracking-[0.16em] mb-1.5 text-foreground"
+  >
+    <span>{children}</span>
+    {optional ? <span className="text-muted-foreground">Optional</span> : null}
+  </label>
+)
 
 export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -96,7 +105,7 @@ export default function ContactForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    
+
     if (!validateForm()) {
       return
     }
@@ -139,20 +148,16 @@ export default function ContactForm() {
 
   if (isSuccess) {
     return (
-      <div className="w-full flex flex-col items-center justify-center space-y-4 text-center">
-        <div className="rounded-sm bg-muted p-3">
-          <Send className="h-6 w-6 text-foreground" />
-        </div>
-        <h3 className="text-xl font-heading font-semibold">Thank you for your message!</h3>
-        <p className="text-sm text-muted-foreground">
-          I&apos;ll get back to you as soon as possible.
+      <div className="border border-foreground p-6 flex flex-col gap-4">
+        <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
+          Status / Sent
         </p>
-        <Button 
-          onClick={() => setIsSuccess(false)}
-          variant="outline"
-          className="px-6 mt-2"
-        >
-          Send another message
+        <h3 className="sys-display text-xl">Message received.</h3>
+        <p className="font-mono text-[13px] leading-relaxed text-muted-foreground">
+          Thanks for reaching out — I&apos;ll get back to you as soon as possible.
+        </p>
+        <Button onClick={() => setIsSuccess(false)} variant="outline" className="w-full mt-2">
+          Send another
         </Button>
       </div>
     )
@@ -160,43 +165,34 @@ export default function ContactForm() {
 
   return (
     <div className="w-full">
-      {errors.submit && (
-        <div className="mb-4 p-3 bg-destructive/10 text-destructive rounded-sm border border-destructive/20 text-sm">
-          <p className="font-medium">Error sending message:</p>
+      {errors.submit ? (
+        <div className="mb-4 p-3 border border-destructive text-destructive font-mono text-[12px]">
+          <p className="font-medium uppercase tracking-[0.14em] text-[10px] mb-1">Error</p>
           <p>{errors.submit}</p>
         </div>
-      )}
+      ) : null}
 
-      <form className="space-y-3 sm:space-y-4 w-full" onSubmit={handleSubmit}>
+      <form className="space-y-4 w-full" onSubmit={handleSubmit}>
         <div>
-          <label
-            htmlFor="name"
-            className="block text-xs font-mono uppercase tracking-wider mb-1 sm:mb-2 text-muted-foreground"
-          >
-            Name
-          </label>
-          <Input 
-            id="name" 
-            value={formData.name} 
-            onChange={handleChange} 
-            required 
+          <FieldLabel htmlFor="name">Name</FieldLabel>
+          <Input
+            id="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
             className="w-full"
             aria-invalid={!!errors.name}
             aria-describedby={errors.name ? "name-error" : undefined}
           />
-          {errors.name && (
-            <p className="text-destructive text-xs mt-1" id="name-error">
+          {errors.name ? (
+            <p className="text-destructive text-[11px] font-mono mt-1" id="name-error">
               {errors.name}
             </p>
-          )}
+          ) : null}
         </div>
+
         <div>
-          <label
-            htmlFor="email"
-            className="block text-xs font-mono uppercase tracking-wider mb-1 sm:mb-2 text-muted-foreground"
-          >
-            Email
-          </label>
+          <FieldLabel htmlFor="email">Email</FieldLabel>
           <Input
             id="email"
             value={formData.email}
@@ -207,94 +203,86 @@ export default function ContactForm() {
             aria-invalid={!!errors.email}
             aria-describedby={errors.email ? "email-error" : undefined}
           />
-          {errors.email && (
-            <p className="text-destructive text-xs mt-1" id="email-error">
+          {errors.email ? (
+            <p className="text-destructive text-[11px] font-mono mt-1" id="email-error">
               {errors.email}
             </p>
-          )}
+          ) : null}
         </div>
+
         <div>
-          <label
-            htmlFor="company"
-            className="block text-xs font-mono uppercase tracking-wider mb-1 sm:mb-2 text-muted-foreground"
-          >
-            Company
-          </label>
+          <FieldLabel htmlFor="company" optional>Company</FieldLabel>
           <Input
             id="company"
             value={formData.company}
             onChange={handleChange}
-            placeholder="Optional"
             className="w-full"
             aria-describedby={errors.company ? "company-error" : undefined}
           />
-          {errors.company && (
-            <p className="text-destructive text-xs mt-1" id="company-error">
+          {errors.company ? (
+            <p className="text-destructive text-[11px] font-mono mt-1" id="company-error">
               {errors.company}
             </p>
-          )}
+          ) : null}
         </div>
+
         <div>
-          <label
-            htmlFor="message"
-            className="block text-xs font-mono uppercase tracking-wider mb-1 sm:mb-2 text-muted-foreground"
-          >
-            Message
-          </label>
+          <FieldLabel htmlFor="message">Message</FieldLabel>
           <Textarea
             id="message"
             value={formData.message}
             onChange={handleChange}
             className="min-h-[120px] w-full"
             required
-            placeholder="Tell me about your project or idea..."
+            placeholder="Tell me about your project or idea…"
             aria-invalid={!!errors.message}
             aria-describedby={errors.message ? "message-error" : undefined}
           />
-          {errors.message && (
-            <p className="text-destructive text-xs mt-1" id="message-error">
+          {errors.message ? (
+            <p className="text-destructive text-[11px] font-mono mt-1" id="message-error">
               {errors.message}
             </p>
-          )}
+          ) : null}
         </div>
-        <div className="flex items-start sm:items-center gap-2 pt-1 sm:pt-2">
+
+        <div className="flex items-start gap-2.5 pt-1">
           <Checkbox
             id="termsAccepted"
             checked={formData.termsAccepted}
             onCheckedChange={handleCheckboxChange}
-            className="mt-0.5 sm:mt-0"
+            className="mt-0.5"
             aria-invalid={!!errors.termsAccepted}
             aria-describedby={errors.termsAccepted ? "terms-error" : undefined}
           />
           <label
             htmlFor="termsAccepted"
-            className={`text-[13px] sm:text-[14px] ${formData.termsAccepted ? "text-foreground" : "text-muted-foreground"} cursor-pointer`}
+            className={`font-mono text-[12px] leading-snug cursor-pointer ${formData.termsAccepted ? "text-foreground" : "text-muted-foreground"}`}
           >
             I accept this information will be used to contact me.
           </label>
         </div>
-        {errors.termsAccepted && (
-          <p className="text-destructive text-xs -mt-2" id="terms-error">
+        {errors.termsAccepted ? (
+          <p className="text-destructive text-[11px] font-mono" id="terms-error">
             {errors.termsAccepted}
           </p>
-        )}
-        <Button 
-          type="submit" 
-          className="w-full h-9 sm:h-10 mt-2" 
+        ) : null}
+
+        <Button
+          type="submit"
+          className="w-full mt-2"
           disabled={isSubmitting || !formData.termsAccepted}
-          size="sm"
         >
           {isSubmitting ? (
             <span className="flex items-center">
               <svg className="animate-spin -ml-1 mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
               </svg>
-              Sending...
+              Sending…
             </span>
           ) : (
             <>
-              <Send className="mr-2 h-4 w-4" /> Send message
+              <Send className="mr-1 h-4 w-4" /> Transmit
             </>
           )}
         </Button>
