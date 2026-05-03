@@ -1,19 +1,19 @@
 #!/usr/bin/env node
-/**
- * One-time conversion of public/work/ * * /*.png mockups to WebP.
- *
- * - Quality 82 lossy (visually identical to source for UI screenshots)
- * - Max width 2400px (covers 2x retina at the largest display width of ~1200)
- * - Preserves alpha channel
- * - Deletes the original .png on success
- *
- * Run once after pulling new mockups into public/work/.
- *
- * Usage: node scripts/optimize-mockups.mjs
- */
+//
+// One-time conversion of every PNG under public/work/**/ to WebP.
+//
+// - Quality 82 lossy (visually identical to source for UI screenshots)
+// - Max width 2400px (covers 2x retina at the largest display width of ~1200)
+// - Preserves alpha channel
+// - Deletes the original .png on success
+//
+// Run once after pulling new mockups into public/work/.
+//
+// Usage: node scripts/optimize-mockups.mjs
+//
 
 import { readdir, stat, unlink } from "node:fs/promises"
-import { dirname, extname, join } from "node:path"
+import { dirname, extname, join, relative, sep } from "node:path"
 import { fileURLToPath } from "node:url"
 import sharp from "sharp"
 
@@ -71,7 +71,7 @@ const main = async () => {
     totalAfter += afterBytes
 
     const pct = ((1 - afterBytes / beforeBytes) * 100).toFixed(1)
-    const rel = src.replace(root + "/", "")
+    const rel = relative(root, src).split(sep).join("/")
     console.log(`  ${rel}: ${formatBytes(beforeBytes)} -> ${formatBytes(afterBytes)} (-${pct}%)`)
 
     await unlink(src)
