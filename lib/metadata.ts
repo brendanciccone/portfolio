@@ -16,7 +16,7 @@ export const projectDetails = {
     title: "Corellium",
     description: "Mobile virtualization for cybersecurity teams",
     image: {
-      url: "/work/corellium/1.png",
+      url: "/work/corellium/1.webp",
       alt: "Corellium virtual device platform showing the device creation flow for mobile security testing",
     }
   },

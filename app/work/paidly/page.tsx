@@ -35,7 +35,7 @@ export default function PaidlyPage() {
               <div className="bg-mockup-frame p-1">
                 <div className="relative w-full overflow-hidden rounded-sm">
                   <LightboxImage
-                    src="/work/paidly/1.png"
+                    src="/work/paidly/1.webp"
                     alt="Paidly mobile app showing invoice screens"
                     width={1200}
                     height={800}
@@ -133,7 +133,7 @@ export default function PaidlyPage() {
             <div className="grid grid-cols-1 gap-4">
               <div className="bg-mockup-frame rounded-sm overflow-hidden">
                 <LightboxImage
-                  src="/work/paidly/2.png"
+                  src="/work/paidly/2.webp"
                   alt="Paidly app screens showing onboarding flow, invoice creation, business setup, and Stripe integration"
                   width={1200}
                   height={800}
@@ -144,7 +144,7 @@ export default function PaidlyPage() {
               </div>
               <div className="bg-mockup-frame rounded-sm overflow-hidden">
                 <LightboxImage
-                  src="/work/paidly/3.png"
+                  src="/work/paidly/3.webp"
                   alt="Paidly brand identity showing the full logo and app icon variations"
                   width={1200}
                   height={800}
@@ -178,7 +178,7 @@ export default function PaidlyPage() {
             </div>
             <div className="bg-mockup-frame rounded-sm overflow-hidden">
               <LightboxImage
-                src="/work/paidly/4.png"
+                src="/work/paidly/4.webp"
                 alt="Paidly app screens showing item management: adding items, empty state, and item creation form"
                 width={1200}
                 height={800}
@@ -204,7 +204,7 @@ export default function PaidlyPage() {
             </p>
             <div className="bg-mockup-frame rounded-sm overflow-hidden">
               <LightboxImage
-                src="/work/paidly/5.png"
+                src="/work/paidly/5.webp"
                 alt="Paidly app screens showing customer management: customer list, success confirmation, and customer details form"
                 width={1200}
                 height={800}
