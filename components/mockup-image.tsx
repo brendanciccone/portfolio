@@ -41,7 +41,7 @@ export const MockupImage = ({
       {!isLoaded && (
         <Skeleton
           aria-hidden
-          className="absolute inset-0 z-10 rounded-sm bg-slate-200 dark:bg-slate-800"
+          className="absolute inset-0 z-10 rounded-sm bg-slate-300 dark:bg-slate-700"
         />
       )}
       <Image
