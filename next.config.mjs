@@ -1,5 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Emit a minimal self-contained server at .next/standalone/server.js so the
+  // runtime image doesn't need the full node_modules tree. Cuts resident RAM
+  // ~200-400 MB on Railway.
+  output: 'standalone',
   turbopack: {},
   typescript: {
     ignoreBuildErrors: true,
