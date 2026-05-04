@@ -13,6 +13,13 @@ const nextConfig = {
         destination: 'https://brendanciccone.com/:path*',
         permanent: true,
       },
+      // Mockup PNGs were converted to WebP. Keep cached HTML, indexed URLs,
+      // and shared social-media links resolving until they're refreshed.
+      {
+        source: '/work/:project/:filename.png',
+        destination: '/work/:project/:filename.webp',
+        permanent: true,
+      },
     ]
   },
   images: {
