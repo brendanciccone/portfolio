@@ -13,12 +13,22 @@ const nextConfig = {
         destination: 'https://brendanciccone.com/:path*',
         permanent: true,
       },
+      // Mockup PNGs were converted to WebP. Keep cached HTML, indexed URLs,
+      // and shared social-media links resolving until they're refreshed.
+      {
+        source: '/work/:project/:filename.png',
+        destination: '/work/:project/:filename.webp',
+        permanent: true,
+      },
     ]
   },
   images: {
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    formats: ['image/avif', 'image/webp'],
+    // WebP only — dropping AVIF avoids the heavy Sharp encode that was
+    // OOM-killing the container during cold-cache warm-up after deploy.
+    // The size delta vs AVIF is small for these already-optimized sources.
+    formats: ['image/webp'],
     qualities: [75, 80], // Allowed quality values for next/image
     minimumCacheTTL: 604800,
   },

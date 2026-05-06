@@ -36,7 +36,7 @@ export default function SpontivlyPage() {
               <div className="bg-mockup-frame p-1">
                 <div className="relative w-full overflow-hidden rounded-sm">
                   <LightboxImage
-                    src="/work/spontivly/1.png"
+                    src="/work/spontivly/1.webp"
                     alt="Spontivly social analytics dashboard showing engagement metrics, impression trends, and top performing content"
                     width={1200}
                     height={800}
@@ -126,8 +126,8 @@ export default function SpontivlyPage() {
             {/* Before/After comparison slider */}
             <div className="bg-mockup-frame rounded-sm overflow-hidden">
               <ImageComparison
-                beforeSrc="/work/spontivly/2a.png"
-                afterSrc="/work/spontivly/2b.png"
+                beforeSrc="/work/spontivly/2a.webp"
+                afterSrc="/work/spontivly/2b.webp"
                 beforeAlt="Spontivly website before redesign"
                 afterAlt="Spontivly website after redesign"
                 width={1200}
@@ -160,7 +160,7 @@ export default function SpontivlyPage() {
               {/* Full width - Dashboard overview */}
               <div className="bg-mockup-frame rounded-sm overflow-hidden">
                 <LightboxImage
-                  src="/work/spontivly/3.png"
+                  src="/work/spontivly/3.webp"
                   alt="Spontivly dashboard overview showing multiple dashboard cards for different purposes"
                   width={1200}
                   height={800}
@@ -173,7 +173,7 @@ export default function SpontivlyPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="bg-mockup-frame rounded-sm overflow-hidden">
                   <LightboxImage
-                    src="/work/spontivly/4.png"
+                    src="/work/spontivly/4.webp"
                     alt="Spontivly profile settings interface"
                     width={600}
                     height={400}
@@ -184,7 +184,7 @@ export default function SpontivlyPage() {
                 </div>
                 <div className="bg-mockup-frame rounded-sm overflow-hidden">
                   <LightboxImage
-                    src="/work/spontivly/5.png"
+                    src="/work/spontivly/5.webp"
                     alt="Spontivly team management interface"
                     width={600}
                     height={400}
@@ -198,7 +198,7 @@ export default function SpontivlyPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="bg-mockup-frame rounded-sm overflow-hidden">
                   <LightboxImage
-                    src="/work/spontivly/6.png"
+                    src="/work/spontivly/6.webp"
                     alt="Spontivly dashboard interface"
                     width={600}
                     height={400}
@@ -209,7 +209,7 @@ export default function SpontivlyPage() {
                 </div>
                 <div className="bg-mockup-frame rounded-sm overflow-hidden">
                   <LightboxImage
-                    src="/work/spontivly/7.png"
+                    src="/work/spontivly/7.webp"
                     alt="Spontivly data visualization interface"
                     width={600}
                     height={400}
@@ -222,7 +222,7 @@ export default function SpontivlyPage() {
               {/* Full width */}
               <div className="bg-mockup-frame rounded-sm overflow-hidden">
                 <LightboxImage
-                  src="/work/spontivly/8.png"
+                  src="/work/spontivly/8.webp"
                   alt="Spontivly dashboard builder interface"
                   width={1200}
                   height={800}
@@ -248,7 +248,7 @@ export default function SpontivlyPage() {
             </p>
             <div className="bg-mockup-frame rounded-sm overflow-hidden">
               <LightboxImage
-                src="/work/spontivly/9.png"
+                src="/work/spontivly/9.webp"
                 alt="Spontivly chart builder interface showing customization options"
                 width={1200}
                 height={800}
@@ -276,7 +276,7 @@ export default function SpontivlyPage() {
             </p>
             <div className="bg-mockup-frame rounded-sm overflow-hidden">
               <LightboxImage
-                src="/work/spontivly/10.png"
+                src="/work/spontivly/10.webp"
                 alt="Spontivly platform interface"
                 width={1200}
                 height={800}

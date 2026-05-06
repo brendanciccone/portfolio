@@ -56,7 +56,7 @@ export default function Portfolio() {
             <div className="bg-mockup-frame overflow-hidden border-b border-border p-1">
               <div className="relative w-full overflow-hidden rounded-sm">
                 <MockupImage
-                  src="/work/corellium/1.png"
+                  src="/work/corellium/1.webp"
                   alt="Corellium virtual device platform showing the device creation flow for mobile security testing"
                   width={1200}
                   height={800}
@@ -86,7 +86,7 @@ export default function Portfolio() {
               <div className="bg-mockup-frame overflow-hidden border-b border-border p-1">
                 <div className="relative w-full overflow-hidden rounded-sm">
                   <MockupImage
-                    src="/work/immertec/1.png"
+                    src="/work/immertec/1.webp"
                     alt="Immertec VR medical training platform showing a live surgical procedure with multiple participating doctors, medical imaging views, and interactive controls for remote learning"
                     width={1200}
                     height={800}
@@ -117,7 +117,7 @@ export default function Portfolio() {
               <div className="bg-mockup-frame overflow-hidden border-b border-border p-1">
                 <div className="relative w-full overflow-hidden rounded-sm">
                   <MockupImage
-                    src="/work/spontivly/1.png"
+                    src="/work/spontivly/1.webp"
                     alt="Spontivly social analytics dashboard showing engagement metrics, impression trends, and top performing content"
                     width={1200}
                     height={800}
@@ -148,7 +148,7 @@ export default function Portfolio() {
               <div className="bg-mockup-frame overflow-hidden border-b border-border p-1">
                 <div className="relative w-full overflow-hidden rounded-sm">
                   <MockupImage
-                    src="/work/paidly/1.png"
+                    src="/work/paidly/1.webp"
                     alt="Paidly mobile app showing invoice list, automatic reminders feature, and customer creation form"
                     width={1200}
                     height={800}
@@ -190,7 +190,7 @@ export default function Portfolio() {
               <div className="bg-mockup-frame overflow-hidden border-b border-border p-1">
                 <div className="relative w-full overflow-hidden rounded-sm">
                   <MockupImage
-                    src="/work/crenel/1.png"
+                    src="/work/crenel/1.webp"
                     alt="Crenel autoposting platform showing automatic crossposting across social platforms"
                     width={1200}
                     height={800}
@@ -219,7 +219,7 @@ export default function Portfolio() {
               <div className="bg-mockup-frame overflow-hidden border-b border-border p-1">
                 <div className="relative w-full overflow-hidden rounded-sm [&_button]:cursor-zoom-in">
                   <LightboxImage
-                    src="/work/magier/1.png"
+                    src="/work/magier/1.webp"
                     alt="Magier AI chatbot mobile app screens showing settings, chat interface, and subscription options"
                     width={1200}
                     height={800}
@@ -249,7 +249,7 @@ export default function Portfolio() {
               <div className="bg-mockup-frame overflow-hidden border-b border-border p-1">
                 <div className="relative w-full overflow-hidden rounded-sm [&_button]:cursor-zoom-in">
                   <LightboxImage
-                    src="/work/biobox/1.png"
+                    src="/work/biobox/1.webp"
                     alt="Biobox link-in-bio platform leveraging onchain data"
                     width={1200}
                     height={800}

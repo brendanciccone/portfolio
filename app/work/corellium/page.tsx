@@ -36,7 +36,7 @@ export default function CorelliumPage() {
               <div className="bg-mockup-frame p-1">
                 <div className="relative w-full overflow-hidden rounded-sm">
                   <LightboxImage
-                    src="/work/corellium/1.png"
+                    src="/work/corellium/1.webp"
                     alt="Corellium virtual device platform dashboard"
                     width={1200}
                     height={800}
@@ -140,8 +140,8 @@ export default function CorelliumPage() {
             {/* Before/After: original vs redesigned device creation flow (FigJam) */}
             <div className="bg-mockup-frame rounded-sm overflow-hidden">
               <ImageComparison
-                beforeSrc="/work/corellium/2.png"
-                afterSrc="/work/corellium/3.png"
+                beforeSrc="/work/corellium/2.webp"
+                afterSrc="/work/corellium/3.webp"
                 beforeAlt="FigJam diagram showing the original device creation flow with multiple steps and decision points"
                 afterAlt="FigJam diagram showing the redesigned device creation flow with simplified steps"
                 width={1200}
@@ -176,7 +176,7 @@ export default function CorelliumPage() {
                 <div className="bg-mockup-frame p-1">
                   <div className="relative w-full overflow-hidden rounded-sm">
                     <LightboxImage
-                      src="/work/corellium/4.png"
+                      src="/work/corellium/4.webp"
                       alt="Corellium project selection interface"
                       width={1200}
                       height={800}
@@ -192,7 +192,7 @@ export default function CorelliumPage() {
                 <div className="bg-mockup-frame p-1">
                   <div className="relative w-full overflow-hidden rounded-sm">
                     <LightboxImage
-                      src="/work/corellium/5.png"
+                      src="/work/corellium/5.webp"
                       alt="Corellium iOS device selection interface"
                       width={1200}
                       height={800}
@@ -209,7 +209,7 @@ export default function CorelliumPage() {
                   <div className="bg-mockup-frame p-1">
                     <div className="relative w-full overflow-hidden rounded-sm">
                       <LightboxImage
-                        src="/work/corellium/6.png"
+                        src="/work/corellium/6.webp"
                         alt="Corellium Android device selection"
                         width={600}
                         height={400}
@@ -224,7 +224,7 @@ export default function CorelliumPage() {
                   <div className="bg-mockup-frame p-1">
                     <div className="relative w-full overflow-hidden rounded-sm">
                       <LightboxImage
-                        src="/work/corellium/8.png"
+                        src="/work/corellium/8.webp"
                         alt="Corellium device creation modal"
                         width={600}
                         height={400}
@@ -268,7 +268,7 @@ export default function CorelliumPage() {
               <div className="bg-mockup-frame p-1">
                 <div className="relative w-full overflow-hidden rounded-sm">
                   <LightboxImage
-                    src="/work/corellium/7.png"
+                    src="/work/corellium/7.webp"
                     alt="Corellium IoT device selection showing modular configuration"
                     width={1200}
                     height={800}

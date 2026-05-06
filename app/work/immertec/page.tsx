@@ -35,7 +35,7 @@ export default function ImmertecPage() {
               <div className="bg-mockup-frame p-1">
                 <div className="relative w-full overflow-hidden rounded-sm">
                   <LightboxImage
-                    src="/work/immertec/1.png"
+                    src="/work/immertec/1.webp"
                     alt="Immertec platform showing a live surgical procedure with multiple participants"
                     width={1200}
                     height={800}
@@ -138,7 +138,7 @@ export default function ImmertecPage() {
             </div>
             <div className="bg-mockup-frame rounded-sm overflow-hidden">
               <LightboxImage
-                src="/work/immertec/2.png"
+                src="/work/immertec/2.webp"
                 alt="Immertec VR interface showing participant list, medical imaging with annotations, and surgical procedure views"
                 width={1200}
                 height={800}
@@ -172,7 +172,7 @@ export default function ImmertecPage() {
             <div className="grid grid-cols-1 gap-4">
               <div className="bg-mockup-frame rounded-sm overflow-hidden">
                 <LightboxImage
-                  src="/work/immertec/3.png"
+                  src="/work/immertec/3.webp"
                   alt="Immertec admin dashboard showing analytics overview, attendance trends, and user management interface"
                   width={1200}
                   height={800}
@@ -184,7 +184,7 @@ export default function ImmertecPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="bg-mockup-frame rounded-sm overflow-hidden">
                   <LightboxImage
-                    src="/work/immertec/4.png"
+                    src="/work/immertec/4.webp"
                     alt="Immertec event metrics and calendar interface"
                     width={600}
                     height={400}
@@ -195,7 +195,7 @@ export default function ImmertecPage() {
                 </div>
                 <div className="bg-mockup-frame rounded-sm overflow-hidden">
                   <LightboxImage
-                    src="/work/immertec/5.png"
+                    src="/work/immertec/5.webp"
                     alt="Immertec headset request management interface"
                     width={600}
                     height={400}
@@ -208,7 +208,7 @@ export default function ImmertecPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="bg-mockup-frame rounded-sm overflow-hidden">
                   <LightboxImage
-                    src="/work/immertec/6.png"
+                    src="/work/immertec/6.webp"
                     alt="Immertec event list interface"
                     width={600}
                     height={400}
@@ -219,7 +219,7 @@ export default function ImmertecPage() {
                 </div>
                 <div className="bg-mockup-frame rounded-sm overflow-hidden">
                   <LightboxImage
-                    src="/work/immertec/7.png"
+                    src="/work/immertec/7.webp"
                     alt="Immertec media library interface"
                     width={600}
                     height={400}
@@ -261,7 +261,7 @@ export default function ImmertecPage() {
             </div>
             <div className="bg-mockup-frame rounded-sm overflow-hidden">
               <LightboxImage
-                src="/work/immertec/8.png"
+                src="/work/immertec/8.webp"
                 alt="Immertec web viewer interface showing live surgical procedure with participant list and interactive controls"
                 width={1200}
                 height={800}
@@ -292,7 +292,7 @@ export default function ImmertecPage() {
             </div>
             <div className="bg-mockup-frame rounded-sm overflow-hidden">
               <LightboxImage
-                src="/work/immertec/9.png"
+                src="/work/immertec/9.webp"
                 alt="Immertec sign-in interface showing streamlined authentication options"
                 width={1200}
                 height={800}

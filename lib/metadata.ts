@@ -16,7 +16,7 @@ export const projectDetails = {
     title: "Corellium",
     description: "Mobile virtualization for cybersecurity teams",
     image: {
-      url: "/work/corellium/1.png",
+      url: "/work/corellium/1.webp",
       alt: "Corellium virtual device platform showing the device creation flow for mobile security testing",
     }
   },
@@ -24,7 +24,7 @@ export const projectDetails = {
     title: "Spontivly",
     description: "Analytics dashboards for non-technical users",
     image: {
-      url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/7-WhNtJkfUVhAkOhZSBPAbhHNURWpkYU.png",
+      url: "/work/spontivly/1.webp",
       alt: "Spontivly social analytics dashboard showing engagement metrics, impression trends, and top performing content",
     }
   },
@@ -32,7 +32,7 @@ export const projectDetails = {
     title: "Immertec",
     description: "VR medical training for live surgical procedures",
     image: {
-      url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/10-REigS5TLwDhOSRkjUpSoZzM0XHLPy1.png",
+      url: "/work/immertec/1.webp",
       alt: "Immertec VR medical training platform showing a live surgical procedure with multiple participating doctors",
     }
   },
@@ -40,7 +40,7 @@ export const projectDetails = {
     title: "Paidly",
     description: "Stripe-integrated invoicing mobile app for SMEs",
     image: {
-      url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/6-T3wsvxOlM1iRLfYYJAzhzlAlH5YblJ.png",
+      url: "/work/paidly/1.webp",
       alt: "Paidly mobile app showing invoice list, automatic reminders feature, and customer creation form",
     }
   },
