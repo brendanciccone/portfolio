@@ -1,9 +1,10 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-space-grotesk);
-  --font-heading: var(--font-space-mono);
-  --font-mono: var(--font-space-mono);
+  --font-sans: var(--font-google-sans-flex);
+  --font-heading: var(--font-google-sans-flex);
+  --font-mono: var(--font-google-sans-flex);
+  --font-display: var(--font-google-sans-flex);
 
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 1px);
@@ -98,7 +99,7 @@
   --border: oklch(90% 0.004 260);
   --input: oklch(92% 0.004 260);
   --ring: oklch(15% 0.004 260);
-  --radius: 0.1875rem;
+  --radius: 0;
   --sys-corner-opacity: 0.22;
 }
 
@@ -150,9 +151,14 @@ body {
 
 
 .sys-panel {
-  @apply border border-border bg-card rounded-sm relative;
+  @apply border border-border bg-card relative;
 }
 
+/*
+ * Datasheet corner brackets — straight 10px L-strokes positioned 4px outside
+ * each panel corner. Restored from the original sharp-corner system after
+ * --radius was set back to 0.
+ */
 .sys-panel::after {
   content: "";
   position: absolute;
@@ -195,6 +201,52 @@ body {
   @apply flex items-center gap-3 w-full;
 }
 
+/*
+ * Section divider — repeating square grid (2×2 squares on an 8px grid).
+ * Height is a clean multiple of mask-size so rows don't clip top/bottom;
+ * mask-position: center balances any horizontal remainder.
+ */
 .sys-section-line {
-  @apply h-px bg-border flex-1 relative;
+  flex: 1;
+  height: 24px;
+  background-color: var(--muted-foreground);
+  mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'><rect x='3' y='3' width='2' height='2' fill='black'/></svg>");
+  mask-size: 8px 8px;
+  mask-position: 50% 50%;
+  mask-repeat: repeat;
+  opacity: 0.5;
+}
+
+/*
+ * Title display utility — Google Sans Flex at default width, slightly tighter
+ * letter-spacing than body. Used for hero h1s on home and about.
+ */
+.title-display {
+  font-family: var(--font-google-sans-flex), system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/*
+ * Hover lift — snappy 150ms colors paired with a 200ms eased translate so
+ * the card glides up while colors respond promptly.
+ *
+ * Tailwind v4 uses the standalone `translate` and `scale` CSS properties for
+ * its translate/scale utilities — NOT `transform`. So we transition those
+ * properties directly. (Transitioning `transform` would do nothing here.)
+ */
+.hover-lift {
+  transition:
+    color 150ms ease-out,
+    background-color 150ms ease-out,
+    border-color 150ms ease-out,
+    translate 200ms cubic-bezier(0.22, 1, 0.36, 1),
+    scale 200ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hover-lift-opacity {
+  transition:
+    opacity 150ms ease-out,
+    translate 200ms cubic-bezier(0.22, 1, 0.36, 1),
+    scale 200ms cubic-bezier(0.22, 1, 0.36, 1);
 }

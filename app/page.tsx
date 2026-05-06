@@ -1,5 +1,5 @@
-import Header from "@/components/header"
 import Link from "next/link"
+import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { Badge } from "@/components/ui/badge"
 import { FadeIn } from "@/components/fade-in"
@@ -10,16 +10,34 @@ export default function Portfolio() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Header />
-      
-      {/* Main content */}
+
       <div className="max-w-[1024px] mx-auto px-5 pt-24 pb-6 sm:pb-8 flex flex-col gap-6">
-        {/* Intro Section */}
         <FadeIn delay={0} duration={350}>
-          <div>
-            <h1 className="sr-only">Brendan Ciccone</h1>
-            <p className="text-sm sm:text-base text-muted-foreground">
+          <div className="flex flex-col">
+            <h1 className="title-display leading-[1] text-3xl sm:text-4xl md:text-[44px]">
+              Hi, I&apos;m Brendan <span aria-hidden className="inline-block">👋</span>
+            </h1>
+            <p className="mt-2 sm:mt-3 text-sm sm:text-base text-muted-foreground">
               0 → 1 Staff Product Designer and Founder with 8 years of experience shipping B2B products across healthcare, cybersecurity, and fintech. Currently at <Link href="https://www.corellium.com" target="_blank" rel="noopener noreferrer" className="text-foreground font-medium hover:underline">Corellium</Link>, simplifying complex cybersecurity workflows.
             </p>
+            <dl className="mt-8 sm:mt-10 grid grid-cols-3 border border-border bg-card">
+              <div className="p-4 sm:p-5 flex flex-col gap-1.5 border-r border-border min-w-0">
+                <dt className="text-[10px] font-mono uppercase tracking-[0.18em] text-muted-foreground">Experience</dt>
+                <dd className="text-base sm:text-lg font-heading font-medium truncate">8 Years</dd>
+              </div>
+              <div className="p-4 sm:p-5 flex flex-col gap-1.5 border-r border-border min-w-0">
+                <dt className="text-[10px] font-mono uppercase tracking-[0.18em] text-muted-foreground">Role</dt>
+                <dd className="text-base sm:text-lg font-heading font-medium truncate">Staff Product Designer</dd>
+              </div>
+              <div className="p-4 sm:p-5 flex flex-col gap-1.5 min-w-0">
+                <dt className="text-[10px] font-mono uppercase tracking-[0.18em] text-muted-foreground">Currently</dt>
+                <dd className="text-base sm:text-lg font-heading font-medium truncate">
+                  <Link href="https://www.corellium.com" target="_blank" rel="noopener noreferrer" className="hover:underline transition-colors duration-150">
+                    Corellium
+                  </Link>
+                </dd>
+              </div>
+            </dl>
           </div>
         </FadeIn>
 
@@ -34,7 +52,7 @@ export default function Portfolio() {
         {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           {/* Project 1 - Corellium */}
-          <Link href="/work/corellium" className="group block sys-panel transition-colors duration-200 hover:border-foreground">
+          <Link href="/work/corellium" className="group block sys-panel hover-lift hover:-translate-y-1 hover:border-foreground">
             <div className="bg-mockup-frame overflow-hidden border-b border-border p-1">
               <div className="relative w-full overflow-hidden rounded-sm">
                 <MockupImage
@@ -42,7 +60,7 @@ export default function Portfolio() {
                   alt="Corellium virtual device platform showing the device creation flow for mobile security testing"
                   width={1200}
                   height={800}
-                  className="w-full transition-transform duration-300 ease-out transform-gpu group-hover:scale-[1.03] group-hover:-translate-y-0.5"
+                  className="w-full transition-[translate] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-0.5"
                   priority
                   quality={80}
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
@@ -54,7 +72,7 @@ export default function Portfolio() {
                 <h2 className="text-lg sm:text-xl font-heading font-semibold mb-1 uppercase tracking-wide">Corellium</h2>
                 <p className="text-muted-foreground text-sm">Mobile virtualization for cybersecurity teams</p>
               </div>
-              <div className="flex flex-wrap gap-2 pt-4 border-t border-border/50">
+              <div className="flex flex-wrap gap-2">
                 <Badge>2023-Present</Badge>
                 <Badge>Acquired</Badge>
                 <Badge>Cybersecurity</Badge>
@@ -64,7 +82,7 @@ export default function Portfolio() {
 
           {/* Project 2 - Immertec */}
           <FadeIn delay={75} duration={350}>
-            <Link href="/work/immertec" className="group block sys-panel transition-colors duration-200 hover:border-foreground">
+            <Link href="/work/immertec" className="group block sys-panel hover-lift hover:-translate-y-1 hover:border-foreground">
               <div className="bg-mockup-frame overflow-hidden border-b border-border p-1">
                 <div className="relative w-full overflow-hidden rounded-sm">
                   <MockupImage
@@ -72,7 +90,7 @@ export default function Portfolio() {
                     alt="Immertec VR medical training platform showing a live surgical procedure with multiple participating doctors, medical imaging views, and interactive controls for remote learning"
                     width={1200}
                     height={800}
-                    className="w-full transition-transform duration-300 ease-out transform-gpu group-hover:scale-[1.03] group-hover:-translate-y-0.5"
+                    className="w-full transition-[translate] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-0.5"
                     priority
                     quality={80}
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
@@ -84,7 +102,7 @@ export default function Portfolio() {
                   <h2 className="text-lg sm:text-xl font-heading font-semibold mb-1 uppercase tracking-wide">Immertec</h2>
                   <p className="text-muted-foreground text-sm">VR medical training for live surgical procedures</p>
                 </div>
-                <div className="flex flex-wrap gap-2 pt-4 border-t border-border/50">
+                <div className="flex flex-wrap gap-2">
                   <Badge>2018-2023</Badge>
                   <Badge>Series A</Badge>
                   <Badge>Healthcare</Badge>
@@ -95,7 +113,7 @@ export default function Portfolio() {
 
           {/* Project 3 - Spontivly */}
           <FadeIn delay={100} duration={350}>
-            <Link href="/work/spontivly" className="group block sys-panel transition-colors duration-200 hover:border-foreground">
+            <Link href="/work/spontivly" className="group block sys-panel hover-lift hover:-translate-y-1 hover:border-foreground">
               <div className="bg-mockup-frame overflow-hidden border-b border-border p-1">
                 <div className="relative w-full overflow-hidden rounded-sm">
                   <MockupImage
@@ -103,7 +121,7 @@ export default function Portfolio() {
                     alt="Spontivly social analytics dashboard showing engagement metrics, impression trends, and top performing content"
                     width={1200}
                     height={800}
-                    className="w-full transition-transform duration-300 ease-out transform-gpu group-hover:scale-[1.03] group-hover:-translate-y-0.5"
+                    className="w-full transition-[translate] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-0.5"
                     priority
                     quality={80}
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
@@ -115,7 +133,7 @@ export default function Portfolio() {
                   <h2 className="text-lg sm:text-xl font-heading font-semibold mb-1 uppercase tracking-wide">Spontivly</h2>
                   <p className="text-muted-foreground text-sm">Analytics dashboards for non-technical users</p>
                 </div>
-                <div className="flex flex-wrap gap-2 pt-4 border-t border-border/50">
+                <div className="flex flex-wrap gap-2">
                   <Badge>2023</Badge>
                   <Badge>Seed</Badge>
                   <Badge>Analytics</Badge>
@@ -126,7 +144,7 @@ export default function Portfolio() {
 
           {/* Project 4 - Paidly */}
           <FadeIn delay={125} duration={350}>
-            <Link href="/work/paidly" className="group block sys-panel transition-colors duration-200 hover:border-foreground">
+            <Link href="/work/paidly" className="group block sys-panel hover-lift hover:-translate-y-1 hover:border-foreground">
               <div className="bg-mockup-frame overflow-hidden border-b border-border p-1">
                 <div className="relative w-full overflow-hidden rounded-sm">
                   <MockupImage
@@ -134,7 +152,7 @@ export default function Portfolio() {
                     alt="Paidly mobile app showing invoice list, automatic reminders feature, and customer creation form"
                     width={1200}
                     height={800}
-                    className="w-full transition-transform duration-300 ease-out transform-gpu group-hover:scale-[1.03] group-hover:-translate-y-0.5"
+                    className="w-full transition-[translate] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-0.5"
                     priority
                     quality={80}
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
@@ -146,7 +164,7 @@ export default function Portfolio() {
                   <h2 className="text-lg sm:text-xl font-heading font-semibold mb-1 uppercase tracking-wide">Paidly</h2>
                   <p className="text-muted-foreground text-sm">Stripe-integrated invoicing mobile app for SMEs</p>
                 </div>
-                <div className="flex flex-wrap gap-2 pt-4 border-t border-border/50">
+                <div className="flex flex-wrap gap-2">
                   <Badge>2020</Badge>
                   <Badge>Stripe Partner</Badge>
                   <Badge>Fintech</Badge>
@@ -168,7 +186,7 @@ export default function Portfolio() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
           {/* Crenel */}
           <FadeIn delay={200} duration={350}>
-            <Link href="https://www.crenel.xyz" target="_blank" rel="noopener noreferrer" className="group block sys-panel transition-colors duration-200 hover:border-foreground">
+            <Link href="https://www.crenel.xyz" target="_blank" rel="noopener noreferrer" className="group block sys-panel hover-lift hover:-translate-y-1 hover:border-foreground">
               <div className="bg-mockup-frame overflow-hidden border-b border-border p-1">
                 <div className="relative w-full overflow-hidden rounded-sm">
                   <MockupImage
@@ -176,7 +194,7 @@ export default function Portfolio() {
                     alt="Crenel autoposting platform showing automatic crossposting across social platforms"
                     width={1200}
                     height={800}
-                    className="w-full transition-transform duration-300 ease-out transform-gpu group-hover:scale-[1.03] group-hover:-translate-y-0.5"
+                    className="w-full transition-[translate] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-0.5"
                     quality={80}
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 512px"
                   />
@@ -185,9 +203,9 @@ export default function Portfolio() {
               <div className="p-4 sm:p-7">
                 <div className="mb-4">
                   <h3 className="text-base sm:text-lg font-heading font-semibold mb-1 uppercase tracking-wide">Crenel</h3>
-                  <p className="text-sm text-muted-foreground">Reach everywhere with automatic crossposting</p>
+                  <p className="text-sm text-muted-foreground">Social analytics and automatic crossposting</p>
                 </div>
-                <div className="flex flex-wrap gap-2 pt-4 border-t border-border/50">
+                <div className="flex flex-wrap gap-2">
                   <Badge>2025</Badge>
                   <Badge>Coinbase Accelerator</Badge>
                 </div>
@@ -197,7 +215,7 @@ export default function Portfolio() {
 
           {/* Magier */}
           <FadeIn delay={225} duration={350}>
-            <div className="group sys-panel transition-colors duration-200 hover:border-foreground">
+            <div className="group sys-panel hover-lift hover:-translate-y-1 hover:border-foreground">
               <div className="bg-mockup-frame overflow-hidden border-b border-border p-1">
                 <div className="relative w-full overflow-hidden rounded-sm [&_button]:cursor-zoom-in">
                   <LightboxImage
@@ -205,7 +223,7 @@ export default function Portfolio() {
                     alt="Magier AI chatbot mobile app screens showing settings, chat interface, and subscription options"
                     width={1200}
                     height={800}
-                    className="w-full transition-transform duration-300 ease-out transform-gpu group-hover:scale-[1.03] group-hover:-translate-y-0.5"
+                    className="w-full transition-[translate] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-0.5"
                     quality={80}
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 512px"
                   />
@@ -214,9 +232,9 @@ export default function Portfolio() {
               <div className="p-4 sm:p-7">
                 <div className="mb-4">
                   <h3 className="text-base sm:text-lg font-heading font-semibold mb-1 uppercase tracking-wide">Magier</h3>
-                  <p className="text-sm text-muted-foreground">Privacy-focused AI chatbot mobile app</p>
+                  <p className="text-sm text-muted-foreground">Privacy-focused AI chatbot mobile app and platform</p>
                 </div>
-                <div className="flex flex-wrap gap-2 pt-4 border-t border-border/50">
+                <div className="flex flex-wrap gap-2">
                   <Badge>2023</Badge>
                   <Badge>Acquired</Badge>
                   <Badge>AI</Badge>
@@ -227,7 +245,7 @@ export default function Portfolio() {
 
           {/* Biobox */}
           <FadeIn delay={250} duration={350}>
-            <div className="group sys-panel transition-colors duration-200 hover:border-foreground">
+            <div className="group sys-panel hover-lift hover:-translate-y-1 hover:border-foreground">
               <div className="bg-mockup-frame overflow-hidden border-b border-border p-1">
                 <div className="relative w-full overflow-hidden rounded-sm [&_button]:cursor-zoom-in">
                   <LightboxImage
@@ -235,7 +253,7 @@ export default function Portfolio() {
                     alt="Biobox link-in-bio platform leveraging onchain data"
                     width={1200}
                     height={800}
-                    className="w-full transition-transform duration-300 ease-out transform-gpu group-hover:scale-[1.03] group-hover:-translate-y-0.5"
+                    className="w-full transition-[translate] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-0.5"
                     quality={80}
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 512px"
                   />
@@ -246,7 +264,7 @@ export default function Portfolio() {
                   <h3 className="text-base sm:text-lg font-heading font-semibold mb-1 uppercase tracking-wide">Biobox</h3>
                   <p className="text-sm text-muted-foreground">Link-in-bio platform leveraging onchain data</p>
                 </div>
-                <div className="flex flex-wrap gap-2 pt-4 border-t border-border/50">
+                <div className="flex flex-wrap gap-2">
                   <Badge>2021</Badge>
                   <Badge>ETHGlobal Winner</Badge>
                   <Badge>Web3</Badge>

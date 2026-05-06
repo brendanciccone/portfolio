@@ -139,20 +139,18 @@ export default function ContactForm() {
 
   if (isSuccess) {
     return (
-      <div className="w-full flex flex-col items-center justify-center space-y-4 text-center">
-        <div className="rounded-sm bg-muted p-3">
-          <Send className="h-6 w-6 text-foreground" />
-        </div>
+      <div className="w-full flex-1 flex flex-col items-center justify-center space-y-4 text-center">
+        <Send className="h-6 w-6 text-foreground" />
         <h3 className="text-xl font-heading font-semibold">Thank you for your message!</h3>
         <p className="text-sm text-muted-foreground">
-          I&apos;ll get back to you as soon as possible.
+          I&apos;ll get back to you shortly.
         </p>
         <Button 
           onClick={() => setIsSuccess(false)}
           variant="outline"
           className="px-6 mt-2"
         >
-          Send another message
+          Send another
         </Button>
       </div>
     )
