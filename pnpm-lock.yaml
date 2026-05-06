@@ -8,6 +8,7 @@ overrides:
   glob: '>=10.5.0'
   '@isaacs/brace-expansion': '>=5.0.1'
   minimatch: '>=10.2.3'
+  postcss: '>=8.5.10'
 
 importers:
 
@@ -96,7 +97,7 @@ importers:
         specifier: ^1.49.0
         version: 1.58.2
       postcss:
-        specifier: ^8.5.10
+        specifier: '>=8.5.10'
         version: 8.5.10
       sharp:
         specifier: ^0.34.5
@@ -1497,10 +1498,6 @@ packages:
     engines: {node: '>=18'}
     hasBin: true
 
-  postcss@8.4.31:
-    resolution: {integrity: sha512-PS08Iboia9mts/2ygV3eLpY5ghnUcfLV/EXTOW1E2qYxJKGGBUtNjN76FYHnMs36RmARn41bC0AZmn+rR0OVpQ==}
-    engines: {node: ^10 || ^12 || >=14}
-
   postcss@8.5.10:
     resolution: {integrity: sha512-pMMHxBOZKFU6HgAZ4eyGnwXF/EvPGGqUr0MnZ5+99485wwW41kW91A4LOGxSHhgugZmSChL5AlElNdwlNgcnLQ==}
     engines: {node: ^10 || ^12 || >=14}
@@ -2830,7 +2827,7 @@ snapshots:
       '@swc/helpers': 0.5.15
       baseline-browser-mapping: 2.10.17
       caniuse-lite: 1.0.30001787
-      postcss: 8.4.31
+      postcss: 8.5.10
       react: 19.1.1
       react-dom: 19.1.1(react@19.1.1)
       styled-jsx: 5.1.6(react@19.1.1)
@@ -2883,12 +2880,6 @@ snapshots:
       playwright-core: 1.58.2
     optionalDependencies:
       fsevents: 2.3.2
-
-  postcss@8.4.31:
-    dependencies:
-      nanoid: 3.3.12
-      picocolors: 1.1.1
-      source-map-js: 1.2.1
 
   postcss@8.5.10:
     dependencies:
