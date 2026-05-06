@@ -18,11 +18,10 @@ export default function About() {
       <div className="max-w-[1024px] mx-auto px-5 pt-24 pb-6 sm:pb-8 flex flex-col gap-6">
         {/* Intro Section */}
         <FadeIn delay={0} duration={350}>
-          <section className="w-full sys-panel p-4 sm:p-7 flex flex-col">
-            <div className="sys-section-header mb-6">
-              <h1 className="sys-section-label">About</h1>
-              <div className="sys-section-line" />
-            </div>
+          <section className="w-full sys-panel p-4 sm:p-7 flex flex-col gap-5 sm:gap-6">
+            <h1 className="title-display leading-[1] text-3xl sm:text-4xl md:text-[44px]">
+              About
+            </h1>
             <div className="space-y-4 sm:space-y-6 text-muted-foreground">
               <p className="text-sm sm:text-base">
                 I&apos;m a staff product designer with <span className="text-foreground font-medium">8 years of experience</span> turning ideas into fully realized B2B products across healthcare, cybersecurity, and fintech.
@@ -68,9 +67,9 @@ export default function About() {
                         <span className="font-medium leading-none">Staff Product Designer</span>
                       </div>
                       <div className="text-sm text-muted-foreground flex items-center gap-2 mt-1">
-                        <Link 
-                          href="https://www.corellium.com" 
-                          target="_blank" 
+                        <Link
+                          href="https://www.corellium.com"
+                          target="_blank"
                           rel="noopener noreferrer"
                           className="hover:underline transition-colors"
                         >
@@ -99,7 +98,7 @@ export default function About() {
                         <span className="font-medium leading-none">Senior Product Designer</span>
                       </div>
                       <div className="text-sm text-muted-foreground flex items-center gap-2 mt-1">
-                        <Link 
+                        <Link
                           href="https://www.spontivly.com"
                           target="_blank"
                           rel="noopener noreferrer"
@@ -107,7 +106,7 @@ export default function About() {
                         >
                           Spontivly
                         </Link>
-                        <Badge>Contract</Badge>
+                        <Badge className="opacity-80">Contract</Badge>
                       </div>
                     </div>
                     <span className="text-xs font-mono text-muted-foreground flex-shrink-0 ml-2 leading-none uppercase tracking-wider">2023</span>
@@ -130,15 +129,15 @@ export default function About() {
                         <span className="font-medium leading-none">Senior Product Designer</span>
                       </div>
                       <div className="text-sm text-muted-foreground flex items-center gap-2 mt-1">
-                        <Link 
-                          href="https://www.fcb.com" 
-                          target="_blank" 
+                        <Link
+                          href="https://www.fcb.com"
+                          target="_blank"
                           rel="noopener noreferrer"
                           className="hover:underline transition-colors"
                         >
                           FCB Health NY
                         </Link>
-                        <Badge>Contract</Badge>
+                        <Badge className="opacity-80">Contract</Badge>
                       </div>
                     </div>
                     <span className="text-xs font-mono text-muted-foreground flex-shrink-0 ml-2 leading-none uppercase tracking-wider">2023</span>
@@ -239,7 +238,7 @@ export default function About() {
               </div>
               <div className="sys-section-header mt-8 mb-6">
                 <h3 className="sys-section-label">Other experience</h3>
-                <div className="h-px bg-border flex-1" />
+                <div className="sys-section-line" />
               </div>
               <ul className="space-y-6">
                 {/* Crenel */}
@@ -259,7 +258,7 @@ export default function About() {
                         <span className="font-medium leading-none">Founder</span>
                       </div>
                       <div className="text-sm text-muted-foreground flex items-center gap-2 mt-1">
-                        <Link 
+                        <Link
                           href="https://www.crenel.xyz"
                           target="_blank"
                           rel="noopener noreferrer"
@@ -290,7 +289,7 @@ export default function About() {
                         <span className="font-medium leading-none">Founder</span>
                       </div>
                       <div className="text-sm text-muted-foreground flex items-center gap-2 mt-1">
-                        <Link 
+                        <Link
                           href="https://magier.ai"
                           target="_blank"
                           rel="noopener noreferrer"
@@ -518,7 +517,7 @@ export default function About() {
                     <Link 
                       key={index} 
                       href={album.url}
-                      className="group flex flex-col items-center text-center transition-opacity hover:opacity-80"
+                      className="group flex flex-col items-center text-center hover-lift-opacity hover:opacity-90 hover:-translate-y-1"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -556,7 +555,7 @@ export default function About() {
                     <Link 
                       key={index} 
                       href={book.url}
-                      className="group flex flex-col items-center text-center transition-opacity hover:opacity-80"
+                      className="group flex flex-col items-center text-center hover-lift-opacity hover:opacity-90 hover:-translate-y-1"
                       target="_blank"
                       rel="noopener noreferrer"
                     >

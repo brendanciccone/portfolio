@@ -17,11 +17,14 @@ export default function ContactPage() {
       <div className="max-w-[1024px] mx-auto px-5 pt-24 pb-6 sm:pb-8 flex flex-col gap-6">
         <FadeIn delay={0} duration={350}>
           <div className="sys-panel">
-            <div className="grid grid-cols-1 md:grid-cols-2">
+            {/* Fixed (not min-) height — min-height lets a taller form
+                expand the row, which drags the dither column with it.
+                Form column scrolls internally if errors push past. */}
+            <div className="grid grid-cols-1 md:grid-cols-2 md:h-[572px] md:overflow-hidden">
               {/* Abstract dither side */}
               <div className="relative min-h-0 md:min-h-[240px] overflow-hidden border-b md:border-b-0 md:border-r border-border flex flex-col">
                 <div className="relative z-10 p-6 sm:p-7">
-                  <h1 className="text-lg sm:text-xl font-heading font-semibold uppercase tracking-wide mb-1 sm:mb-2">
+                  <h1 className="title-display leading-[1] text-3xl sm:text-4xl md:text-[44px] mb-3">
                     Let&apos;s build something great
                   </h1>
                   <p className="text-sm sm:text-base text-muted-foreground">
@@ -44,8 +47,9 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* Form side */}
-              <div className="p-4 sm:p-7">
+              {/* Form side — overflow-y-auto + min-h-0 let the form scroll
+                  inside the fixed-height column if errors push it over. */}
+              <div className="p-4 sm:p-7 flex flex-col md:min-h-0 md:overflow-y-auto">
                 <ContactForm />
               </div>
             </div>

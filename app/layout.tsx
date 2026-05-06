@@ -1,4 +1,4 @@
-import { Space_Mono, Space_Grotesk } from "next/font/google"
+import { Google_Sans_Flex } from "next/font/google"
 import type React from "react"
 import type { Metadata, Viewport } from "next"
 import "./globals.css"
@@ -7,15 +7,13 @@ import ScrollToTop from "@/components/scroll-to-top"
 import { ErrorBoundary } from "@/components/error-boundary"
 import JsonLd from "@/components/json-ld"
 
-const spaceGrotesk = Space_Grotesk({
+// Variable font with weight (100-1000) and width (25-151) axes.
+// Site uses default 100% width across body and titles; the wdth axis is
+// preloaded so we can dial up width via font-stretch later if needed.
+const googleSansFlex = Google_Sans_Flex({
   subsets: ["latin"],
-  variable: "--font-space-grotesk",
-})
-
-const spaceMono = Space_Mono({
-  weight: ["400", "700"],
-  subsets: ["latin"],
-  variable: "--font-space-mono",
+  axes: ["wdth"],
+  variable: "--font-google-sans-flex",
 })
 
 export const viewport: Viewport = {
@@ -82,7 +80,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${spaceGrotesk.variable} ${spaceGrotesk.className} ${spaceMono.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`${googleSansFlex.variable} ${googleSansFlex.className}`}>
       <head>
         <JsonLd />
       </head>

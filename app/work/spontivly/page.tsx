@@ -47,8 +47,8 @@ export default function SpontivlyPage() {
                   />
                 </div>
               </div>
-              <div className="p-4 sm:p-7">
-                <div className="flex items-center gap-4 mb-4">
+              <div className="p-4 sm:p-7 flex flex-col gap-5">
+                <div className="flex items-center gap-4">
                   <div className="w-12 h-12 rounded-sm border border-border flex items-center justify-center bg-card overflow-hidden flex-shrink-0">
                     <Image
                       src="/about/logos/spontivly.jpeg"
@@ -60,9 +60,9 @@ export default function SpontivlyPage() {
                       sizes="48px"
                     />
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <h1 className="text-lg sm:text-xl font-heading font-semibold">Spontivly</h1>
-                    <p className="text-sm sm:text-base text-muted-foreground">
+                    <p className="text-sm sm:text-base text-muted-foreground mt-1">
                       Analytics dashboards for non-technical users
                     </p>
                   </div>
