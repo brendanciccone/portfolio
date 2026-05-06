@@ -114,14 +114,6 @@ export default function Header() {
                   variant="default"
                   size="icon"
                   onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      setMobileMenuOpen(!mobileMenuOpen)
-                    }
-                    if (e.key === 'Escape' && mobileMenuOpen) {
-                      setMobileMenuOpen(false)
-                    }
-                  }}
                   aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
                   aria-expanded={mobileMenuOpen}
                   aria-controls="mobile-menu"

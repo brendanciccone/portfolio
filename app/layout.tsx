@@ -8,7 +8,8 @@ import { ErrorBoundary } from "@/components/error-boundary"
 import JsonLd from "@/components/json-ld"
 
 // Variable font with weight (100-1000) and width (25-151) axes.
-// Body uses default 100% width; hero titles widen to 125% via .title-display.
+// Site uses default 100% width across body and titles; the wdth axis is
+// preloaded so we can dial up width via font-stretch later if needed.
 const googleSansFlex = Google_Sans_Flex({
   subsets: ["latin"],
   axes: ["wdth"],

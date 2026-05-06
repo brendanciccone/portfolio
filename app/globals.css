@@ -6,9 +6,10 @@
   --font-mono: var(--font-google-sans-flex);
   --font-display: var(--font-google-sans-flex);
 
+  /* Clamped to 0px so the derived tokens don't go negative when --radius is 0. */
   --radius-lg: var(--radius);
-  --radius-md: calc(var(--radius) - 1px);
-  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: max(0px, calc(var(--radius) - 1px));
+  --radius-sm: max(0px, calc(var(--radius) - 2px));
 
   --color-slate-50: oklch(97.5% 0.004 260);
   --color-slate-100: oklch(94% 0.004 260);
@@ -214,6 +215,11 @@ body {
   mask-size: 8px 8px;
   mask-position: 50% 50%;
   mask-repeat: repeat;
+  /* Safari pre-15.4 still needs the prefixed forms. */
+  -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'><rect x='3' y='3' width='2' height='2' fill='black'/></svg>");
+  -webkit-mask-size: 8px 8px;
+  -webkit-mask-position: 50% 50%;
+  -webkit-mask-repeat: repeat;
   opacity: 0.5;
 }
 
