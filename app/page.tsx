@@ -20,18 +20,18 @@ export default function Portfolio() {
             <p className="mt-2 sm:mt-3 text-sm sm:text-base text-muted-foreground">
               0 → 1 Staff Product Designer and Founder with 8 years of experience shipping B2B products across healthcare, cybersecurity, and fintech. Currently at <Link href="https://www.corellium.com" target="_blank" rel="noopener noreferrer" className="text-foreground font-medium hover:underline">Corellium</Link>, simplifying complex cybersecurity workflows.
             </p>
-            <dl className="mt-8 sm:mt-10 grid grid-cols-3 border border-border bg-card">
-              <div className="p-4 sm:p-5 flex flex-col gap-1.5 border-r border-border min-w-0">
+            <dl className="mt-8 sm:mt-10 flex flex-col sm:grid sm:grid-cols-3 border border-border bg-card">
+              <div className="p-4 sm:p-5 flex flex-row items-center justify-between gap-4 border-b border-border sm:flex-col sm:items-stretch sm:justify-start sm:gap-1.5 sm:border-b-0 sm:border-r min-w-0">
                 <dt className="text-[10px] font-mono uppercase tracking-[0.18em] text-muted-foreground">Experience</dt>
-                <dd className="text-base sm:text-lg font-heading font-medium truncate">8 Years</dd>
+                <dd className="text-base sm:text-lg font-heading font-medium text-right sm:text-left truncate">8 Years</dd>
               </div>
-              <div className="p-4 sm:p-5 flex flex-col gap-1.5 border-r border-border min-w-0">
+              <div className="p-4 sm:p-5 flex flex-row items-center justify-between gap-4 border-b border-border sm:flex-col sm:items-stretch sm:justify-start sm:gap-1.5 sm:border-b-0 sm:border-r min-w-0">
                 <dt className="text-[10px] font-mono uppercase tracking-[0.18em] text-muted-foreground">Role</dt>
-                <dd className="text-base sm:text-lg font-heading font-medium truncate">Staff Product Designer</dd>
+                <dd className="text-base sm:text-lg font-heading font-medium text-right sm:text-left truncate">Staff Product Designer</dd>
               </div>
-              <div className="p-4 sm:p-5 flex flex-col gap-1.5 min-w-0">
+              <div className="p-4 sm:p-5 flex flex-row items-center justify-between gap-4 sm:flex-col sm:items-stretch sm:justify-start sm:gap-1.5 min-w-0">
                 <dt className="text-[10px] font-mono uppercase tracking-[0.18em] text-muted-foreground">Currently</dt>
-                <dd className="text-base sm:text-lg font-heading font-medium truncate">
+                <dd className="text-base sm:text-lg font-heading font-medium text-right sm:text-left truncate">
                   <Link href="https://www.corellium.com" target="_blank" rel="noopener noreferrer" className="hover:underline transition-colors duration-150">
                     Corellium
                   </Link>
