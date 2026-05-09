@@ -18,7 +18,7 @@ export default function Portfolio() {
               Hi, I&apos;m Brendan <span aria-hidden className="inline-block">👋</span>
             </h1>
             <p className="mt-2 sm:mt-3 text-sm sm:text-base text-muted-foreground">
-              0 → 1 Staff Product Designer and Founder with 8 years of experience shipping B2B products across healthcare, cybersecurity, and fintech. Currently at <Link href="https://www.corellium.com" target="_blank" rel="noopener noreferrer" className="text-foreground font-medium hover:underline">Corellium</Link>, simplifying complex cybersecurity workflows.
+              Staff Product Designer and Founder with 8 years of experience shipping B2B products at early-stage startups in healthcare, cybersecurity, and finance. Currently at <Link href="https://www.corellium.com" target="_blank" rel="noopener noreferrer" className="text-foreground font-medium hover:underline">Corellium</Link>, simplifying complex cybersecurity workflows.
             </p>
             <dl className="mt-8 sm:mt-10 flex flex-col sm:grid sm:grid-cols-3 border border-border bg-card">
               <div className="p-4 sm:p-5 flex flex-row items-center justify-between gap-4 border-b border-border sm:flex-col sm:items-stretch sm:justify-start sm:gap-1.5 sm:border-b-0 sm:border-r min-w-0">

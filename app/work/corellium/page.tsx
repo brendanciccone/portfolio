@@ -2,7 +2,7 @@ import { generatePageMetadata, projectDetails } from "@/lib/metadata";
 
 export const metadata = generatePageMetadata({
   title: projectDetails.corellium.title,
-  description: `${projectDetails.corellium.description} by Brendan Ciccone, a 0 → 1 Staff Product Designer with 8 years of experience turning ideas into fully realized products.`,
+  description: `${projectDetails.corellium.description} by Brendan Ciccone, a staff product designer and founder with 8 years of experience shipping B2B products at early-stage startups.`,
   path: "/work/corellium",
   imageUrl: projectDetails.corellium.image.url,
   imageAlt: projectDetails.corellium.image.alt,
