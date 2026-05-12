@@ -10,6 +10,12 @@
 - Use early returns to reduce nesting and improve readability
 - Use `const` arrow functions over `function` declarations: `const toggle = () => { ... }`
 
+## Duplication
+- Don't extract a shared abstraction just because code looks similar
+- Consolidate when duplication creates a real risk of drift — two instances that must stay in sync are enough
+- Three similar-looking blocks that serve different concerns are better left separate
+- Never create a generic wrapper with boolean/config params to handle slightly different cases
+
 ## Naming
 - Use descriptive variable and function names
 - Prefix event handlers with `handle`: `handleClick`, `handleKeyDown`, `handleSubmit`
