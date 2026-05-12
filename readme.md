@@ -23,6 +23,19 @@ pnpm dev
 
 Then open [localhost:3000](http://localhost:3000).
 
+## Supply-chain protection
+
+This project assumes contributors have [Aikido Safe Chain](https://github.com/AikidoSec/safe-chain) installed locally. Safe Chain wraps `npm`/`pnpm`/`yarn`/`npx`/`pip`/`uv`/`poetry` to block known-malicious packages and quarantine versions under 48 hours old at install time — defense against npm supply-chain attacks like Shai-Hulud.
+
+One-time install:
+
+```bash
+curl -fsSL https://safechain.aikido.dev/install.sh | bash
+# then restart your terminal
+```
+
+No tokens or config required. Free and open source.
+
 ## Recent additions
 
 ## Updating the OG / README preview image
