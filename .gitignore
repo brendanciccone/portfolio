@@ -6,6 +6,10 @@
 .pnpm-store/
 .npm
 
+# block stray lockfiles from other package managers (pnpm-only repo)
+package-lock.json
+yarn.lock
+
 # pnpm specific
 .pnpm-debug.log*
 .npmrc
