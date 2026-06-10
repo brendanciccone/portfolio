@@ -25,10 +25,10 @@ export default function ContactPage() {
               <div className="relative min-h-0 md:min-h-[240px] overflow-hidden border-b md:border-b-0 md:border-r border-border flex flex-col">
                 <div className="relative z-10 p-6 sm:p-7">
                   <h1 className="title-display leading-[1] text-3xl sm:text-4xl md:text-[44px] mb-3">
-                    Let&apos;s build something great
+                    Let&apos;s connect
                   </h1>
                   <p className="text-sm sm:text-base text-muted-foreground">
-                    Ready to take your product from 0 → 1 or looking to expand your team? Reach out and let&apos;s talk!
+                    Whether you have a question about my work or just want to talk product design, I&apos;d love to hear from you.
                   </p>
                 </div>
                 <div
