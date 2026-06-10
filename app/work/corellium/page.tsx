@@ -97,7 +97,7 @@ export default function CorelliumPage() {
               <div className="bg-muted/30 border border-border rounded-sm p-4">
                 <TrendingUp className="w-4 h-4 text-muted-foreground mb-2" />
                 <p className="text-base font-semibold mb-1">SUS 81</p>
-                <p className="text-sm text-muted-foreground">Achieved 81 System Usability Scale score post-launch</p>
+                <p className="text-sm text-muted-foreground">Platform scored 81 SUS via in-product UMUX Lite surveys</p>
               </div>
               <div className="bg-muted/30 border border-border rounded-sm p-4">
                 <Handshake className="w-4 h-4 text-muted-foreground mb-2" />
@@ -151,7 +151,7 @@ export default function CorelliumPage() {
           </section>
         </FadeIn>
 
-        {/* Redesign narrative + shipped UI */}
+        {/* Redesign narrative + redesigned UI */}
         <FadeIn delay={100} duration={350}>
           <section className="sys-panel p-4 sm:p-7">
             <div className="sys-section-header mb-6">
@@ -160,14 +160,17 @@ export default function CorelliumPage() {
             </div>
             <div className="space-y-4 text-muted-foreground mb-6">
               <p>
-                The goal was to reduce cognitive load and eliminate unnecessary steps without sacrificing flexibility. I redesigned the flow to <span className="text-foreground font-medium">3 steps</span>. One click gives you the latest iOS, Android, or IoT device with smart defaults. Power users can still customize everything, but the common path is now fast. Making changes no longer punished users with extra steps. Users could adjust device type, OS version, project, and advanced options without starting over.
+                The goal was to reduce cognitive load and eliminate unnecessary steps without sacrificing flexibility. I redesigned the flow down to <span className="text-foreground font-medium">3 steps</span>. In the new design, one click gives you the latest iOS, Android, or IoT device with smart defaults. Power users can still customize everything, but the common path is fast. Changing your mind no longer punishes you with extra steps: device type, OS version, project, and advanced options can all be adjusted without starting over.
               </p>
               <p>
                 <span className="text-foreground font-medium">
-                  What previously took up to 3 minutes now takes 10 to 30 seconds
+                  A flow that took up to 3 minutes drops to an estimated 10 to 30 seconds
                 </span>
                 {' '}depending on complexity.{' '}
                 I designed the system to be modular, handling complex IoT devices with unique configuration requirements just as easily as standard iOS or Android setups. Future device types can be added without rearchitecting the experience, whether for new use cases or entirely new revenue lines.
+              </p>
+              <p>
+                The redesign is <span className="text-foreground font-medium">fully designed and approved</span>, but a major internal shift reprioritized the roadmap before it reached engineering, and it&apos;s currently queued for implementation. That outcome reinforced the lesson at the heart of this project: in enterprise B2B, foundational UX work has to be re-sold as priorities change, not just sold once.
               </p>
             </div>
             <div className="grid grid-cols-1 gap-4">
@@ -249,7 +252,7 @@ export default function CorelliumPage() {
             </div>
             <div className="space-y-4 text-muted-foreground mb-6">
               <p>
-                In B2B enterprise, customer requests translate directly to revenue, which means platform-wide UX improvements often lose the prioritization battle. Find the intersection between what users need and what a PM can justify on their roadmap to get foundational work shipped.
+                In B2B enterprise, customer requests translate directly to revenue, which means platform-wide UX improvements often lose the prioritization battle. Find the intersection between what users need and what a PM can justify on their roadmap to get foundational work prioritized.
               </p>
               <p>
                 Beyond this project, I partnered with the head of front-end engineering to lead the{' '}
