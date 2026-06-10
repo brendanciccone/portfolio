@@ -307,9 +307,9 @@ export default function ImmertecPage() {
         {/* CTA Section */}
         <FadeIn delay={175} duration={350}>
           <section className="sys-panel p-4 sm:p-7 text-center">
-            <h2 className="text-xl sm:text-[24px] font-semibold mb-1 sm:mb-2 text-center">Let's connect</h2>
+            <h2 className="text-xl sm:text-[24px] font-semibold mb-1 sm:mb-2 text-center">Let's build something great</h2>
             <p className="text-muted-foreground mb-6">
-              Questions about this work, or just want to talk product design?
+              Curious about this work, or building something interesting yourself?
             </p>
             <Button asChild size="lg" className="px-4">
               <Link href="/contact">
