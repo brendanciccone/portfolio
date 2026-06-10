@@ -28,7 +28,7 @@ export default function ContactPage() {
                     Let&apos;s build something great
                   </h1>
                   <p className="text-sm sm:text-base text-muted-foreground">
-                    Ready to take your product from 0 → 1 or looking to expand your team? Reach out and let&apos;s talk!
+                    Looking for feedback on your product or how to take an idea from 0 → 1? Reach out and let&apos;s chat!
                   </p>
                 </div>
                 <div
