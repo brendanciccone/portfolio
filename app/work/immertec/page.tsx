@@ -309,7 +309,7 @@ export default function ImmertecPage() {
           <section className="sys-panel p-4 sm:p-7 text-center">
             <h2 className="text-xl sm:text-[24px] font-semibold mb-1 sm:mb-2 text-center">Let's build something great</h2>
             <p className="text-muted-foreground mb-6">
-              Curious about this work, or building something interesting yourself?
+              Looking for feedback on your product or how to take an idea from 0 → 1?
             </p>
             <Button asChild size="lg" className="px-4">
               <Link href="/contact">
