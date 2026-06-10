@@ -97,7 +97,7 @@ export default function CorelliumPage() {
               <div className="bg-muted/30 border border-border rounded-sm p-4">
                 <TrendingUp className="w-4 h-4 text-muted-foreground mb-2" />
                 <p className="text-base font-semibold mb-1">SUS 81</p>
-                <p className="text-sm text-muted-foreground">Achieved 81 System Usability Scale score via in-product surveys</p>
+                <p className="text-sm text-muted-foreground">Achieved 81 System Usability Scale score post-launch via in-product surveys</p>
               </div>
               <div className="bg-muted/30 border border-border rounded-sm p-4">
                 <Handshake className="w-4 h-4 text-muted-foreground mb-2" />
