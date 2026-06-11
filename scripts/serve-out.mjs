@@ -64,7 +64,20 @@ const resolveRequestPath = (url) => {
 
 export const serveOut = (port) => {
   const server = createServer(async (req, res) => {
-    const pathname = resolveRequestPath(req.url ?? "/")
+    // decodeURIComponent throws URIError on malformed percent-encoding
+    // (e.g. /%zz); answer 400 instead of crashing the server.
+    let pathname
+    try {
+      pathname = resolveRequestPath(req.url ?? "/")
+    } catch (error) {
+      if (error instanceof URIError) {
+        res.writeHead(400, { "Content-Type": "text/plain; charset=utf-8" })
+        res.end("400 Bad Request")
+        return
+      }
+      throw error
+    }
+
     const candidates = pathname.endsWith("/")
       ? [`${pathname}index.html`]
       : [pathname, `${pathname}.html`]
