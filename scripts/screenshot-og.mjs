@@ -7,10 +7,10 @@
  *    or: pnpm og:capture   (runs build then this script)
  */
 
-import { spawn } from "node:child_process"
 import { mkdir } from "node:fs/promises"
 import { dirname, join } from "node:path"
 import { fileURLToPath } from "node:url"
+import { serveOut } from "./serve-out.mjs"
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const root = join(__dirname, "..")
@@ -43,15 +43,9 @@ async function main() {
   let server
 
   try {
-    // Start production server (assumes you've run pnpm build already, or we run it)
+    // Serve the static export (assumes you've run pnpm build already)
     console.log("Starting server on port", port, "...")
-    server = spawn("pnpm", ["start"], {
-      cwd: root,
-      stdio: "pipe",
-      env: { ...process.env, PORT: String(port) },
-    })
-    server.stdout?.on("data", (d) => process.stdout.write(d))
-    server.stderr?.on("data", (d) => process.stderr.write(d))
+    server = serveOut(port)
 
     await waitForPort()
     // Give the page a moment to paint
@@ -92,7 +86,7 @@ async function main() {
     console.log("Saved:", outPath)
   } finally {
     if (server) {
-      server.kill("SIGTERM")
+      server.close()
       console.log("Stopped server.")
     }
   }

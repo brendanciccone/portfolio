@@ -1,0 +1,46 @@
+# Mockup PNGs were converted to WebP. Keep cached HTML, indexed URLs, and
+# shared social-media links resolving until they're refreshed. This replaces
+# the next.config.mjs redirects() rule, which is ignored under output: 'export'.
+# Cloudflare Pages _redirects can't rewrite file extensions with a pattern, so
+# the legacy set is enumerated (it's fixed — files added after the conversion
+# never had .png URLs in the wild).
+#
+# The www → apex redirect is handled by a zone-level Redirect Rule in the
+# Cloudflare dashboard — see DEPLOY.md.
+
+/work/biobox/1.png /work/biobox/1.webp 308
+/work/corellium/1.png /work/corellium/1.webp 308
+/work/corellium/2.png /work/corellium/2.webp 308
+/work/corellium/3.png /work/corellium/3.webp 308
+/work/corellium/4.png /work/corellium/4.webp 308
+/work/corellium/5.png /work/corellium/5.webp 308
+/work/corellium/6.png /work/corellium/6.webp 308
+/work/corellium/7.png /work/corellium/7.webp 308
+/work/corellium/8.png /work/corellium/8.webp 308
+/work/crenel/1.png /work/crenel/1.webp 308
+/work/immertec/1.png /work/immertec/1.webp 308
+/work/immertec/2.png /work/immertec/2.webp 308
+/work/immertec/3.png /work/immertec/3.webp 308
+/work/immertec/4.png /work/immertec/4.webp 308
+/work/immertec/5.png /work/immertec/5.webp 308
+/work/immertec/6.png /work/immertec/6.webp 308
+/work/immertec/7.png /work/immertec/7.webp 308
+/work/immertec/8.png /work/immertec/8.webp 308
+/work/immertec/9.png /work/immertec/9.webp 308
+/work/magier/1.png /work/magier/1.webp 308
+/work/paidly/1.png /work/paidly/1.webp 308
+/work/paidly/2.png /work/paidly/2.webp 308
+/work/paidly/3.png /work/paidly/3.webp 308
+/work/paidly/4.png /work/paidly/4.webp 308
+/work/paidly/5.png /work/paidly/5.webp 308
+/work/spontivly/1.png /work/spontivly/1.webp 308
+/work/spontivly/2a.png /work/spontivly/2a.webp 308
+/work/spontivly/2b.png /work/spontivly/2b.webp 308
+/work/spontivly/3.png /work/spontivly/3.webp 308
+/work/spontivly/4.png /work/spontivly/4.webp 308
+/work/spontivly/5.png /work/spontivly/5.webp 308
+/work/spontivly/6.png /work/spontivly/6.webp 308
+/work/spontivly/7.png /work/spontivly/7.webp 308
+/work/spontivly/8.png /work/spontivly/8.webp 308
+/work/spontivly/9.png /work/spontivly/9.webp 308
+/work/spontivly/10.png /work/spontivly/10.webp 308

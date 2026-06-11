@@ -8,11 +8,11 @@ Preview (screenshot of the top of the site; regenerate with `pnpm og:capture`):
 
 ## Stack
 
-- Next.js (App Router)
+- Next.js (App Router, static export)
 - TypeScript
 - Tailwind CSS
 - shadcn/ui
-- Hosted on Railway — **canonical URL:** `https://brendanciccone.com` (apex; `www` → apex redirect in `next.config.mjs`, `alternates.canonical` + `metadataBase` in app metadata)
+- Hosted on Cloudflare Pages — **canonical URL:** `https://brendanciccone.com` (apex; `www` → apex redirect via a Cloudflare Redirect Rule, `alternates.canonical` + `metadataBase` in app metadata). Railway config (`railway.json`) is kept as a fallback — see [DEPLOY.md](DEPLOY.md).
 
 ## Run locally
 
@@ -22,6 +22,16 @@ pnpm dev
 ```
 
 Then open [localhost:3000](http://localhost:3000).
+
+## Deploy
+
+```bash
+pnpm run deploy
+```
+
+Builds the static export and uploads `out/` to Cloudflare Pages. The contact
+form needs `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY` in `.env` at build time (see
+`.env.example`). Full setup, DNS, and rollback instructions: [DEPLOY.md](DEPLOY.md).
 
 ## Recent additions
 

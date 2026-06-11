@@ -8,6 +8,16 @@ import { Textarea } from "@/components/ui/textarea"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Send } from "lucide-react"
+import { z } from "zod"
+
+const WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit"
+
+// Web3Forms responds with { success, message } for both accepted and rejected
+// submissions; validate before trusting either field.
+const web3FormsResponseSchema = z.object({
+  success: z.boolean(),
+  message: z.string().optional(),
+})
 
 interface FormData {
   name: string
@@ -104,18 +114,42 @@ export default function ContactForm() {
     setIsSubmitting(true)
 
     try {
-      const response = await fetch("/api/contact", {
+      // Web3Forms access keys are publishable (designed to ship in client
+      // bundles), so exposing this via NEXT_PUBLIC_* is safe. It is inlined
+      // at build time — see .env.example.
+      const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY
+      if (!accessKey) {
+        throw new Error(
+          "Contact form is not configured: NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY was missing at build time.",
+        )
+      }
+
+      const response = await fetch(WEB3FORMS_ENDPOINT, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Accept: "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          access_key: accessKey,
+          subject: "New Contact Form Submission",
+          from_name: "Portfolio - Contact Form",
+          name: formData.name,
+          email: formData.email,
+          company: formData.company || "Not provided",
+          message: formData.message,
+        }),
       })
 
-      const data = await response.json()
+      const rawBody: unknown = await response.json()
+      const parsedBody = web3FormsResponseSchema.safeParse(rawBody)
 
-      if (!response.ok) {
-        throw new Error(data.error || "Failed to send message")
+      if (!response.ok || !parsedBody.success || !parsedBody.data.success) {
+        const errorMessage =
+          parsedBody.success && parsedBody.data.message
+            ? parsedBody.data.message
+            : "Failed to send message"
+        throw new Error(errorMessage)
       }
 
       setFormData({
