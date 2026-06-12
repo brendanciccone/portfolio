@@ -62,6 +62,7 @@ logs
 .netlify
 .serverless/
 .wrangler/
+.dev.vars
 
 # typescript
 *.tsbuildinfo
