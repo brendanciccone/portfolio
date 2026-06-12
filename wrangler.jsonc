@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  // Assets-only Worker: serves the static export in out/ — no server code.
+  // The presence of this file also stops `wrangler deploy` from auto-detecting
+  // Next.js and bolting on the OpenNext adapter, which is incompatible with
+  // `output: 'export'` (it expects a .next/standalone server build).
+  "name": "portfolio",
+  "compatibility_date": "2026-06-12",
+  "assets": {
+    "directory": "./out",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  }
+}

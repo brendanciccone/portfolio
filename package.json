@@ -14,7 +14,7 @@
     "dev": "next dev --turbo",
     "build": "next build",
     "start": "node scripts/serve-out.mjs",
-    "deploy": "pnpm build && wrangler pages deploy out --project-name=brendanciccone-portfolio",
+    "deploy": "pnpm build && wrangler deploy",
     "lint": "next lint",
     "og:capture": "pnpm build && node scripts/screenshot-og.mjs",
     "test": "vitest run",
