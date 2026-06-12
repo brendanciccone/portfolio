@@ -12,7 +12,7 @@ Preview (screenshot of the top of the site; regenerate with `pnpm og:capture`):
 - TypeScript
 - Tailwind CSS
 - shadcn/ui
-- Hosted on Cloudflare Pages — **canonical URL:** `https://brendanciccone.com` (apex; `www` → apex redirect via a Cloudflare Redirect Rule, `alternates.canonical` + `metadataBase` in app metadata). Railway config (`railway.json`) is kept as a fallback — see [DEPLOY.md](DEPLOY.md).
+- Hosted on Cloudflare Workers (static assets) — **canonical URL:** `https://brendanciccone.com` (apex; `www` → apex redirect via a Cloudflare Redirect Rule, `alternates.canonical` + `metadataBase` in app metadata). Railway config (`railway.json`) is kept as a fallback — see [DEPLOY.md](DEPLOY.md).
 
 ## Run locally
 
