@@ -334,5 +334,3 @@ export default function ContactForm() {
     </div>
   )
 }
-
-export { ContactForm }

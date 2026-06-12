@@ -8,9 +8,6 @@ const nextConfig = {
   // See DEPLOY.md for the dashboard pieces.
   output: 'export',
   turbopack: {},
-  typescript: {
-    ignoreBuildErrors: true,
-  },
   images: {
     // Cloudflare Image Transformations replace the built-in optimizer, which
     // needs a running server. The loader builds /cdn-cgi/image/... URLs that
