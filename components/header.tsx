@@ -99,7 +99,6 @@ export default function Header() {
                             : "bg-transparent text-muted-foreground hover:text-foreground hover:bg-muted/50"
                         }`}
                         aria-current={active ? "page" : undefined}
-                        prefetch={true}
                       >
                         {item.label}
                       </Link>
@@ -148,7 +147,6 @@ export default function Header() {
                           : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
                       }`}
                       aria-current={active ? "page" : undefined}
-                      prefetch={true}
                       tabIndex={mobileMenuOpen ? 0 : -1}
                     >
                       {item.label}
