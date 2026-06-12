@@ -39,13 +39,14 @@ const contentTypes = {
   ".woff": "font/woff",
 }
 
-// A miss (no such file, or path is a directory) means "try the next
-// candidate"; anything else is a real failure and propagates.
+// A miss (no such file, path is a directory, or a path segment is a file —
+// e.g. /og.png/extra) means "try the next candidate"; anything else is a
+// real failure and propagates.
 const readFileOrNull = async (filePath) => {
   try {
     return await readFile(filePath)
   } catch (error) {
-    if (error?.code === "ENOENT" || error?.code === "EISDIR") {
+    if (error?.code === "ENOENT" || error?.code === "EISDIR" || error?.code === "ENOTDIR") {
       return null
     }
     throw error

@@ -13,6 +13,8 @@ The site is a fully static Next.js export (`output: 'export'`) hosted on
 
 ## Prerequisites
 
+0. Node.js **>=22.0.0** (matches `engines.node` in `package.json` and
+   `.node-version`; wrangler requires it).
 1. A Cloudflare account with the `brendanciccone.com` zone on it.
 2. `pnpm install`, then authenticate Wrangler once: `pnpm exec wrangler login`.
 3. A `.env` file with `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY` (see `.env.example`).
