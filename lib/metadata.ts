@@ -56,6 +56,14 @@ type PageMetadataParams = {
   imageHeight?: number;
 };
 
+// Normalize a route path to its trailing-slash directory form ('' → '/',
+// '/about' → '/about/'). Matches the URLs Next emits under trailingSlash: true.
+const toTrailingSlashPath = (path: string): string => {
+  if (path === '' || path === '/') return '/';
+  const withLeadingSlash = path.startsWith('/') ? path : `/${path}`;
+  return withLeadingSlash.endsWith('/') ? withLeadingSlash : `${withLeadingSlash}/`;
+};
+
 /**
  * Generate standardized metadata for a page
  */
@@ -68,13 +76,15 @@ export function generatePageMetadata({
   imageWidth = 1024,
   imageHeight = 537,
 }: PageMetadataParams): Metadata {
-  const pageTitle = title 
+  const pageTitle = title
     ? `${title} - Brendan Ciccone - 0 → 1 Staff Product Designer`
     : "Brendan Ciccone - 0 → 1 Staff Product Designer";
-  
-  const url = `${baseMetadata.baseUrl}${path}`;
-  const canonicalPath =
-    path === '' ? '/' : path.startsWith('/') ? path : `/${path}`;
+
+  // next.config sets trailingSlash: true, so every route resolves to a
+  // directory URL (e.g. /about/). Keep canonical + og:url consistent with that
+  // so search engines aren't pointed at a URL that 308-redirects.
+  const canonicalPath = toTrailingSlashPath(path);
+  const url = `${baseMetadata.baseUrl}${canonicalPath}`;
 
   return {
     title: pageTitle,

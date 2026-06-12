@@ -7,6 +7,12 @@ const nextConfig = {
   //  - image Cache-Control headers live in public/_headers
   // See DEPLOY.md for the dashboard pieces.
   output: 'export',
+  // Emit a directory with index.html per route (out/about/index.html) instead
+  // of out/about.html. The flat-file layout collides with the per-route RSC
+  // payload directories (out/about/) that App Router export also emits, which
+  // breaks client-side <Link> navigation on static hosts (Cloudflare Workers
+  // assets). Trailing-slash directories resolve unambiguously.
+  trailingSlash: true,
   turbopack: {},
   images: {
     // Cloudflare Image Transformations replace the built-in optimizer, which
