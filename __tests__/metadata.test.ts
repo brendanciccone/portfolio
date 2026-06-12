@@ -16,7 +16,7 @@ describe('generatePageMetadata', () => {
   it('constructs full URL from path', () => {
     const meta = generatePageMetadata({ path: '/about' })
     const og = meta.openGraph as Record<string, unknown>
-    expect(og.url).toBe('https://brendanciccone.com/about')
+    expect(og.url).toBe('https://brendanciccone.com/about/')
   })
 
   it('sets alternates canonical to apex path (resolved with metadataBase)', () => {
@@ -24,7 +24,7 @@ describe('generatePageMetadata', () => {
     expect(home.alternates?.canonical).toBe('/')
 
     const about = generatePageMetadata({ path: '/about' })
-    expect(about.alternates?.canonical).toBe('/about')
+    expect(about.alternates?.canonical).toBe('/about/')
   })
 
   it('includes OpenGraph and Twitter card metadata', () => {
