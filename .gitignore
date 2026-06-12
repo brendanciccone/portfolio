@@ -61,6 +61,7 @@ logs
 .vercel
 .netlify
 .serverless/
+.wrangler/
 
 # typescript
 *.tsbuildinfo

@@ -1,36 +1,21 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Static export for Cloudflare Pages — the site has no runtime server.
+  // redirects() and headers() are ignored under output: 'export', so:
+  //  - www → apex (permanent 308) lives in a Cloudflare zone Redirect Rule
+  //  - legacy /work/*.png → .webp redirects live in public/_redirects
+  //  - image Cache-Control headers live in public/_headers
+  // See DEPLOY.md for the dashboard pieces.
+  output: 'export',
   turbopack: {},
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-  // Permanent redirect (308) www → apex so Google sees a single canonical host
-  async redirects() {
-    return [
-      {
-        source: '/:path*',
-        has: [{ type: 'host', value: 'www.brendanciccone.com' }],
-        destination: 'https://brendanciccone.com/:path*',
-        permanent: true,
-      },
-      // Mockup PNGs were converted to WebP. Keep cached HTML, indexed URLs,
-      // and shared social-media links resolving until they're refreshed.
-      {
-        source: '/work/:project/:filename.png',
-        destination: '/work/:project/:filename.webp',
-        permanent: true,
-      },
-    ]
-  },
   images: {
+    // Cloudflare Image Transformations replace the built-in optimizer, which
+    // needs a running server. The loader builds /cdn-cgi/image/... URLs that
+    // Cloudflare's edge resizes/re-encodes on the fly (free tier).
+    loader: 'custom',
+    loaderFile: './lib/image-loader.ts',
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    // WebP only — dropping AVIF avoids the heavy Sharp encode that was
-    // OOM-killing the container during cold-cache warm-up after deploy.
-    // The size delta vs AVIF is small for these already-optimized sources.
-    formats: ['image/webp'],
-    qualities: [75, 80], // Allowed quality values for next/image
-    minimumCacheTTL: 604800,
   },
   webpack: (config) => {
     // Force a non-WASM hash function to avoid WasmHash crashes on some Node versions
@@ -38,30 +23,6 @@ const nextConfig = {
       config.output.hashFunction = 'sha256'
     }
     return config
-  },
-  headers: async () => {
-    return [
-      {
-        source: '/:all*(svg|jpg|jpeg|png|webp|avif|gif|ico)',
-        locale: false,
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=604800, stale-while-revalidate=86400',
-          }
-        ],
-      },
-      {
-        source: '/_next/image/:all*',
-        locale: false,
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=604800, stale-while-revalidate=86400',
-          }
-        ],
-      },
-    ]
   },
 }
 

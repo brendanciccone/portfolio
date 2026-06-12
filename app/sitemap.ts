@@ -1,5 +1,9 @@
 import { MetadataRoute } from 'next'
 
+// Metadata routes are route handlers; output: 'export' requires them to opt
+// into static rendering explicitly.
+export const dynamic = 'force-static'
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://brendanciccone.com'
   

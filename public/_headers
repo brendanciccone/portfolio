@@ -1,0 +1,44 @@
+# Served by Cloudflare Pages static assets:
+# https://developers.cloudflare.com/pages/configuration/headers/
+# Next.js content-hashes everything under /_next/static/, so these files are
+# immutable — browsers can cache them for a year and skip revalidation.
+/_next/static/*
+  Cache-Control: public,max-age=31536000,immutable
+
+# Long-lived caching for static images, mirroring the headers the Next server
+# sent on Railway (next.config.mjs headers() is ignored under output: 'export').
+# Placeholder rules (`:name`) match exactly one path segment, so the
+# /work/:project and /about HTML pages are not affected.
+
+/work/:project/:image
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+/about/:section/:image
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+/og.png
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+/avatar-dithered.png
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+/avatar-dithered.svg
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+/favicon.ico
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+/favicon-16x16.png
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+/favicon-32x32.png
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+/android-chrome-192x192.png
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+/android-chrome-512x512.png
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+/apple-touch-icon.png
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
