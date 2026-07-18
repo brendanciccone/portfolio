@@ -232,16 +232,13 @@ body {
   }
 }
 
+/* A stamp hits once and stays — no undershoot bounce */
 @keyframes stamp-in {
-  0% {
+  from {
     opacity: 0;
-    transform: scale(2);
+    transform: scale(1.6);
   }
-  60% {
-    opacity: 1;
-    transform: scale(0.9);
-  }
-  100% {
+  to {
     opacity: 1;
     transform: scale(1);
   }
@@ -261,9 +258,9 @@ body {
     animation: rise-in 450ms cubic-bezier(0.22, 1, 0.36, 1) both;
   }
 
-  /* The red period stamps in after the headline settles */
+  /* The red period stamps in as the headline settles */
   .anim-stamp {
-    animation: stamp-in 350ms cubic-bezier(0.22, 1, 0.36, 1) 650ms both;
+    animation: stamp-in 250ms cubic-bezier(0.22, 1, 0.36, 1) 550ms both;
   }
 
   .anim-rule {

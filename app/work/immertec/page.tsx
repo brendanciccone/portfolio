@@ -86,7 +86,7 @@ export default function ImmertecPage() {
 
         {/* Overview + Highlights */}
         <FadeIn delay={50} duration={350}>
-          <section id="overview" className="py-8 sm:py-9 border-b border-border scroll-mt-16">
+          <section id="overview" className="py-8 sm:py-9 scroll-mt-16">
             <SectionLabel title="Overview" number="01" className="mb-6" />
             <p className="text-[15px] leading-[1.6] text-ink-soft mb-5">
               In 2018, I joined Immertec as the <span className="text-foreground font-semibold">founding designer and second hire</span>. For the first two years, there was no product team. It was the cofounders and me shaping the product together across VR, web, and mobile. Over five years, we grew to <span className="text-foreground font-semibold">50+ team members</span>, secured a <span className="text-foreground font-semibold">$12M Series A</span>, and worked with top medtech companies to train surgical teams using real-time VR.
@@ -117,7 +117,7 @@ export default function ImmertecPage() {
 
         {/* Virtual Reality Section */}
         <FadeIn delay={75} duration={350}>
-          <section id="vr-viewer" className="py-8 sm:py-9 border-b border-border scroll-mt-16">
+          <section id="vr-viewer" className="py-8 sm:py-9 scroll-mt-16">
             <SectionLabel title="Virtual Reality Viewer" number="02" className="mb-6" />
             <div className="space-y-3.5 text-[15px] leading-[1.6] text-ink-soft mb-6">
               <p>
@@ -151,7 +151,7 @@ export default function ImmertecPage() {
 
         {/* Admin Dashboard Section */}
         <FadeIn delay={100} duration={350}>
-          <section id="admin-dashboard" className="py-8 sm:py-9 border-b border-border scroll-mt-16">
+          <section id="admin-dashboard" className="py-8 sm:py-9 scroll-mt-16">
             <SectionLabel title="Admin Dashboard" number="03" className="mb-6" />
             <div className="space-y-3.5 text-[15px] leading-[1.6] text-ink-soft mb-6">
               <p>
@@ -231,7 +231,7 @@ export default function ImmertecPage() {
 
         {/* Interactive Web Player Section */}
         <FadeIn delay={125} duration={350}>
-          <section id="web-viewer" className="py-8 sm:py-9 border-b border-border scroll-mt-16">
+          <section id="web-viewer" className="py-8 sm:py-9 scroll-mt-16">
             <SectionLabel title="Interactive Web Viewer" number="04" className="mb-6" />
             <div className="space-y-3.5 text-[15px] leading-[1.6] text-ink-soft mb-6">
               <p>
@@ -268,7 +268,7 @@ export default function ImmertecPage() {
 
         {/* Insights Section */}
         <FadeIn delay={150} duration={350}>
-          <section id="insights" className="py-8 sm:py-9 border-b border-border scroll-mt-16">
+          <section id="insights" className="py-8 sm:py-9 scroll-mt-16">
             <SectionLabel title="Insights" number="05" className="mb-6" />
             <div className="space-y-3.5 text-[15px] leading-[1.6] text-ink-soft mb-6">
               <p>

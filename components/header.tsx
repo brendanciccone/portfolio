@@ -29,7 +29,9 @@ export default function Header() {
     setMobileMenuOpen((isOpen) => !isOpen)
   }
 
-  const handleMenuKeyDown = (event: KeyboardEvent<HTMLButtonElement>) => {
+  // Attached to both the toggle button and the open menu so Escape works
+  // wherever focus currently sits
+  const handleMenuKeyDown = (event: KeyboardEvent<HTMLElement>) => {
     if (event.key === "Escape") setMobileMenuOpen(false)
   }
 
@@ -120,6 +122,7 @@ export default function Header() {
           aria-hidden={!mobileMenuOpen}
           role="navigation"
           aria-label="Mobile Navigation"
+          onKeyDown={handleMenuKeyDown}
         >
           <div className="py-3 flex flex-col">
             {navItems.map((item) => {

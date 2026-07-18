@@ -85,7 +85,7 @@ export default function PaidlyPage() {
 
         {/* Overview + Highlights */}
         <FadeIn delay={50} duration={350}>
-          <section id="overview" className="py-8 sm:py-9 border-b border-border scroll-mt-16">
+          <section id="overview" className="py-8 sm:py-9 scroll-mt-16">
             <SectionLabel title="Overview" number="01" className="mb-6" />
             <p className="text-[15px] leading-[1.6] text-ink-soft mb-5">
               As a freelancer, I experienced a common frustration: no way to send Stripe invoices on the go for free. In 2020, with remote work booming and freelancing on the rise, I saw an opportunity to solve my own problem at scale. After conducting market research, I founded Paidly and assembled a small team of developers, designing the entire application that launched on iOS and Android. From idea to launch took <span className="text-foreground font-semibold">2.5 months</span>.
@@ -110,7 +110,7 @@ export default function PaidlyPage() {
 
         {/* Research Section */}
         <FadeIn delay={75} duration={350}>
-          <section id="research" className="py-8 sm:py-9 border-b border-border scroll-mt-16">
+          <section id="research" className="py-8 sm:py-9 scroll-mt-16">
             <SectionLabel title="Research" number="02" className="mb-6" />
             <div className="space-y-3.5 text-[15px] leading-[1.6] text-ink-soft mb-6">
               <p>
@@ -157,7 +157,7 @@ export default function PaidlyPage() {
 
         {/* Stripe-Based Invoicing App Section */}
         <FadeIn delay={100} duration={350}>
-          <section id="mobile-invoicing" className="py-8 sm:py-9 border-b border-border scroll-mt-16">
+          <section id="mobile-invoicing" className="py-8 sm:py-9 scroll-mt-16">
             <SectionLabel title="Bringing Stripe Invoices to Mobile" number="03" className="mb-6" />
             <div className="space-y-3.5 text-[15px] leading-[1.6] text-ink-soft mb-6">
               <p>
@@ -187,7 +187,7 @@ export default function PaidlyPage() {
 
         {/* Insights Section */}
         <FadeIn delay={125} duration={350}>
-          <section id="insights" className="py-8 sm:py-9 border-b border-border scroll-mt-16">
+          <section id="insights" className="py-8 sm:py-9 scroll-mt-16">
             <SectionLabel title="Insights" number="04" className="mb-6" />
             <p className="text-[15px] leading-[1.6] text-ink-soft mb-5">
               After 6 months live and 2,000 SMBs running $500K+ in invoices through the platform, a contractor issue forced me to wind it down. It taught me that technical{' '}

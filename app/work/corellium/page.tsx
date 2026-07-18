@@ -86,7 +86,7 @@ export default function CorelliumPage() {
 
         {/* Overview + Highlights */}
         <FadeIn delay={50} duration={350}>
-          <section id="overview" className="py-8 sm:py-9 border-b border-border scroll-mt-16">
+          <section id="overview" className="py-8 sm:py-9 scroll-mt-16">
             <SectionLabel title="Overview" number="01" className="mb-5" />
             <p className="text-[15px] leading-[1.6] text-ink-soft mb-5">
               In 2023, I joined Corellium as the <span className="text-foreground font-semibold">solo designer</span> on a virtualization platform used by security researchers, enterprises, and government agencies to test mobile applications and firmware. I owned end-to-end product design across web and mobile, partnering with product and engineering teams to ship improvements while navigating the constraints of a complex platform.
@@ -116,7 +116,7 @@ export default function CorelliumPage() {
 
         {/* The Problem - Old Flow */}
         <FadeIn delay={75} duration={350}>
-          <section id="device-creation" className="py-8 sm:py-9 border-b border-border scroll-mt-16">
+          <section id="device-creation" className="py-8 sm:py-9 scroll-mt-16">
             <SectionLabel title="Device Creation: The Core Experience" number="02" className="mb-5" />
             <div className="space-y-3.5 text-[15px] leading-[1.6] text-ink-soft mb-6">
               <p>
@@ -151,7 +151,7 @@ export default function CorelliumPage() {
 
         {/* Redesign narrative + redesigned UI */}
         <FadeIn delay={100} duration={350}>
-          <section id="simplifying" className="py-8 sm:py-9 border-b border-border scroll-mt-16">
+          <section id="simplifying" className="py-8 sm:py-9 scroll-mt-16">
             <SectionLabel title="Simplifying the Experience" number="03" className="mb-5" />
             <div className="space-y-3.5 text-[15px] leading-[1.6] text-ink-soft mb-6">
               <p>
@@ -224,7 +224,7 @@ export default function CorelliumPage() {
 
         {/* Insights */}
         <FadeIn delay={125} duration={350}>
-          <section id="insights" className="py-8 sm:py-9 border-b border-border scroll-mt-16">
+          <section id="insights" className="py-8 sm:py-9 scroll-mt-16">
             <SectionLabel title="Insights" number="04" className="mb-5" />
             <div className="space-y-3.5 text-[15px] leading-[1.6] text-ink-soft mb-6">
               <p>
