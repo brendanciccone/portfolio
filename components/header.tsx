@@ -81,19 +81,19 @@ export default function Header() {
             >
               <span
                 className={cn(
-                  "block w-5 h-[2px] bg-foreground transition-transform duration-150",
+                  "block w-5 h-[2px] bg-foreground transition-transform duration-150 motion-reduce:transition-none",
                   mobileMenuOpen && "translate-y-[7px] rotate-45",
                 )}
               />
               <span
                 className={cn(
-                  "block w-5 h-[2px] bg-foreground transition-opacity duration-150",
+                  "block w-5 h-[2px] bg-foreground transition-opacity duration-150 motion-reduce:transition-none",
                   mobileMenuOpen && "opacity-0",
                 )}
               />
               <span
                 className={cn(
-                  "block w-5 h-[2px] bg-foreground transition-transform duration-150",
+                  "block w-5 h-[2px] bg-foreground transition-transform duration-150 motion-reduce:transition-none",
                   mobileMenuOpen && "-translate-y-[7px] -rotate-45",
                 )}
               />
@@ -104,7 +104,7 @@ export default function Header() {
         {/* Mobile menu */}
         <div
           className={cn(
-            "md:hidden overflow-hidden transition-all duration-150 ease-out",
+            "md:hidden overflow-hidden transition-all duration-150 ease-out motion-reduce:transition-none",
             mobileMenuOpen ? "max-h-60 opacity-100 border-t border-border" : "max-h-0 opacity-0",
           )}
           id="mobile-menu"
