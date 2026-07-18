@@ -17,7 +17,6 @@ import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { DrawnRule } from "@/components/drawn-rule"
 import { FadeIn } from "@/components/fade-in"
 import { FigureFrame } from "@/components/figure-frame"
 import { SectionLabel } from "@/components/section-label"
@@ -79,7 +78,6 @@ export default function PaidlyPage() {
                 </div>
               </div>
             </div>
-            <DrawnRule />
           </FadeIn>
         </header>
 

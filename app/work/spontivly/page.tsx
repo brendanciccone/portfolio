@@ -19,7 +19,6 @@ import { Badge } from "@/components/ui/badge"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { Button } from "@/components/ui/button"
-import { DrawnRule } from "@/components/drawn-rule"
 import { FadeIn } from "@/components/fade-in"
 import { FigureFrame } from "@/components/figure-frame"
 import { SectionLabel } from "@/components/section-label"
@@ -81,7 +80,6 @@ export default function SpontivlyPage() {
                 </div>
               </div>
             </div>
-            <DrawnRule />
           </FadeIn>
         </header>
 
