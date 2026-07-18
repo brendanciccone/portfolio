@@ -20,10 +20,13 @@ export const SectionNav = ({ items }: { items: readonly SectionNavItem[] }): Rea
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            setActiveId(entry.target.id)
-          }
+        // Batch order isn't guaranteed; pick the topmost intersecting section
+        // so the active marker is deterministic at boundaries
+        const topmost = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0]
+        if (topmost) {
+          setActiveId(topmost.target.id)
         }
       },
       // Fire when a section crosses the upper third of the viewport
