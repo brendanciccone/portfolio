@@ -65,13 +65,13 @@ export default function CorelliumPage() {
                 quality={80}
                 sizes="60px"
               />
-              <div className="flex-1 min-w-0 anim-rise [animation-delay:100ms]">
-                <h1 className="font-heading font-extrabold uppercase tracking-[-0.02em] text-2xl sm:text-[32px] leading-none">Corellium</h1>
-                <p className="text-[15px] text-muted-foreground mt-1.5">
+              <div className="min-w-0 anim-rise [animation-delay:100ms]">
+                <h1 className="font-heading font-extrabold uppercase tracking-[-0.02em] text-2xl sm:text-[32px] leading-none sm:whitespace-nowrap">Corellium</h1>
+                <p className="text-[15px] text-muted-foreground mt-1.5 sm:whitespace-nowrap">
                   Mobile virtualization for cybersecurity teams
                 </p>
               </div>
-              <div className="flex flex-col gap-1.5 sm:items-end anim-rise [animation-delay:180ms]">
+              <div className="flex flex-col gap-1.5 mt-2 sm:mt-0 sm:flex-1 sm:min-w-0 sm:items-end anim-rise [animation-delay:180ms]">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary">Staff Product Designer</p>
                 <div className="flex flex-wrap gap-1.5 sm:justify-end">
                   <Badge>2023-Present</Badge>
