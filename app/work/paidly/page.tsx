@@ -36,7 +36,7 @@ export default function PaidlyPage() {
       <Header />
       <SectionNav items={sections} />
       
-      <div className="max-w-[1024px] mx-auto px-5 pt-24 pb-6 sm:pb-8 flex flex-col">
+      <div className="max-w-[1024px] mx-auto px-5 pt-24 pb-6 sm:pb-8 flex flex-col gap-8 sm:gap-10">
         
         {/* Page header — full-bleed hero image in a mat frame, then title row */}
         <header>
@@ -53,7 +53,7 @@ export default function PaidlyPage() {
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
               />
             </div>
-            <div className="py-6 sm:py-7 flex flex-col sm:flex-row sm:items-center gap-4">
+            <div className="pt-6 sm:pt-7 flex flex-col sm:flex-row sm:items-center gap-4">
               <Image
                 src="/about/logos/paidly.jpeg"
                 alt="Paidly logo"
@@ -83,7 +83,7 @@ export default function PaidlyPage() {
 
         {/* Overview + Highlights */}
         <FadeIn delay={50} duration={350}>
-          <section id="overview" className="py-8 sm:py-9 scroll-mt-16">
+          <section id="overview" className="scroll-mt-16">
             <SectionLabel title="Overview" number="01" className="mb-6" />
             <p className="text-[15px] leading-[1.6] text-ink-soft mb-5">
               As a freelancer, I experienced a common frustration: no way to send Stripe invoices on the go for free. In 2020, with remote work booming and freelancing on the rise, I saw an opportunity to solve my own problem at scale. After conducting market research, I founded Paidly and assembled a small team of developers, designing the entire application that launched on iOS and Android. From idea to launch took <span className="text-foreground font-semibold">2.5 months</span>.
@@ -108,7 +108,7 @@ export default function PaidlyPage() {
 
         {/* Research Section */}
         <FadeIn delay={75} duration={350}>
-          <section id="research" className="py-8 sm:py-9 scroll-mt-16">
+          <section id="research" className="scroll-mt-16">
             <SectionLabel title="Research" number="02" className="mb-6" />
             <div className="space-y-3.5 text-[15px] leading-[1.6] text-ink-soft mb-6">
               <p>
@@ -155,7 +155,7 @@ export default function PaidlyPage() {
 
         {/* Stripe-Based Invoicing App Section */}
         <FadeIn delay={100} duration={350}>
-          <section id="mobile-invoicing" className="py-8 sm:py-9 scroll-mt-16">
+          <section id="mobile-invoicing" className="scroll-mt-16">
             <SectionLabel title="Bringing Stripe Invoices to Mobile" number="03" className="mb-6" />
             <div className="space-y-3.5 text-[15px] leading-[1.6] text-ink-soft mb-6">
               <p>
@@ -185,7 +185,7 @@ export default function PaidlyPage() {
 
         {/* Insights Section */}
         <FadeIn delay={125} duration={350}>
-          <section id="insights" className="py-8 sm:py-9 scroll-mt-16">
+          <section id="insights" className="scroll-mt-16">
             <SectionLabel title="Insights" number="04" className="mb-6" />
             <p className="text-[15px] leading-[1.6] text-ink-soft mb-5">
               After 6 months live and 2,000 SMBs running $500K+ in invoices through the platform, a contractor issue forced me to wind it down. It taught me that technical{' '}
@@ -208,7 +208,7 @@ export default function PaidlyPage() {
 
         {/* CTA Section */}
         <FadeIn delay={150} duration={350}>
-          <section className="py-10 sm:py-12 text-center">
+          <section className="py-4 sm:py-6 text-center">
             <h2 className="title-display text-2xl sm:text-[30px] mb-2">Let&apos;s ship something <span className="text-primary">great.</span></h2>
             <p className="text-[15px] text-muted-foreground mb-6">
               Looking for feedback on your product or how to take an idea from 0 → 1?

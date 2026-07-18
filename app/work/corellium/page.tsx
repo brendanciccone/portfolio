@@ -37,7 +37,7 @@ export default function CorelliumPage() {
       <Header />
       <SectionNav items={sections} />
 
-      <div className="max-w-[1024px] mx-auto px-5 pt-24 pb-6 sm:pb-8 flex flex-col">
+      <div className="max-w-[1024px] mx-auto px-5 pt-24 pb-6 sm:pb-8 flex flex-col gap-8 sm:gap-10">
 
         {/* Page header — full-bleed hero image in a mat frame, then title row */}
         <header>
@@ -54,7 +54,7 @@ export default function CorelliumPage() {
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
               />
             </div>
-            <div className="py-6 sm:py-7 flex flex-col sm:flex-row sm:items-center gap-4">
+            <div className="pt-6 sm:pt-7 flex flex-col sm:flex-row sm:items-center gap-4">
               <Image
                 src="/about/logos/corellium.jpeg"
                 alt="Corellium logo"
@@ -84,7 +84,7 @@ export default function CorelliumPage() {
 
         {/* Overview + Highlights */}
         <FadeIn delay={50} duration={350}>
-          <section id="overview" className="py-8 sm:py-9 scroll-mt-16">
+          <section id="overview" className="scroll-mt-16">
             <SectionLabel title="Overview" number="01" className="mb-5" />
             <p className="text-[15px] leading-[1.6] text-ink-soft mb-5">
               In 2023, I joined Corellium as the <span className="text-foreground font-semibold">solo designer</span> on a virtualization platform used by security researchers, enterprises, and government agencies to test mobile applications and firmware. I owned end-to-end product design across web and mobile, partnering with product and engineering teams to ship improvements while navigating the constraints of a complex platform.
@@ -114,7 +114,7 @@ export default function CorelliumPage() {
 
         {/* The Problem - Old Flow */}
         <FadeIn delay={75} duration={350}>
-          <section id="device-creation" className="py-8 sm:py-9 scroll-mt-16">
+          <section id="device-creation" className="scroll-mt-16">
             <SectionLabel title="Device Creation: The Core Experience" number="02" className="mb-5" />
             <div className="space-y-3.5 text-[15px] leading-[1.6] text-ink-soft mb-6">
               <p>
@@ -149,7 +149,7 @@ export default function CorelliumPage() {
 
         {/* Redesign narrative + redesigned UI */}
         <FadeIn delay={100} duration={350}>
-          <section id="simplifying" className="py-8 sm:py-9 scroll-mt-16">
+          <section id="simplifying" className="scroll-mt-16">
             <SectionLabel title="Simplifying the Experience" number="03" className="mb-5" />
             <div className="space-y-3.5 text-[15px] leading-[1.6] text-ink-soft mb-6">
               <p>
@@ -222,7 +222,7 @@ export default function CorelliumPage() {
 
         {/* Insights */}
         <FadeIn delay={125} duration={350}>
-          <section id="insights" className="py-8 sm:py-9 scroll-mt-16">
+          <section id="insights" className="scroll-mt-16">
             <SectionLabel title="Insights" number="04" className="mb-5" />
             <div className="space-y-3.5 text-[15px] leading-[1.6] text-ink-soft mb-6">
               <p>
@@ -257,7 +257,7 @@ export default function CorelliumPage() {
 
         {/* CTA Section */}
         <FadeIn delay={150} duration={350}>
-          <section className="py-10 sm:py-12 text-center">
+          <section className="py-4 sm:py-6 text-center">
             <h2 className="title-display text-2xl sm:text-[30px] mb-2">Let&apos;s ship something <span className="text-primary">great.</span></h2>
             <p className="text-[15px] text-muted-foreground mb-6">
               Looking for feedback on your product or how to take an idea from 0 → 1?

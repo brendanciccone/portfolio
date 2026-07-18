@@ -38,7 +38,7 @@ export default function SpontivlyPage() {
       <Header />
       <SectionNav items={sections} />
       
-      <div className="max-w-[1024px] mx-auto px-5 pt-24 pb-6 sm:pb-8 flex flex-col">
+      <div className="max-w-[1024px] mx-auto px-5 pt-24 pb-6 sm:pb-8 flex flex-col gap-8 sm:gap-10">
         
         {/* Page header — full-bleed hero image in a mat frame, then title row */}
         <header>
@@ -55,7 +55,7 @@ export default function SpontivlyPage() {
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
               />
             </div>
-            <div className="py-6 sm:py-7 flex flex-col sm:flex-row sm:items-center gap-4">
+            <div className="pt-6 sm:pt-7 flex flex-col sm:flex-row sm:items-center gap-4">
               <Image
                 src="/about/logos/spontivly.jpeg"
                 alt="Spontivly logo"
@@ -85,7 +85,7 @@ export default function SpontivlyPage() {
 
         {/* Overview + Highlights */}
         <FadeIn delay={50} duration={350}>
-          <section id="overview" className="py-8 sm:py-9 scroll-mt-16">
+          <section id="overview" className="scroll-mt-16">
             <SectionLabel title="Overview" number="01" className="mb-6" />
             <p className="text-[15px] leading-[1.6] text-ink-soft mb-5">
               In 2023, I joined Spontivly as the <span className="text-foreground font-semibold">only designer at a venture-backed startup</span> focused on democratizing analytics dashboards. I also took on PM responsibilities: working directly with cofounders to understand vision and business goals, partnering with the head of engineering to prioritize and roadmap features, and <span className="text-foreground font-semibold">regularly joining sales calls and talking to customers</span> to inform product direction.
@@ -115,7 +115,7 @@ export default function SpontivlyPage() {
 
         {/* Website Redesign Section */}
         <FadeIn delay={75} duration={350}>
-          <section id="website-redesign" className="py-8 sm:py-9 scroll-mt-16">
+          <section id="website-redesign" className="scroll-mt-16">
             <SectionLabel title="Website Redesign" number="02" className="mb-6" />
             <p className="text-[15px] leading-[1.6] text-ink-soft mb-5">
               My first project at Spontivly was redesigning the marketing website to <span className="text-foreground font-semibold">drive more leads</span> and establish a consistent brand voice. The brand was fragmented, so this redesign extended beyond the site to the core platform's visual identity. I <span className="text-foreground font-semibold">managed the project end-to-end</span>: scoping with marketing and founders, designing the system, advocating for an accessible CMS so anyone could manage content, then hiring and leading engineers to build it. We launched <span className="text-foreground font-semibold">over a month ahead of schedule</span> and <span className="text-foreground font-semibold">doubled inbound leads</span>.
@@ -136,7 +136,7 @@ export default function SpontivlyPage() {
 
         {/* Dashboard Builder Section */}
         <FadeIn delay={100} duration={350}>
-          <section id="dashboard-builder" className="py-8 sm:py-9 scroll-mt-16">
+          <section id="dashboard-builder" className="scroll-mt-16">
             <SectionLabel title="Dashboard Builder" number="03" className="mb-6" />
             <p className="text-[15px] leading-[1.6] text-ink-soft mb-5">
               I led the design of the analytics dashboard builder and an admin dashboard for managing user-created
@@ -231,7 +231,7 @@ export default function SpontivlyPage() {
 
         {/* Chart Builder Section */}
         <FadeIn delay={125} duration={350}>
-          <section id="chart-customization" className="py-8 sm:py-9 scroll-mt-16">
+          <section id="chart-customization" className="scroll-mt-16">
             <SectionLabel title="Chart Customization" number="04" className="mb-6" />
             <p className="text-[15px] leading-[1.6] text-ink-soft mb-5">
               Users needed granular control over their visualizations, but APIs returned data in wildly inconsistent formats. I worked with engineering to design{' '}
@@ -253,7 +253,7 @@ export default function SpontivlyPage() {
 
         {/* Insights */}
         <FadeIn delay={150} duration={350}>
-          <section id="insights" className="py-8 sm:py-9 scroll-mt-16">
+          <section id="insights" className="scroll-mt-16">
             <SectionLabel title="Insights" number="05" className="mb-6" />
             <p className="text-[15px] leading-[1.6] text-ink-soft mb-5">
               The hardest part wasn't the design work. It was managing a team of developers while keeping founder and customer expectations realistic against what we could actually ship. At a seed-stage startup with strong inbound interest, everyone wants everything now. My job was to absorb that pressure and translate it into a{' '}
@@ -278,7 +278,7 @@ export default function SpontivlyPage() {
 
         {/* CTA Section */}
         <FadeIn delay={175} duration={350}>
-          <section className="py-10 sm:py-12 text-center">
+          <section className="py-4 sm:py-6 text-center">
             <h2 className="title-display text-2xl sm:text-[30px] mb-2">Let&apos;s ship something <span className="text-primary">great.</span></h2>
             <p className="text-[15px] text-muted-foreground mb-6">
               Looking for feedback on your product or how to take an idea from 0 → 1?
