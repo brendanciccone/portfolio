@@ -1,277 +1,174 @@
 import Link from "next/link"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
-import { Badge } from "@/components/ui/badge"
 import { FadeIn } from "@/components/fade-in"
-import { LightboxImage } from "@/components/lightbox"
-import { MockupImage } from "@/components/mockup-image"
+import { SectionLabel } from "@/components/section-label"
+import { WorkCard, type WorkCardData } from "@/components/work-card"
+import { cn } from "@/lib/utils"
+
+const selectedWork: readonly WorkCardData[] = [
+  {
+    title: "Corellium",
+    description: "Mobile virtualization for cybersecurity teams",
+    image: {
+      src: "/work/corellium/1.webp",
+      alt: "Corellium virtual device platform showing the device creation flow for mobile security testing",
+    },
+    tags: ["2023-Present", "Acquired", "Cybersecurity"],
+    href: "/work/corellium",
+  },
+  {
+    title: "Immertec",
+    description: "VR medical training for live surgical procedures",
+    image: {
+      src: "/work/immertec/1.webp",
+      alt: "Immertec VR medical training platform showing a live surgical procedure with multiple participating doctors, medical imaging views, and interactive controls for remote learning",
+    },
+    tags: ["2018-2023", "Series A", "Healthcare"],
+    href: "/work/immertec",
+  },
+  {
+    title: "Spontivly",
+    description: "Analytics dashboards for non-technical users",
+    image: {
+      src: "/work/spontivly/1.webp",
+      alt: "Spontivly social analytics dashboard showing engagement metrics, impression trends, and top performing content",
+    },
+    tags: ["2023", "Seed", "Analytics"],
+    href: "/work/spontivly",
+  },
+  {
+    title: "Paidly",
+    description: "Stripe-integrated invoicing mobile app for SMEs",
+    image: {
+      src: "/work/paidly/1.webp",
+      alt: "Paidly mobile app showing invoice list, automatic reminders feature, and customer creation form",
+    },
+    tags: ["2020", "Stripe Partner", "Fintech"],
+    href: "/work/paidly",
+  },
+]
+
+const otherWork: readonly WorkCardData[] = [
+  {
+    title: "Crenel",
+    description: "Social analytics and automatic crossposting",
+    image: {
+      src: "/work/crenel/1.webp",
+      alt: "Crenel autoposting platform showing automatic crossposting across social platforms",
+    },
+    tags: ["2025", "Coinbase Accelerator"],
+    href: "https://www.crenel.xyz",
+    external: true,
+  },
+  {
+    title: "Magier",
+    description: "Privacy-focused AI chatbot mobile app and platform",
+    image: {
+      src: "/work/magier/1.webp",
+      alt: "Magier AI chatbot mobile app screens showing settings, chat interface, and subscription options",
+    },
+    tags: ["2023", "Acquired", "AI"],
+  },
+  {
+    title: "Biobox",
+    description: "Link-in-bio platform leveraging onchain data",
+    image: {
+      src: "/work/biobox/1.webp",
+      alt: "Biobox link-in-bio platform leveraging onchain data",
+    },
+    tags: ["2021", "ETHGlobal Winner", "Web3"],
+  },
+]
+
+const stats = [
+  { label: "Experience", value: "8 Years", delayClass: "[animation-delay:300ms]" },
+  { label: "Role", value: "Staff Product Designer", delayClass: "[animation-delay:380ms]" },
+  { label: "Currently", value: "Corellium", href: "https://www.corellium.com", delayClass: "[animation-delay:460ms]" },
+]
 
 export default function Portfolio() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen text-foreground">
       <Header />
 
-      <div className="max-w-[1024px] mx-auto px-5 pt-24 pb-6 sm:pb-8 flex flex-col gap-6">
+      <div className="max-w-[1024px] mx-auto px-5 pt-24 pb-6 sm:pb-8 flex flex-col gap-6 sm:gap-8">
         <FadeIn delay={0} duration={350}>
-          <div className="flex flex-col">
-            <h1 className="title-display leading-[1] text-3xl sm:text-4xl md:text-[44px]">
-              Hi, I&apos;m Brendan <span aria-hidden className="inline-block">👋</span>
-            </h1>
-            <p className="mt-2 sm:mt-3 text-sm sm:text-base text-muted-foreground">
-              Staff product designer and founder with 8 years of experience shipping B2B products at early-stage startups in healthcare, cybersecurity, and finance. Currently at <Link href="https://www.corellium.com" target="_blank" rel="noopener noreferrer" className="text-foreground font-medium hover:underline">Corellium</Link>, simplifying complex cybersecurity workflows.
-            </p>
-            <dl className="mt-8 sm:mt-10 flex flex-col sm:grid sm:grid-cols-3 border border-border bg-card">
-              <div className="p-4 sm:p-5 flex flex-row items-center justify-between gap-4 border-b border-border sm:flex-col sm:items-stretch sm:justify-start sm:gap-1.5 sm:border-b-0 sm:border-r min-w-0">
-                <dt className="text-[10px] font-mono uppercase tracking-[0.18em] text-muted-foreground">Experience</dt>
-                <dd className="text-base sm:text-lg font-heading font-medium text-right sm:text-left truncate">8 Years</dd>
-              </div>
-              <div className="p-4 sm:p-5 flex flex-row items-center justify-between gap-4 border-b border-border sm:flex-col sm:items-stretch sm:justify-start sm:gap-1.5 sm:border-b-0 sm:border-r min-w-0">
-                <dt className="text-[10px] font-mono uppercase tracking-[0.18em] text-muted-foreground">Role</dt>
-                <dd className="text-base sm:text-lg font-heading font-medium text-right sm:text-left truncate">Staff Product Designer</dd>
-              </div>
-              <div className="p-4 sm:p-5 flex flex-row items-center justify-between gap-4 sm:flex-col sm:items-stretch sm:justify-start sm:gap-1.5 min-w-0">
-                <dt className="text-[10px] font-mono uppercase tracking-[0.18em] text-muted-foreground">Currently</dt>
-                <dd className="text-base sm:text-lg font-heading font-medium text-right sm:text-left truncate">
-                  <Link href="https://www.corellium.com" target="_blank" rel="noopener noreferrer" className="hover:underline transition-colors duration-150">
-                    Corellium
-                  </Link>
-                </dd>
-              </div>
+          <div className="flex flex-col gap-6 sm:gap-8">
+            {/* Hero — display type left, intro right, baseline-aligned.
+                Lines rise, the red period stamps in, the wave waves once,
+                and the hairline draws itself. */}
+            <section className="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-6 md:gap-x-10 md:gap-y-8 items-end">
+              <h1 className="title-display text-[44px] sm:text-6xl md:text-[72px]">
+                <span className="block anim-rise">Hi, I&apos;m</span>
+                <span className="block anim-rise [animation-delay:100ms]">
+                  Brendan<span className="text-primary inline-block anim-stamp">.</span>{" "}
+                  <span aria-hidden className="inline-block">👋</span>
+                </span>
+              </h1>
+              <p className="text-[15px] leading-[1.55] text-ink-soft anim-rise [animation-delay:200ms]">
+                Staff product designer and founder with 8 years of experience shipping B2B products at early-stage startups in healthcare, cybersecurity, and finance. Currently at <Link href="https://www.corellium.com" target="_blank" rel="noopener noreferrer" className="text-primary font-medium hover:underline">Corellium</Link>, simplifying complex cybersecurity workflows.
+              </p>
+              <div aria-hidden className="h-px bg-border anim-rule md:col-span-2" />
+            </section>
+
+            {/* Stat bar */}
+            <dl className="flex flex-col sm:grid sm:grid-cols-3 border border-border bg-card">
+              {stats.map((stat, index) => (
+                <div
+                  key={stat.label}
+                  className={cn(
+                    "p-4 sm:p-5 flex flex-row items-center justify-between gap-4 sm:flex-col sm:items-stretch sm:justify-start sm:gap-1.5 min-w-0 anim-rise",
+                    /* Cells rise in sequence behind the hero */
+                    stat.delayClass,
+                    index < stats.length - 1 && "border-b border-border sm:border-b-0 sm:border-r",
+                  )}
+                >
+                  <dt className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary">{stat.label}</dt>
+                  <dd className="text-lg sm:text-[26px] font-heading font-bold leading-tight text-right sm:text-left">
+                    {stat.href ? (
+                      <Link href={stat.href} target="_blank" rel="noopener noreferrer" className="hover:underline">
+                        {stat.value}
+                      </Link>
+                    ) : (
+                      stat.value
+                    )}
+                  </dd>
+                </div>
+              ))}
             </dl>
           </div>
         </FadeIn>
 
-        {/* Selected Work label */}
+        {/* Selected Work */}
         <FadeIn delay={25} duration={350}>
-            <div className="sys-section-header">
-              <p className="sys-section-label whitespace-nowrap">Selected Work</p>
-              <div className="sys-section-line" />
-            </div>
+          <SectionLabel title="Selected Work" counter="04" />
         </FadeIn>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-          {/* Project 1 - Corellium */}
-          <Link href="/work/corellium" className="group block sys-panel hover-lift hover:-translate-y-1 hover:border-foreground">
-            <div className="bg-mockup-frame overflow-hidden border-b border-border p-1">
-              <div className="relative w-full overflow-hidden rounded-sm">
-                <MockupImage
-                  src="/work/corellium/1.webp"
-                  alt="Corellium virtual device platform showing the device creation flow for mobile security testing"
-                  width={1200}
-                  height={800}
-                  className="w-full transition-[translate] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-0.5"
-                  priority
-                  quality={80}
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
-                />
-              </div>
-            </div>
-            <div className="p-4 sm:p-7">
-              <div className="mb-4">
-                <h2 className="text-lg sm:text-xl font-heading font-semibold mb-1 uppercase tracking-wide">Corellium</h2>
-                <p className="text-muted-foreground text-sm">Mobile virtualization for cybersecurity teams</p>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                <Badge>2023-Present</Badge>
-                <Badge>Acquired</Badge>
-                <Badge>Cybersecurity</Badge>
-              </div>
-            </div>
-          </Link>
-
-          {/* Project 2 - Immertec */}
-          <FadeIn delay={75} duration={350}>
-            <Link href="/work/immertec" className="group block sys-panel hover-lift hover:-translate-y-1 hover:border-foreground">
-              <div className="bg-mockup-frame overflow-hidden border-b border-border p-1">
-                <div className="relative w-full overflow-hidden rounded-sm">
-                  <MockupImage
-                    src="/work/immertec/1.webp"
-                    alt="Immertec VR medical training platform showing a live surgical procedure with multiple participating doctors, medical imaging views, and interactive controls for remote learning"
-                    width={1200}
-                    height={800}
-                    className="w-full transition-[translate] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-0.5"
-                    priority
-                    quality={80}
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
-                  />
-                </div>
-              </div>
-              <div className="p-4 sm:p-7">
-                <div className="mb-4">
-                  <h2 className="text-lg sm:text-xl font-heading font-semibold mb-1 uppercase tracking-wide">Immertec</h2>
-                  <p className="text-muted-foreground text-sm">VR medical training for live surgical procedures</p>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  <Badge>2018-2023</Badge>
-                  <Badge>Series A</Badge>
-                  <Badge>Healthcare</Badge>
-                </div>
-              </div>
-            </Link>
-          </FadeIn>
-
-          {/* Project 3 - Spontivly */}
-          <FadeIn delay={100} duration={350}>
-            <Link href="/work/spontivly" className="group block sys-panel hover-lift hover:-translate-y-1 hover:border-foreground">
-              <div className="bg-mockup-frame overflow-hidden border-b border-border p-1">
-                <div className="relative w-full overflow-hidden rounded-sm">
-                  <MockupImage
-                    src="/work/spontivly/1.webp"
-                    alt="Spontivly social analytics dashboard showing engagement metrics, impression trends, and top performing content"
-                    width={1200}
-                    height={800}
-                    className="w-full transition-[translate] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-0.5"
-                    priority
-                    quality={80}
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
-                  />
-                </div>
-              </div>
-              <div className="p-4 sm:p-7">
-                <div className="mb-4">
-                  <h2 className="text-lg sm:text-xl font-heading font-semibold mb-1 uppercase tracking-wide">Spontivly</h2>
-                  <p className="text-muted-foreground text-sm">Analytics dashboards for non-technical users</p>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  <Badge>2023</Badge>
-                  <Badge>Seed</Badge>
-                  <Badge>Analytics</Badge>
-                </div>
-              </div>
-            </Link>
-          </FadeIn>
-
-          {/* Project 4 - Paidly */}
-          <FadeIn delay={125} duration={350}>
-            <Link href="/work/paidly" className="group block sys-panel hover-lift hover:-translate-y-1 hover:border-foreground">
-              <div className="bg-mockup-frame overflow-hidden border-b border-border p-1">
-                <div className="relative w-full overflow-hidden rounded-sm">
-                  <MockupImage
-                    src="/work/paidly/1.webp"
-                    alt="Paidly mobile app showing invoice list, automatic reminders feature, and customer creation form"
-                    width={1200}
-                    height={800}
-                    className="w-full transition-[translate] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-0.5"
-                    priority
-                    quality={80}
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
-                  />
-                </div>
-              </div>
-              <div className="p-4 sm:p-7">
-                <div className="mb-4">
-                  <h2 className="text-lg sm:text-xl font-heading font-semibold mb-1 uppercase tracking-wide">Paidly</h2>
-                  <p className="text-muted-foreground text-sm">Stripe-integrated invoicing mobile app for SMEs</p>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  <Badge>2020</Badge>
-                  <Badge>Stripe Partner</Badge>
-                  <Badge>Fintech</Badge>
-                </div>
-              </div>
-            </Link>
-          </FadeIn>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {selectedWork.map((project, index) =>
+            index === 0 ? (
+              <WorkCard key={project.title} {...project} priority />
+            ) : (
+              <FadeIn key={project.title} delay={50 + index * 25} duration={350}>
+                {/* Preload only the first row (two cards); the rest lazy-load */}
+                <WorkCard {...project} priority={index < 2} />
+              </FadeIn>
+            ),
+          )}
         </div>
 
-        {/* Other Work Section */}
+        {/* Other Work */}
         <FadeIn delay={175} duration={350}>
-          <div className="sys-section-header pt-2 sm:pt-4">
-            <p className="sys-section-label whitespace-nowrap">Other Work</p>
-            <div className="sys-section-line" />
-          </div>
+          <SectionLabel title="Other Work" counter="03" className="pt-2 sm:pt-4" />
         </FadeIn>
 
-        {/* Other Work Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
-          {/* Crenel */}
-          <FadeIn delay={200} duration={350}>
-            <Link href="https://www.crenel.xyz" target="_blank" rel="noopener noreferrer" className="group block sys-panel hover-lift hover:-translate-y-1 hover:border-foreground">
-              <div className="bg-mockup-frame overflow-hidden border-b border-border p-1">
-                <div className="relative w-full overflow-hidden rounded-sm">
-                  <MockupImage
-                    src="/work/crenel/1.webp"
-                    alt="Crenel autoposting platform showing automatic crossposting across social platforms"
-                    width={1200}
-                    height={800}
-                    className="w-full transition-[translate] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-0.5"
-                    quality={80}
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 512px"
-                  />
-                </div>
-              </div>
-              <div className="p-4 sm:p-7">
-                <div className="mb-4">
-                  <h3 className="text-base sm:text-lg font-heading font-semibold mb-1 uppercase tracking-wide">Crenel</h3>
-                  <p className="text-sm text-muted-foreground">Social analytics and automatic crossposting</p>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  <Badge>2025</Badge>
-                  <Badge>Coinbase Accelerator</Badge>
-                </div>
-              </div>
-            </Link>
-          </FadeIn>
-
-          {/* Magier */}
-          <FadeIn delay={225} duration={350}>
-            <div className="group sys-panel hover-lift hover:-translate-y-1 hover:border-foreground">
-              <div className="bg-mockup-frame overflow-hidden border-b border-border p-1">
-                <div className="relative w-full overflow-hidden rounded-sm [&_button]:cursor-zoom-in">
-                  <LightboxImage
-                    src="/work/magier/1.webp"
-                    alt="Magier AI chatbot mobile app screens showing settings, chat interface, and subscription options"
-                    width={1200}
-                    height={800}
-                    className="w-full transition-[translate] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-0.5"
-                    quality={80}
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 512px"
-                  />
-                </div>
-              </div>
-              <div className="p-4 sm:p-7">
-                <div className="mb-4">
-                  <h3 className="text-base sm:text-lg font-heading font-semibold mb-1 uppercase tracking-wide">Magier</h3>
-                  <p className="text-sm text-muted-foreground">Privacy-focused AI chatbot mobile app and platform</p>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  <Badge>2023</Badge>
-                  <Badge>Acquired</Badge>
-                  <Badge>AI</Badge>
-                </div>
-              </div>
-            </div>
-          </FadeIn>
-
-          {/* Biobox */}
-          <FadeIn delay={250} duration={350}>
-            <div className="group sys-panel hover-lift hover:-translate-y-1 hover:border-foreground">
-              <div className="bg-mockup-frame overflow-hidden border-b border-border p-1">
-                <div className="relative w-full overflow-hidden rounded-sm [&_button]:cursor-zoom-in">
-                  <LightboxImage
-                    src="/work/biobox/1.webp"
-                    alt="Biobox link-in-bio platform leveraging onchain data"
-                    width={1200}
-                    height={800}
-                    className="w-full transition-[translate] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-0.5"
-                    quality={80}
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 512px"
-                  />
-                </div>
-              </div>
-              <div className="p-4 sm:p-7">
-                <div className="mb-4">
-                  <h3 className="text-base sm:text-lg font-heading font-semibold mb-1 uppercase tracking-wide">Biobox</h3>
-                  <p className="text-sm text-muted-foreground">Link-in-bio platform leveraging onchain data</p>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  <Badge>2021</Badge>
-                  <Badge>ETHGlobal Winner</Badge>
-                  <Badge>Web3</Badge>
-                </div>
-              </div>
-            </div>
-          </FadeIn>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          {otherWork.map((project, index) => (
+            <FadeIn key={project.title} delay={200 + index * 25} duration={350}>
+              <WorkCard {...project} variant="other" />
+            </FadeIn>
+          ))}
         </div>
 
         <Footer />

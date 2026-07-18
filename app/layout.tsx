@@ -1,4 +1,4 @@
-import { Google_Sans_Flex } from "next/font/google"
+import { Archivo, Space_Grotesk } from "next/font/google"
 import type React from "react"
 import type { Metadata, Viewport } from "next"
 import "./globals.css"
@@ -7,13 +7,18 @@ import ScrollToTop from "@/components/scroll-to-top"
 import { ErrorBoundary } from "@/components/error-boundary"
 import JsonLd from "@/components/json-ld"
 
-// Variable font with weight (100-1000) and width (25-151) axes.
-// Site uses default 100% width across body and titles; the wdth axis is
-// preloaded so we can dial up width via font-stretch later if needed.
-const googleSansFlex = Google_Sans_Flex({
+// Swiss type system: Archivo for display/headings, Space Grotesk for
+// everything else — body, UI, and the small uppercase meta labels/tags/dates
+// (the static reference stacks those as "Space Grotesk, monospace").
+const archivo = Archivo({
   subsets: ["latin"],
-  axes: ["wdth"],
-  variable: "--font-google-sans-flex",
+  weight: ["600", "700", "800"],
+  variable: "--font-archivo",
+})
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-space-grotesk",
 })
 
 export const viewport: Viewport = {
@@ -80,7 +85,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${googleSansFlex.variable} ${googleSansFlex.className}`}>
+    <html lang="en" suppressHydrationWarning className={`${archivo.variable} ${spaceGrotesk.variable} ${spaceGrotesk.className}`}>
       <head>
         <JsonLd />
       </head>

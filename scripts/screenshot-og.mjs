@@ -70,9 +70,30 @@ async function main() {
       deviceScaleFactor: 1,
     })
 
+    // All site animations (entrance rises, the stamped period, drawn rules)
+    // are gated behind prefers-reduced-motion, so emulating it renders every
+    // element in its final resting state instantly — no racing timers to
+    // screenshot mid-animation.
+    await page.emulateMedia({ reducedMotion: "reduce" })
+
     await page.goto(`http://127.0.0.1:${port}/`, {
       waitUntil: "networkidle",
       timeout: 15000,
+    })
+    // Wait on explicit readiness signals (webfonts + image decode) rather
+    // than a fixed delay, so the capture is deterministic on slow machines
+    await page.evaluate(async () => {
+      await document.fonts.ready
+      await Promise.all(
+        Array.from(document.images, (image) =>
+          image.complete
+            ? image.decode().catch(() => undefined)
+            : new Promise((resolve) => {
+                image.addEventListener("load", () => resolve(undefined), { once: true })
+                image.addEventListener("error", () => resolve(undefined), { once: true })
+              }),
+        ),
+      )
     })
 
     const outPath = join(root, "public", "og.png")

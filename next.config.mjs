@@ -22,6 +22,9 @@ const nextConfig = {
     loaderFile: './lib/image-loader.ts',
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    // Site images request quality 80 (95 for the fullscreen lightbox);
+    // Next 16 validates every requested quality against this list
+    qualities: [75, 80, 95],
   },
   webpack: (config) => {
     // Force a non-WASM hash function to avoid WasmHash crashes on some Node versions

@@ -51,7 +51,30 @@ const FadeInComponent = ({
       observer.observe(currentRef)
     }
 
+    // Client navigation races the observer: it can compute its first record at
+    // the pre-navigation scroll offset, right before ScrollToTop jumps to the
+    // top, leaving in-viewport elements stuck hidden. Re-check once the scroll
+    // reset has settled.
+    const recheckVisibility = () => {
+      if (!currentRef) return
+      const rect = currentRef.getBoundingClientRect()
+      // innerHeight/Width can misreport 0 in embedded webviews; fall back to
+      // the document's client dimensions
+      const viewportHeight = window.innerHeight || document.documentElement.clientHeight
+      const viewportWidth = window.innerWidth || document.documentElement.clientWidth
+      const visibleWidth = Math.max(0, Math.min(rect.right, viewportWidth) - Math.max(rect.left, 0))
+      const visibleHeight = Math.max(0, Math.min(rect.bottom, viewportHeight) - Math.max(rect.top, 0))
+      const totalArea = rect.width * rect.height
+      const visibilityRatio = totalArea > 0 ? (visibleWidth * visibleHeight) / totalArea : 0
+      if (visibilityRatio >= threshold) {
+        setIsVisible(true)
+        if (once) observer.unobserve(currentRef)
+      }
+    }
+    const recheckTimer = setTimeout(recheckVisibility, 100)
+
     return () => {
+      clearTimeout(recheckTimer)
       if (currentRef) {
         observer.unobserve(currentRef)
       }
@@ -72,6 +95,8 @@ const FadeInComponent = ({
       className={cn(
         "transition-all",
         isVisible ? "opacity-100 transform-none" : `opacity-0 ${directionClasses[direction]}`,
+        // Honor prefers-reduced-motion: render in place with no entrance animation
+        "motion-reduce:transition-none motion-reduce:opacity-100 motion-reduce:translate-none",
         className,
       )}
       style={{

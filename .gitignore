@@ -110,3 +110,5 @@ storybook-static
 *.temp
 *.bak
 *~
+# Local Claude Code worktrees
+.claude/worktrees/
