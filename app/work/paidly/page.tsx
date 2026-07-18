@@ -70,7 +70,7 @@ export default function PaidlyPage() {
                   Stripe-integrated invoicing mobile app for SMEs
                 </p>
               </div>
-              <div className="flex flex-col gap-1.5 mt-2 sm:mt-0 sm:flex-1 sm:min-w-0 sm:items-end anim-rise [animation-delay:180ms]">
+              <div className="flex flex-col gap-2.5 sm:gap-1.5 sm:flex-1 sm:min-w-0 sm:items-end anim-rise [animation-delay:180ms]">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary">Founder</p>
                 <div className="flex flex-wrap gap-1.5 sm:justify-end">
                   <Badge>2020</Badge>
