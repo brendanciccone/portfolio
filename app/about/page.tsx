@@ -346,12 +346,12 @@ export default function About() {
                     <Link
                       key={album.name}
                       href={album.url}
-                      className="group flex flex-col hover-lift-opacity hover:opacity-90 hover:-translate-y-1"
+                      className="group flex flex-col hover-lift-opacity hover:opacity-90 hover:-translate-y-1 motion-reduce:hover:translate-none"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
                       <div className="relative w-full aspect-square mb-2 overflow-hidden border border-border">
-                        <Image src={album.cover} alt={`${album.name} by ${album.artist}`} fill className="object-cover" />
+                        <Image src={album.cover} alt={`${album.name} by ${album.artist}`} fill sizes="(max-width: 768px) 45vw, 220px" className="object-cover" />
                       </div>
                       <p className="text-sm font-medium text-center">{album.name}</p>
                       <p className="text-xs text-muted-foreground text-center">{album.artist}</p>
@@ -366,12 +366,12 @@ export default function About() {
                     <Link
                       key={book.name}
                       href={book.url}
-                      className="group flex flex-col hover-lift-opacity hover:opacity-90 hover:-translate-y-1"
+                      className="group flex flex-col hover-lift-opacity hover:opacity-90 hover:-translate-y-1 motion-reduce:hover:translate-none"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
                       <div className="relative w-full aspect-[2/3] mb-2 overflow-hidden border border-border">
-                        <Image src={book.cover} alt={`${book.name} by ${book.author}`} fill className="object-cover" />
+                        <Image src={book.cover} alt={`${book.name} by ${book.author}`} fill sizes="(max-width: 768px) 45vw, 220px" className="object-cover" />
                       </div>
                       <p className="text-sm font-medium text-center">{book.name}</p>
                       <p className="text-xs text-muted-foreground text-center">{book.author}</p>

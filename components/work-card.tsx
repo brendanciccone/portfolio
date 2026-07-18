@@ -21,10 +21,10 @@ interface WorkCardProps extends WorkCardData {
 }
 
 const cardClasses =
-  "group block h-full sys-panel hover-lift hover:-translate-y-1 hover:border-foreground/40"
+  "group block h-full sys-panel hover-lift hover:-translate-y-1 hover:border-foreground/40 motion-reduce:hover:translate-none"
 
 const imageClasses =
-  "w-full transition-[translate,opacity] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-0.5 group-hover:opacity-90"
+  "w-full transition-[translate,opacity] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-0.5 group-hover:opacity-90 motion-reduce:group-hover:translate-none"
 
 export const WorkCard = ({
   title,

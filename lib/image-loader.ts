@@ -13,7 +13,10 @@ const cloudflareImageLoader = ({ src, width, quality }: CloudflareImageLoaderPar
   if (process.env.NODE_ENV === "development") {
     // Dev serves the untransformed file; the width param only exists so the
     // loader "implements width" (Next 16 warns otherwise) — it is ignored.
-    return `${src}?width=${width}`
+    // Splice it in query/hash-safely in case a src ever carries either.
+    const [path, hash = ""] = src.split("#", 2)
+    const separator = path.includes("?") ? "&" : "?"
+    return `${path}${separator}width=${width}${hash ? `#${hash}` : ""}`
   }
   const params = [`width=${width}`, `quality=${quality ?? 75}`, "format=auto"]
   const normalizedSrc = src.startsWith("/") ? src.slice(1) : src

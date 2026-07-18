@@ -3,7 +3,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { useEffect, useState } from "react"
+import { useEffect, useState, type KeyboardEvent } from "react"
 import { cn } from "@/lib/utils"
 
 const navItems = [
@@ -24,6 +24,14 @@ export default function Header() {
   useEffect(() => {
     setMobileMenuOpen(false)
   }, [pathname])
+
+  const handleMenuToggle = () => {
+    setMobileMenuOpen((isOpen) => !isOpen)
+  }
+
+  const handleMenuKeyDown = (event: KeyboardEvent<HTMLButtonElement>) => {
+    if (event.key === "Escape") setMobileMenuOpen(false)
+  }
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
@@ -73,7 +81,8 @@ export default function Header() {
           <div className="flex md:hidden items-center">
             <button
               type="button"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              onClick={handleMenuToggle}
+              onKeyDown={handleMenuKeyDown}
               aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-menu"

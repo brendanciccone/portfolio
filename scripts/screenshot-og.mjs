@@ -80,8 +80,21 @@ async function main() {
       waitUntil: "networkidle",
       timeout: 15000,
     })
-    // Small settle for webfonts/decoding after network goes quiet
-    await new Promise((r) => setTimeout(r, 750))
+    // Wait on explicit readiness signals (webfonts + image decode) rather
+    // than a fixed delay, so the capture is deterministic on slow machines
+    await page.evaluate(async () => {
+      await document.fonts.ready
+      await Promise.all(
+        Array.from(document.images, (image) =>
+          image.complete
+            ? image.decode().catch(() => undefined)
+            : new Promise((resolve) => {
+                image.addEventListener("load", () => resolve(undefined), { once: true })
+                image.addEventListener("error", () => resolve(undefined), { once: true })
+              }),
+        ),
+      )
+    })
 
     const outPath = join(root, "public", "og.png")
     await mkdir(dirname(outPath), { recursive: true })

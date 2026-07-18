@@ -93,12 +93,14 @@
   --card-foreground: #1a1a1a;
   --popover: #ffffff;
   --popover-foreground: #1a1a1a;
-  /* The one accent: red. Drives active nav, labels, links, and the CTA button. */
-  --primary: #e5372a;
+  /* The one accent: red. Drives active nav, labels, links, and the CTA button.
+     #d73427 is the brightest red on the spec hue (#e5372a) that clears WCAG
+     AA 4.5:1 both as text on paper (4.53:1) and under white type (4.76:1). */
+  --primary: #d73427;
   --primary-foreground: #ffffff;
   /* Filled red surfaces (active nav, buttons): self-contained pair, identical
      in both modes so red blocks always carry white type. */
-  --primary-fill: #e5372a;
+  --primary-fill: #d73427;
   --primary-fill-foreground: #ffffff;
   --secondary: #f3f1ec;
   --secondary-foreground: #1a1a1a;
@@ -108,12 +110,12 @@
   --muted-foreground: #55554e;
   --accent: #f3f1ec;
   --accent-foreground: #1a1a1a;
-  --destructive: #e5372a;
+  --destructive: #d73427;
   --destructive-foreground: #ffffff;
   --border: #e4e2dd;
   /* Doubles as the chip/tag outline (--line-mute in the spec) */
   --input: #d8d6d0;
-  --ring: #e5372a;
+  --ring: #d73427;
   --radius: 0;
   --ink-soft: #4a4a44;
   --ink-faint: #6a6a63;
@@ -133,7 +135,7 @@
   /* Lifted for legibility as small text on near-black; fills use --primary-fill */
   --primary: #ff5a4d;
   --primary-foreground: #1a0b09;
-  --primary-fill: #e5372a;
+  --primary-fill: #d73427;
   --primary-fill-foreground: #ffffff;
   --secondary: #22211d;
   --secondary-foreground: #f0eee9;
@@ -310,4 +312,11 @@ body {
     opacity 150ms ease-out,
     translate 200ms cubic-bezier(0.22, 1, 0.36, 1),
     scale 200ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hover-lift,
+  .hover-lift-opacity {
+    transition: none;
+  }
 }

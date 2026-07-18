@@ -58,10 +58,15 @@ const FadeInComponent = ({
     const recheckVisibility = () => {
       if (!currentRef) return
       const rect = currentRef.getBoundingClientRect()
-      // innerHeight can misreport 0 in embedded webviews; fall back to the
-      // document's client height
+      // innerHeight/Width can misreport 0 in embedded webviews; fall back to
+      // the document's client dimensions
       const viewportHeight = window.innerHeight || document.documentElement.clientHeight
-      if (rect.top < viewportHeight && rect.bottom > 0) {
+      const viewportWidth = window.innerWidth || document.documentElement.clientWidth
+      const visibleWidth = Math.max(0, Math.min(rect.right, viewportWidth) - Math.max(rect.left, 0))
+      const visibleHeight = Math.max(0, Math.min(rect.bottom, viewportHeight) - Math.max(rect.top, 0))
+      const totalArea = rect.width * rect.height
+      const visibilityRatio = totalArea > 0 ? (visibleWidth * visibleHeight) / totalArea : 0
+      if (visibilityRatio >= threshold) {
         setIsVisible(true)
         if (once) observer.unobserve(currentRef)
       }

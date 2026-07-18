@@ -4,6 +4,7 @@ import Footer from "@/components/footer"
 import { FadeIn } from "@/components/fade-in"
 import { SectionLabel } from "@/components/section-label"
 import { WorkCard, type WorkCardData } from "@/components/work-card"
+import { cn } from "@/lib/utils"
 
 const selectedWork: readonly WorkCardData[] = [
   {
@@ -81,9 +82,9 @@ const otherWork: readonly WorkCardData[] = [
 ]
 
 const stats = [
-  { label: "Experience", value: "8 Years" },
-  { label: "Role", value: "Staff Product Designer" },
-  { label: "Currently", value: "Corellium", href: "https://www.corellium.com" },
+  { label: "Experience", value: "8 Years", delayClass: "[animation-delay:300ms]" },
+  { label: "Role", value: "Staff Product Designer", delayClass: "[animation-delay:380ms]" },
+  { label: "Currently", value: "Corellium", href: "https://www.corellium.com", delayClass: "[animation-delay:460ms]" },
 ]
 
 export default function Portfolio() {
@@ -116,11 +117,12 @@ export default function Portfolio() {
               {stats.map((stat, index) => (
                 <div
                   key={stat.label}
-                  /* Cells rise in sequence behind the hero */
-                  style={{ animationDelay: `${300 + index * 80}ms` }}
-                  className={`p-4 sm:p-5 flex flex-row items-center justify-between gap-4 sm:flex-col sm:items-stretch sm:justify-start sm:gap-1.5 min-w-0 anim-rise ${
-                    index < stats.length - 1 ? "border-b border-border sm:border-b-0 sm:border-r" : ""
-                  }`}
+                  className={cn(
+                    "p-4 sm:p-5 flex flex-row items-center justify-between gap-4 sm:flex-col sm:items-stretch sm:justify-start sm:gap-1.5 min-w-0 anim-rise",
+                    /* Cells rise in sequence behind the hero */
+                    stat.delayClass,
+                    index < stats.length - 1 && "border-b border-border sm:border-b-0 sm:border-r",
+                  )}
                 >
                   <dt className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary">{stat.label}</dt>
                   <dd className="text-lg sm:text-[26px] font-heading font-bold leading-tight text-right sm:text-left">
@@ -149,7 +151,8 @@ export default function Portfolio() {
               <WorkCard key={project.title} {...project} priority />
             ) : (
               <FadeIn key={project.title} delay={50 + index * 25} duration={350}>
-                <WorkCard {...project} priority />
+                {/* Preload only the first row (two cards); the rest lazy-load */}
+                <WorkCard {...project} priority={index < 2} />
               </FadeIn>
             ),
           )}
