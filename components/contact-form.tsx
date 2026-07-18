@@ -310,9 +310,9 @@ export default function ContactForm() {
             {errors.termsAccepted}
           </p>
         )}
-        <Button 
-          type="submit" 
-          className="w-full h-9 sm:h-10 mt-2" 
+        <Button
+          type="submit"
+          className="w-full h-9 sm:h-10 mt-2 group"
           disabled={isSubmitting || !formData.termsAccepted}
           size="sm"
         >
@@ -326,7 +326,7 @@ export default function ContactForm() {
             </span>
           ) : (
             <>
-              <Send className="mr-2 h-4 w-4" /> Send message
+              <Send className="mr-2 h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0 motion-reduce:group-hover:translate-y-0" /> Send message
             </>
           )}
         </Button>

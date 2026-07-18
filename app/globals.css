@@ -1,10 +1,12 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-google-sans-flex);
-  --font-heading: var(--font-google-sans-flex);
-  --font-mono: var(--font-google-sans-flex);
-  --font-display: var(--font-google-sans-flex);
+  --font-sans: var(--font-space-grotesk);
+  --font-heading: var(--font-archivo);
+  /* The reference's "mono" labels are actually Space Grotesk ("Space Grotesk,
+     monospace" stack) — so font-mono resolves to Space Grotesk on purpose. */
+  --font-mono: var(--font-space-grotesk);
+  --font-display: var(--font-archivo);
 
   /* Clamped to 0px so the derived tokens don't go negative when --radius is 0. */
   --radius-lg: var(--radius);
@@ -32,6 +34,9 @@
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
 
+  --color-primary-fill: var(--primary-fill);
+  --color-primary-fill-foreground: var(--primary-fill-foreground);
+
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
 
@@ -42,6 +47,9 @@
   --color-muted-foreground: var(--muted-foreground);
 
   --color-mockup-frame: var(--mockup-frame);
+
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-faint: var(--ink-faint);
 
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
@@ -75,61 +83,78 @@
 }
 
 /*
- * Light mode — oklch(L% 0.004 260)
- * Scale: 100 / 98 / 96 / 94 / 92 / 90 … 45 … 15
+ * Swiss Light — warm paper neutrals, single red accent.
+ * paper #faf9f7 · card #fff · ink #1a1a1a · line #e4e2dd · mat #f3f1ec · accent #e5372a
  */
 :root {
-  --background: oklch(98% 0.004 260);
-  --foreground: oklch(15% 0.004 260);
-  --card: oklch(100% 0.004 260);
-  --card-foreground: oklch(15% 0.004 260);
-  --popover: oklch(100% 0.004 260);
-  --popover-foreground: oklch(15% 0.004 260);
-  --primary: oklch(15% 0.004 260);
-  --primary-foreground: oklch(98% 0.004 260);
-  --secondary: oklch(94% 0.004 260);
-  --secondary-foreground: oklch(15% 0.004 260);
-  --muted: oklch(96% 0.004 260);
-  /* Slightly cooler/lighter slab behind product mockups (screenshots) in light mode */
-  --mockup-frame: #eaedf0;
-  --muted-foreground: oklch(45% 0.004 260);
-  --accent: oklch(94% 0.004 260);
-  --accent-foreground: oklch(15% 0.004 260);
-  --destructive: oklch(60% 0.15 27);
-  --destructive-foreground: oklch(98% 0.004 260);
-  --border: oklch(90% 0.004 260);
-  --input: oklch(92% 0.004 260);
-  --ring: oklch(15% 0.004 260);
+  --background: #faf9f7;
+  --foreground: #1a1a1a;
+  --card: #ffffff;
+  --card-foreground: #1a1a1a;
+  --popover: #ffffff;
+  --popover-foreground: #1a1a1a;
+  /* The one accent: red. Drives active nav, labels, links, and the CTA button. */
+  --primary: #e5372a;
+  --primary-foreground: #ffffff;
+  /* Filled red surfaces (active nav, buttons): self-contained pair, identical
+     in both modes so red blocks always carry white type. */
+  --primary-fill: #e5372a;
+  --primary-fill-foreground: #ffffff;
+  --secondary: #f3f1ec;
+  --secondary-foreground: #1a1a1a;
+  --muted: #f3f1ec;
+  /* Image mat behind screenshots — same tone on cards and case studies */
+  --mockup-frame: #f3f1ec;
+  --muted-foreground: #55554e;
+  --accent: #f3f1ec;
+  --accent-foreground: #1a1a1a;
+  --destructive: #e5372a;
+  --destructive-foreground: #ffffff;
+  --border: #e4e2dd;
+  /* Doubles as the chip/tag outline (--line-mute in the spec) */
+  --input: #d8d6d0;
+  --ring: #e5372a;
   --radius: 0;
-  --sys-corner-opacity: 0.22;
+  --ink-soft: #4a4a44;
+  --ink-faint: #6a6a63;
 }
 
 /*
- * Dark mode — oklch(L% 0.004 260)
- * Scale: 10 / 13 / 18 / 20 / 22 / 24 … 50 / 60 … 95
+ * Swiss Dark — the same warm-neutral system inverted; red lifted for contrast
+ * on near-black so 11px mono labels stay legible.
  */
 .dark {
-  --background: oklch(10% 0.004 260);
-  --foreground: oklch(95% 0.004 260);
-  --card: oklch(13% 0.004 260);
-  --card-foreground: oklch(95% 0.004 260);
-  --popover: oklch(13% 0.004 260);
-  --popover-foreground: oklch(95% 0.004 260);
-  --primary: oklch(95% 0.004 260);
-  --primary-foreground: oklch(13% 0.004 260);
-  --secondary: oklch(20% 0.004 260);
-  --secondary-foreground: oklch(95% 0.004 260);
-  --muted: oklch(18% 0.004 260);
-  --mockup-frame: var(--muted);
-  --muted-foreground: oklch(60% 0.004 260);
-  --accent: oklch(20% 0.004 260);
-  --accent-foreground: oklch(95% 0.004 260);
-  --destructive: oklch(40% 0.15 27);
-  --destructive-foreground: oklch(95% 0.004 260);
-  --border: oklch(24% 0.004 260);
-  --input: oklch(22% 0.004 260);
-  --ring: oklch(50% 0.004 260);
-  --sys-corner-opacity: 0.35;
+  --background: #141412;
+  --foreground: #f0eee9;
+  --card: #1b1b18;
+  --card-foreground: #f0eee9;
+  --popover: #1b1b18;
+  --popover-foreground: #f0eee9;
+  /* Lifted for legibility as small text on near-black; fills use --primary-fill */
+  --primary: #ff5a4d;
+  --primary-foreground: #1a0b09;
+  --primary-fill: #e5372a;
+  --primary-fill-foreground: #ffffff;
+  --secondary: #22211d;
+  --secondary-foreground: #f0eee9;
+  --muted: #22211d;
+  --mockup-frame: #22211d;
+  --muted-foreground: #a3a098;
+  --accent: #22211d;
+  --accent-foreground: #f0eee9;
+  --destructive: #ff5a4d;
+  --destructive-foreground: #1a0b09;
+  --border: #2b2a26;
+  --input: #38362f;
+  --ring: #ff5a4d;
+  --ink-soft: #c7c4bc;
+  --ink-faint: #8b887f;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 html {
@@ -137,16 +162,28 @@ html {
   -webkit-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
   text-size-adjust: 100%;
+  /* Page background lives here globally; page wrappers stay transparent. */
+  background-color: var(--background);
 }
 
-* {
-  @apply border-border;
+/*
+ * Must live in @layer base: un-layered rules beat Tailwind's layered
+ * utilities, which silently killed border-color utilities like
+ * border-primary (publication accent bars) and border-input (tag chips).
+ */
+@layer base {
+  * {
+    @apply border-border;
+  }
 }
 
+/*
+ * Note: no -webkit-font-smoothing: antialiased here — macOS antialiased
+ * smoothing visibly thins Space Grotesk/Archivo; subpixel default keeps the
+ * intended weight.
+ */
 body {
-  @apply bg-background text-foreground min-h-screen relative;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  @apply text-foreground min-h-screen relative;
 }
 
 
@@ -156,81 +193,99 @@ body {
 }
 
 /*
- * Datasheet corner brackets — straight 10px L-strokes positioned 4px outside
- * each panel corner. Restored from the original sharp-corner system after
- * --radius was set back to 0.
+ * Section header — Archivo label, hairline that fills the row, and an
+ * optional mono accent counter appended in markup: [ 04 ].
  */
-.sys-panel::after {
-  content: "";
-  position: absolute;
-  inset: -1px;
-  pointer-events: none;
-  z-index: 10;
-  background-image:
-    linear-gradient(var(--foreground), var(--foreground)),
-    linear-gradient(var(--foreground), var(--foreground)),
-    linear-gradient(var(--foreground), var(--foreground)),
-    linear-gradient(var(--foreground), var(--foreground)),
-    linear-gradient(var(--foreground), var(--foreground)),
-    linear-gradient(var(--foreground), var(--foreground)),
-    linear-gradient(var(--foreground), var(--foreground)),
-    linear-gradient(var(--foreground), var(--foreground));
-  background-size:
-    10px 1px, 1px 10px,
-    10px 1px, 1px 10px,
-    10px 1px, 1px 10px,
-    10px 1px, 1px 10px;
-  background-position:
-    left -4px top 0px, left 0px top -4px,
-    right -4px top 0px, right 0px top -4px,
-    left -4px bottom 0px, left 0px bottom -4px,
-    right -4px bottom 0px, right 0px bottom -4px;
-  background-repeat: no-repeat;
-  opacity: var(--sys-corner-opacity);
-}
-
 .sys-section-label {
-  @apply text-xs font-mono uppercase tracking-[0.2em] text-muted-foreground flex items-center gap-2;
-}
-
-.sys-section-label::before {
-  content: "//";
-  @apply text-foreground/30 font-bold;
+  @apply text-sm font-heading font-extrabold uppercase tracking-[0.05em] text-foreground;
 }
 
 .sys-section-header {
   @apply flex items-center gap-3 w-full;
 }
 
-/*
- * Section divider — repeating square grid (2×2 squares on an 8px grid).
- * Height is a clean multiple of mask-size so rows don't clip top/bottom;
- * mask-position: center balances any horizontal remainder.
- */
 .sys-section-line {
   flex: 1;
-  height: 24px;
-  background-color: var(--muted-foreground);
-  mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'><rect x='3' y='3' width='2' height='2' fill='black'/></svg>");
-  mask-size: 8px 8px;
-  mask-position: 50% 50%;
-  mask-repeat: repeat;
-  /* Safari pre-15.4 still needs the prefixed forms. */
-  -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'><rect x='3' y='3' width='2' height='2' fill='black'/></svg>");
-  -webkit-mask-size: 8px 8px;
-  -webkit-mask-position: 50% 50%;
-  -webkit-mask-repeat: repeat;
-  opacity: 0.5;
+  height: 1px;
+  background-color: var(--border);
+}
+
+.sys-section-counter {
+  @apply text-xs font-semibold tracking-[0.1em] text-primary;
 }
 
 /*
- * Title display utility — Google Sans Flex at default width, slightly tighter
- * letter-spacing than body. Used for hero h1s on home and about.
+ * Entrance micro-animations — contact page niceties. All are no-ops under
+ * prefers-reduced-motion (the classes simply never animate, elements render
+ * in their final state).
+ */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes stamp-in {
+  0% {
+    opacity: 0;
+    transform: scale(2);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes draw-rule {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .anim-rise {
+    animation: rise-in 450ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  /* The red period stamps in after the headline settles */
+  .anim-stamp {
+    animation: stamp-in 350ms cubic-bezier(0.22, 1, 0.36, 1) 650ms both;
+  }
+
+  .anim-rule {
+    transform-origin: left;
+    animation: draw-rule 550ms cubic-bezier(0.22, 1, 0.36, 1) 250ms both;
+  }
+
+  /* Dot-grid cascade; per-dot delay set inline */
+  .anim-dot {
+    animation: rise-in 350ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+}
+
+/*
+ * Title display utility — Archivo 800, uppercase, tight leading. Used for the
+ * hero h1s on home, about, and contact.
  */
 .title-display {
-  font-family: var(--font-google-sans-flex), system-ui, sans-serif;
-  font-weight: 600;
-  letter-spacing: -0.01em;
+  font-family: var(--font-archivo), system-ui, sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 0.92;
 }
 
 /*

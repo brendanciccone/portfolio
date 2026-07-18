@@ -70,10 +70,18 @@ async function main() {
       deviceScaleFactor: 1,
     })
 
+    // All site animations (entrance rises, the stamped period, drawn rules)
+    // are gated behind prefers-reduced-motion, so emulating it renders every
+    // element in its final resting state instantly — no racing timers to
+    // screenshot mid-animation.
+    await page.emulateMedia({ reducedMotion: "reduce" })
+
     await page.goto(`http://127.0.0.1:${port}/`, {
       waitUntil: "networkidle",
       timeout: 15000,
     })
+    // Small settle for webfonts/decoding after network goes quiet
+    await new Promise((r) => setTimeout(r, 750))
 
     const outPath = join(root, "public", "og.png")
     await mkdir(dirname(outPath), { recursive: true })

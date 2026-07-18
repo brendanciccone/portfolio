@@ -6,7 +6,7 @@ import { FadeIn } from "@/components/fade-in"
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen bg-background text-foreground flex flex-col">
+    <div className="min-h-screen text-foreground flex flex-col">
       <Header />
       {/* pt-24 accounts for fixed floating header height */}
       <div className="max-w-[1024px] mx-auto px-5 pt-24 pb-6 sm:pb-8 w-full flex flex-col gap-6">

@@ -51,7 +51,25 @@ const FadeInComponent = ({
       observer.observe(currentRef)
     }
 
+    // Client navigation races the observer: it can compute its first record at
+    // the pre-navigation scroll offset, right before ScrollToTop jumps to the
+    // top, leaving in-viewport elements stuck hidden. Re-check once the scroll
+    // reset has settled.
+    const recheckVisibility = () => {
+      if (!currentRef) return
+      const rect = currentRef.getBoundingClientRect()
+      // innerHeight can misreport 0 in embedded webviews; fall back to the
+      // document's client height
+      const viewportHeight = window.innerHeight || document.documentElement.clientHeight
+      if (rect.top < viewportHeight && rect.bottom > 0) {
+        setIsVisible(true)
+        if (once) observer.unobserve(currentRef)
+      }
+    }
+    const recheckTimer = setTimeout(recheckVisibility, 100)
+
     return () => {
+      clearTimeout(recheckTimer)
       if (currentRef) {
         observer.unobserve(currentRef)
       }
@@ -72,6 +90,8 @@ const FadeInComponent = ({
       className={cn(
         "transition-all",
         isVisible ? "opacity-100 transform-none" : `opacity-0 ${directionClasses[direction]}`,
+        // Honor prefers-reduced-motion: render in place with no entrance animation
+        "motion-reduce:transition-none motion-reduce:opacity-100 motion-reduce:translate-none",
         className,
       )}
       style={{
