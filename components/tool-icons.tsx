@@ -18,11 +18,11 @@ export interface Tool {
 
 export const tools: readonly Tool[] = [
   { name: "Claude Code", src: "/about/tools/claude-white.svg", tile: "bg-[#D97757]" },
-  { name: "Figma", src: "/about/tools/figma.svg", tile: "bg-[#1E1E1E]" },
-  { name: "Cursor", src: "/about/tools/cursor.svg", tile: "bg-[#000000]" },
   /* OpenAI's guidelines run black-on-white only; the explicit white tile
      keeps that contrast in dark mode, where the card surface goes near-black */
   { name: "OpenAI", src: "/about/tools/openai.svg", tile: "bg-[#FFFFFF]" },
+  { name: "Figma", src: "/about/tools/figma.svg", tile: "bg-[#1E1E1E]" },
+  { name: "Cursor", src: "/about/tools/cursor.svg", tile: "bg-[#000000]" },
   { name: "Supabase", src: "/about/tools/supabase.svg", tile: "bg-[#171717]" },
   { name: "Cloudflare", src: "/about/tools/cloudflare-white.svg", tile: "bg-[#F6821F]" },
   /* PostHog's mark keeps black segments, so its brand cream is the correct bg */
