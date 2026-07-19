@@ -99,18 +99,21 @@ const FadeInComponent = ({
     <div
       ref={ref}
       className={cn(
-        "transition-all",
+        // Transition property lives in a class (not inline) so the reduced-
+        // motion guard below can actually win — an inline transition-property
+        // outranks any class, including motion-reduce:transition-none. Tailwind
+        // v4 scale utilities drive the standalone `scale` property, so we
+        // transition opacity + scale directly.
+        "transition-[opacity,scale] ease-out",
         isVisible ? "opacity-100 scale-100" : "opacity-0 scale-[0.98]",
-        // Honor prefers-reduced-motion: render in place with no entrance animation
+        // Honor prefers-reduced-motion: kill the transition and pin to the
+        // final in-place state, so there's no entrance animation.
         "motion-reduce:transition-none motion-reduce:opacity-100 motion-reduce:scale-100",
         className,
       )}
       style={{
-        // Tailwind v4 scale utilities set the standalone `scale` property,
-        // not `transform` — transition that property directly
-        transitionProperty: "opacity, scale",
+        // Per-instance timing stays inline; property/easing are static classes
         transitionDuration: `${duration}ms`,
-        transitionTimingFunction: "ease-out",
         transitionDelay: `${delay}ms`,
       }}
     >
