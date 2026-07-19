@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { useCallback, useEffect, useRef } from "react"
+import { memo, useCallback, useEffect, useRef } from "react"
 import { cn } from "@/lib/utils"
 
 const ROWS = 9
@@ -25,7 +25,7 @@ const CASCADE_STEP_MS = 30
  * cursor and nearby dots swell; on leave everything returns home. All motion
  * is skipped under prefers-reduced-motion.
  */
-export const DotGrid = (): React.JSX.Element => {
+const DotGridComponent = (): React.JSX.Element => {
   const dotsRef = useRef<Array<HTMLSpanElement | null>>([])
   const centersRef = useRef<Array<{ x: number; y: number }> | null>(null)
   const redIndexRef = useRef(HOME_INDEX)
@@ -133,3 +133,9 @@ export const DotGrid = (): React.JSX.Element => {
     </div>
   )
 }
+
+// Memoized so parent re-renders never re-run this JSX: the active dot's colour
+// and swell are mutated imperatively (classList / style.scale on refs), and a
+// re-render would reset every dot to its home className, desyncing from
+// redIndexRef. The component takes no props, so memo pins it permanently.
+export const DotGrid = memo(DotGridComponent)
