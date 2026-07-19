@@ -4,15 +4,28 @@ import type React from "react"
 import { useEffect, useRef, useState, memo } from "react"
 import { cn } from "@/lib/utils"
 
-// This component could be optimized by using React.memo to prevent unnecessary rerenders
-// Example: export const FadeIn = memo(FadeIn) at the bottom of the file
+/*
+ * Scroll reveals materialize in place (fade + slight grow) rather than
+ * translating upward: on touch devices most reveals fire mid-flick, and an
+ * entrance with its own direction fights the page's motion. An in-place
+ * entrance is scroll-agnostic.
+ */
+
+/*
+ * Reveals entering on scroll wait until the element has cleared the bottom
+ * edge by this fraction of the viewport, so entrances aren't half-clipped at
+ * the fold. Kept small so elements near the page bottom can still trigger.
+ * Shared with DrawnRule so both components agree on what "visible" means.
+ */
+export const REVEAL_BOTTOM_INSET_RATIO = 0.08
+
+export const revealRootMargin = `0px 0px -${REVEAL_BOTTOM_INSET_RATIO * 100}% 0px`
 
 interface FadeInProps {
   children: React.ReactNode
   className?: string
   delay?: number
   duration?: number
-  direction?: "up" | "down" | "left" | "right" | "none"
   threshold?: number
   once?: boolean
 }
@@ -22,7 +35,6 @@ const FadeInComponent = ({
   className,
   delay = 0,
   duration = 275,
-  direction = "up",
   threshold = 0.01,
   once = true,
 }: FadeInProps) => {
@@ -43,6 +55,7 @@ const FadeInComponent = ({
       },
       {
         threshold,
+        rootMargin: revealRootMargin,
       },
     )
 
@@ -54,7 +67,8 @@ const FadeInComponent = ({
     // Client navigation races the observer: it can compute its first record at
     // the pre-navigation scroll offset, right before ScrollToTop jumps to the
     // top, leaving in-viewport elements stuck hidden. Re-check once the scroll
-    // reset has settled.
+    // reset has settled. This check ignores the bottom inset on purpose —
+    // anything visible in the first viewport at load should simply be shown.
     const recheckVisibility = () => {
       if (!currentRef) return
       const rect = currentRef.getBoundingClientRect()
@@ -81,28 +95,25 @@ const FadeInComponent = ({
     }
   }, [once, threshold])
 
-  const directionClasses = {
-    up: "translate-y-4",
-    down: "translate-y-[-1rem]",
-    left: "translate-x-4",
-    right: "translate-x-[-1rem]",
-    none: "",
-  }
-
   return (
     <div
       ref={ref}
       className={cn(
-        "transition-all",
-        isVisible ? "opacity-100 transform-none" : `opacity-0 ${directionClasses[direction]}`,
-        // Honor prefers-reduced-motion: render in place with no entrance animation
-        "motion-reduce:transition-none motion-reduce:opacity-100 motion-reduce:translate-none",
+        // Transition property lives in a class (not inline) so the reduced-
+        // motion guard below can actually win — an inline transition-property
+        // outranks any class, including motion-reduce:transition-none. Tailwind
+        // v4 scale utilities drive the standalone `scale` property, so we
+        // transition opacity + scale directly.
+        "transition-[opacity,scale] ease-out",
+        isVisible ? "opacity-100 scale-100" : "opacity-0 scale-[0.98]",
+        // Honor prefers-reduced-motion: kill the transition and pin to the
+        // final in-place state, so there's no entrance animation.
+        "motion-reduce:transition-none motion-reduce:opacity-100 motion-reduce:scale-100",
         className,
       )}
       style={{
-        transitionProperty: "opacity, transform",
+        // Per-instance timing stays inline; property/easing are static classes
         transitionDuration: `${duration}ms`,
-        transitionTimingFunction: "ease-out",
         transitionDelay: `${delay}ms`,
       }}
     >
@@ -113,4 +124,3 @@ const FadeInComponent = ({
 
 // Export memoized component to prevent unnecessary rerenders
 export const FadeIn = memo(FadeInComponent)
-

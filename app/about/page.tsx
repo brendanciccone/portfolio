@@ -3,6 +3,7 @@ import Header from "@/components/header"
 import { tools } from "@/components/tool-icons"
 import Link from "next/link"
 import Footer from "@/components/footer"
+import { DrawnRule } from "@/components/drawn-rule"
 import { FadeIn } from "@/components/fade-in"
 import { GitHubHeatmap } from "@/components/github-heatmap"
 import { SectionLabel } from "@/components/section-label"
@@ -226,10 +227,10 @@ export default function About() {
         {/* Intro — display title + 2-col bio */}
         <FadeIn delay={0} duration={350}>
           <section className="flex flex-col gap-6 sm:gap-8">
-            {/* Same hero grammar as contact: title rises, period stamps in last, rule draws itself */}
+            {/* Same hero grammar as contact: title rises, period grows in last, rule draws itself once in view */}
             <h1 className="title-display text-[44px] sm:text-[60px]">
               <span className="inline-block anim-rise">
-                About<span className="text-primary inline-block anim-stamp">.</span>
+                About<span className="text-primary inline-block anim-grow">.</span>
               </span>
             </h1>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-9 text-[15px] leading-[1.55] text-ink-soft">
@@ -250,7 +251,7 @@ export default function About() {
                 </p>
               </div>
             </div>
-            <div aria-hidden className="h-px bg-border anim-rule" />
+            <DrawnRule />
           </section>
         </FadeIn>
 

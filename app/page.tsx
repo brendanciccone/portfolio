@@ -1,6 +1,7 @@
 import Link from "next/link"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
+import { DrawnRule } from "@/components/drawn-rule"
 import { FadeIn } from "@/components/fade-in"
 import { SectionLabel } from "@/components/section-label"
 import { WorkCard, type WorkCardData } from "@/components/work-card"
@@ -96,20 +97,20 @@ export default function Portfolio() {
         <FadeIn delay={0} duration={350}>
           <div className="flex flex-col gap-6 sm:gap-8">
             {/* Hero — display type left, intro right, baseline-aligned.
-                Lines rise, the red period stamps in, the wave waves once,
-                and the hairline draws itself. */}
+                Lines rise, the red period grows in place, the wave waves
+                once, and the hairline draws itself once it's in view. */}
             <section className="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-6 md:gap-x-10 md:gap-y-8 items-end">
               <h1 className="title-display text-[44px] sm:text-6xl md:text-[72px]">
                 <span className="block anim-rise">Hi, I&apos;m</span>
                 <span className="block anim-rise [animation-delay:100ms]">
-                  Brendan<span className="text-primary inline-block anim-stamp">.</span>{" "}
+                  Brendan<span className="text-primary inline-block anim-grow">.</span>{" "}
                   <span aria-hidden className="inline-block">👋</span>
                 </span>
               </h1>
               <p className="text-[15px] leading-[1.55] text-ink-soft anim-rise [animation-delay:200ms]">
                 Staff product designer and founder with 8 years of experience shipping B2B products at early-stage startups in healthcare, cybersecurity, and finance. Currently at <Link href="https://www.corellium.com" target="_blank" rel="noopener noreferrer" className="text-primary font-medium hover:underline">Corellium</Link>, simplifying complex cybersecurity workflows.
               </p>
-              <div aria-hidden className="h-px bg-border anim-rule md:col-span-2" />
+              <DrawnRule className="md:col-span-2" />
             </section>
 
             {/* Stat bar */}

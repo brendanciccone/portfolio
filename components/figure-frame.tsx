@@ -6,6 +6,10 @@ interface FigureFrameProps {
   caption: string
   /* tight = 10px padding for images sharing a row; default = 12px full-width */
   padding?: "default" | "tight"
+  /* lightbox = clickable still that dims on hover to signal zoom; comparison =
+     a drag slider, which must NOT dim (its two stacked images would bleed
+     through each other) and shouldn't imply a lightbox in the first place */
+  variant?: "lightbox" | "comparison"
   className?: string
   children: React.ReactNode
 }
@@ -14,15 +18,19 @@ export const FigureFrame = ({
   number,
   caption,
   padding = "default",
+  variant = "lightbox",
   className,
   children,
 }: FigureFrameProps): React.JSX.Element => {
   return (
     <figure className={className}>
-      {/* Slight image dim on hover signals the lightbox, matching the home cards */}
+      {/* Lightbox stills dim slightly on hover to signal zoom, matching the
+          home cards; comparison sliders opt out (see variant note above) */}
       <div
         className={cn(
-          "bg-mockup-frame border border-border [&_img]:transition-opacity [&_img]:duration-200 [&:hover_img]:opacity-90",
+          "bg-mockup-frame border border-border",
+          variant === "lightbox" &&
+            "[&_img]:transition-opacity [&_img]:duration-200 [&:hover_img]:opacity-90",
           padding === "tight" ? "p-2.5" : "p-3",
         )}
       >
