@@ -9,8 +9,14 @@ const COLS = 6
 const HOME_ROW = 2
 const HOME_COL = 4
 const HOME_INDEX = HOME_ROW * COLS + HOME_COL
-/* px radius of the cursor-proximity swell */
-const RADIUS = 90
+/* px radius of the cursor-proximity swell — wide enough that a whole
+   cluster reacts, so the cursor drags a visible wave across the field */
+const RADIUS = 150
+/* A dot at the cursor grows to 1 + SWELL; neighbours scale down with distance */
+const SWELL = 2.2
+/* The active (red) dot gets a fixed, larger pop of its own so the current
+   position reads as clearly lifted rather than merely recoloured */
+const ACTIVE_SCALE = 3.6
 const CASCADE_STEP_MS = 30
 
 /*
@@ -50,7 +56,7 @@ export const DotGrid = (): React.JSX.Element => {
   const resetDots = useCallback(() => {
     cancelAnimationFrame(frameRef.current)
     for (const el of dotsRef.current) {
-      if (el) el.style.transform = ""
+      if (el) el.style.scale = ""
     }
     moveRedTo(HOME_INDEX)
   }, [moveRedTo])
@@ -78,8 +84,17 @@ export const DotGrid = (): React.JSX.Element => {
           const el = dotsRef.current[index]
           if (!el) return
           const proximity = Math.max(0, 1 - distance / RADIUS)
-          el.style.transform = proximity > 0 ? `scale(${1 + proximity * 0.9})` : ""
+          // Drive the swell through the standalone `scale` property, not
+          // `transform`: each dot's load animation (anim-dot, fill: both)
+          // permanently owns `transform`, so an inline transform here would
+          // be overridden by the cascade and never show. `scale` is a
+          // separate property, so the two compose.
+          el.style.scale = proximity > 0 ? String(1 + proximity * SWELL) : ""
         })
+        // Override the nearest dot with the fixed active pop, so the red
+        // square is always the biggest even when the cursor sits between dots
+        const activeEl = dotsRef.current[nearestIndex]
+        if (activeEl) activeEl.style.scale = String(ACTIVE_SCALE)
         moveRedTo(nearestIndex)
       })
     },
@@ -107,7 +122,7 @@ export const DotGrid = (): React.JSX.Element => {
                 /* Diagonal cascade; the red square rides in with everyone else */
                 style={{ animationDelay: `${(row + col) * CASCADE_STEP_MS}ms` }}
                 className={cn(
-                  "h-1.5 w-1.5 anim-dot transition-[transform,background-color] duration-150",
+                  "h-1.5 w-1.5 anim-dot transition-[scale,background-color] duration-150",
                   index === HOME_INDEX ? "bg-primary" : "bg-input",
                 )}
               />
