@@ -134,7 +134,7 @@ export default function CorelliumPage() {
               </p>
             </div>
             {/* Before/After: original vs redesigned device creation flow (FigJam) */}
-            <FigureFrame number="01" caption="Device creation flow, original vs redesigned">
+            <FigureFrame number="01" caption="Device creation flow, original vs redesigned" variant="comparison">
               <ImageComparison
                 beforeSrc="/work/corellium/2.webp"
                 afterSrc="/work/corellium/3.webp"
