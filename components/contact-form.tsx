@@ -174,7 +174,12 @@ export default function ContactForm() {
     // Confirmation in the site's own grammar: left-aligned, the stamp period
     // as the confirmation mark, and a quiet underline-wipe action
     return (
-      <div className="w-full flex-1 flex flex-col justify-center gap-4">
+      <div
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+        className="w-full flex-1 flex flex-col justify-center gap-4"
+      >
         <h3 className="title-display text-3xl sm:text-[40px] anim-rise">
           Message sent<span className="text-primary inline-block anim-stamp">.</span>
         </h3>

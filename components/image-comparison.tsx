@@ -121,6 +121,7 @@ export const ImageComparison = ({
       onMouseMove={handleMouseMove}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
+      onTouchCancel={handleTouchEnd}
       onTouchMove={handleTouchMove}
       onClick={handleClick}
       onKeyDown={handleKeyDown}

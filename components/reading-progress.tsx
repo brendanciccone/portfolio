@@ -1,5 +1,6 @@
 "use client"
 
+import type React from "react"
 import { useEffect, useRef } from "react"
 
 /*
@@ -8,7 +9,7 @@ import { useEffect, useRef } from "react"
  * handler; it tracks position rather than animating, so it needs no
  * reduced-motion branch. Decorative only, hence aria-hidden.
  */
-export const ReadingProgress = () => {
+export const ReadingProgress = (): React.JSX.Element => {
   const barRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {

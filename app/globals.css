@@ -229,6 +229,7 @@ body {
 
 .sys-section-counter {
   @apply text-xs font-semibold tracking-[0.1em] text-primary;
+
   font-variant-numeric: tabular-nums;
 }
 
@@ -397,7 +398,7 @@ body {
   }
 
   ::view-transition-group(*) {
-    animation-duration: 300ms;
+    animation-duration: var(--motion-settle);
     animation-timing-function: var(--ease-settle);
   }
 }

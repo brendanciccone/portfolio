@@ -7,7 +7,7 @@
  * Usage: node scripts/generate-favicons.mjs
  */
 
-import { writeFile } from "node:fs/promises"
+import { readFile, writeFile } from "node:fs/promises"
 import { dirname, join } from "node:path"
 import { fileURLToPath } from "node:url"
 import sharp from "sharp"
@@ -15,14 +15,12 @@ import sharp from "sharp"
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const publicDir = join(__dirname, "..", "public")
 
-// PNG rasters can't follow the viewer's color scheme, so they use the light
-// (paper) variant everywhere.
-const markSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect fill="#faf9f7" width="32" height="32" />
-  <rect fill="#d73427" x="9" y="9" width="14" height="14" />
-</svg>`
+// app/icon.svg is the canonical mark. Its prefers-color-scheme dark override
+// never matches during rasterization, so PNGs come out in the light (paper)
+// variant — which is what fixed-color rasters should be.
+const markSvg = await readFile(join(__dirname, "..", "app", "icon.svg"))
 
-const renderPng = (size) => sharp(Buffer.from(markSvg)).resize(size, size).png().toBuffer()
+const renderPng = (size) => sharp(markSvg).resize(size, size).png().toBuffer()
 
 /*
  * Minimal ICO container holding one PNG image. Modern browsers accept

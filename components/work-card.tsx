@@ -11,12 +11,12 @@ import { cn } from "@/lib/utils"
  * Tailwind scanner generates each class; the case-study hero frame carries
  * the matching name.
  */
-const transitionFrameClassByHref: Record<string, string> = {
-  "/work/corellium": "[view-transition-name:vt-corellium]",
-  "/work/immertec": "[view-transition-name:vt-immertec]",
-  "/work/spontivly": "[view-transition-name:vt-spontivly]",
-  "/work/paidly": "[view-transition-name:vt-paidly]",
-}
+const transitionFrameClassByHref = new Map<string, string>([
+  ["/work/corellium", "[view-transition-name:vt-corellium]"],
+  ["/work/immertec", "[view-transition-name:vt-immertec]"],
+  ["/work/spontivly", "[view-transition-name:vt-spontivly]"],
+  ["/work/paidly", "[view-transition-name:vt-paidly]"],
+])
 
 export interface WorkCardData {
   title: string
@@ -62,7 +62,7 @@ export const WorkCard = ({
       <div
         className={cn(
           "bg-mockup-frame overflow-hidden border-b border-border p-2.5",
-          href && transitionFrameClassByHref[href],
+          href && transitionFrameClassByHref.get(href),
         )}
       >
         <div className={cn("relative w-full overflow-hidden", !href && "[&_button]:cursor-zoom-in")}>
