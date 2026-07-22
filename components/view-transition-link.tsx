@@ -45,11 +45,19 @@ export const TransitionLink = ({ href, onClick, children, ...rest }: TransitionL
     if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return
     if (typeof document.startViewTransition !== "function") return
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
+    // Links that open outside this document aren't client navigations
+    if (rest.target && rest.target !== "_self") return
+    // Guards the parse below; every browser with startViewTransition has it
+    if (!URL.canParse(href, window.location.href)) return
+
+    const destination = new URL(href, window.location.href)
+    // Cross-origin hrefs leave the app entirely — let the browser navigate
+    if (destination.origin !== window.location.origin) return
     // Same-page clicks never settle (pathname doesn't change) — skip the
     // transition rather than holding the snapshot until the failsafe fires.
-    // Compare pathnames only, so query/hash variants of the current route
-    // (/about?tab=2, /about#details) are also caught.
-    if (new URL(href, window.location.href).pathname === pathname) return
+    // Comparing pathnames catches query/hash variants of the current route
+    // (/about?tab=2, /about#details) too.
+    if (destination.pathname === pathname) return
 
     event.preventDefault()
     document.startViewTransition(() => {
