@@ -1,6 +1,7 @@
 import { generatePageMetadata } from "@/lib/metadata";
 import ContactForm from "@/components/contact-form";
 import { DotGrid } from "@/components/dot-grid";
+import { DrawnRule } from "@/components/drawn-rule";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 
@@ -18,7 +19,7 @@ export default function ContactPage() {
         <div className="flex flex-col gap-6 sm:gap-8">
           {/* Display title, hairline below — same pattern as home/about.
               Lines rise in staggered; the red period stamps in last; the
-              hairline draws itself left to right. */}
+              hairline draws itself left to right once it's in view. */}
           <section>
             <h1 className="title-display text-[44px] sm:text-6xl md:text-[72px]">
               <span className="block anim-rise">Let&apos;s ship</span>
@@ -27,7 +28,7 @@ export default function ContactPage() {
                 <span className="text-primary inline-block anim-stamp">.</span>
               </span>
             </h1>
-            <div aria-hidden className="mt-6 sm:mt-8 h-px bg-border anim-rule" />
+            <DrawnRule className="mt-6 sm:mt-8" />
           </section>
 
           {/* Copy + decoration | form, split by a vertical hairline */}

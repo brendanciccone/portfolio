@@ -133,7 +133,7 @@ export default function CorelliumPage() {
             </p>
           </div>
           {/* Before/After: original vs redesigned device creation flow (FigJam) */}
-          <FigureFrame number="01" caption="Device creation flow, original vs redesigned">
+          <FigureFrame number="01" caption="Device creation flow, original vs redesigned" variant="comparison">
             <ImageComparison
               beforeSrc="/work/corellium/2.webp"
               afterSrc="/work/corellium/3.webp"
@@ -176,16 +176,15 @@ export default function CorelliumPage() {
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
               />
             </FigureFrame>
-            {/* Device selection - iOS full width */}
-            <FigureFrame number="03" caption="iOS device selection">
-              <LightboxImage
-                src="/work/corellium/5.webp"
-                alt="Corellium iOS device selection interface"
+            {/* Before/After: original vs redesigned device configuration */}
+            <FigureFrame number="03" caption="Device configuration, original vs redesigned" variant="comparison">
+              <ImageComparison
+                beforeSrc="/work/corellium/9.webp"
+                afterSrc="/work/corellium/5.webp"
+                beforeAlt="Original Corellium device configuration screen with separate firmware, storage, CPU, and RAM fields"
+                afterAlt="Redesigned Corellium device selection interface"
                 width={1200}
-                height={800}
-                className="w-full"
-                quality={80}
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
+                height={900}
               />
             </FigureFrame>
             {/* Android + Modal side by side */}

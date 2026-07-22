@@ -3,6 +3,7 @@ import Header from "@/components/header"
 import { tools } from "@/components/tool-icons"
 import Link from "next/link"
 import Footer from "@/components/footer"
+import { DrawnRule } from "@/components/drawn-rule"
 import { GitHubHeatmap } from "@/components/github-heatmap"
 import { SectionLabel } from "@/components/section-label"
 import { generatePageMetadata } from "@/lib/metadata"
@@ -222,7 +223,7 @@ export default function About() {
       <div className="max-w-[1024px] mx-auto px-5 pt-24 pb-6 sm:pb-8 flex flex-col gap-6 sm:gap-8">
         {/* Intro — display title + 2-col bio */}
         <section className="flex flex-col gap-6 sm:gap-8">
-          {/* Same hero grammar as contact: title rises, period stamps in last, rule draws itself */}
+          {/* Same hero grammar as contact: title rises, period stamps in last, rule draws itself once in view */}
           <h1 className="title-display text-[44px] sm:text-[60px]">
             <span className="inline-block anim-rise">
               About<span className="text-primary inline-block anim-stamp">.</span>
@@ -246,7 +247,7 @@ export default function About() {
               </p>
             </div>
           </div>
-          <div aria-hidden className="h-px bg-border anim-rule" />
+          <DrawnRule />
         </section>
 
         {/* Experience + Founder Work | Publications + Certificates */}

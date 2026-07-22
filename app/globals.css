@@ -248,11 +248,15 @@ body {
   }
 }
 
-/* A stamp hits once and stays — no undershoot bounce */
-@keyframes stamp-in {
+/*
+ * The red full stop grows from its own spot rather than pressing down from
+ * above — an in-place entrance has no direction, so it can't fight the
+ * page's motion if it lands while the user is already scrolling.
+ */
+@keyframes grow-in {
   from {
     opacity: 0;
-    transform: scale(1.6);
+    transform: scale(0);
   }
   to {
     opacity: 1;
@@ -274,14 +278,32 @@ body {
     animation: rise-in var(--motion-enter) var(--ease-settle) both;
   }
 
-  /* The red period stamps in as the headline settles */
+  /* The red period stamps in as the headline settles — grow-in is an
+     in-place entrance with no direction, so it can't fight the page's
+     motion if it lands while the user is already scrolling */
   .anim-stamp {
-    animation: stamp-in 250ms var(--ease-settle) 550ms both;
+    animation: grow-in 250ms var(--ease-settle) 550ms both;
   }
 
   .anim-rule {
     transform-origin: left;
     animation: draw-rule 550ms var(--ease-settle) 250ms both;
+  }
+
+  /*
+   * DrawnRule states. The hold keeps the line undrawn until it can actually
+   * be seen; scoping it to no-preference means reduced-motion users always
+   * get a static, fully drawn line. -now must follow .anim-rule so its
+   * animation-delay wins over the shorthand's 250ms at equal specificity —
+   * a scroll-triggered draw should start immediately (a delay reads as lag).
+   */
+  .anim-rule-hold {
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  .anim-rule-now {
+    animation-delay: 0ms;
   }
 
   /* Dot-grid cascade; per-dot delay set inline */

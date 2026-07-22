@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { useCallback, useEffect, useRef } from "react"
+import { memo, useCallback, useEffect, useRef } from "react"
 import { cn } from "@/lib/utils"
 
 const ROWS = 9
@@ -9,8 +9,14 @@ const COLS = 6
 const HOME_ROW = 2
 const HOME_COL = 4
 const HOME_INDEX = HOME_ROW * COLS + HOME_COL
-/* px radius of the cursor-proximity swell */
-const RADIUS = 90
+/* px radius of the cursor-proximity swell — wide enough that a whole
+   cluster reacts, so the cursor drags a visible wave across the field */
+const RADIUS = 150
+/* A dot at the cursor grows to 1 + SWELL; neighbours scale down with distance */
+const SWELL = 2.2
+/* The active (red) dot gets a fixed, larger pop of its own so the current
+   position reads as clearly lifted rather than merely recoloured */
+const ACTIVE_SCALE = 3.6
 const CASCADE_STEP_MS = 30
 
 /*
@@ -19,7 +25,7 @@ const CASCADE_STEP_MS = 30
  * cursor and nearby dots swell; on leave everything returns home. All motion
  * is skipped under prefers-reduced-motion.
  */
-export const DotGrid = (): React.JSX.Element => {
+const DotGridComponent = (): React.JSX.Element => {
   const dotsRef = useRef<Array<HTMLSpanElement | null>>([])
   const centersRef = useRef<Array<{ x: number; y: number }> | null>(null)
   const redIndexRef = useRef(HOME_INDEX)
@@ -51,7 +57,7 @@ export const DotGrid = (): React.JSX.Element => {
     cancelAnimationFrame(frameRef.current)
     for (const el of dotsRef.current) {
       // eslint-disable-next-line react-hooks/immutability -- imperative style reset on ref-held DOM nodes; these are not React-managed values
-      if (el) el.style.transform = ""
+      if (el) el.style.scale = ""
     }
     moveRedTo(HOME_INDEX)
   }, [moveRedTo])
@@ -79,8 +85,17 @@ export const DotGrid = (): React.JSX.Element => {
           const el = dotsRef.current[index]
           if (!el) return
           const proximity = Math.max(0, 1 - distance / RADIUS)
-          el.style.transform = proximity > 0 ? `scale(${1 + proximity * 0.9})` : ""
+          // Drive the swell through the standalone `scale` property, not
+          // `transform`: each dot's load animation (anim-dot, fill: both)
+          // permanently owns `transform`, so an inline transform here would
+          // be overridden by the cascade and never show. `scale` is a
+          // separate property, so the two compose.
+          el.style.scale = proximity > 0 ? String(1 + proximity * SWELL) : ""
         })
+        // Override the nearest dot with the fixed active pop, so the red
+        // square is always the biggest even when the cursor sits between dots
+        const activeEl = dotsRef.current[nearestIndex]
+        if (activeEl) activeEl.style.scale = String(ACTIVE_SCALE)
         moveRedTo(nearestIndex)
       })
     },
@@ -108,7 +123,7 @@ export const DotGrid = (): React.JSX.Element => {
                 /* Diagonal cascade; the red square rides in with everyone else */
                 style={{ animationDelay: `${(row + col) * CASCADE_STEP_MS}ms` }}
                 className={cn(
-                  "h-1.5 w-1.5 anim-dot transition-[transform,background-color] duration-(--motion-touch)",
+                  "h-1.5 w-1.5 anim-dot transition-[scale,background-color] duration-(--motion-touch)",
                   index === HOME_INDEX ? "bg-primary" : "bg-input",
                 )}
               />
@@ -119,3 +134,9 @@ export const DotGrid = (): React.JSX.Element => {
     </div>
   )
 }
+
+// Memoized so parent re-renders never re-run this JSX: the active dot's colour
+// and swell are mutated imperatively (classList / style.scale on refs), and a
+// re-render would reset every dot to its home className, desyncing from
+// redIndexRef. The component takes no props, so memo pins it permanently.
+export const DotGrid = memo(DotGridComponent)

@@ -1,7 +1,8 @@
 /*
  * Brand marks for the My Stack section, stored as static SVGs in
  * public/about/tools/ (sourced from svgl.app's official asset library;
- * claude-white is the simple-icons mark refilled white for the orange tile).
+ * claude-white is the simple-icons mark refilled white for the orange tile,
+ * openai is the simple-icons mark filled black).
  *
  * tile overrides the default white/hairline tile for brands recognized by
  * their app-icon background (matching the Crenel/Magier chips in Experience).
@@ -17,6 +18,9 @@ export interface Tool {
 
 export const tools: readonly Tool[] = [
   { name: "Claude Code", src: "/about/tools/claude-white.svg", tile: "bg-[#D97757]" },
+  /* OpenAI's guidelines run black-on-white only; the explicit white tile
+     keeps that contrast in dark mode, where the card surface goes near-black */
+  { name: "OpenAI", src: "/about/tools/openai.svg", tile: "bg-[#FFFFFF]" },
   { name: "Figma", src: "/about/tools/figma.svg", tile: "bg-[#1E1E1E]" },
   { name: "Cursor", src: "/about/tools/cursor.svg", tile: "bg-[#000000]" },
   { name: "Supabase", src: "/about/tools/supabase.svg", tile: "bg-[#171717]" },
