@@ -30,21 +30,24 @@ export const ViewTransitionSettler = (): null => {
   return null
 }
 
-interface TransitionLinkProps {
-  href: string
-  className?: string
-  children: React.ReactNode
-}
+/* Accepts everything next/link does, but href stays a plain string so the
+   same-page guard below can compare it against the current pathname */
+type TransitionLinkProps = Omit<React.ComponentProps<typeof Link>, "href"> & { href: string }
 
-export const TransitionLink = ({ href, className, children }: TransitionLinkProps): React.JSX.Element => {
+export const TransitionLink = ({ href, onClick, children, ...rest }: TransitionLinkProps): React.JSX.Element => {
   const router = useRouter()
+  const pathname = usePathname()
 
   const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    onClick?.(event)
     // Let modified clicks (new tab etc.) and unsupported browsers use the
     // default Link behavior
     if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return
     if (typeof document.startViewTransition !== "function") return
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
+    // Same-page clicks never settle (pathname doesn't change) — skip the
+    // transition rather than holding the snapshot until the failsafe fires
+    if (pathname === href) return
 
     event.preventDefault()
     document.startViewTransition(() => {
@@ -62,7 +65,7 @@ export const TransitionLink = ({ href, className, children }: TransitionLinkProp
   }
 
   return (
-    <Link href={href} className={className} onClick={handleClick}>
+    <Link href={href} onClick={handleClick} {...rest}>
       {children}
     </Link>
   )
