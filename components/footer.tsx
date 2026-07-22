@@ -7,7 +7,9 @@ export default function Footer() {
     <footer className="border-t border-border pt-5 pb-2 flex justify-between items-center">
       <div className="text-xs font-mono text-muted-foreground uppercase tracking-[0.1em] flex items-center gap-1">
         <span className="text-sm leading-none">&copy;</span>
-        <span>{currentYear} Brendan Ciccone</span>
+        <span>
+          {currentYear} Brendan Ciccone<span className="text-primary font-semibold">.</span>
+        </span>
       </div>
       <div className="flex gap-4">
         <Link href="https://www.linkedin.com/in/brendanciccone/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">

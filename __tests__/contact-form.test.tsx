@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
-import { render, screen, fireEvent, waitFor } from '@testing-library/react'
+import { render, screen, fireEvent } from '@testing-library/react'
 import ContactForm from '@/components/contact-form'
 
 const mockFetch = vi.fn()
@@ -61,7 +61,7 @@ describe('ContactForm', () => {
 
     submitForm()
 
-    expect(await screen.findByText('Thank you for your message!')).toBeInTheDocument()
+    expect(await screen.findByText('Message sent')).toBeInTheDocument()
     expect(mockFetch).toHaveBeenCalledTimes(1)
 
     const [url, init] = mockFetch.mock.calls[0] as [string, RequestInit]
@@ -88,7 +88,7 @@ describe('ContactForm', () => {
     submitForm()
 
     expect(await screen.findByText('Invalid access key')).toBeInTheDocument()
-    expect(screen.queryByText('Thank you for your message!')).not.toBeInTheDocument()
+    expect(screen.queryByText('Message sent')).not.toBeInTheDocument()
   })
 
   it('shows a configuration error when the access key is missing', async () => {

@@ -30,7 +30,7 @@ export const FigureFrame = ({
         className={cn(
           "bg-mockup-frame border border-border",
           variant === "lightbox" &&
-            "[&_img]:transition-opacity [&_img]:duration-200 [&:hover_img]:opacity-90",
+            "[&_img]:transition-opacity [&_img]:duration-(--motion-settle) [&:hover_img]:opacity-90",
           padding === "tight" ? "p-2.5" : "p-3",
         )}
       >

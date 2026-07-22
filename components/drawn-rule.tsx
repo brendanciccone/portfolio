@@ -2,8 +2,15 @@
 
 import type React from "react"
 import { useEffect, useRef, useState } from "react"
-import { REVEAL_BOTTOM_INSET_RATIO, revealRootMargin } from "@/components/fade-in"
 import { cn } from "@/lib/utils"
+
+/*
+ * "Meaningfully visible" threshold: an element barely peeking above the fold
+ * shouldn't count as seen, so the reveal viewport is inset by this ratio at
+ * the bottom.
+ */
+const REVEAL_BOTTOM_INSET_RATIO = 0.08
+const revealRootMargin = `0px 0px -${REVEAL_BOTTOM_INSET_RATIO * 100}% 0px`
 
 /*
  * Hero hairline that draws itself left to right, but only once it can be

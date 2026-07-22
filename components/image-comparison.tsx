@@ -24,8 +24,10 @@ export const ImageComparison = ({
   height,
 }: ImageComparisonProps) => {
   const [sliderPosition, setSliderPosition] = useState(50)
+  // State (not just a ref) because dragging toggles the position transition:
+  // click/keyboard jumps glide, live drags track the pointer 1:1
+  const [isDragging, setIsDragging] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
-  const isDragging = useRef(false)
   const beforeRef = useRef<HTMLImageElement | null>(null)
   const afterRef = useRef<HTMLImageElement | null>(null)
   const [isBeforeLoaded, setIsBeforeLoaded] = useState(false)
@@ -56,16 +58,24 @@ export const ImageComparison = ({
   const handleMouseDown = (e: React.MouseEvent) => {
     // Stops native image drag + selection highlight (blue flash) while dragging
     e.preventDefault()
-    isDragging.current = true
+    setIsDragging(true)
   }
 
   const handleMouseUp = () => {
-    isDragging.current = false
+    setIsDragging(false)
   }
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    if (!isDragging.current) return
+    if (!isDragging) return
     handleMove(e.clientX)
+  }
+
+  const handleTouchStart = () => {
+    setIsDragging(true)
+  }
+
+  const handleTouchEnd = () => {
+    setIsDragging(false)
   }
 
   const handleTouchMove = (e: React.TouchEvent) => {
@@ -103,12 +113,15 @@ export const ImageComparison = ({
     <div
       ref={containerRef}
       tabIndex={0}
-      className="relative w-full cursor-ew-resize touch-none overflow-hidden select-none outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background [-webkit-tap-highlight-color:transparent]"
+      className="group relative w-full cursor-ew-resize touch-none overflow-hidden select-none outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background [-webkit-tap-highlight-color:transparent]"
       style={{ aspectRatio: `${width}/${height}` }}
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseUp}
       onMouseMove={handleMouseMove}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+      onTouchCancel={handleTouchEnd}
       onTouchMove={handleTouchMove}
       onClick={handleClick}
       onKeyDown={handleKeyDown}
@@ -122,7 +135,7 @@ export const ImageComparison = ({
       {!isLoaded && (
         <Skeleton
           aria-hidden
-          className="absolute inset-0 z-10 rounded-sm bg-slate-300 dark:bg-slate-700"
+          className="absolute inset-0 z-10 rounded-sm bg-mockup-frame"
         />
       )}
 
@@ -141,9 +154,13 @@ export const ImageComparison = ({
         />
       </div>
 
-      {/* Before image (clipped) */}
+      {/* Before image (clipped) — jumps glide on the settle curve; drags track 1:1 */}
       <div
-        className={cn("pointer-events-none absolute inset-0 overflow-hidden", !isLoaded && "opacity-0")}
+        className={cn(
+          "pointer-events-none absolute inset-0 overflow-hidden",
+          !isLoaded && "opacity-0",
+          !isDragging && "transition-[clip-path] duration-(--motion-settle) ease-(--ease-settle) motion-reduce:transition-none",
+        )}
         style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
       >
         <Image
@@ -161,11 +178,20 @@ export const ImageComparison = ({
 
       {/* Dark line + handle: case-study shots are mostly light UI; reads clearly over pale backgrounds */}
       <div
-        className="absolute top-0 bottom-0 w-0.5 bg-zinc-950 shadow-[0_0_0_1px_rgba(255,255,255,0.35)]"
+        className={cn(
+          "absolute top-0 bottom-0 w-0.5 bg-zinc-950 shadow-[0_0_0_1px_rgba(255,255,255,0.35)]",
+          !isDragging && "transition-[left] duration-(--motion-settle) ease-(--ease-settle) motion-reduce:transition-none",
+        )}
         style={{ left: `${sliderPosition}%`, transform: "translateX(-50%)" }}
       >
-        {/* Slider handle */}
-        <div className="absolute top-1/2 left-1/2 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-sm bg-zinc-950 shadow-md ring-1 ring-white/35">
+        {/* Slider handle — acknowledges touch: grows on hover, sits down while dragging */}
+        <div
+          className={cn(
+            "absolute top-1/2 left-1/2 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-sm bg-zinc-950 shadow-md ring-1 ring-white/35",
+            "transition-[scale] duration-(--motion-touch) ease-out motion-reduce:transition-none",
+            isDragging ? "scale-95" : "group-hover:scale-105",
+          )}
+        >
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="text-zinc-100">
             <path d="M6 10L2 10M2 10L5 7M2 10L5 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             <path d="M14 10L18 10M18 10L15 7M18 10L15 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>

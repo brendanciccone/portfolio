@@ -5,7 +5,6 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Send } from "lucide-react"
 import { z } from "zod"
@@ -172,20 +171,28 @@ export default function ContactForm() {
   }
 
   if (isSuccess) {
+    // Confirmation in the site's own grammar: left-aligned, the stamp period
+    // as the confirmation mark, and a quiet underline-wipe action
     return (
-      <div className="w-full flex-1 flex flex-col items-center justify-center space-y-4 text-center">
-        <Send className="h-6 w-6 text-foreground" />
-        <h3 className="text-xl font-heading font-semibold">Thank you for your message!</h3>
-        <p className="text-sm text-muted-foreground">
-          I&apos;ll get back to you shortly.
+      <div
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+        className="w-full flex-1 flex flex-col justify-center gap-4"
+      >
+        <h3 className="title-display text-3xl sm:text-[40px] anim-rise">
+          Message sent<span className="text-primary inline-block anim-stamp">.</span>
+        </h3>
+        <p className="text-[15px] leading-[1.55] text-ink-soft anim-rise [animation-delay:100ms]">
+          Thanks for reaching out. I&apos;ll get back to you shortly.
         </p>
-        <Button 
+        <button
+          type="button"
           onClick={() => setIsSuccess(false)}
-          variant="outline"
-          className="px-6 mt-2"
+          className="self-start mt-2 cursor-pointer text-[13px] font-semibold uppercase tracking-[0.04em] text-foreground anim-rise [animation-delay:200ms] relative after:absolute after:left-0 after:right-0 after:-bottom-1 after:h-[2px] after:bg-primary after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-(--motion-settle) motion-reduce:after:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
         >
           Send another
-        </Button>
+        </button>
       </div>
     )
   }
@@ -326,7 +333,7 @@ export default function ContactForm() {
             </span>
           ) : (
             <>
-              <Send className="mr-2 h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0 motion-reduce:group-hover:translate-y-0" /> Send message
+              <Send className="mr-2 h-4 w-4 transition-transform duration-(--motion-settle) group-hover:translate-x-0.5 group-hover:-translate-y-0.5 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0 motion-reduce:group-hover:translate-y-0" /> Send message
             </>
           )}
         </Button>

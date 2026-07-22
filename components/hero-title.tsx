@@ -29,7 +29,7 @@ export function HeroTitle() {
     <h1 className="text-2xl sm:text-3xl md:text-4xl font-medium leading-tight sm:leading-tight tracking-tight">
       Hi, I&apos;m Brendan&mdash;
       <span
-        className={`inline-block bg-foreground text-background px-2 py-0.5 rounded-sm mx-1 transition-opacity duration-200 ${
+        className={`inline-block bg-foreground text-background px-2 py-0.5 rounded-sm mx-1 transition-opacity duration-(--motion-settle) ${
           fade ? "opacity-100" : "opacity-0"
         }`}
       >
