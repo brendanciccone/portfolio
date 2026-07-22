@@ -46,8 +46,10 @@ export const TransitionLink = ({ href, onClick, children, ...rest }: TransitionL
     if (typeof document.startViewTransition !== "function") return
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
     // Same-page clicks never settle (pathname doesn't change) — skip the
-    // transition rather than holding the snapshot until the failsafe fires
-    if (pathname === href) return
+    // transition rather than holding the snapshot until the failsafe fires.
+    // Compare pathnames only, so query/hash variants of the current route
+    // (/about?tab=2, /about#details) are also caught.
+    if (new URL(href, window.location.href).pathname === pathname) return
 
     event.preventDefault()
     document.startViewTransition(() => {
