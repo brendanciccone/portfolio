@@ -43,7 +43,7 @@ export const SectionNav = ({ items }: { items: readonly SectionNavItem[] }): Rea
   return (
     <nav
       aria-label="Case study sections"
-      className="hidden xl:block fixed left-6 2xl:left-12 top-28 z-40"
+      className="hidden xl:block fixed left-6 2xl:left-12 top-1/2 -translate-y-1/2 z-40"
     >
       <ul className="flex flex-col gap-3 max-w-[104px]">
         {items.map((item) => {
