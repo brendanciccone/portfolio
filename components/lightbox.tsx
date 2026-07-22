@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useCallback, useEffect, useRef } from "react"
+import { useState, useCallback, useEffect, useSyncExternalStore } from "react"
 import { createPortal } from "react-dom"
 import Image from "next/image"
 import { X } from "lucide-react"
@@ -18,6 +18,10 @@ interface LightboxImageProps {
   sizes?: string
 }
 
+// Never-changing store: subscribers get no updates; the snapshot is simply
+// "am I on the client" (true) vs. the server render (false)
+const emptySubscribe = () => () => {}
+
 // Lightbox image component - wraps an image and makes it clickable
 export const LightboxImage = ({
   src,
@@ -29,29 +33,28 @@ export const LightboxImage = ({
   quality = 80,
   sizes,
 }: LightboxImageProps) => {
-  const thumbnailRef = useRef<HTMLImageElement | null>(null)
   const [isOpen, setIsOpen] = useState(false)
   const [isLightboxImageLoaded, setIsLightboxImageLoaded] = useState(false)
   const [isThumbnailLoaded, setIsThumbnailLoaded] = useState(false)
-  const [isMounted, setIsMounted] = useState(false)
 
-  // Portal target only available after client mount.
-  useEffect(() => {
-    setIsMounted(true)
-  }, [])
+  // Portal target only available after client mount; server snapshot is false
+  const isMounted = useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false,
+  )
 
-  // Catch thumbnails that finished loading before React hydrated
-  useEffect(() => {
-    if (thumbnailRef.current?.complete) {
-      setIsThumbnailLoaded(true)
-    }
-  }, [])
+  // Catch thumbnails that finished loading before React hydrated — the ref
+  // callback fires on mount with the live node, ahead of onLoad
+  const handleThumbnailRef = (node: HTMLImageElement | null) => {
+    if (node?.complete) setIsThumbnailLoaded(true)
+  }
 
-  useEffect(() => {
-    if (isOpen) {
-      setIsLightboxImageLoaded(false)
-    }
-  }, [isOpen])
+  const handleOpen = () => {
+    // Full-size image reloads each open; start from the skeleton state
+    setIsLightboxImageLoaded(false)
+    setIsOpen(true)
+  }
 
   // Handle escape key to close
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
@@ -78,7 +81,7 @@ export const LightboxImage = ({
       {/* Clickable image */}
       <button
         type="button"
-        onClick={() => setIsOpen(true)}
+        onClick={handleOpen}
         className="cursor-pointer md:cursor-zoom-in w-full block bg-mockup-frame"
         aria-label={`View ${alt} in fullscreen`}
       >
@@ -86,17 +89,17 @@ export const LightboxImage = ({
           {!isThumbnailLoaded && (
             <Skeleton
               aria-hidden
-              className="absolute inset-0 z-10 rounded-sm bg-slate-300 dark:bg-slate-700"
+              className="absolute inset-0 z-10 rounded-sm bg-mockup-frame"
             />
           )}
           <Image
-            ref={thumbnailRef}
+            ref={handleThumbnailRef}
             src={src}
             alt={alt}
             width={width}
             height={height}
             className={cn(
-              "transition-opacity duration-300",
+              "transition-opacity duration-(--motion-settle)",
               isThumbnailLoaded ? "opacity-100" : "opacity-0",
               className,
             )}
@@ -117,7 +120,7 @@ export const LightboxImage = ({
       {isMounted && isOpen &&
         createPortal(
           <div
-            className="fixed inset-0 z-50 flex cursor-pointer items-center justify-center bg-black/80 p-4 backdrop-blur-md animate-in fade-in duration-200 sm:p-8"
+            className="fixed inset-0 z-50 flex cursor-pointer items-center justify-center bg-black/80 p-4 backdrop-blur-md animate-in fade-in duration-(--motion-settle) sm:p-8"
             onClick={() => setIsOpen(false)}
             role="dialog"
             aria-modal="true"
@@ -126,13 +129,13 @@ export const LightboxImage = ({
             <button
               type="button"
               onClick={() => setIsOpen(false)}
-              className="absolute top-4 right-4 rounded-sm bg-white/10 p-2 transition-colors hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black animate-in fade-in duration-300 delay-100"
+              className="absolute top-4 right-4 rounded-sm bg-white/10 p-2 transition-colors hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black animate-in fade-in duration-(--motion-settle) delay-100"
               aria-label="Close lightbox"
             >
               <X className="size-6 text-white" aria-hidden />
             </button>
 
-            <div className="relative max-w-full max-h-full animate-in fade-in slide-in-from-bottom-4 duration-300 ease-out">
+            <div className="relative max-w-full max-h-full animate-in fade-in slide-in-from-bottom-4 duration-(--motion-settle) ease-out">
               {!isLightboxImageLoaded && (
                 <Skeleton
                   aria-hidden
@@ -145,7 +148,7 @@ export const LightboxImage = ({
                 width={width * 2}
                 height={height * 2}
                 className={cn(
-                  "max-w-full max-h-[90vh] w-auto h-auto object-contain rounded-sm transition-opacity duration-300",
+                  "max-w-full max-h-[90vh] w-auto h-auto object-contain rounded-sm transition-opacity duration-(--motion-settle)",
                   isLightboxImageLoaded ? "opacity-100" : "opacity-0",
                 )}
                 quality={95}

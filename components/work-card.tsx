@@ -3,7 +3,20 @@ import Link from "next/link"
 import { Badge } from "@/components/ui/badge"
 import { LightboxImage } from "@/components/lightbox"
 import { MockupImage } from "@/components/mockup-image"
+import { TransitionLink } from "@/components/view-transition-link"
 import { cn } from "@/lib/utils"
+
+/*
+ * Shared-element names for the card→case-study morph. Static literals so the
+ * Tailwind scanner generates each class; the case-study hero frame carries
+ * the matching name.
+ */
+const transitionFrameClassByHref: Record<string, string> = {
+  "/work/corellium": "[view-transition-name:vt-corellium]",
+  "/work/immertec": "[view-transition-name:vt-immertec]",
+  "/work/spontivly": "[view-transition-name:vt-spontivly]",
+  "/work/paidly": "[view-transition-name:vt-paidly]",
+}
 
 export interface WorkCardData {
   title: string
@@ -20,11 +33,12 @@ interface WorkCardProps extends WorkCardData {
   priority?: boolean
 }
 
+/* Press cancels the lift so clicks read as a physical push-back */
 const cardClasses =
-  "group block h-full sys-panel hover-lift hover:-translate-y-1 hover:border-foreground/40 motion-reduce:hover:translate-none"
+  "group block h-full sys-panel hover-lift hover:-translate-y-1 hover:border-foreground/40 active:translate-y-0 active:scale-[0.995] motion-reduce:hover:translate-none motion-reduce:active:scale-100"
 
 const imageClasses =
-  "w-full transition-[translate,opacity] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-0.5 group-hover:opacity-90 motion-reduce:group-hover:translate-none"
+  "w-full transition-[translate,opacity] duration-(--motion-settle) ease-(--ease-settle) group-hover:-translate-y-0.5 group-hover:opacity-90 motion-reduce:group-hover:translate-none"
 
 export const WorkCard = ({
   title,
@@ -43,8 +57,14 @@ export const WorkCard = ({
 
   const body = (
     <>
-      {/* Screenshot sits in the mat frame with a bottom hairline */}
-      <div className="bg-mockup-frame overflow-hidden border-b border-border p-2.5">
+      {/* Screenshot sits in the mat frame with a bottom hairline; internal
+          cards name the frame so it morphs into the case-study hero */}
+      <div
+        className={cn(
+          "bg-mockup-frame overflow-hidden border-b border-border p-2.5",
+          href && transitionFrameClassByHref[href],
+        )}
+      >
         <div className={cn("relative w-full overflow-hidden", !href && "[&_button]:cursor-zoom-in")}>
           {href ? (
             <MockupImage
@@ -88,13 +108,17 @@ export const WorkCard = ({
     </>
   )
 
+  if (href && !external) {
+    return (
+      <TransitionLink href={href} className={cardClasses}>
+        {body}
+      </TransitionLink>
+    )
+  }
+
   if (href) {
     return (
-      <Link
-        href={href}
-        className={cardClasses}
-        {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-      >
+      <Link href={href} className={cardClasses} target="_blank" rel="noopener noreferrer">
         {body}
       </Link>
     )

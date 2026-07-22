@@ -3,7 +3,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { useEffect, useState, type KeyboardEvent } from "react"
+import { useState, type KeyboardEvent } from "react"
 import { cn } from "@/lib/utils"
 
 const navItems = [
@@ -21,10 +21,6 @@ export default function Header() {
   const pathname = usePathname()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
-  useEffect(() => {
-    setMobileMenuOpen(false)
-  }, [pathname])
-
   const handleMenuToggle = () => {
     setMobileMenuOpen((isOpen) => !isOpen)
   }
@@ -39,7 +35,12 @@ export default function Header() {
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
       <div className="max-w-[1024px] mx-auto px-5">
         <div className="flex h-14 items-center justify-between">
-          <Link href="/" aria-label="Brendan Ciccone — home" className="flex items-center gap-2.5">
+          <Link
+            href="/"
+            aria-label="Brendan Ciccone — home"
+            className="flex items-center gap-2.5"
+            onClick={() => setMobileMenuOpen(false)}
+          >
             <Image
               src="/avatar-dithered.png"
               alt="Profile picture of Brendan Ciccone"
@@ -65,10 +66,10 @@ export default function Header() {
                     key={item.href}
                     href={item.href}
                     className={cn(
-                      "text-[13px] font-semibold uppercase tracking-[0.04em] h-8 px-4 flex items-center justify-center transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+                      "text-[13px] font-semibold uppercase tracking-[0.04em] h-8 px-4 flex items-center justify-center transition-colors duration-(--motion-touch) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 active:translate-y-px",
                       active
                         ? "bg-primary-fill text-primary-fill-foreground"
-                        : "text-ink-faint hover:text-foreground relative after:absolute after:left-4 after:right-4 after:bottom-0.5 after:h-[2px] after:bg-primary after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-200 motion-reduce:after:transition-none",
+                        : "text-ink-faint hover:text-foreground relative after:absolute after:left-4 after:right-4 after:bottom-0.5 after:h-[2px] after:bg-primary after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-(--motion-settle) motion-reduce:after:transition-none",
                     )}
                     aria-current={active ? "page" : undefined}
                   >
@@ -92,19 +93,19 @@ export default function Header() {
             >
               <span
                 className={cn(
-                  "block w-5 h-[2px] bg-foreground transition-transform duration-150 motion-reduce:transition-none",
+                  "block w-5 h-[2px] bg-foreground transition-transform duration-(--motion-touch) motion-reduce:transition-none",
                   mobileMenuOpen && "translate-y-[7px] rotate-45",
                 )}
               />
               <span
                 className={cn(
-                  "block w-5 h-[2px] bg-foreground transition-opacity duration-150 motion-reduce:transition-none",
+                  "block w-5 h-[2px] bg-foreground transition-opacity duration-(--motion-touch) motion-reduce:transition-none",
                   mobileMenuOpen && "opacity-0",
                 )}
               />
               <span
                 className={cn(
-                  "block w-5 h-[2px] bg-foreground transition-transform duration-150 motion-reduce:transition-none",
+                  "block w-5 h-[2px] bg-foreground transition-transform duration-(--motion-touch) motion-reduce:transition-none",
                   mobileMenuOpen && "-translate-y-[7px] -rotate-45",
                 )}
               />
@@ -115,7 +116,7 @@ export default function Header() {
         {/* Mobile menu */}
         <div
           className={cn(
-            "md:hidden overflow-hidden transition-all duration-150 ease-out motion-reduce:transition-none",
+            "md:hidden overflow-hidden transition-all duration-(--motion-touch) ease-out motion-reduce:transition-none",
             mobileMenuOpen ? "max-h-60 opacity-100 border-t border-border" : "max-h-0 opacity-0",
           )}
           id="mobile-menu"
@@ -132,13 +133,14 @@ export default function Header() {
                   key={item.href}
                   href={item.href}
                   className={cn(
-                    "text-[13px] font-semibold uppercase tracking-[0.04em] w-full text-center py-3 transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+                    "text-[13px] font-semibold uppercase tracking-[0.04em] w-full text-center py-3 transition-colors duration-(--motion-touch) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 active:translate-y-px",
                     active
                       ? "bg-primary-fill text-primary-fill-foreground"
                       : "text-ink-faint hover:text-foreground",
                   )}
                   aria-current={active ? "page" : undefined}
                   tabIndex={mobileMenuOpen ? 0 : -1}
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   {item.label}
                 </Link>

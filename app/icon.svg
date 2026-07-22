@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- The mark: the red stamp period on paper, matching the hero -->
+  <style>
+    .paper { fill: #faf9f7; }
+    @media (prefers-color-scheme: dark) {
+      .paper { fill: #141412; }
+    }
+  </style>
+  <rect class="paper" width="32" height="32" />
+  <rect fill="#d73427" x="9" y="9" width="14" height="14" />
+</svg>

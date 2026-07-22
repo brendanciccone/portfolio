@@ -1,5 +1,6 @@
 import type React from "react"
 import type { Metadata } from "next"
+import { ReadingProgress } from "@/components/reading-progress"
 
 export const metadata: Metadata = {
   title: "Work | Brendan Ciccone",
@@ -11,6 +12,11 @@ export default function WorkLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  return <>{children}</>
+  return (
+    <>
+      <ReadingProgress />
+      {children}
+    </>
+  )
 }
 

@@ -83,6 +83,21 @@
 }
 
 /*
+ * Motion grammar — the whole site moves as one material. Three durations,
+ * one signature curve:
+ *   touch  (150ms) — color/opacity feedback: hovers, presses
+ *   settle (200ms) — anything that physically moves: lifts, wipes, morphs
+ *   enter  (450ms) — page-load entrances only
+ * The stamp accent (250ms) is the single deliberate exception.
+ */
+:root {
+  --motion-touch: 150ms;
+  --motion-settle: 200ms;
+  --motion-enter: 450ms;
+  --ease-settle: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/*
  * Swiss Light — warm paper neutrals, single red accent.
  * paper #faf9f7 · card #fff · ink #1a1a1a · line #e4e2dd · mat #f3f1ec · accent #e5372a
  */
@@ -214,6 +229,7 @@ body {
 
 .sys-section-counter {
   @apply text-xs font-semibold tracking-[0.1em] text-primary;
+  font-variant-numeric: tabular-nums;
 }
 
 /*
@@ -255,22 +271,22 @@ body {
 
 @media (prefers-reduced-motion: no-preference) {
   .anim-rise {
-    animation: rise-in 450ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation: rise-in var(--motion-enter) var(--ease-settle) both;
   }
 
   /* The red period stamps in as the headline settles */
   .anim-stamp {
-    animation: stamp-in 250ms cubic-bezier(0.22, 1, 0.36, 1) 550ms both;
+    animation: stamp-in 250ms var(--ease-settle) 550ms both;
   }
 
   .anim-rule {
     transform-origin: left;
-    animation: draw-rule 550ms cubic-bezier(0.22, 1, 0.36, 1) 250ms both;
+    animation: draw-rule 550ms var(--ease-settle) 250ms both;
   }
 
   /* Dot-grid cascade; per-dot delay set inline */
   .anim-dot {
-    animation: rise-in 350ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation: rise-in 350ms var(--ease-settle) both;
   }
 
 }
@@ -297,23 +313,78 @@ body {
  */
 .hover-lift {
   transition:
-    color 150ms ease-out,
-    background-color 150ms ease-out,
-    border-color 150ms ease-out,
-    translate 200ms cubic-bezier(0.22, 1, 0.36, 1),
-    scale 200ms cubic-bezier(0.22, 1, 0.36, 1);
+    color var(--motion-touch) ease-out,
+    background-color var(--motion-touch) ease-out,
+    border-color var(--motion-touch) ease-out,
+    translate var(--motion-settle) var(--ease-settle),
+    scale var(--motion-settle) var(--ease-settle);
 }
 
 .hover-lift-opacity {
   transition:
-    opacity 150ms ease-out,
-    translate 200ms cubic-bezier(0.22, 1, 0.36, 1),
-    scale 200ms cubic-bezier(0.22, 1, 0.36, 1);
+    opacity var(--motion-touch) ease-out,
+    translate var(--motion-settle) var(--ease-settle),
+    scale var(--motion-settle) var(--ease-settle);
 }
 
 @media (prefers-reduced-motion: reduce) {
   .hover-lift,
   .hover-lift-opacity {
     transition: none;
+  }
+}
+
+/* Text selection carries the accent — red block, paper type, both modes */
+::selection {
+  background-color: var(--primary-fill);
+  color: var(--primary-fill-foreground);
+}
+
+/*
+ * One underline system: every underline (link hovers included) sits at the
+ * same offset with the same weight, matching the 2px nav wipe.
+ */
+@layer base {
+  a {
+    text-underline-offset: 3px;
+    text-decoration-thickness: 2px;
+  }
+
+  /* Content-list markers are small red squares — the grid's bullet */
+  ::marker {
+    color: var(--primary);
+  }
+}
+
+/*
+ * Dark mode receives light-UI screenshots gently — a slight brightness pull
+ * so white mockups don't glare against near-black. Scoped to matted images.
+ */
+.dark .bg-mockup-frame img {
+  filter: brightness(0.92);
+}
+
+/*
+ * View transitions — the page morphs as one surface. Shared card→hero
+ * elements ride the settle curve; reduced motion gets an instant swap.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: var(--motion-settle);
+  }
+
+  ::view-transition-group(*) {
+    animation-duration: 300ms;
+    animation-timing-function: var(--ease-settle);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-image-pair(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
   }
 }

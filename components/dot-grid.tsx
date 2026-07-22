@@ -50,6 +50,7 @@ export const DotGrid = (): React.JSX.Element => {
   const resetDots = useCallback(() => {
     cancelAnimationFrame(frameRef.current)
     for (const el of dotsRef.current) {
+      // eslint-disable-next-line react-hooks/immutability -- imperative style reset on ref-held DOM nodes; these are not React-managed values
       if (el) el.style.transform = ""
     }
     moveRedTo(HOME_INDEX)
@@ -107,7 +108,7 @@ export const DotGrid = (): React.JSX.Element => {
                 /* Diagonal cascade; the red square rides in with everyone else */
                 style={{ animationDelay: `${(row + col) * CASCADE_STEP_MS}ms` }}
                 className={cn(
-                  "h-1.5 w-1.5 anim-dot transition-[transform,background-color] duration-150",
+                  "h-1.5 w-1.5 anim-dot transition-[transform,background-color] duration-(--motion-touch)",
                   index === HOME_INDEX ? "bg-primary" : "bg-input",
                 )}
               />

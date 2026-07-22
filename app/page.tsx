@@ -1,7 +1,6 @@
 import Link from "next/link"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
-import { FadeIn } from "@/components/fade-in"
 import { SectionLabel } from "@/components/section-label"
 import { WorkCard, type WorkCardData } from "@/components/work-card"
 import { cn } from "@/lib/utils"
@@ -58,8 +57,6 @@ const otherWork: readonly WorkCardData[] = [
       alt: "Crenel autoposting platform showing automatic crossposting across social platforms",
     },
     tags: ["2025", "Coinbase Accelerator"],
-    href: "https://www.crenel.xyz",
-    external: true,
   },
   {
     title: "Magier",
@@ -93,81 +90,66 @@ export default function Portfolio() {
       <Header />
 
       <div className="max-w-[1024px] mx-auto px-5 pt-24 pb-6 sm:pb-8 flex flex-col gap-6 sm:gap-8">
-        <FadeIn delay={0} duration={350}>
-          <div className="flex flex-col gap-6 sm:gap-8">
-            {/* Hero — display type left, intro right, baseline-aligned.
-                Lines rise, the red period stamps in, the wave waves once,
-                and the hairline draws itself. */}
-            <section className="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-6 md:gap-x-10 md:gap-y-8 items-end">
-              <h1 className="title-display text-[44px] sm:text-6xl md:text-[72px]">
-                <span className="block anim-rise">Hi, I&apos;m</span>
-                <span className="block anim-rise [animation-delay:100ms]">
-                  Brendan<span className="text-primary inline-block anim-stamp">.</span>{" "}
-                  <span aria-hidden className="inline-block">👋</span>
-                </span>
-              </h1>
-              <p className="text-[15px] leading-[1.55] text-ink-soft anim-rise [animation-delay:200ms]">
-                Staff product designer and founder with 8 years of experience shipping B2B products at early-stage startups in healthcare, cybersecurity, and finance. Currently at <Link href="https://www.corellium.com" target="_blank" rel="noopener noreferrer" className="text-primary font-medium hover:underline">Corellium</Link>, simplifying complex cybersecurity workflows.
-              </p>
-              <div aria-hidden className="h-px bg-border anim-rule md:col-span-2" />
-            </section>
+        <div className="flex flex-col gap-6 sm:gap-8">
+          {/* Hero — display type left, intro right, baseline-aligned.
+              Lines rise, the red period stamps in, and the hairline draws
+              itself. */}
+          <section className="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-6 md:gap-x-10 md:gap-y-8 items-end">
+            <h1 className="title-display text-[44px] sm:text-6xl md:text-[72px]">
+              <span className="block anim-rise">Hi, I&apos;m</span>
+              <span className="block anim-rise [animation-delay:100ms]">
+                Brendan<span className="text-primary inline-block anim-stamp">.</span>
+              </span>
+            </h1>
+            <p className="text-[15px] leading-[1.55] text-ink-soft anim-rise [animation-delay:200ms]">
+              Staff product designer and founder with 8 years of experience shipping B2B products at early-stage startups in healthcare, cybersecurity, and finance. Currently at <Link href="https://www.corellium.com" target="_blank" rel="noopener noreferrer" className="text-primary font-medium hover:underline">Corellium</Link>, simplifying complex cybersecurity workflows.
+            </p>
+            <div aria-hidden className="h-px bg-border anim-rule md:col-span-2" />
+          </section>
 
-            {/* Stat bar */}
-            <dl className="flex flex-col sm:grid sm:grid-cols-3 border border-border bg-card">
-              {stats.map((stat, index) => (
-                <div
-                  key={stat.label}
-                  className={cn(
-                    "p-4 sm:p-5 flex flex-row items-center justify-between gap-4 sm:flex-col sm:items-stretch sm:justify-start sm:gap-1.5 min-w-0 anim-rise",
-                    /* Cells rise in sequence behind the hero */
-                    stat.delayClass,
-                    index < stats.length - 1 && "border-b border-border sm:border-b-0 sm:border-r",
+          {/* Stat bar */}
+          <dl className="flex flex-col sm:grid sm:grid-cols-3 border border-border bg-card">
+            {stats.map((stat, index) => (
+              <div
+                key={stat.label}
+                className={cn(
+                  "p-4 sm:p-5 flex flex-row items-center justify-between gap-4 sm:flex-col sm:items-stretch sm:justify-start sm:gap-1.5 min-w-0 anim-rise",
+                  /* Cells rise in sequence behind the hero */
+                  stat.delayClass,
+                  index < stats.length - 1 && "border-b border-border sm:border-b-0 sm:border-r",
+                )}
+              >
+                <dt className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary">{stat.label}</dt>
+                <dd className="text-lg sm:text-[26px] font-heading font-bold leading-tight text-right sm:text-left tabular-nums">
+                  {stat.href ? (
+                    <Link href={stat.href} target="_blank" rel="noopener noreferrer" className="hover:underline">
+                      {stat.value}
+                    </Link>
+                  ) : (
+                    stat.value
                   )}
-                >
-                  <dt className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary">{stat.label}</dt>
-                  <dd className="text-lg sm:text-[26px] font-heading font-bold leading-tight text-right sm:text-left">
-                    {stat.href ? (
-                      <Link href={stat.href} target="_blank" rel="noopener noreferrer" className="hover:underline">
-                        {stat.value}
-                      </Link>
-                    ) : (
-                      stat.value
-                    )}
-                  </dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-        </FadeIn>
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </div>
 
         {/* Selected Work */}
-        <FadeIn delay={25} duration={350}>
-          <SectionLabel title="Selected Work" counter="04" />
-        </FadeIn>
+        <SectionLabel title="Selected Work" counter="04" />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {selectedWork.map((project, index) =>
-            index === 0 ? (
-              <WorkCard key={project.title} {...project} priority />
-            ) : (
-              <FadeIn key={project.title} delay={50 + index * 25} duration={350}>
-                {/* Preload only the first row (two cards); the rest lazy-load */}
-                <WorkCard {...project} priority={index < 2} />
-              </FadeIn>
-            ),
-          )}
+          {selectedWork.map((project, index) => (
+            /* Preload only the first row (two cards); the rest lazy-load */
+            <WorkCard key={project.title} {...project} priority={index < 2} />
+          ))}
         </div>
 
         {/* Other Work */}
-        <FadeIn delay={175} duration={350}>
-          <SectionLabel title="Other Work" counter="03" className="pt-2 sm:pt-4" />
-        </FadeIn>
+        <SectionLabel title="Other Work" counter="03" className="pt-2 sm:pt-4" />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {otherWork.map((project, index) => (
-            <FadeIn key={project.title} delay={200 + index * 25} duration={350}>
-              <WorkCard {...project} variant="other" />
-            </FadeIn>
+          {otherWork.map((project) => (
+            <WorkCard key={project.title} {...project} variant="other" />
           ))}
         </div>
 

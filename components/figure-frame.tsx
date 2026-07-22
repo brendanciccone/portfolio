@@ -22,7 +22,7 @@ export const FigureFrame = ({
       {/* Slight image dim on hover signals the lightbox, matching the home cards */}
       <div
         className={cn(
-          "bg-mockup-frame border border-border [&_img]:transition-opacity [&_img]:duration-200 [&:hover_img]:opacity-90",
+          "bg-mockup-frame border border-border [&_img]:transition-opacity [&_img]:duration-(--motion-settle) [&:hover_img]:opacity-90",
           padding === "tight" ? "p-2.5" : "p-3",
         )}
       >

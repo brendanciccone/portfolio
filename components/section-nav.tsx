@@ -53,7 +53,7 @@ export const SectionNav = ({ items }: { items: readonly SectionNavItem[] }): Rea
               <a
                 href={`#${item.id}`}
                 className={cn(
-                  "flex gap-2 text-[10px] uppercase tracking-[0.08em] leading-snug transition-colors duration-150",
+                  "flex gap-2 text-[10px] uppercase tracking-[0.08em] leading-snug transition-colors duration-(--motion-touch)",
                   active ? "text-foreground font-semibold" : "text-ink-faint hover:text-foreground",
                 )}
                 aria-current={active ? "true" : undefined}

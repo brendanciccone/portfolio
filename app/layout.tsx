@@ -5,6 +5,8 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import ScrollToTop from "@/components/scroll-to-top"
 import { ErrorBoundary } from "@/components/error-boundary"
+import { GridOverlay } from "@/components/grid-overlay"
+import { ViewTransitionSettler } from "@/components/view-transition-link"
 import JsonLd from "@/components/json-ld"
 
 // Swiss type system: Archivo for display/headings, Space Grotesk for
@@ -34,6 +36,8 @@ export const metadata: Metadata = {
   title: "Brendan Ciccone - 0 → 1 Staff Product Designer",
   description:
     "Brendan Ciccone is a staff product designer and founder with 8 years of experience shipping B2B products at early-stage startups in healthcare, cybersecurity, and finance.",
+  /* app/icon.svg serves the dark-mode-aware SVG mark; the PNG/ICO set below
+     is generated from it via scripts/generate-favicons.mjs */
   icons: {
     icon: [
       { url: "/favicon.ico", type: "image/x-icon" },
@@ -93,6 +97,8 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem storageKey="theme-v2" disableTransitionOnChange>
           <ErrorBoundary>
             <ScrollToTop />
+            <ViewTransitionSettler />
+            <GridOverlay />
             <main id="main-content">
               {children}
             </main>
