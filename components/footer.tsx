@@ -8,7 +8,9 @@ export default function Footer() {
       <div className="text-xs font-mono text-muted-foreground uppercase tracking-[0.1em] flex items-center gap-1">
         <span className="text-sm leading-none">&copy;</span>
         <span>
-          {currentYear} Brendan Ciccone<span className="text-primary font-semibold">.</span>
+          {/* The mark: Archivo's period is the square; the footer's mono face
+              would render it as a round dot */}
+          {currentYear} Brendan Ciccone<span className="text-primary font-heading font-extrabold">.</span>
         </span>
       </div>
       <div className="flex gap-4">
