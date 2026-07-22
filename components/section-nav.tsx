@@ -13,6 +13,13 @@ export interface SectionNavItem {
 /*
  * Fixed side rail for case-study sections. Only rendered at xl+ where the
  * viewport margin outside the 1024px content column can hold it.
+ *
+ * The rail is anchored to that column rather than the viewport edge: 512px
+ * (half the column) + 104px (rail width) + 48px (gutter) = the 664px offset
+ * from centre. Pinned to the viewport instead, the gap would widen with the
+ * screen — roughly 300px at 1920 and 600px at 2560 — stranding the rail by
+ * the bezel, far from the text it indexes. The max() floor keeps it on-screen
+ * at the xl breakpoint, where the margin is only just wide enough.
  */
 export const SectionNav = ({ items }: { items: readonly SectionNavItem[] }): React.JSX.Element => {
   const [activeId, setActiveId] = useState<string | null>(null)
@@ -43,7 +50,7 @@ export const SectionNav = ({ items }: { items: readonly SectionNavItem[] }): Rea
   return (
     <nav
       aria-label="Case study sections"
-      className="hidden xl:block fixed left-6 2xl:left-12 top-28 z-40"
+      className="hidden xl:block fixed left-[max(1.5rem,calc(50%_-_664px))] top-1/2 -translate-y-1/2 z-40"
     >
       <ul className="flex flex-col gap-3 max-w-[104px]">
         {items.map((item) => {

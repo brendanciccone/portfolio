@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import Link from "next/link"
+import { TransitionLink } from "@/components/view-transition-link"
 import { usePathname } from "next/navigation"
 import { useState, type KeyboardEvent } from "react"
 import { cn } from "@/lib/utils"
@@ -35,7 +35,7 @@ export default function Header() {
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
       <div className="max-w-[1024px] mx-auto px-5">
         <div className="flex h-14 items-center justify-between">
-          <Link
+          <TransitionLink
             href="/"
             aria-label="Brendan Ciccone — home"
             className="flex items-center gap-2.5"
@@ -54,7 +54,7 @@ export default function Header() {
             <span className="font-heading font-extrabold uppercase tracking-[-0.01em] text-sm sm:text-base">
               Brendan Ciccone
             </span>
-          </Link>
+          </TransitionLink>
 
           {/* Desktop nav */}
           <nav className="hidden md:block" aria-label="Main Navigation">
@@ -62,7 +62,7 @@ export default function Header() {
               {navItems.map((item) => {
                 const active = isActive(pathname, item.href)
                 return (
-                  <Link
+                  <TransitionLink
                     key={item.href}
                     href={item.href}
                     className={cn(
@@ -74,7 +74,7 @@ export default function Header() {
                     aria-current={active ? "page" : undefined}
                   >
                     {item.label}
-                  </Link>
+                  </TransitionLink>
                 )
               })}
             </div>
@@ -129,7 +129,7 @@ export default function Header() {
             {navItems.map((item) => {
               const active = isActive(pathname, item.href)
               return (
-                <Link
+                <TransitionLink
                   key={item.href}
                   href={item.href}
                   className={cn(
@@ -143,7 +143,7 @@ export default function Header() {
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {item.label}
-                </Link>
+                </TransitionLink>
               )
             })}
           </div>

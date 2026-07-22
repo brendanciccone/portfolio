@@ -86,13 +86,15 @@
  * Motion grammar — the whole site moves as one material. Three durations,
  * one signature curve:
  *   touch  (150ms) — color/opacity feedback: hovers, presses
- *   settle (200ms) — anything that physically moves: lifts, wipes, morphs
+ *   settle (200ms) — anything that physically moves: lifts, wipes
+ *   morph  (300ms) — cross-page shared-element view transitions
  *   enter  (450ms) — page-load entrances only
  * The stamp accent (250ms) is the single deliberate exception.
  */
 :root {
   --motion-touch: 150ms;
   --motion-settle: 200ms;
+  --motion-morph: 300ms;
   --motion-enter: 450ms;
   --ease-settle: cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -398,7 +400,7 @@ body {
   }
 
   ::view-transition-group(*) {
-    animation-duration: var(--motion-settle);
+    animation-duration: var(--motion-morph);
     animation-timing-function: var(--ease-settle);
   }
 }
