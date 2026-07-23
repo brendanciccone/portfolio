@@ -60,6 +60,12 @@ export const TransitionLink = ({ href, onClick, children, ...rest }: TransitionL
     if (destination.pathname === pathname) return
 
     event.preventDefault()
+    // Mark the document as navigated so the incoming route's mount-entrance
+    // animations (anim-rise/stamp/dot) are suppressed — see globals.css. Set
+    // synchronously before the transition starts so the new page mounts with
+    // the flag already present, letting the morph capture it at final state
+    // instead of mid-rise. Stays set for the session; a full reload clears it.
+    document.documentElement.dataset.navigated = "true"
     document.startViewTransition(() => {
       const settled = new Promise<void>((resolve) => {
         settleNavigation = resolve

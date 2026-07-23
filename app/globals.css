@@ -277,20 +277,43 @@ body {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .anim-rise {
+  /*
+   * Entrance choreography plays on first load only. Once the app has done a
+   * client navigation (TransitionLink sets [data-navigated] on <html>), the
+   * same-document view transition IS the entrance — replaying a per-element
+   * rise on top of it made the incoming page's single-frame snapshot capture
+   * these elements mid-animation (still at opacity 0, translated, or inside
+   * their delay). That's the mobile "cut off, then suddenly appears": the
+   * snapshot showed them blank, then the real DOM finished rising after the
+   * morph. Gating to the un-navigated document keeps the fresh-load feel
+   * while letting the morph own navigation. The hero frame is the sharpest
+   * case — it carries both anim-rise and a view-transition-name, so the
+   * shared-element morph was fighting a transform entrance on the same node.
+   *
+   * will-change + backface-visibility promote each animated element to its
+   * own compositing layer so Safari rasterizes the moving text once instead
+   * of every frame — the fix for the "not buttery smooth" jitter on mobile.
+   */
+  :root:not([data-navigated]) .anim-rise {
     animation: rise-in var(--motion-enter) var(--ease-settle) both;
+    will-change: transform, opacity;
+    backface-visibility: hidden;
   }
 
   /* The red period stamps in as the headline settles — grow-in is an
      in-place entrance with no direction, so it can't fight the page's
      motion if it lands while the user is already scrolling */
-  .anim-stamp {
+  :root:not([data-navigated]) .anim-stamp {
     animation: grow-in 250ms var(--ease-settle) 550ms both;
+    will-change: transform, opacity;
+    backface-visibility: hidden;
   }
 
   .anim-rule {
     transform-origin: left;
     animation: draw-rule 550ms var(--ease-settle) 250ms both;
+    will-change: transform;
+    backface-visibility: hidden;
   }
 
   /*
@@ -309,9 +332,12 @@ body {
     animation-delay: 0ms;
   }
 
-  /* Dot-grid cascade; per-dot delay set inline */
-  .anim-dot {
+  /* Dot-grid cascade; per-dot delay set inline. Load-only, same reasoning as
+     the rise/stamp entrances above. */
+  :root:not([data-navigated]) .anim-dot {
     animation: rise-in 350ms var(--ease-settle) both;
+    will-change: transform, opacity;
+    backface-visibility: hidden;
   }
 
 }
