@@ -431,6 +431,21 @@ body {
   }
 }
 
+/*
+ * iOS Safari clips the root snapshot on tall, scrollable pages, so everything
+ * below the fold reads as cut off during the swap and then pops in when the
+ * live DOM is restored. On touch devices, skip the root cross-fade entirely:
+ * the incoming page shows at its final state immediately — no animating
+ * full-page snapshot to clip — while the shared card→hero element still rides
+ * its own morph. Desktop keeps the full-surface cross-fade.
+ */
+@media (prefers-reduced-motion: no-preference) and (pointer: coarse) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   ::view-transition-group(*),
   ::view-transition-image-pair(*),
