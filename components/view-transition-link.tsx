@@ -40,14 +40,12 @@ export const TransitionLink = ({ href, onClick, children, ...rest }: TransitionL
 
   const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     onClick?.(event)
-    // Let modified clicks (new tab etc.) and unsupported browsers use the
-    // default Link behavior
+    // Let modified clicks (new tab etc.) use the default Link behavior
     if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return
-    if (typeof document.startViewTransition !== "function") return
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
     // Links that open outside this document aren't client navigations
     if (rest.target && rest.target !== "_self") return
-    // Guards the parse below; every browser with startViewTransition has it
+    // Guards the parse below; URL.canParse is Baseline alongside the view
+    // transition API this handler upgrades to
     if (!URL.canParse(href, window.location.href)) return
 
     const destination = new URL(href, window.location.href)
@@ -56,11 +54,29 @@ export const TransitionLink = ({ href, onClick, children, ...rest }: TransitionL
     // Same-page clicks never settle (pathname doesn't change) — skip the
     // transition rather than holding the snapshot until the failsafe fires.
     // Comparing pathnames catches query/hash variants of the current route
-    // (/about?tab=2, /about#details) too.
+    // (/about?tab=2, /about#details) too. Kept ahead of the marker below so a
+    // same-page click never snaps a still-running first-load entrance.
     if (destination.pathname === pathname) return
+
+    // Browsers without view transitions, and reduced-motion users, get a plain
+    // client-side Link navigation. Mark it navigated here so the incoming route
+    // renders its mount entrances (anim-rise/stamp/dot) at final state instead
+    // of replaying them — see globals.css. (Reduced-motion entrances are
+    // already inert; marking is harmless and keeps the fallback uniform.)
+    if (typeof document.startViewTransition !== "function" || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      document.documentElement.dataset.navigated = "true"
+      return
+    }
 
     event.preventDefault()
     document.startViewTransition(() => {
+      // Mark inside the update callback so the flag lands on the NEW document
+      // state only: the outgoing snapshot is already captured by the time this
+      // runs, so a click during a still-running first-load entrance can't snap
+      // the old page. Set before router.push so the incoming route mounts
+      // already marked and its entrances stay at their final state. Stays set
+      // for the session; a reload clears it.
+      document.documentElement.dataset.navigated = "true"
       const settled = new Promise<void>((resolve) => {
         settleNavigation = resolve
       })
