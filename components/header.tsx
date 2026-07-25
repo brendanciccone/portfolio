@@ -69,7 +69,11 @@ export default function Header() {
                       "text-[13px] font-semibold uppercase tracking-[0.04em] h-8 px-4 flex items-center justify-center transition-colors duration-(--motion-touch) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 active:translate-y-px",
                       active
                         ? "bg-primary-fill text-primary-fill-foreground"
-                        : "text-ink-faint hover:text-foreground relative after:absolute after:left-4 after:right-4 after:bottom-0.5 after:h-[2px] after:bg-primary after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-(--motion-settle) motion-reduce:after:transition-none",
+                        /* The underline wipes in from the left and leaves to
+                           the right: the origin flips back on unhover, so the
+                           rule reads as one stroke passing through rather
+                           than retracing its own path */
+                        : "text-ink-faint hover:text-foreground relative after:absolute after:left-4 after:right-4 after:bottom-0.5 after:h-[2px] after:bg-primary after:origin-right after:scale-x-0 hover:after:origin-left hover:after:scale-x-100 after:transition-transform after:duration-(--motion-settle) after:ease-(--ease-settle) motion-reduce:after:transition-none",
                     )}
                     aria-current={active ? "page" : undefined}
                   >

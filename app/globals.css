@@ -83,20 +83,33 @@
 }
 
 /*
- * Motion grammar — the whole site moves as one material. Three durations,
- * one signature curve:
+ * Motion grammar — the whole site moves as one material, on one curve:
  *   touch  (150ms) — color/opacity feedback: hovers, presses
- *   settle (200ms) — anything that physically moves: lifts, wipes
+ *   settle (250ms) — anything that physically moves: lifts, wipes, nudges
  *   morph  (300ms) — cross-page shared-element view transitions
- *   enter  (450ms) — page-load entrances only
- * The stamp accent (250ms) is the single deliberate exception.
+ *   enter  (800ms) — load entrances: hero lines, meta, intro
+ *   wipe   (1000/1200ms) — one-shot image clip-path reveals
+ * The stamp (340ms on an overshoot curve) is the single deliberate
+ * exception, and it is spent on exactly one glyph: the red period.
  */
 :root {
   --motion-touch: 150ms;
-  --motion-settle: 200ms;
+  --motion-settle: 250ms;
   --motion-morph: 300ms;
-  --motion-enter: 450ms;
+  --motion-enter: 800ms;
+  /*
+   * The reference direction specifies 1000/1200ms here. That reads as
+   * considered on a single hero reveal and as sluggish on a case study with
+   * six figures in a column — the image is still opening well after you have
+   * scrolled it into place, and FigureFrame gives the longer of the two to
+   * every full-width figure, which is most of them. Cut to roughly half, so
+   * the wipe still reads as a wipe but lands about when the figure settles.
+   */
+  --motion-wipe: 550ms;
+  --motion-wipe-long: 700ms;
+  --motion-stamp: 340ms;
   --ease-settle: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-stamp: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 /*
@@ -236,18 +249,37 @@ body {
 }
 
 /*
- * Entrance micro-animations — contact page niceties. All are no-ops under
- * prefers-reduced-motion (the classes simply never animate, elements render
- * in their final state).
+ * Entrance micro-animations. All are no-ops under prefers-reduced-motion (the
+ * classes simply never animate, elements render in their final state).
+ *
+ * fade-up is the load-time twin of the scroll flow's enter ramp: same
+ * direction, same blur, so an element that loads in and an element that
+ * scrolls in arrive by the same route.
  */
 @keyframes rise-in {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(22px);
+    filter: blur(5px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+/*
+ * Headline lines rise out from behind a mask rather than fading — the skew
+ * makes each line lag slightly at its trailing edge, so the type reads as
+ * physically swinging up into place instead of sliding.
+ */
+@keyframes line-rise {
+  from {
+    transform: translateY(110%) skewY(2.5deg);
+  }
+  to {
+    transform: translateY(0) skewY(0);
   }
 }
 
@@ -300,18 +332,29 @@ body {
     backface-visibility: hidden;
   }
 
-  /* The red period stamps in as the headline settles — grow-in is an
-     in-place entrance with no direction, so it can't fight the page's
-     motion if it lands while the user is already scrolling */
+  /*
+   * Masked headline rise. The mask is the parent (.anim-line-mask); this
+   * class is the thing that travels. Same load-only gate as .anim-rise —
+   * after a client navigation the morph is the entrance.
+   */
+  :root:not([data-navigated]) .anim-line {
+    animation: line-rise var(--motion-enter) var(--ease-settle) both;
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+
+  /* The red period lands last and is the only thing in the system that
+     overshoots — grow-in is an in-place entrance with no direction, so it
+     can't fight the page's motion if it lands mid-scroll */
   :root:not([data-navigated]) .anim-stamp {
-    animation: grow-in 250ms var(--ease-settle) 550ms both;
+    animation: grow-in var(--motion-stamp) var(--ease-stamp) 1050ms both;
     will-change: transform, opacity;
     backface-visibility: hidden;
   }
 
   .anim-rule {
     transform-origin: left;
-    animation: draw-rule 550ms var(--ease-settle) 250ms both;
+    animation: draw-rule 700ms var(--ease-settle) 330ms both;
     will-change: transform;
     backface-visibility: hidden;
   }
@@ -320,7 +363,7 @@ body {
    * DrawnRule states. The hold keeps the line undrawn until it can actually
    * be seen; scoping it to no-preference means reduced-motion users always
    * get a static, fully drawn line. -now must follow .anim-rule so its
-   * animation-delay wins over the shorthand's 250ms at equal specificity —
+   * animation-delay wins over the shorthand's 330ms at equal specificity —
    * a scroll-triggered draw should start immediately (a delay reads as lag).
    */
   .anim-rule-hold {
@@ -340,6 +383,51 @@ body {
     backface-visibility: hidden;
   }
 
+}
+
+/*
+ * The line mask is structural, not decorative: it exists so .anim-line has
+ * something to rise out from. Unlayered and ungated, because with the
+ * animation absent the inner line simply sits at its final position and the
+ * mask clips nothing. The padding/negative-margin pair gives the glyphs a
+ * sliver of room so the mask never shaves a descender.
+ */
+.anim-line-mask {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+
+/*
+ * Scroll flow — see components/scroll-flow.tsx for the math. Everything here
+ * is defensive styling only: the engine writes opacity/transform/filter
+ * inline, so with JS absent these elements have no styles at all and render
+ * at full visibility. Nothing in this block can hide content.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  [data-flow],
+  [data-recede] {
+    backface-visibility: hidden;
+  }
+
+  /*
+   * Image reveals are the system's one non-continuous motion: a one-shot
+   * unmasking that never re-runs. The engine arms the clipped start state
+   * only for images still below the fold, so an image already on screen is
+   * never clipped in the first place.
+   */
+  [data-wipe] {
+    transition:
+      clip-path var(--motion-wipe) var(--ease-settle),
+      scale var(--motion-wipe) var(--ease-settle);
+  }
+
+  /* Full-bleed figures get the longer wipe — the same speed over a larger
+     area reads as hurried */
+  [data-wipe].wipe-long {
+    transition-duration: var(--motion-wipe-long);
+  }
 }
 
 /*

@@ -34,10 +34,21 @@ type FetchState =
   | { status: "error" }
   | { status: "ready"; data: Contributions }
 
+/*
+ * The grid has no entrance of its own. It used to sweep in column by column,
+ * 53 staggered rises with blur — by a wide margin the busiest motion on the
+ * site, against a system where everything else arrives as one quiet block.
+ * The enclosing "How I Ship" panel already carries the scroll flow, so the
+ * heatmap rides that with the rest of the section and needs nothing else.
+ *
+ * Removing the sweep also removed the reason to hold the data behind an
+ * IntersectionObserver: that gate existed purely so the animation would play
+ * where someone could see it, and it made the grid's arrival depend on the
+ * [data-navigated] flag — which is why it animated on a direct load of
+ * /about and skipped when you came from the nav.
+ */
 export const GitHubHeatmap = (): React.JSX.Element => {
   const [state, setState] = useState<FetchState>({ status: "loading" })
-  const [inView, setInView] = useState(false)
-  const containerRef = useRef<HTMLDivElement>(null)
   const scrollRef = useRef<HTMLDivElement>(null)
 
   // On narrow screens the grid overflows; start scrolled to the right so the
@@ -45,24 +56,6 @@ export const GitHubHeatmap = (): React.JSX.Element => {
   useEffect(() => {
     const el = scrollRef.current
     if (el) el.scrollLeft = el.scrollWidth
-  }, [])
-
-  // Hold the skeleton until the grid is actually on screen so the
-  // left-to-right sweep plays when someone can see it
-  useEffect(() => {
-    const el = containerRef.current
-    if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setInView(true)
-          observer.disconnect()
-        }
-      },
-      { threshold: 0.2 },
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
   }, [])
 
   useEffect(() => {
@@ -108,8 +101,8 @@ export const GitHubHeatmap = (): React.JSX.Element => {
     )
   }
 
-  const showData = state.status === "ready" && inView
-  const days = showData && state.status === "ready" ? state.data.contributions : []
+  const showData = state.status === "ready"
+  const days = showData ? state.data.contributions : []
   // Pad the first week so columns align to weekdays (rows: Sun..Sat)
   const leadingEmpty = days.length > 0 ? new Date(`${days[0].date}T00:00:00`).getDay() : 0
   const cells: Array<Contributions["contributions"][number] | null> = [
@@ -125,16 +118,11 @@ export const GitHubHeatmap = (): React.JSX.Element => {
   const grid = showData ? weeks : skeletonWeeks
 
   return (
-    <div ref={containerRef}>
+    <div>
       <div ref={scrollRef} className="overflow-x-auto pb-1">
         <div className="flex gap-[3px] w-max">
           {grid.map((week, weekIndex) => (
-            <div
-              key={weekIndex}
-              className={cn("flex flex-col gap-[3px]", showData && "anim-dot")}
-              /* Left-to-right sweep as the year washes in */
-              style={showData ? { animationDelay: `${weekIndex * 10}ms` } : undefined}
-            >
+            <div key={weekIndex} className="flex flex-col gap-[3px]">
               {Array.from({ length: 7 }, (_, dayIndex) => {
                 const day = week[dayIndex]
                 return (
@@ -149,7 +137,7 @@ export const GitHubHeatmap = (): React.JSX.Element => {
           ))}
         </div>
       </div>
-      <div className={cn("mt-4 flex items-center justify-between gap-4", showData && "anim-rise [animation-delay:550ms]")}>
+      <div className="mt-4 flex items-center justify-between gap-4">
         <p className="text-[10px] uppercase tracking-[0.08em] text-muted-foreground">
           {state.status === "ready"
             ? `${state.data.total.lastYear.toLocaleString("en-US")} contributions in the last year`

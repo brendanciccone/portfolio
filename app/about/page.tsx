@@ -223,16 +223,22 @@ export default function About() {
       <div className="max-w-[1024px] mx-auto px-5 pt-24 pb-6 sm:pb-8 flex flex-col gap-6 sm:gap-8">
         {/* Intro — display title + 2-col bio */}
         <section className="flex flex-col gap-6 sm:gap-8">
-          {/* Same hero grammar as contact: title rises, period stamps in last, rule draws itself once in view */}
-          <h1 className="title-display text-[44px] sm:text-[60px]">
-            <span className="inline-block anim-rise">
-              About<span className="text-primary inline-block anim-stamp">.</span>
+          {/* Same hero grammar as contact: the line rises out from behind its
+              mask, the period stamps in last, the rule draws itself once in
+              view. Only the display title recedes on scroll — the bio is real
+              content, so it takes the bidirectional flow instead of the
+              hero's one-way fade-out. */}
+          <h1 data-recede="title" className="title-display text-[44px] sm:text-[60px]">
+            <span className="anim-line-mask">
+              <span className="block anim-line">
+                About<span className="text-primary inline-block anim-stamp">.</span>
+              </span>
             </span>
           </h1>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-9 text-[15px] leading-[1.55] text-ink-soft">
+          <div data-flow="0.5" className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-9 text-[15px] leading-[1.55] text-ink-soft">
             <div className="space-y-4 anim-rise [animation-delay:120ms]">
               <p>
-                I&apos;m a staff product designer and founder with <span className="text-foreground font-semibold">8 years of experience</span> shipping B2B products at early-stage startups in healthcare, cybersecurity, and finance.
+                I&apos;m a 0 → 1 product designer and founder with <span className="text-foreground font-semibold">8 years of experience</span> shipping B2B products at early-stage startups in healthcare, cybersecurity, and finance.
               </p>
               <p>
                 As founding product designer at Immertec, I led a platform redesign that <span className="text-foreground font-semibold">increased SUS from 68 to 83</span>, hired and managed 2 product designers, and helped secure <span className="text-foreground font-semibold">$12M in Series A</span> funding. At Corellium, I owned end-to-end product design, shipped CI/CD-integrated threat analysis tools, and achieved an 81 SUS score that contributed to a <span className="text-foreground font-semibold">$200M acquisition</span> by Cellebrite.
@@ -250,9 +256,10 @@ export default function About() {
           <DrawnRule />
         </section>
 
-        {/* Experience + Founder Work | Publications + Certificates */}
+        {/* Experience + Founder Work | Publications + Certificates.
+            The two columns melt at slightly different rates as they leave. */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:items-stretch">
-          <section className="sys-panel p-5 sm:p-7">
+          <section data-flow className="sys-panel p-5 sm:p-7">
             <SectionLabel title="Experience" className="mb-6" />
             <ul className="space-y-6">
               {experience.map((entry) => (
@@ -268,7 +275,7 @@ export default function About() {
             </ul>
           </section>
 
-          <div className="flex flex-col gap-6">
+          <div data-flow="1.07" className="flex flex-col gap-6">
             <section className="sys-panel p-5 sm:p-7 flex-1">
               <SectionLabel title="Publications" className="mb-6" />
               <div className="space-y-6">
@@ -302,7 +309,7 @@ export default function About() {
         </div>
 
         {/* How I Ship — tools plus the shipping proof under one roof */}
-        <section className="sys-panel p-5 sm:p-7">
+        <section data-flow className="sys-panel p-5 sm:p-7">
           <SectionLabel title="How I Ship" className="mb-4" />
           <p className="text-[15px] leading-[1.55] text-ink-soft mb-6 max-w-[560px]">
             <span className="text-foreground font-semibold">Figma</span> for fast exploration;{" "}
@@ -332,7 +339,7 @@ export default function About() {
         </section>
 
         {/* Currently */}
-        <section className="sys-panel p-5 sm:p-7 flex flex-col">
+        <section data-flow className="sys-panel p-5 sm:p-7 flex flex-col">
           <SectionLabel title="Currently" className="mb-6" />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
@@ -377,7 +384,9 @@ export default function About() {
             </div>
           </div>
         </section>
-        <Footer />
+        <div data-flow>
+          <Footer />
+        </div>
       </div>
     </div>
   )

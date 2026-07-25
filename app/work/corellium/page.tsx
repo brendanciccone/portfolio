@@ -17,6 +17,7 @@ import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import { CountUp } from "@/components/count-up"
 import { FigureFrame } from "@/components/figure-frame"
 import { SectionLabel } from "@/components/section-label"
 import { SectionNav } from "@/components/section-nav"
@@ -41,7 +42,10 @@ export default function CorelliumPage() {
         {/* Page header — inverted: title row and role first so a skimmer gets
             who/what/outcome before the viewport-height hero image */}
         <header>
-          <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+          {/* The title row recedes as the case study takes over; the framed
+              hero below it is left alone because it carries the shared-element
+              name for the card→case-study morph */}
+          <div data-recede="meta" className="flex flex-col sm:flex-row sm:items-center gap-4">
             <Image
               src="/about/logos/corellium.jpeg"
               alt="Corellium logo"
@@ -82,26 +86,26 @@ export default function CorelliumPage() {
 
         {/* Overview + Highlights */}
         <section id="overview" className="scroll-mt-16">
-          <SectionLabel title="Overview" number="01" className="mb-5" />
-          <p className="text-[15px] leading-[1.6] text-ink-soft mb-5">
+          <SectionLabel flow title="Overview" number="01" className="mb-5" />
+          <p data-flow="0.5" className="text-[15px] leading-[1.6] text-ink-soft mb-5">
             In 2023, I joined Corellium as the <span className="text-foreground font-semibold">solo designer</span> on a virtualization platform used by security researchers, enterprises, and government agencies to test mobile applications and firmware. I owned end-to-end product design across web and mobile, partnering with product and engineering teams to ship improvements while navigating the constraints of a complex platform.
           </p>
-          <ul className="list-[square] pl-5 space-y-2 text-[15px] leading-[1.7] text-ink-soft mb-6">
+          <ul data-flow="0.5" className="list-[square] pl-5 space-y-2 text-[15px] leading-[1.7] text-ink-soft mb-6">
             <li>Shipped CI/CD-integrated mobile threat analysis tool, reducing review time for security teams</li>
             <li>Built the entire platform in Figma for the first time, with full mobile parity and a scalable design system</li>
             <li>Led WCAG accessibility initiative, enabling enterprise sales and streamlining compliance</li>
           </ul>
           {/* Metric box — same cell anatomy as the home stat bar: red caps
               label, ink value, description only where it adds a fact */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 border border-border bg-card">
+          <div data-flow className="grid grid-cols-1 sm:grid-cols-3 border border-border bg-card">
             <div className="px-5 py-[18px] border-b border-border sm:border-b-0 sm:border-r">
               <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary">Usability</p>
-              <p className="text-lg sm:text-[26px] font-heading font-bold leading-tight tabular-nums mt-1.5">SUS 81</p>
+              <p className="text-lg sm:text-[26px] font-heading font-bold leading-tight tabular-nums mt-1.5">SUS <CountUp to={81} /></p>
               <p className="text-[13px] leading-normal text-muted-foreground mt-1.5">Post-launch score via in-product surveys</p>
             </div>
             <div className="px-5 py-[18px] border-b border-border sm:border-b-0 sm:border-r">
               <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary">Exit</p>
-              <p className="text-lg sm:text-[26px] font-heading font-bold leading-tight tabular-nums mt-1.5">$200M</p>
+              <p className="text-lg sm:text-[26px] font-heading font-bold leading-tight tabular-nums mt-1.5"><CountUp to={200} prefix="$" suffix="M" /></p>
               <p className="text-[13px] leading-normal text-muted-foreground mt-1.5">WCAG and design system work made the platform acquisition-ready</p>
             </div>
             <div className="px-5 py-[18px]">
@@ -114,8 +118,8 @@ export default function CorelliumPage() {
 
         {/* The Problem - Old Flow */}
         <section id="device-creation" className="scroll-mt-16">
-          <SectionLabel title="Device Creation: The Core Experience" number="02" className="mb-5" />
-          <div className="space-y-3.5 text-[15px] leading-[1.6] text-ink-soft mb-6">
+          <SectionLabel flow title="Device Creation: The Core Experience" number="02" className="mb-5" />
+          <div data-flow="0.5" className="space-y-3.5 text-[15px] leading-[1.6] text-ink-soft mb-6">
             <p>
               Device creation is the most critical flow in the platform. It&apos;s how every user starts their work. If this flow is painful, the entire product feels painful.
             </p>
@@ -147,8 +151,8 @@ export default function CorelliumPage() {
 
         {/* Redesign narrative + redesigned UI */}
         <section id="simplifying" className="scroll-mt-16">
-          <SectionLabel title="Simplifying the Experience" number="03" className="mb-5" />
-          <div className="space-y-3.5 text-[15px] leading-[1.6] text-ink-soft mb-6">
+          <SectionLabel flow title="Simplifying the Experience" number="03" className="mb-5" />
+          <div data-flow="0.5" className="space-y-3.5 text-[15px] leading-[1.6] text-ink-soft mb-6">
             <p>
               The goal was to reduce cognitive load and eliminate unnecessary steps without sacrificing flexibility. I redesigned the flow down to <span className="text-foreground font-semibold">3 steps</span>. In the new design, one click gives you the latest iOS, Android, or IoT device with smart defaults. Power users can still customize everything, but the common path is fast. Changing your mind no longer punishes you with extra steps: device type, OS version, project, and advanced options can all be adjusted without starting over.
             </p>
@@ -217,8 +221,8 @@ export default function CorelliumPage() {
 
         {/* Insights */}
         <section id="insights" className="scroll-mt-16">
-          <SectionLabel title="Insights" number="04" className="mb-5" />
-          <div className="space-y-3.5 text-[15px] leading-[1.6] text-ink-soft mb-6">
+          <SectionLabel flow title="Insights" number="04" className="mb-5" />
+          <div data-flow="0.5" className="space-y-3.5 text-[15px] leading-[1.6] text-ink-soft mb-6">
             <p>
               In B2B enterprise, customer requests translate directly to revenue, which means platform-wide UX improvements often lose the prioritization battle. Find the intersection between what users need and what a PM can justify on their roadmap to get foundational work prioritized.
             </p>
@@ -249,7 +253,7 @@ export default function CorelliumPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-4 sm:py-6 text-center">
+        <section data-flow className="py-4 sm:py-6 text-center">
           <h2 className="title-display text-2xl sm:text-[30px] mb-2">Let&apos;s ship something <span className="text-primary">great.</span></h2>
           <p className="text-[15px] text-muted-foreground mb-6">
             Looking for feedback on your product or how to take an idea from 0 → 1?
@@ -261,7 +265,9 @@ export default function CorelliumPage() {
           </Button>
         </section>
 
-        <Footer />
+        <div data-flow>
+          <Footer />
+        </div>
       </div>
     </div>
   )

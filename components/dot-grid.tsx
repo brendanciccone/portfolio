@@ -4,10 +4,18 @@ import type React from "react"
 import { memo, useCallback, useEffect, useRef } from "react"
 import { cn } from "@/lib/utils"
 
+/*
+ * Column count is chosen to square the grid, not picked by eye. The container
+ * measures ~452×423, and `justify-between` divides each axis by (count − 1):
+ * 9 rows put ~52px between them, so 10 columns puts ~50px between those — a
+ * true grid. At the previous 6 columns the gaps were 89 across against 52
+ * down, nearly 2:1, which is what made it read as stretched.
+ */
 const ROWS = 9
-const COLS = 6
+const COLS = 10
 const HOME_ROW = 2
-const HOME_COL = 4
+/* Keeps the red square at the same ~3/4-across position it held at 6 columns */
+const HOME_COL = 7
 const HOME_INDEX = HOME_ROW * COLS + HOME_COL
 /* px radius of the cursor-proximity swell — wide enough that a whole
    cluster reacts, so the cursor drags a visible wave across the field */

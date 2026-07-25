@@ -25,13 +25,17 @@ export const FigureFrame = ({
   return (
     <figure className={className}>
       {/* Lightbox stills dim slightly on hover to signal zoom, matching the
-          home cards; comparison sliders opt out (see variant note above) */}
+          home cards; comparison sliders opt out (see variant note above).
+          data-wipe hands the frame to the scroll engine, which unmasks it once
+          on the way in — full-width figures take the longer wipe, since the
+          same speed across a larger area reads as hurried. */}
       <div
+        data-wipe
         className={cn(
           "bg-mockup-frame border border-border",
           variant === "lightbox" &&
             "[&_img]:transition-opacity [&_img]:duration-(--motion-settle) [&:hover_img]:opacity-90",
-          padding === "tight" ? "p-2.5" : "p-3",
+          padding === "tight" ? "p-2.5" : "p-3 wipe-long",
         )}
       >
         {children}

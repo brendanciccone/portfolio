@@ -17,6 +17,7 @@ import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import { CountUp } from "@/components/count-up"
 import { FigureFrame } from "@/components/figure-frame"
 import { SectionLabel } from "@/components/section-label"
 import { SectionNav } from "@/components/section-nav"
@@ -52,7 +53,7 @@ export default function ImmertecPage() {
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
             />
           </div>
-          <div className="pt-6 sm:pt-7 flex flex-col sm:flex-row sm:items-center gap-4">
+          <div data-recede="meta" className="pt-6 sm:pt-7 flex flex-col sm:flex-row sm:items-center gap-4">
             <Image
               src="/about/logos/immertec.jpeg"
               alt="Immertec logo"
@@ -81,11 +82,11 @@ export default function ImmertecPage() {
 
         {/* Overview + Highlights */}
         <section id="overview" className="scroll-mt-16">
-          <SectionLabel title="Overview" number="01" className="mb-6" />
-          <p className="text-[15px] leading-[1.6] text-ink-soft mb-5">
+          <SectionLabel flow title="Overview" number="01" className="mb-6" />
+          <p data-flow="0.5" className="text-[15px] leading-[1.6] text-ink-soft mb-5">
             In 2018, I joined Immertec as the <span className="text-foreground font-semibold">founding designer and second hire</span>. For the first two years, there was no product team. It was the cofounders and me shaping the product together across VR, web, and mobile. Over five years, we grew to <span className="text-foreground font-semibold">50+ team members</span>, secured a <span className="text-foreground font-semibold">$12M Series A</span>, and worked with top medtech companies to train surgical teams using real-time VR.
           </p>
-          <ul className="list-[square] pl-5 space-y-2 text-[15px] leading-[1.7] text-ink-soft mb-6">
+          <ul data-flow="0.5" className="list-[square] pl-5 space-y-2 text-[15px] leading-[1.7] text-ink-soft mb-6">
             <li>Participated in investor meetings and created materials that contributed to $12M Series A</li>
             <li>Hired and managed 2 designers, establishing critique practices and documentation standards</li>
             <li>Published 3 papers on accessibility and VR in HFES and SSH journals</li>
@@ -93,20 +94,20 @@ export default function ImmertecPage() {
           </ul>
           {/* Metric box — same cell anatomy as the home stat bar: red caps
               label, ink value, description only where it adds a fact */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 border border-border bg-card">
+          <div data-flow className="grid grid-cols-1 sm:grid-cols-3 border border-border bg-card">
             <div className="px-5 py-[18px] border-b border-border sm:border-b-0 sm:border-r">
               <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary">Usability</p>
-              <p className="text-lg sm:text-[26px] font-heading font-bold leading-tight tabular-nums mt-1.5">SUS 68 → 83</p>
+              <p className="text-lg sm:text-[26px] font-heading font-bold leading-tight tabular-nums mt-1.5">SUS 68 → <CountUp to={83} /></p>
               <p className="text-[13px] leading-normal text-muted-foreground mt-1.5">15-point lift through the full platform redesign</p>
             </div>
             <div className="px-5 py-[18px] border-b border-border sm:border-b-0 sm:border-r">
               <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary">Sales cycles</p>
-              <p className="text-lg sm:text-[26px] font-heading font-bold leading-tight tabular-nums mt-1.5">Cut 50%</p>
+              <p className="text-lg sm:text-[26px] font-heading font-bold leading-tight tabular-nums mt-1.5">Cut <CountUp to={50} suffix="%" /></p>
               <p className="text-[13px] leading-normal text-muted-foreground mt-1.5">For medical device partners after the web viewer shipped</p>
             </div>
             <div className="px-5 py-[18px]">
               <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary">Satisfaction</p>
-              <p className="text-lg sm:text-[26px] font-heading font-bold leading-tight tabular-nums mt-1.5">NPS 80+</p>
+              <p className="text-lg sm:text-[26px] font-heading font-bold leading-tight tabular-nums mt-1.5">NPS <CountUp to={80} suffix="+" /></p>
               <p className="text-[13px] leading-normal text-muted-foreground mt-1.5">Maintained alongside strong retention</p>
             </div>
           </div>
@@ -114,8 +115,8 @@ export default function ImmertecPage() {
 
         {/* Virtual Reality Section */}
         <section id="vr-viewer" className="scroll-mt-16">
-          <SectionLabel title="Virtual Reality Viewer" number="02" className="mb-6" />
-          <div className="space-y-3.5 text-[15px] leading-[1.6] text-ink-soft mb-6">
+          <SectionLabel flow title="Virtual Reality Viewer" number="02" className="mb-6" />
+          <div data-flow="0.5" className="space-y-3.5 text-[15px] leading-[1.6] text-ink-soft mb-6">
             <p>
               At the core of our platform was the Virtual Reality Viewer, immersing healthcare professionals as if
               they were in the operating room. These were not simulations. When users donned a VR headset, they&apos;d
@@ -146,8 +147,8 @@ export default function ImmertecPage() {
 
         {/* Admin Dashboard Section */}
         <section id="admin-dashboard" className="scroll-mt-16">
-          <SectionLabel title="Admin Dashboard" number="03" className="mb-6" />
-          <div className="space-y-3.5 text-[15px] leading-[1.6] text-ink-soft mb-6">
+          <SectionLabel flow title="Admin Dashboard" number="03" className="mb-6" />
+          <div data-flow="0.5" className="space-y-3.5 text-[15px] leading-[1.6] text-ink-soft mb-6">
             <p>
               Our primary users were physicians and surgeons in orthopedics, ENT, and other specialties, including those from Cleveland Clinic and Baylor. A smaller subset were sales managers and salespeople from medical device companies who scheduled events and managed invitations.
             </p>
@@ -224,8 +225,8 @@ export default function ImmertecPage() {
 
         {/* Interactive Web Player Section */}
         <section id="web-viewer" className="scroll-mt-16">
-          <SectionLabel title="Interactive Web Viewer" number="04" className="mb-6" />
-          <div className="space-y-3.5 text-[15px] leading-[1.6] text-ink-soft mb-6">
+          <SectionLabel flow title="Interactive Web Viewer" number="04" className="mb-6" />
+          <div data-flow="0.5" className="space-y-3.5 text-[15px] leading-[1.6] text-ink-soft mb-6">
             <p>
               I noticed recurring issues while collaborating with customer success where users struggled to access
               events. Initially, it appeared to be an authentication user flow issue. I eventually discovered the
@@ -259,8 +260,8 @@ export default function ImmertecPage() {
 
         {/* Insights Section */}
         <section id="insights" className="scroll-mt-16">
-          <SectionLabel title="Insights" number="05" className="mb-6" />
-          <div className="space-y-3.5 text-[15px] leading-[1.6] text-ink-soft mb-6">
+          <SectionLabel flow title="Insights" number="05" className="mb-6" />
+          <div data-flow="0.5" className="space-y-3.5 text-[15px] leading-[1.6] text-ink-soft mb-6">
             <p>
               The web viewer taught me that the best design decisions sometimes challenge a company&apos;s core assumptions. The entire business was built around VR, but users needed flexibility. I pushed for a browser-based alternative, built support across the team, and the results validated it. Today I&apos;d pair that conviction with earlier prototypes and data to bring stakeholders along faster.
             </p>
@@ -284,7 +285,7 @@ export default function ImmertecPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-4 sm:py-6 text-center">
+        <section data-flow className="py-4 sm:py-6 text-center">
           <h2 className="title-display text-2xl sm:text-[30px] mb-2">Let&apos;s ship something <span className="text-primary">great.</span></h2>
           <p className="text-[15px] text-muted-foreground mb-6">
             Looking for feedback on your product or how to take an idea from 0 → 1?
@@ -296,7 +297,9 @@ export default function ImmertecPage() {
           </Button>
         </section>
 
-        <Footer />
+        <div data-flow>
+          <Footer />
+        </div>
       </div>
     </div>
   )

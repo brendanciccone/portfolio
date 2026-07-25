@@ -1,10 +1,19 @@
+import type React from "react"
 import Link from "next/link"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
+import { CountUp } from "@/components/count-up"
 import { DrawnRule } from "@/components/drawn-rule"
 import { SectionLabel } from "@/components/section-label"
 import { WorkCard, type WorkCardData } from "@/components/work-card"
 import { cn } from "@/lib/utils"
+
+/*
+ * Grid siblings melt at slightly different rates as they leave the top of the
+ * viewport. The spread is small enough that no card looks late — it just
+ * removes the tell that they're one batch on one timer.
+ */
+const flowStagger = ["1", "1.07", "1.14"] as const
 
 const selectedWork: readonly WorkCardData[] = [
   {
@@ -79,10 +88,26 @@ const otherWork: readonly WorkCardData[] = [
   },
 ]
 
-const stats = [
-  { label: "Experience", value: "8 Years", delayClass: "[animation-delay:300ms]" },
-  { label: "Role", value: "Staff Product Designer", delayClass: "[animation-delay:380ms]" },
-  { label: "Currently", value: "Corellium", href: "https://www.corellium.com", delayClass: "[animation-delay:460ms]" },
+interface Stat {
+  label: string
+  value: React.ReactNode
+  href?: string
+  delayClass: string
+}
+
+/* Delays slot the cells in behind the hairline draw, ahead of the red period */
+const stats: readonly Stat[] = [
+  {
+    label: "Experience",
+    value: (
+      <>
+        <CountUp to={8} /> Years
+      </>
+    ),
+    delayClass: "[animation-delay:520ms]",
+  },
+  { label: "Role", value: "Staff Product Designer", delayClass: "[animation-delay:600ms]" },
+  { label: "Currently", value: "Corellium", href: "https://www.corellium.com", delayClass: "[animation-delay:680ms]" },
 ]
 
 export default function Portfolio() {
@@ -92,24 +117,35 @@ export default function Portfolio() {
 
       <div className="max-w-[1024px] mx-auto px-5 pt-24 pb-6 sm:pb-8 flex flex-col gap-6 sm:gap-8">
         <div className="flex flex-col gap-6 sm:gap-8">
-          {/* Hero — display type left, intro right, baseline-aligned.
-              Lines rise, the red period stamps in, and the hairline draws
-              itself once it's in view. */}
+          {/* Hero — display type left, intro right, baseline-aligned. Lines
+              rise out from behind their masks, the hairline draws, the red
+              period stamps last. On scroll the whole block recedes: the title
+              drifts up at 0.16 and thins to a quarter, the intro travels at
+              half that and leaves entirely, handing the page to the work.
+              data-recede lives on the outer element and the load animation on
+              the inner one — a filled CSS animation would otherwise own
+              transform for good and the parallax would never land. */}
           <section className="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-6 md:gap-x-10 md:gap-y-8 items-end">
-            <h1 className="title-display text-[44px] sm:text-6xl md:text-[72px]">
-              <span className="block anim-rise">Hi, I&apos;m</span>
-              <span className="block anim-rise [animation-delay:100ms]">
-                Brendan<span className="text-primary inline-block anim-stamp">.</span>
+            <h1 data-recede="title" className="title-display text-[44px] sm:text-6xl md:text-[72px]">
+              <span className="anim-line-mask">
+                <span className="block anim-line">Hi, I&apos;m</span>
+              </span>
+              <span className="anim-line-mask">
+                <span className="block anim-line [animation-delay:110ms]">
+                  Brendan<span className="text-primary inline-block anim-stamp">.</span>
+                </span>
               </span>
             </h1>
-            <p className="text-[15px] leading-[1.55] text-ink-soft anim-rise [animation-delay:200ms]">
-              Staff product designer and founder with 8 years of experience shipping B2B products at early-stage startups in healthcare, cybersecurity, and finance. Currently at <Link href="https://www.corellium.com" target="_blank" rel="noopener noreferrer" className="text-primary font-medium hover:underline">Corellium</Link>, simplifying complex cybersecurity workflows.
-            </p>
+            <div data-recede="meta">
+              <p className="text-[15px] leading-[1.55] text-ink-soft anim-rise [animation-delay:230ms]">
+                0 → 1 product designer and founder with 8 years of experience shipping B2B products at early-stage startups in healthcare, cybersecurity, and finance. Currently at <Link href="https://www.corellium.com" target="_blank" rel="noopener noreferrer" className="text-primary font-medium hover:underline">Corellium</Link>, simplifying complex cybersecurity workflows.
+              </p>
+            </div>
             <DrawnRule className="md:col-span-2" />
           </section>
 
           {/* Stat bar */}
-          <dl className="flex flex-col sm:grid sm:grid-cols-3 border border-border bg-card">
+          <dl data-flow className="flex flex-col sm:grid sm:grid-cols-3 border border-border bg-card">
             {stats.map((stat, index) => (
               <div
                 key={stat.label}
@@ -136,25 +172,37 @@ export default function Portfolio() {
         </div>
 
         {/* Selected Work */}
-        <SectionLabel title="Selected Work" counter="04" />
+        <div data-flow>
+          <SectionLabel title="Selected Work" counter="04" />
+        </div>
 
+        {/* data-flow rides a wrapper rather than the card itself so the card
+            keeps sole ownership of its own hover transform */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {selectedWork.map((project, index) => (
-            /* Preload only the first row (two cards); the rest lazy-load */
-            <WorkCard key={project.title} {...project} priority={index < 2} />
+            <div key={project.title} data-flow={flowStagger[index % flowStagger.length]} className="h-full">
+              {/* Preload only the first row (two cards); the rest lazy-load */}
+              <WorkCard {...project} priority={index < 2} />
+            </div>
           ))}
         </div>
 
         {/* Other Work */}
-        <SectionLabel title="Other Work" counter="03" className="pt-2 sm:pt-4" />
+        <div data-flow className="pt-2 sm:pt-4">
+          <SectionLabel title="Other Work" counter="03" />
+        </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {otherWork.map((project) => (
-            <WorkCard key={project.title} {...project} variant="other" />
+          {otherWork.map((project, index) => (
+            <div key={project.title} data-flow={flowStagger[index % flowStagger.length]} className="h-full">
+              <WorkCard {...project} variant="other" />
+            </div>
           ))}
         </div>
 
-        <Footer />
+        <div data-flow>
+          <Footer />
+        </div>
       </div>
     </div>
   )
