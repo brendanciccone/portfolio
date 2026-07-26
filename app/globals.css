@@ -310,23 +310,26 @@ body {
 
 @media (prefers-reduced-motion: no-preference) {
   /*
-   * Entrance choreography plays on first load only. Once the app has done a
-   * client navigation (TransitionLink sets [data-navigated] on <html>), the
-   * same-document view transition IS the entrance — replaying a per-element
-   * rise on top of it made the incoming page's single-frame snapshot capture
-   * these elements mid-animation (still at opacity 0, translated, or inside
-   * their delay). That's the mobile "cut off, then suddenly appears": the
-   * snapshot showed them blank, then the real DOM finished rising after the
-   * morph. Gating to the un-navigated document keeps the fresh-load feel
-   * while letting the morph own navigation. The hero frame is the sharpest
-   * case — it carries both anim-rise and a view-transition-name, so the
-   * shared-element morph was fighting a transform entrance on the same node.
+   * Entrance choreography plays once per page per session, gated on
+   * [data-entrance] which TransitionLink sets or clears before each
+   * navigation commits.
+   *
+   * The rule is entrance OR morph, never both on the same navigation. A
+   * view transition snapshots the incoming page in a single frame, and
+   * replaying a per-element rise underneath it made that snapshot capture
+   * the hero mid-animation — still at opacity 0, translated, or inside its
+   * delay. That is the mobile "cut off, then suddenly appears": the snapshot
+   * showed blank, then the real DOM finished rising after the morph. So a
+   * navigation that morphs clears this attribute, and a navigation that
+   * plays the entrance skips the transition entirely, leaving no snapshot to
+   * fight. Shared-element navigations (card to case study) always morph —
+   * flying the screenshot into the hero IS that arrival's entrance.
    *
    * will-change + backface-visibility promote each animated element to its
    * own compositing layer so Safari rasterizes the moving text once instead
    * of every frame — the fix for the "not buttery smooth" jitter on mobile.
    */
-  :root:not([data-navigated]) .anim-rise {
+  :root[data-entrance] .anim-rise {
     animation: rise-in var(--motion-enter) var(--ease-settle) both;
     will-change: transform, opacity;
     backface-visibility: hidden;
@@ -337,7 +340,7 @@ body {
    * class is the thing that travels. Same load-only gate as .anim-rise —
    * after a client navigation the morph is the entrance.
    */
-  :root:not([data-navigated]) .anim-line {
+  :root[data-entrance] .anim-line {
     animation: line-rise var(--motion-enter) var(--ease-settle) both;
     will-change: transform;
     backface-visibility: hidden;
@@ -346,7 +349,7 @@ body {
   /* The red period lands last and is the only thing in the system that
      overshoots — grow-in is an in-place entrance with no direction, so it
      can't fight the page's motion if it lands mid-scroll */
-  :root:not([data-navigated]) .anim-stamp {
+  :root[data-entrance] .anim-stamp {
     animation: grow-in var(--motion-stamp) var(--ease-stamp) 1050ms both;
     will-change: transform, opacity;
     backface-visibility: hidden;
@@ -377,7 +380,7 @@ body {
 
   /* Dot-grid cascade; per-dot delay set inline. Load-only, same reasoning as
      the rise/stamp entrances above. */
-  :root:not([data-navigated]) .anim-dot {
+  :root[data-entrance] .anim-dot {
     animation: rise-in 350ms var(--ease-settle) both;
     will-change: transform, opacity;
     backface-visibility: hidden;

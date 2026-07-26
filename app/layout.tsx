@@ -91,7 +91,10 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${archivo.variable} ${spaceGrotesk.variable} ${spaceGrotesk.className}`}>
+    // data-entrance ships on in the served HTML so a cold load plays its
+    // choreography with no script involved and no flash of final state;
+    // TransitionLink clears it for navigations that morph instead.
+    <html lang="en" suppressHydrationWarning data-entrance="" className={`${archivo.variable} ${spaceGrotesk.variable} ${spaceGrotesk.className}`}>
       <head>
         <JsonLd />
       </head>

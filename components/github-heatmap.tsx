@@ -44,7 +44,7 @@ type FetchState =
  * Removing the sweep also removed the reason to hold the data behind an
  * IntersectionObserver: that gate existed purely so the animation would play
  * where someone could see it, and it made the grid's arrival depend on the
- * [data-navigated] flag — which is why it animated on a direct load of
+ * entrance gate — which is why it animated on a direct load of
  * /about and skipped when you came from the nav.
  */
 export const GitHubHeatmap = (): React.JSX.Element => {

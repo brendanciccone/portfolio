@@ -19,10 +19,41 @@ import { useEffect } from "react"
 
 let settleNavigation: (() => void) | null = null
 
+/*
+ * Paths seen in this session. Module-level, so it survives client navigation
+ * and resets on a real reload — which is the behaviour you want: a page
+ * introduces itself the first time you reach it, then stops.
+ */
+const visitedPaths = new Set<string>()
+
+/*
+ * next.config sets trailingSlash, so the same route is spelled "/about" in an
+ * href and "/about/" in location. Both sides of the visited lookup and the
+ * same-page guard go through here; without it every non-root page reads as
+ * unvisited forever and replays its entrance on every arrival. Root is left
+ * alone, which is why "/" was the one path that happened to match already.
+ */
+const normalisePath = (path: string): string =>
+  path.length > 1 && path.endsWith("/") ? path.slice(0, -1) : path
+
+/*
+ * Does this link contain the element that flies across during the morph? Read
+ * from computed style rather than a prop so it stays true if a shared element
+ * is added or removed elsewhere. getPropertyValue is used because
+ * CSSStyleDeclaration.viewTransitionName isn't in every lib.dom yet; unsupported
+ * browsers return "" and simply fall through to the entrance path.
+ */
+const containsSharedElement = (link: HTMLElement): boolean =>
+  Array.from(link.querySelectorAll<HTMLElement>("*")).some((element) => {
+    const name = getComputedStyle(element).getPropertyValue("view-transition-name")
+    return name !== "" && name !== "none"
+  })
+
 export const ViewTransitionSettler = (): null => {
   const pathname = usePathname()
 
   useEffect(() => {
+    visitedPaths.add(normalisePath(pathname))
     settleNavigation?.()
     settleNavigation = null
   }, [pathname])
@@ -56,27 +87,40 @@ export const TransitionLink = ({ href, onClick, children, ...rest }: TransitionL
     // Comparing pathnames catches query/hash variants of the current route
     // (/about?tab=2, /about#details) too. Kept ahead of the marker below so a
     // same-page click never snaps a still-running first-load entrance.
-    if (destination.pathname === pathname) return
+    if (normalisePath(destination.pathname) === normalisePath(pathname)) return
+
+    /*
+     * Entrance or morph, never both — see globals.css for why running them
+     * together produced the mobile "cut off, then suddenly appears" bug.
+     *
+     * A page you haven't reached yet this session gets its hero choreography,
+     * which means skipping the transition entirely: with no snapshot there is
+     * nothing for the entrance to be captured mid-flight by. A page you've
+     * already seen gets the morph instead. Links carrying a shared element —
+     * card to case study — always morph, because flying the screenshot into
+     * the hero IS that arrival's entrance, and it would fight a transform
+     * entrance on the very same node.
+     */
+    const root = document.documentElement
+    const playsEntrance =
+      !visitedPaths.has(normalisePath(destination.pathname)) && !containsSharedElement(event.currentTarget)
+
+    if (playsEntrance) {
+      root.dataset.entrance = ""
+      return
+    }
+
+    root.removeAttribute("data-entrance")
 
     // Browsers without view transitions, and reduced-motion users, get a plain
-    // client-side Link navigation. Mark it navigated here so the incoming route
-    // renders its mount entrances (anim-rise/stamp/dot) at final state instead
-    // of replaying them — see globals.css. (Reduced-motion entrances are
-    // already inert; marking is harmless and keeps the fallback uniform.)
+    // client-side Link navigation. (Reduced-motion entrances are already inert,
+    // so clearing the attribute above is harmless and keeps this uniform.)
     if (typeof document.startViewTransition !== "function" || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      document.documentElement.dataset.navigated = "true"
       return
     }
 
     event.preventDefault()
     document.startViewTransition(() => {
-      // Mark inside the update callback so the flag lands on the NEW document
-      // state only: the outgoing snapshot is already captured by the time this
-      // runs, so a click during a still-running first-load entrance can't snap
-      // the old page. Set before router.push so the incoming route mounts
-      // already marked and its entrances stay at their final state. Stays set
-      // for the session; a reload clears it.
-      document.documentElement.dataset.navigated = "true"
       const settled = new Promise<void>((resolve) => {
         settleNavigation = resolve
       })
