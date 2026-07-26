@@ -40,7 +40,16 @@ const SHORT_VIEWPORT = 700
 /* No ramp shorter than this, however squat the window — below roughly a line
  * and a half of scroll the rise stops reading as motion and starts reading as
  * a pop */
-const MIN_RAMP_HEIGHT = 64
+export const MIN_RAMP_HEIGHT = 64
+/*
+ * How far an element rises on its way in, as a share of the ramp it rises
+ * over. A share rather than a fixed distance because the two compose: the
+ * element climbs its own rise on top of the page's scroll, so a constant
+ * distance over a variable ramp would make the same content overshoot faster
+ * on a phone than on a desktop. The ratio is the one a full-height window has
+ * always had — 32px across a 180px ramp — now held everywhere.
+ */
+const RISE_RATIO = 32 / 180
 
 export interface EnterRamp {
   /* Viewport offset at which an element begins resolving */
@@ -121,7 +130,7 @@ export const computeFlow = (
 
   return {
     opacity: visibility ** 1.15,
-    translateY: (1 - enter) * 32 - (1 - exit) * 26,
+    translateY: (1 - enter) * ramp.height * RISE_RATIO - (1 - exit) * 26,
     // Blur is by far the most expensive property here, so it is dropped
     // outright once the element has effectively settled rather than leaving a
     // 0.07px filter pinning it to a blur-capable layer for the rest of the scroll
