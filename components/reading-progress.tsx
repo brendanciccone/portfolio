@@ -2,6 +2,7 @@
 
 import type React from "react"
 import { useEffect, useRef } from "react"
+import { usePathname } from "next/navigation"
 
 /*
  * Reading progress — a 2px red rule pinned under the header that fills as the
@@ -16,6 +17,7 @@ import { useEffect, useRef } from "react"
  */
 export const ReadingProgress = (): React.JSX.Element => {
   const barRef = useRef<HTMLDivElement>(null)
+  const pathname = usePathname()
 
   useEffect(() => {
     const update = () => {
@@ -30,11 +32,24 @@ export const ReadingProgress = (): React.JSX.Element => {
     window.addEventListener("scroll", update, { passive: true })
     window.addEventListener("resize", update, { passive: true })
 
+    /*
+     * Scroll events alone don't keep this honest. The rail lives in the root
+     * layout, so it survives navigation while the document under it changes
+     * height — and if the outgoing page was already at the top, ScrollToTop's
+     * scrollTo(0) moves nothing and therefore fires no scroll event, leaving
+     * the previous route's progress on screen. Re-running on pathname change
+     * covers that; observing the document covers the slower half, where a
+     * route's real height only arrives as its images decode.
+     */
+    const observer = new ResizeObserver(update)
+    observer.observe(document.documentElement)
+
     return () => {
+      observer.disconnect()
       window.removeEventListener("scroll", update)
       window.removeEventListener("resize", update)
     }
-  }, [])
+  }, [pathname])
 
   return (
     <div aria-hidden className="fixed top-14 left-0 right-0 z-40 h-[2px] pointer-events-none">

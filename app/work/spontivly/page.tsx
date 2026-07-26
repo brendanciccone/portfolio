@@ -281,9 +281,7 @@ export default function SpontivlyPage() {
           </Button>
         </section>
 
-        <div data-flow>
-          <Footer />
-        </div>
+        <Footer />
       </div>
     </div>
   )

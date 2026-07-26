@@ -297,9 +297,7 @@ export default function ImmertecPage() {
           </Button>
         </section>
 
-        <div data-flow>
-          <Footer />
-        </div>
+        <Footer />
       </div>
     </div>
   )

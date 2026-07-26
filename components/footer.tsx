@@ -4,7 +4,10 @@ export default function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="border-t border-border pt-5 pb-2 flex justify-between items-center">
+    /* The footer opts itself into the scroll flow. Every page used to wrap it
+       in an identical <div data-flow>, six copies that had to stay in step if
+       the flow contract ever changed. */
+    <footer data-flow className="border-t border-border pt-5 pb-2 flex justify-between items-center">
       <div className="text-xs font-mono text-muted-foreground uppercase tracking-[0.1em] flex items-center gap-1">
         <span className="text-sm leading-none">&copy;</span>
         <span>

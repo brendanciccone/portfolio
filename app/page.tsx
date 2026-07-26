@@ -200,9 +200,7 @@ export default function Portfolio() {
           ))}
         </div>
 
-        <div data-flow>
-          <Footer />
-        </div>
+        <Footer />
       </div>
     </div>
   )

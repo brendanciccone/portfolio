@@ -55,9 +55,7 @@ export default function ContactPage() {
             </div>
           </div>
         </div>
-        <div data-flow>
-          <Footer />
-        </div>
+        <Footer />
       </div>
     </div>
   );

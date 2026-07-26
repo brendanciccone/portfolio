@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useCallback, useEffect, useSyncExternalStore } from "react"
+import { useState, useCallback, useEffect, useRef, useSyncExternalStore } from "react"
 import { createPortal } from "react-dom"
 import Image from "next/image"
 import { X } from "lucide-react"
@@ -25,13 +25,23 @@ interface LightboxImageProps extends LightboxSource {
 // "am I on the client" (true) vs. the server render (false)
 const emptySubscribe = () => () => {}
 
+/* Everything focusable the trap needs to cycle between */
+const FOCUSABLE_SELECTOR =
+  'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+
+interface LightboxState {
+  isOpen: boolean
+  open: () => void
+  close: () => void
+}
+
 /*
  * Open/close plus the two things that must happen while open: Escape closes,
  * and the page behind stops scrolling. Split out from LightboxImage so a
  * trigger can live somewhere other than on the image itself — see
  * LightboxTrigger, which puts it on a card title so the whole card opens.
  */
-export const useLightboxState = () => {
+export const useLightboxState = (): LightboxState => {
   const [isOpen, setIsOpen] = useState(false)
   const open = useCallback(() => setIsOpen(true), [])
   const close = useCallback(() => setIsOpen(false), [])
@@ -62,6 +72,11 @@ export const useLightboxState = () => {
  *
  * Mounted only while open, so the full-size image's load state resets on
  * every open and the skeleton is always what shows first.
+ *
+ * aria-modal only tells assistive tech the rest of the page is inert; it does
+ * nothing to the tab order. Without the trap below, Tab walked straight out of
+ * the dialog and into the page the backdrop is covering, leaving a keyboard
+ * user driving a page they cannot see.
  */
 export const LightboxOverlay = ({
   src,
@@ -71,16 +86,65 @@ export const LightboxOverlay = ({
   onClose,
 }: LightboxSource & { onClose: () => void }): React.JSX.Element | null => {
   const [isLoaded, setIsLoaded] = useState(false)
+  const dialogRef = useRef<HTMLDivElement>(null)
   const isMounted = useSyncExternalStore(
     emptySubscribe,
     () => true,
     () => false,
   )
 
+  useEffect(() => {
+    const dialog = dialogRef.current
+    if (!dialog) return
+
+    // Captured before we move focus, so it can be handed back on close —
+    // otherwise dismissing the lightbox drops the user at the top of the page
+    const previouslyFocused = document.activeElement
+    const focusable = () => Array.from(dialog.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR))
+
+    const [firstOnOpen] = focusable()
+    firstOnOpen?.focus()
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== "Tab") return
+
+      const items = focusable()
+      const first = items[0]
+      const last = items[items.length - 1]
+      if (!first || !last) {
+        // Nothing to focus: keep Tab from escaping to the page behind
+        event.preventDefault()
+        return
+      }
+
+      const active = document.activeElement
+      const escapingBackwards = event.shiftKey && (active === first || !dialog.contains(active))
+      const escapingForwards = !event.shiftKey && (active === last || !dialog.contains(active))
+
+      if (escapingBackwards) {
+        event.preventDefault()
+        last.focus()
+        return
+      }
+      if (escapingForwards) {
+        event.preventDefault()
+        first.focus()
+      }
+    }
+
+    document.addEventListener("keydown", handleKeyDown)
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown)
+      if (previouslyFocused instanceof HTMLElement) previouslyFocused.focus()
+    }
+  }, [isMounted])
+
   if (!isMounted) return null
 
   return createPortal(
     <div
+      ref={dialogRef}
       className="fixed inset-0 z-50 flex cursor-pointer items-center justify-center bg-black/80 p-4 backdrop-blur-md animate-in fade-in duration-(--motion-settle) sm:p-8"
       onClick={onClose}
       role="dialog"

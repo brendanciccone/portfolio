@@ -384,9 +384,7 @@ export default function About() {
             </div>
           </div>
         </section>
-        <div data-flow>
-          <Footer />
-        </div>
+        <Footer />
       </div>
     </div>
   )

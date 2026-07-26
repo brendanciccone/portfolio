@@ -213,9 +213,7 @@ export default function PaidlyPage() {
           </Button>
         </section>
 
-        <div data-flow>
-          <Footer />
-        </div>
+        <Footer />
       </div>
     </div>
   )
