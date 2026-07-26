@@ -3,7 +3,12 @@
 import type React from "react"
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
-import { useEffect } from "react"
+import { useEffect, useLayoutEffect } from "react"
+import {
+  normalisePath,
+  playsEntranceOnNavigation,
+  resolveEntranceOnCommit,
+} from "@/lib/entrance"
 
 /*
  * Same-document view transitions for internal navigation. The card's framed
@@ -15,6 +20,10 @@ import { useEffect } from "react"
  * parks a resolver that ViewTransitionSettler releases when the pathname
  * commits. Browsers without the API (and reduced-motion users) fall through
  * to a plain Link navigation.
+ *
+ * The settler also owns the [data-entrance] attribute — see lib/entrance.ts
+ * for the rules, and the note on the layout effect below for why the write
+ * cannot happen in the click handler.
  */
 
 let settleNavigation: (() => void) | null = null
@@ -27,14 +36,10 @@ let settleNavigation: (() => void) | null = null
 const visitedPaths = new Set<string>()
 
 /*
- * next.config sets trailingSlash, so the same route is spelled "/about" in an
- * href and "/about/" in location. Both sides of the visited lookup and the
- * same-page guard go through here; without it every non-root page reads as
- * unvisited forever and replays its entrance on every arrival. Root is left
- * alone, which is why "/" was the one path that happened to match already.
+ * The click's entrance decision, waiting for the route to commit. Null means no
+ * click was involved, which is how Back and Forward arrive.
  */
-const normalisePath = (path: string): string =>
-  path.length > 1 && path.endsWith("/") ? path.slice(0, -1) : path
+let pendingEntrance: boolean | null = null
 
 /*
  * Does this link contain the element that flies across during the morph? Read
@@ -49,11 +54,49 @@ const containsSharedElement = (link: HTMLElement): boolean =>
     return name !== "" && name !== "none"
   })
 
+/* Layout effects don't run on the server; this keeps React from warning about it */
+const useIsomorphicLayoutEffect = typeof window === "undefined" ? useEffect : useLayoutEffect
+
 export const ViewTransitionSettler = (): null => {
   const pathname = usePathname()
 
+  /*
+   * The attribute is written here, on commit, and never in the click handler.
+   *
+   * At click time the outgoing page is still mounted, so enabling entrances
+   * restarted ITS animations — the case-study header visibly blanked and
+   * re-rose as you left it. By the time this runs the old route is gone and
+   * the new one's DOM is in place, so only the incoming page can match.
+   *
+   * A layout effect rather than a passive one because it must land before the
+   * browser paints: the incoming elements mount without the attribute, and a
+   * paint in between would show them at their final state a frame before the
+   * animation yanked them back to the start. It also lands before the settler
+   * below resolves the transition, so a morphing navigation has the attribute
+   * cleared before its snapshot is taken — which is the whole reason entrance
+   * and morph are kept apart.
+   *
+   * Running on every pathname change means Back and Forward are covered too;
+   * they never touch the click handler, and used to inherit whatever flag the
+   * last click left behind.
+   */
+  useIsomorphicLayoutEffect(() => {
+    const normalised = normalisePath(pathname)
+    const root = document.documentElement
+    const playsEntrance = resolveEntranceOnCommit(pathname, visitedPaths, pendingEntrance)
+    pendingEntrance = null
+
+    // Only write on an actual change, so a no-op can never restart an
+    // animation that is already running
+    if (playsEntrance !== root.hasAttribute("data-entrance")) {
+      if (playsEntrance) root.dataset.entrance = ""
+      else root.removeAttribute("data-entrance")
+    }
+
+    visitedPaths.add(normalised)
+  }, [pathname])
+
   useEffect(() => {
-    visitedPaths.add(normalisePath(pathname))
     settleNavigation?.()
     settleNavigation = null
   }, [pathname])
@@ -85,36 +128,27 @@ export const TransitionLink = ({ href, onClick, children, ...rest }: TransitionL
     // Same-page clicks never settle (pathname doesn't change) — skip the
     // transition rather than holding the snapshot until the failsafe fires.
     // Comparing pathnames catches query/hash variants of the current route
-    // (/about?tab=2, /about#details) too. Kept ahead of the marker below so a
-    // same-page click never snaps a still-running first-load entrance.
+    // (/about?tab=2, /about#details) too.
     if (normalisePath(destination.pathname) === normalisePath(pathname)) return
 
     /*
-     * Entrance or morph, never both — see globals.css for why running them
-     * together produced the mobile "cut off, then suddenly appears" bug.
-     *
-     * A page you haven't reached yet this session gets its hero choreography,
-     * which means skipping the transition entirely: with no snapshot there is
-     * nothing for the entrance to be captured mid-flight by. A page you've
-     * already seen gets the morph instead. Links carrying a shared element —
-     * card to case study — always morph, because flying the screenshot into
-     * the hero IS that arrival's entrance, and it would fight a transform
-     * entrance on the very same node.
+     * Only the click knows whether this navigation carries a shared element, so
+     * the decision is made here — but it is recorded, not applied. The settler
+     * applies it once the route commits.
      */
-    const root = document.documentElement
-    const playsEntrance =
-      !visitedPaths.has(normalisePath(destination.pathname)) && !containsSharedElement(event.currentTarget)
+    const playsEntrance = playsEntranceOnNavigation(
+      destination.pathname,
+      visitedPaths,
+      containsSharedElement(event.currentTarget),
+    )
+    pendingEntrance = playsEntrance
 
-    if (playsEntrance) {
-      root.dataset.entrance = ""
-      return
-    }
-
-    root.removeAttribute("data-entrance")
+    // A page introducing itself skips the transition entirely: with no snapshot
+    // there is nothing for the entrance to be caught mid-flight by
+    if (playsEntrance) return
 
     // Browsers without view transitions, and reduced-motion users, get a plain
-    // client-side Link navigation. (Reduced-motion entrances are already inert,
-    // so clearing the attribute above is harmless and keeps this uniform.)
+    // client-side Link navigation
     if (typeof document.startViewTransition !== "function" || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       return
     }
