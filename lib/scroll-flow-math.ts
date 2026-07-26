@@ -31,7 +31,50 @@ export interface RecedeStyle {
   translateY: number
 }
 
+/*
+ * Viewport heights the enter ramp is tuned against. Between them the geometry
+ * is interpolated; outside them it holds at the nearer anchor.
+ */
+const TALL_VIEWPORT = 900
+const SHORT_VIEWPORT = 700
+/* No ramp shorter than this, however squat the window — below roughly a line
+ * and a half of scroll the rise stops reading as motion and starts reading as
+ * a pop */
+const MIN_RAMP_HEIGHT = 64
+
+export interface EnterRamp {
+  /* Viewport offset at which an element begins resolving */
+  start: number
+  /* Distance it travels between invisible and fully resolved */
+  height: number
+}
+
 export const clamp01 = (value: number): number => Math.min(1, Math.max(0, value))
+
+/*
+ * Where the enter ramp starts and how long it runs, in pixels.
+ *
+ * Both used to be flat fractions of the viewport: begin at 0.96, finish 0.2
+ * later. On a full-height window that is a comfortable runway — a fifth of the
+ * screen to arrive in, settling a quarter of the way up. On a phone the same
+ * fractions describe most of what the reader can see at once: the lowest ~150px
+ * never resolved, and with the browser's own chrome sitting under them the page
+ * read as cut off rather than as in motion.
+ *
+ * So the fractions tighten as the viewport shortens — the ramp finishes nearer
+ * the bottom edge and spends less of the screen getting there — while a tall
+ * window keeps exactly the geometry it has always had.
+ */
+export const enterRamp = (viewportHeight: number): EnterRamp => {
+  const shortness = clamp01((TALL_VIEWPORT - viewportHeight) / (TALL_VIEWPORT - SHORT_VIEWPORT))
+  const startFraction = 0.96 + 0.04 * shortness
+  const rampFraction = 0.2 - 0.1 * shortness
+
+  return {
+    start: viewportHeight * startFraction,
+    height: Math.max(viewportHeight * rampFraction, MIN_RAMP_HEIGHT),
+  }
+}
 
 /*
  * `k` stretches the exit ramp. Lower means a later, shorter melt: the element
@@ -49,8 +92,8 @@ export const parseFlowFactor = (raw: string | undefined): number => {
 }
 
 /*
- * enter ramps over the bottom 20% of the viewport; exit melts the element as
- * its bottom edge approaches the header.
+ * enter ramps over the bottom of the viewport (see enterRamp for how much of
+ * it); exit melts the element as its bottom edge approaches the header.
  *
  * remainingScroll keeps the last element on the page honest. Whatever sits at
  * the bottom of the document can never climb out of the enter ramp, because
@@ -70,9 +113,9 @@ export const computeFlow = (
     return { opacity: 0, translateY: 0, blurPx: 0 }
   }
 
-  const rampHeight = viewportHeight * 0.2
-  const enterFloor = clamp01(1 - remainingScroll / rampHeight)
-  const enter = Math.max(clamp01((viewportHeight * 0.96 - rect.top) / rampHeight), enterFloor)
+  const ramp = enterRamp(viewportHeight)
+  const enterFloor = clamp01(1 - remainingScroll / ramp.height)
+  const enter = Math.max(clamp01((ramp.start - rect.top) / ramp.height), enterFloor)
   const exit = clamp01((rect.bottom - viewportHeight * 0.06) / (viewportHeight * 0.22 * k))
   const visibility = Math.min(enter, exit)
 
