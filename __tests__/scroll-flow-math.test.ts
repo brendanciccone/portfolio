@@ -3,17 +3,32 @@ import {
   clamp01,
   computeFlow,
   computeRecede,
+  enterRamp,
   parseFlowFactor,
   shouldReleaseWipe,
+  MIN_RAMP_HEIGHT,
   OFFSCREEN_MARGIN,
   WIPE_TRIGGER_RATIO,
   type FlowRect,
 } from "@/lib/scroll-flow-math"
 
-/* A typical desktop viewport; every expectation below is relative to it */
+/*
+ * A typical laptop window; every expectation below is relative to it. Note it
+ * sits inside the band where enterRamp interpolates, so it is deliberately not
+ * the viewport the tall-anchor test uses.
+ */
 const H = 860
+/* A phone in Safari with the bars expanded, which is the shortest viewport
+ * real visitors arrive on in portrait */
+const PHONE_H = 715
 /* Enough room left that the end-of-document floor never engages */
 const PLENTY_OF_SCROLL = H * 5
+
+/* How far above the bottom edge an element is finally free of the enter ramp */
+const settleOffset = (viewportHeight: number): number => {
+  const { start, height } = enterRamp(viewportHeight)
+  return viewportHeight - (start - height)
+}
 
 /* Rect sitting comfortably in the middle of the viewport */
 const settled: FlowRect = { top: H * 0.4, bottom: H * 0.7 }
@@ -46,6 +61,52 @@ describe("parseFlowFactor", () => {
     // k reaches the exit ramp as a divisor, so 0 would yield Infinity
     expect(parseFlowFactor("0")).toBe(1)
     expect(parseFlowFactor("-2")).toBe(1)
+  })
+})
+
+describe("enterRamp", () => {
+  it("holds the original geometry on a full-height window", () => {
+    const tall = 1000
+    const { start, height } = enterRamp(tall)
+
+    expect(start).toBeCloseTo(tall * 0.96)
+    expect(height).toBeCloseTo(tall * 0.2)
+  })
+
+  /*
+   * Regression for the mobile cut-off. Both numbers used to be flat fractions,
+   * so the dead band scaled with the screen and swallowed the bottom quarter of
+   * a phone — where the browser's own chrome already crowds the page.
+   */
+  it("finishes nearer the bottom edge the shorter the viewport gets", () => {
+    expect(settleOffset(PHONE_H)).toBeLessThan(100)
+    expect(settleOffset(PHONE_H)).toBeLessThan(settleOffset(H) / 2)
+  })
+
+  /*
+   * Non-strict on purpose: once MIN_RAMP_HEIGHT engages the settle offset is
+   * pinned flat, so the guarantee is that shrinking the viewport never *loosens*
+   * the ramp. The list runs through the floor rather than stopping above it,
+   * which is where an accidental strict assertion would pass by sampling luck.
+   */
+  it("never loosens as the viewport shrinks", () => {
+    const offsets = [1000, 900, 850, 800, 750, 700, 640, 600, 500, 390].map(settleOffset)
+
+    for (const [index, offset] of offsets.slice(1).entries()) {
+      expect(offset).toBeLessThanOrEqual(offsets[index])
+    }
+  })
+
+  it("keeps a ramp long enough to read as motion on a landscape phone", () => {
+    // A tenth of a 390px viewport would be 39px — a pop, not a rise
+    expect(enterRamp(390).height).toBe(MIN_RAMP_HEIGHT)
+    expect(enterRamp(390).height).toBeGreaterThan(390 * 0.1)
+  })
+
+  it("never starts an element resolving before it has entered the viewport", () => {
+    for (const viewportHeight of [390, 600, 715, 800, 900, 1200]) {
+      expect(enterRamp(viewportHeight).start).toBeLessThanOrEqual(viewportHeight)
+    }
   })
 })
 
@@ -108,6 +169,43 @@ describe("computeFlow", () => {
     expect(atDocumentEnd.opacity).toBeCloseTo(1)
     expect(atDocumentEnd.blurPx).toBe(0)
     expect(atDocumentEnd.translateY).toBeCloseTo(0)
+  })
+
+  /*
+   * The bug this was reported as: on a phone the section heading below the hero
+   * sat ~120px above the bottom edge at two thirds opacity under a blur, and no
+   * amount of waiting resolved it because it was already as high as the page
+   * would take it.
+   */
+  it("fully resolves content sitting just above a phone's bottom edge", () => {
+    const heading: FlowRect = { top: PHONE_H - 120, bottom: PHONE_H - 90 }
+    const style = computeFlow(heading, PHONE_H, PHONE_H * 5, 1)
+
+    expect(style.opacity).toBeCloseTo(1)
+    expect(style.blurPx).toBe(0)
+    expect(style.translateY).toBeCloseTo(0)
+  })
+
+  /*
+   * The rise composes with the page's own scroll, so it has to be a share of
+   * the ramp rather than a fixed distance. Held flat at 32px it made content
+   * overshoot half again as fast on a phone as on a desktop, purely because the
+   * ramp under it got shorter — invisible to every opacity-based assertion here,
+   * which is how it survived the first round.
+   */
+  it("rises at the same speed relative to the page on every viewport", () => {
+    const riseAtRampStart = (viewportHeight: number): number => {
+      const { start, height } = enterRamp(viewportHeight)
+      const atStart: FlowRect = { top: start, bottom: start + height }
+      const { translateY } = computeFlow(atStart, viewportHeight, viewportHeight * 5, 1)
+      // Element travels its own rise plus the ramp; the page travels the ramp
+      return (height + translateY) / height
+    }
+
+    const speeds = [1200, 900, 800, 715, 390].map(riseAtRampStart)
+    for (const speed of speeds) {
+      expect(speed).toBeCloseTo(speeds[0])
+    }
   })
 
   it("renders a page too short to scroll completely visible", () => {
