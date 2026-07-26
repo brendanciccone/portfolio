@@ -7,12 +7,15 @@ interface SectionLabelProps {
   number?: string
   counter?: string
   as?: "h2" | "h3" | "p"
+  /* Opt the header into the scroll flow. Off by default because labels inside
+     an already-flowing panel would compound their parent's fade. */
+  flow?: boolean
   className?: string
 }
 
-export const SectionLabel = ({ title, number, counter, as: Tag = "h2", className }: SectionLabelProps): React.JSX.Element => {
+export const SectionLabel = ({ title, number, counter, as: Tag = "h2", flow, className }: SectionLabelProps): React.JSX.Element => {
   return (
-    <div className={cn("sys-section-header", className)}>
+    <div data-flow={flow ? "" : undefined} className={cn("sys-section-header", className)}>
       <Tag className="sys-section-label">
         {number && (
           <>

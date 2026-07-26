@@ -17,6 +17,7 @@ import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import { CountUp } from "@/components/count-up"
 import { FigureFrame } from "@/components/figure-frame"
 import { SectionLabel } from "@/components/section-label"
 import { SectionNav } from "@/components/section-nav"
@@ -51,7 +52,7 @@ export default function PaidlyPage() {
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
             />
           </div>
-          <div className="pt-6 sm:pt-7 flex flex-col sm:flex-row sm:items-center gap-4">
+          <div data-recede="meta" className="pt-6 sm:pt-7 flex flex-col sm:flex-row sm:items-center gap-4">
             <Image
               src="/about/logos/paidly.jpeg"
               alt="Paidly logo"
@@ -80,16 +81,16 @@ export default function PaidlyPage() {
 
         {/* Overview + Highlights */}
         <section id="overview" className="scroll-mt-16">
-          <SectionLabel title="Overview" number="01" className="mb-6" />
-          <p className="text-[15px] leading-[1.6] text-ink-soft mb-5">
+          <SectionLabel flow title="Overview" number="01" className="mb-6" />
+          <p data-flow="0.5" className="text-[15px] leading-[1.6] text-ink-soft mb-5">
             As a freelancer, I experienced a common frustration: no way to send Stripe invoices on the go for free. In 2020, with remote work booming and freelancing on the rise, I saw an opportunity to solve my own problem at scale. After conducting market research, I founded Paidly and assembled a small team of developers, designing the entire application that launched on iOS and Android. From idea to launch took <span className="text-foreground font-semibold">2.5 months</span>.
           </p>
           {/* Metric box — same cell anatomy as the home stat bar: red caps
               label, ink value, description only where it adds a fact */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 border border-border bg-card">
+          <div data-flow className="grid grid-cols-1 sm:grid-cols-3 border border-border bg-card">
             <div className="px-5 py-[18px] border-b border-border sm:border-b-0 sm:border-r">
               <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary">Users</p>
-              <p className="text-lg sm:text-[26px] font-heading font-bold leading-tight tabular-nums mt-1.5">2,000+</p>
+              <p className="text-lg sm:text-[26px] font-heading font-bold leading-tight tabular-nums mt-1.5"><CountUp to={2000} suffix="+" /></p>
               <p className="text-[13px] leading-normal text-muted-foreground mt-1.5">Small and medium businesses</p>
             </div>
             <div className="px-5 py-[18px] border-b border-border sm:border-b-0 sm:border-r">
@@ -99,7 +100,7 @@ export default function PaidlyPage() {
             </div>
             <div className="px-5 py-[18px]">
               <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary">Volume</p>
-              <p className="text-lg sm:text-[26px] font-heading font-bold leading-tight tabular-nums mt-1.5">$500k+</p>
+              <p className="text-lg sm:text-[26px] font-heading font-bold leading-tight tabular-nums mt-1.5"><CountUp to={500} prefix="$" suffix="k+" /></p>
               <p className="text-[13px] leading-normal text-muted-foreground mt-1.5">Invoiced through the platform</p>
             </div>
           </div>
@@ -107,8 +108,8 @@ export default function PaidlyPage() {
 
         {/* Research Section */}
         <section id="research" className="scroll-mt-16">
-          <SectionLabel title="Research" number="02" className="mb-6" />
-          <div className="space-y-3.5 text-[15px] leading-[1.6] text-ink-soft mb-6">
+          <SectionLabel flow title="Research" number="02" className="mb-6" />
+          <div data-flow="0.5" className="space-y-3.5 text-[15px] leading-[1.6] text-ink-soft mb-6">
             <p>
               Drawing on my experiences with invoicing, I looked into what was available in the market for iOS and
               Android. While many industry leaders had comprehensive invoicing in their mobile apps, I was surprised
@@ -152,8 +153,8 @@ export default function PaidlyPage() {
 
         {/* Stripe-Based Invoicing App Section */}
         <section id="mobile-invoicing" className="scroll-mt-16">
-          <SectionLabel title="Bringing Stripe Invoices to Mobile" number="03" className="mb-6" />
-          <div className="space-y-3.5 text-[15px] leading-[1.6] text-ink-soft mb-6">
+          <SectionLabel flow title="Bringing Stripe Invoices to Mobile" number="03" className="mb-6" />
+          <div data-flow="0.5" className="space-y-3.5 text-[15px] leading-[1.6] text-ink-soft mb-6">
             <p>
               Using a prototype in Figma and testing it in Maze, I was ready to take things to development and build
               an MVP. Realizing my development knowledge was not deep enough for the technical challenges ahead, I
@@ -180,8 +181,8 @@ export default function PaidlyPage() {
 
         {/* Insights Section */}
         <section id="insights" className="scroll-mt-16">
-          <SectionLabel title="Insights" number="04" className="mb-6" />
-          <p className="text-[15px] leading-[1.6] text-ink-soft mb-5">
+          <SectionLabel flow title="Insights" number="04" className="mb-6" />
+          <p data-flow="0.5" className="text-[15px] leading-[1.6] text-ink-soft mb-5">
             After 6 months live and 2,000 SMBs running $500K+ in invoices through the platform, a contractor issue forced me to wind it down. It taught me that technical{' '}
             <span className="text-foreground font-semibold">vetting and code audits are non-negotiable</span>
             {' '}for anything high-stakes. That mindset now carries into every project I touch, especially in compliance-driven products.
@@ -200,7 +201,7 @@ export default function PaidlyPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-4 sm:py-6 text-center">
+        <section data-flow className="py-4 sm:py-6 text-center">
           <h2 className="title-display text-2xl sm:text-[30px] mb-2">Let&apos;s ship something <span className="text-primary">great.</span></h2>
           <p className="text-[15px] text-muted-foreground mb-6">
             Looking for feedback on your product or how to take an idea from 0 → 1?

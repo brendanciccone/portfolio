@@ -6,6 +6,8 @@ import { ThemeProvider } from "@/components/theme-provider"
 import ScrollToTop from "@/components/scroll-to-top"
 import { ErrorBoundary } from "@/components/error-boundary"
 import { GridOverlay } from "@/components/grid-overlay"
+import { ScrollFlow } from "@/components/scroll-flow"
+import { ReadingProgress } from "@/components/reading-progress"
 import { ViewTransitionSettler } from "@/components/view-transition-link"
 import JsonLd from "@/components/json-ld"
 
@@ -89,7 +91,10 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${archivo.variable} ${spaceGrotesk.variable} ${spaceGrotesk.className}`}>
+    // data-entrance ships on in the served HTML so a cold load plays its
+    // choreography with no script involved and no flash of final state;
+    // TransitionLink clears it for navigations that morph instead.
+    <html lang="en" suppressHydrationWarning data-entrance="" className={`${archivo.variable} ${spaceGrotesk.variable} ${spaceGrotesk.className}`}>
       <head>
         <JsonLd />
       </head>
@@ -98,6 +103,14 @@ export default function RootLayout({
           <ErrorBoundary>
             <ScrollToTop />
             <ViewTransitionSettler />
+            {/* Motion system, mounted once for every route: the flow engine
+                drives the page, the rail measures it. GridOverlay is the G
+                easter egg — the site's one grid reveal, and deliberately the
+                only one; an ambient background lattice did the same job
+                permanently and spent this one's payoff before anybody found
+                it. */}
+            <ScrollFlow />
+            <ReadingProgress />
             <GridOverlay />
             <main id="main-content">
               {children}

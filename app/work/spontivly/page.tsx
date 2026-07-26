@@ -19,6 +19,7 @@ import { Badge } from "@/components/ui/badge"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { Button } from "@/components/ui/button"
+import { CountUp } from "@/components/count-up"
 import { FigureFrame } from "@/components/figure-frame"
 import { SectionLabel } from "@/components/section-label"
 import { SectionNav } from "@/components/section-nav"
@@ -53,7 +54,7 @@ export default function SpontivlyPage() {
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
             />
           </div>
-          <div className="pt-6 sm:pt-7 flex flex-col sm:flex-row sm:items-center gap-4">
+          <div data-recede="meta" className="pt-6 sm:pt-7 flex flex-col sm:flex-row sm:items-center gap-4">
             <Image
               src="/about/logos/spontivly.jpeg"
               alt="Spontivly logo"
@@ -82,31 +83,31 @@ export default function SpontivlyPage() {
 
         {/* Overview + Highlights */}
         <section id="overview" className="scroll-mt-16">
-          <SectionLabel title="Overview" number="01" className="mb-6" />
-          <p className="text-[15px] leading-[1.6] text-ink-soft mb-5">
+          <SectionLabel flow title="Overview" number="01" className="mb-6" />
+          <p data-flow="0.5" className="text-[15px] leading-[1.6] text-ink-soft mb-5">
             In 2023, I joined Spontivly as the <span className="text-foreground font-semibold">only designer at a venture-backed startup</span> focused on democratizing analytics dashboards. I also took on PM responsibilities: working directly with cofounders to understand vision and business goals, partnering with the head of engineering to prioritize and roadmap features, and <span className="text-foreground font-semibold">regularly joining sales calls and talking to customers</span> to inform product direction.
           </p>
-          <ul className="list-[square] pl-5 space-y-2 text-[15px] leading-[1.7] text-ink-soft mb-6">
+          <ul data-flow="0.5" className="list-[square] pl-5 space-y-2 text-[15px] leading-[1.7] text-ink-soft mb-6">
             <li>Adopted by professional sports teams including the Tampa Bay Rowdies</li>
             <li>Used by Carta and other notable B2B companies for stakeholder reporting</li>
             <li>Unified fragmented brand identity across marketing site and core platform</li>
           </ul>
           {/* Metric box — same cell anatomy as the home stat bar: red caps
               label, ink value, description only where it adds a fact */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 border border-border bg-card">
+          <div data-flow className="grid grid-cols-1 sm:grid-cols-3 border border-border bg-card">
             <div className="px-5 py-[18px] border-b border-border sm:border-b-0 sm:border-r">
               <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary">Integrations</p>
-              <p className="text-lg sm:text-[26px] font-heading font-bold leading-tight tabular-nums mt-1.5">120+ APIs</p>
+              <p className="text-lg sm:text-[26px] font-heading font-bold leading-tight tabular-nums mt-1.5"><CountUp to={120} suffix="+" /> APIs</p>
               <p className="text-[13px] leading-normal text-muted-foreground mt-1.5">Supported in the redesigned platform</p>
             </div>
             <div className="px-5 py-[18px] border-b border-border sm:border-b-0 sm:border-r">
               <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary">Inbound leads</p>
-              <p className="text-lg sm:text-[26px] font-heading font-bold leading-tight tabular-nums mt-1.5">2×</p>
+              <p className="text-lg sm:text-[26px] font-heading font-bold leading-tight tabular-nums mt-1.5"><CountUp to={2} suffix="×" /></p>
               <p className="text-[13px] leading-normal text-muted-foreground mt-1.5">After relaunching the marketing site a month ahead of schedule</p>
             </div>
             <div className="px-5 py-[18px]">
               <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary">Sales demos</p>
-              <p className="text-lg sm:text-[26px] font-heading font-bold leading-tight tabular-nums mt-1.5">90%+</p>
+              <p className="text-lg sm:text-[26px] font-heading font-bold leading-tight tabular-nums mt-1.5"><CountUp to={90} suffix="%+" /></p>
               <p className="text-[13px] leading-normal text-muted-foreground mt-1.5">Powered by interactive prototypes personalized to each prospect</p>
             </div>
           </div>
@@ -114,8 +115,8 @@ export default function SpontivlyPage() {
 
         {/* Website Redesign Section */}
         <section id="website-redesign" className="scroll-mt-16">
-          <SectionLabel title="Website Redesign" number="02" className="mb-6" />
-          <p className="text-[15px] leading-[1.6] text-ink-soft mb-5">
+          <SectionLabel flow title="Website Redesign" number="02" className="mb-6" />
+          <p data-flow="0.5" className="text-[15px] leading-[1.6] text-ink-soft mb-5">
             My first project at Spontivly was redesigning the marketing website to <span className="text-foreground font-semibold">drive more leads</span> and establish a consistent brand voice. The brand was fragmented, so this redesign extended beyond the site to the core platform&apos;s visual identity. I <span className="text-foreground font-semibold">managed the project end-to-end</span>: scoping with marketing and founders, designing the system, advocating for an accessible CMS so anyone could manage content, then hiring and leading engineers to build it. We launched <span className="text-foreground font-semibold">over a month ahead of schedule</span> and <span className="text-foreground font-semibold">doubled inbound leads</span>.
           </p>
           {/* Before/After comparison slider */}
@@ -133,8 +134,8 @@ export default function SpontivlyPage() {
 
         {/* Dashboard Builder Section */}
         <section id="dashboard-builder" className="scroll-mt-16">
-          <SectionLabel title="Dashboard Builder" number="03" className="mb-6" />
-          <p className="text-[15px] leading-[1.6] text-ink-soft mb-5">
+          <SectionLabel flow title="Dashboard Builder" number="03" className="mb-6" />
+          <p data-flow="0.5" className="text-[15px] leading-[1.6] text-ink-soft mb-5">
             I led the design of the analytics dashboard builder and an admin dashboard for managing user-created
             dashboards and permissions. The goal was to enable users to connect any API from social media, CRMs,
             and more and customize the generated charts and tables in a drag-and-drop builder. I collaborated
@@ -143,7 +144,7 @@ export default function SpontivlyPage() {
             something that felt familiar while still incorporating all of the features that make Spontivly a
             unique platform for data analysis.
           </p>
-          <p className="text-[15px] leading-[1.6] text-ink-soft mb-5">
+          <p data-flow="0.5" className="text-[15px] leading-[1.6] text-ink-soft mb-5">
             I was regularly on sales calls and talking directly to customers, which meant I had a clear view of what users actually needed. The biggest challenge was <span className="text-foreground font-semibold">managing outsized demand against a small engineering team</span>. Not everything could ship immediately, so I worked with the engineering lead to prioritize ruthlessly and helped stakeholders understand constraints and timelines.
           </p>
           <div className="grid grid-cols-1 gap-4">
@@ -226,8 +227,8 @@ export default function SpontivlyPage() {
 
         {/* Chart Builder Section */}
         <section id="chart-customization" className="scroll-mt-16">
-          <SectionLabel title="Chart Customization" number="04" className="mb-6" />
-          <p className="text-[15px] leading-[1.6] text-ink-soft mb-5">
+          <SectionLabel flow title="Chart Customization" number="04" className="mb-6" />
+          <p data-flow="0.5" className="text-[15px] leading-[1.6] text-ink-soft mb-5">
             Users needed granular control over their visualizations, but APIs returned data in wildly inconsistent formats. I worked with engineering to design{' '}
             <span className="text-foreground font-semibold">smart defaults and fallback states</span> so the charting experience felt consistent regardless of the data source. The goal was balancing power-user features with approachability so anyone could create meaningful visualizations without understanding the underlying data.
           </p>
@@ -246,8 +247,8 @@ export default function SpontivlyPage() {
 
         {/* Insights */}
         <section id="insights" className="scroll-mt-16">
-          <SectionLabel title="Insights" number="05" className="mb-6" />
-          <p className="text-[15px] leading-[1.6] text-ink-soft mb-5">
+          <SectionLabel flow title="Insights" number="05" className="mb-6" />
+          <p data-flow="0.5" className="text-[15px] leading-[1.6] text-ink-soft mb-5">
             The hardest part wasn&apos;t the design work. It was managing a team of developers while keeping founder and customer expectations realistic against what we could actually ship. At a seed-stage startup with strong inbound interest, everyone wants everything now. My job was to absorb that pressure and translate it into a{" "}
             <span className="text-foreground font-semibold">buildable roadmap</span>
             {' '}without burning out the engineering team or losing stakeholder trust. I built the prioritization process across design, engineering, and founders:{' '}
@@ -268,7 +269,7 @@ export default function SpontivlyPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-4 sm:py-6 text-center">
+        <section data-flow className="py-4 sm:py-6 text-center">
           <h2 className="title-display text-2xl sm:text-[30px] mb-2">Let&apos;s ship something <span className="text-primary">great.</span></h2>
           <p className="text-[15px] text-muted-foreground mb-6">
             Looking for feedback on your product or how to take an idea from 0 → 1?

@@ -83,20 +83,39 @@
 }
 
 /*
- * Motion grammar — the whole site moves as one material. Three durations,
- * one signature curve:
+ * Motion grammar — the whole site moves as one material, on one curve:
  *   touch  (150ms) — color/opacity feedback: hovers, presses
- *   settle (200ms) — anything that physically moves: lifts, wipes
+ *   settle (250ms) — anything that physically moves: lifts, wipes, nudges
  *   morph  (300ms) — cross-page shared-element view transitions
- *   enter  (450ms) — page-load entrances only
- * The stamp accent (250ms) is the single deliberate exception.
+ *   enter  (620ms) — load entrances: hero lines, meta, intro
+ *   wipe   (1000/1200ms) — one-shot image clip-path reveals
+ * The stamp (340ms on an overshoot curve) is the single deliberate
+ * exception, and it is spent on exactly one glyph: the red period.
  */
 :root {
   --motion-touch: 150ms;
-  --motion-settle: 200ms;
+  --motion-settle: 250ms;
   --motion-morph: 300ms;
-  --motion-enter: 450ms;
+  /*
+   * Was 800ms, which put the home hero's full sequence at roughly 1.5s
+   * counting delays — past the point where a considered entrance starts
+   * reading as a slow one. The whole choreography is scaled together rather
+   * than just this token, so the beats keep their spacing.
+   */
+  --motion-enter: 620ms;
+  /*
+   * The reference direction specifies 1000/1200ms here. That reads as
+   * considered on a single hero reveal and as sluggish on a case study with
+   * six figures in a column — the image is still opening well after you have
+   * scrolled it into place, and FigureFrame gives the longer of the two to
+   * every full-width figure, which is most of them. Cut to roughly half, so
+   * the wipe still reads as a wipe but lands about when the figure settles.
+   */
+  --motion-wipe: 550ms;
+  --motion-wipe-long: 700ms;
+  --motion-stamp: 340ms;
   --ease-settle: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-stamp: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 /*
@@ -236,18 +255,37 @@ body {
 }
 
 /*
- * Entrance micro-animations — contact page niceties. All are no-ops under
- * prefers-reduced-motion (the classes simply never animate, elements render
- * in their final state).
+ * Entrance micro-animations. All are no-ops under prefers-reduced-motion (the
+ * classes simply never animate, elements render in their final state).
+ *
+ * fade-up is the load-time twin of the scroll flow's enter ramp: same
+ * direction, same blur, so an element that loads in and an element that
+ * scrolls in arrive by the same route.
  */
 @keyframes rise-in {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(22px);
+    filter: blur(5px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+/*
+ * Headline lines rise out from behind a mask rather than fading — the skew
+ * makes each line lag slightly at its trailing edge, so the type reads as
+ * physically swinging up into place instead of sliding.
+ */
+@keyframes line-rise {
+  from {
+    transform: translateY(110%) skewY(2.5deg);
+  }
+  to {
+    transform: translateY(0) skewY(0);
   }
 }
 
@@ -278,40 +316,77 @@ body {
 
 @media (prefers-reduced-motion: no-preference) {
   /*
-   * Entrance choreography plays on first load only. Once the app has done a
-   * client navigation (TransitionLink sets [data-navigated] on <html>), the
-   * same-document view transition IS the entrance — replaying a per-element
-   * rise on top of it made the incoming page's single-frame snapshot capture
-   * these elements mid-animation (still at opacity 0, translated, or inside
-   * their delay). That's the mobile "cut off, then suddenly appears": the
-   * snapshot showed them blank, then the real DOM finished rising after the
-   * morph. Gating to the un-navigated document keeps the fresh-load feel
-   * while letting the morph own navigation. The hero frame is the sharpest
-   * case — it carries both anim-rise and a view-transition-name, so the
-   * shared-element morph was fighting a transform entrance on the same node.
+   * These are written as longhands on purpose — never collapse them into the
+   * `animation` shorthand. The shorthand resets every sub-property it omits,
+   * including animation-delay, and at this selector's specificity (0,3,0) it
+   * outranks Tailwind's [animation-delay:90ms] utilities (0,1,0). Written
+   * short, every staggered entrance on the site fired simultaneously: the
+   * hero lines, the stat bar cascade, the About bio columns and the
+   * case-study header all played as one flat fade with no sequence at all.
+   * Only the dot grid escaped it, because its delay is an inline style.
+   *
+   * Entrance choreography plays once per page per session, gated on
+   * [data-entrance] which TransitionLink sets or clears before each
+   * navigation commits.
+   *
+   * The rule is entrance OR morph, never both on the same navigation. A
+   * view transition snapshots the incoming page in a single frame, and
+   * replaying a per-element rise underneath it made that snapshot capture
+   * the hero mid-animation — still at opacity 0, translated, or inside its
+   * delay. That is the mobile "cut off, then suddenly appears": the snapshot
+   * showed blank, then the real DOM finished rising after the morph. So a
+   * navigation that morphs clears this attribute, and a navigation that
+   * plays the entrance skips the transition entirely, leaving no snapshot to
+   * fight. Shared-element navigations (card to case study) always morph —
+   * flying the screenshot into the hero IS that arrival's entrance.
    *
    * will-change + backface-visibility promote each animated element to its
    * own compositing layer so Safari rasterizes the moving text once instead
    * of every frame — the fix for the "not buttery smooth" jitter on mobile.
    */
-  :root:not([data-navigated]) .anim-rise {
-    animation: rise-in var(--motion-enter) var(--ease-settle) both;
+  :root[data-entrance] .anim-rise {
+    animation-name: rise-in;
+    animation-duration: var(--motion-enter);
+    animation-timing-function: var(--ease-settle);
+    animation-fill-mode: both;
     will-change: transform, opacity;
     backface-visibility: hidden;
   }
 
-  /* The red period stamps in as the headline settles — grow-in is an
-     in-place entrance with no direction, so it can't fight the page's
-     motion if it lands while the user is already scrolling */
-  :root:not([data-navigated]) .anim-stamp {
-    animation: grow-in 250ms var(--ease-settle) 550ms both;
+  /*
+   * Masked headline rise. The mask is the parent (.anim-line-mask); this
+   * class is the thing that travels. Same load-only gate as .anim-rise —
+   * after a client navigation the morph is the entrance.
+   */
+  :root[data-entrance] .anim-line {
+    animation-name: line-rise;
+    animation-duration: var(--motion-enter);
+    animation-timing-function: var(--ease-settle);
+    animation-fill-mode: both;
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+
+  /* The red period lands last and is the only thing in the system that
+     overshoots — grow-in is an in-place entrance with no direction, so it
+     can't fight the page's motion if it lands mid-scroll */
+  :root[data-entrance] .anim-stamp {
+    animation-name: grow-in;
+    animation-duration: var(--motion-stamp);
+    animation-timing-function: var(--ease-stamp);
+    animation-delay: 820ms;
+    animation-fill-mode: both;
     will-change: transform, opacity;
     backface-visibility: hidden;
   }
 
   .anim-rule {
     transform-origin: left;
-    animation: draw-rule 550ms var(--ease-settle) 250ms both;
+    animation-name: draw-rule;
+    animation-duration: 560ms;
+    animation-timing-function: var(--ease-settle);
+    animation-delay: 260ms;
+    animation-fill-mode: both;
     will-change: transform;
     backface-visibility: hidden;
   }
@@ -320,7 +395,7 @@ body {
    * DrawnRule states. The hold keeps the line undrawn until it can actually
    * be seen; scoping it to no-preference means reduced-motion users always
    * get a static, fully drawn line. -now must follow .anim-rule so its
-   * animation-delay wins over the shorthand's 250ms at equal specificity —
+   * animation-delay wins over the shorthand's 260ms at equal specificity —
    * a scroll-triggered draw should start immediately (a delay reads as lag).
    */
   .anim-rule-hold {
@@ -334,12 +409,60 @@ body {
 
   /* Dot-grid cascade; per-dot delay set inline. Load-only, same reasoning as
      the rise/stamp entrances above. */
-  :root:not([data-navigated]) .anim-dot {
-    animation: rise-in 350ms var(--ease-settle) both;
+  :root[data-entrance] .anim-dot {
+    animation-name: rise-in;
+    animation-duration: 350ms;
+    animation-timing-function: var(--ease-settle);
+    animation-fill-mode: both;
     will-change: transform, opacity;
     backface-visibility: hidden;
   }
 
+}
+
+/*
+ * The line mask is structural, not decorative: it exists so .anim-line has
+ * something to rise out from. Unlayered and ungated, because with the
+ * animation absent the inner line simply sits at its final position and the
+ * mask clips nothing. The padding/negative-margin pair gives the glyphs a
+ * sliver of room so the mask never shaves a descender.
+ */
+.anim-line-mask {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+
+/*
+ * Scroll flow — see components/scroll-flow.tsx for the math. Everything here
+ * is defensive styling only: the engine writes opacity/transform/filter
+ * inline, so with JS absent these elements have no styles at all and render
+ * at full visibility. Nothing in this block can hide content.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  [data-flow],
+  [data-recede] {
+    backface-visibility: hidden;
+  }
+
+  /*
+   * Image reveals are the system's one non-continuous motion: a one-shot
+   * unmasking that never re-runs. The engine arms the clipped start state
+   * only for images still below the fold, so an image already on screen is
+   * never clipped in the first place.
+   */
+  [data-wipe] {
+    transition:
+      clip-path var(--motion-wipe) var(--ease-settle),
+      scale var(--motion-wipe) var(--ease-settle);
+  }
+
+  /* Full-bleed figures get the longer wipe — the same speed over a larger
+     area reads as hurried */
+  [data-wipe].wipe-long {
+    transition-duration: var(--motion-wipe-long);
+  }
 }
 
 /*
@@ -413,6 +536,22 @@ body {
  */
 .dark .bg-mockup-frame img {
   filter: brightness(0.92);
+}
+
+/*
+ * A navigation that cannot morph meaningfully drops every shared-element name,
+ * so the root cross-fade carries the whole page on its own.
+ *
+ * Without this, leaving a case study scrolled 2800px down still morphed its
+ * hero into the home card: the browser had both names, so it flew the image
+ * in from far above the viewport and the page read as being thrown upward.
+ * It also let the three unpaired card names animate as separate new entries.
+ *
+ * Unlayered, and specific enough (0,3,0) to beat the Tailwind utilities that
+ * assign the names — same layering reasoning as the longhand note above.
+ */
+:root[data-flat-transition] [class*="view-transition-name"] {
+  view-transition-name: none;
 }
 
 /*

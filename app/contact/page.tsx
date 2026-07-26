@@ -18,21 +18,28 @@ export default function ContactPage() {
       <div className="max-w-[1024px] mx-auto px-5 pt-24 pb-6 sm:pb-8 flex flex-col gap-6 sm:gap-8">
         <div className="flex flex-col gap-6 sm:gap-8">
           {/* Display title, hairline below — same pattern as home/about.
-              Lines rise in staggered; the red period stamps in last; the
-              hairline draws itself left to right once it's in view. */}
+              Lines rise out from behind their masks; the red period stamps in
+              last; the hairline draws itself left to right once it's in view.
+              The title recedes on scroll like every other hero. */}
           <section>
-            <h1 className="title-display text-[44px] sm:text-6xl md:text-[72px]">
-              <span className="block anim-rise">Let&apos;s ship</span>
-              <span className="block anim-rise [animation-delay:100ms]">
-                something <span className="text-primary">great</span>
-                <span className="text-primary inline-block anim-stamp">.</span>
+            <h1 data-recede="title" className="title-display text-[44px] sm:text-6xl md:text-[72px]">
+              <span className="anim-line-mask">
+                <span className="block anim-line">Let&apos;s ship</span>
+              </span>
+              <span className="anim-line-mask">
+                <span className="block anim-line [animation-delay:90ms]">
+                  something <span className="text-primary">great</span>
+                  <span className="text-primary inline-block anim-stamp">.</span>
+                </span>
               </span>
             </h1>
             <DrawnRule className="mt-6 sm:mt-8" />
           </section>
 
-          {/* Copy + decoration | form, split by a vertical hairline */}
-          <div className="grid grid-cols-1 md:grid-cols-2">
+          {/* Copy + decoration | form, split by a vertical hairline. Flowed as
+              one block rather than per column: melting the form on its own
+              schedule would fade fields out from under someone filling them. */}
+          <div data-flow className="grid grid-cols-1 md:grid-cols-2">
             <div className="md:pr-10 pb-8 md:pb-0 flex flex-col gap-6">
               <p className="text-[15px] leading-[1.55] text-ink-soft">
                 Looking for feedback on your product or how to take an idea from 0 → 1? Reach out and let&apos;s chat!
