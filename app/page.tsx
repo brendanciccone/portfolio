@@ -104,10 +104,10 @@ const stats: readonly Stat[] = [
         <CountUp to={8} /> Years
       </>
     ),
-    delayClass: "[animation-delay:520ms]",
+    delayClass: "[animation-delay:400ms]",
   },
-  { label: "Role", value: "Staff Product Designer", delayClass: "[animation-delay:600ms]" },
-  { label: "Currently", value: "Corellium", href: "https://www.corellium.com", delayClass: "[animation-delay:680ms]" },
+  { label: "Role", value: "Staff Product Designer", delayClass: "[animation-delay:470ms]" },
+  { label: "Currently", value: "Corellium", href: "https://www.corellium.com", delayClass: "[animation-delay:540ms]" },
 ]
 
 export default function Portfolio() {
@@ -131,13 +131,13 @@ export default function Portfolio() {
                 <span className="block anim-line">Hi, I&apos;m</span>
               </span>
               <span className="anim-line-mask">
-                <span className="block anim-line [animation-delay:110ms]">
+                <span className="block anim-line [animation-delay:90ms]">
                   Brendan<span className="text-primary inline-block anim-stamp">.</span>
                 </span>
               </span>
             </h1>
             <div data-recede="meta">
-              <p className="text-[15px] leading-[1.55] text-ink-soft anim-rise [animation-delay:230ms]">
+              <p className="text-[15px] leading-[1.55] text-ink-soft anim-rise [animation-delay:180ms]">
                 0 → 1 product designer and founder with 8 years of experience shipping B2B products at early-stage startups in healthcare, cybersecurity, and finance. Currently at <Link href="https://www.corellium.com" target="_blank" rel="noopener noreferrer" className="text-primary font-medium hover:underline">Corellium</Link>, simplifying complex cybersecurity workflows.
               </p>
             </div>

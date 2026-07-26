@@ -125,11 +125,28 @@ export const TransitionLink = ({ href, onClick, children, ...rest }: TransitionL
     const destination = new URL(href, window.location.href)
     // Cross-origin hrefs leave the app entirely — let the browser navigate
     if (destination.origin !== window.location.origin) return
-    // Same-page clicks never settle (pathname doesn't change) — skip the
-    // transition rather than holding the snapshot until the failsafe fires.
-    // Comparing pathnames catches query/hash variants of the current route
-    // (/about?tab=2, /about#details) too.
-    if (normalisePath(destination.pathname) === normalisePath(pathname)) return
+    /*
+     * Same-page clicks never settle (pathname doesn't change), so they skip the
+     * transition rather than holding the snapshot until the failsafe fires.
+     * Comparing pathnames catches query/hash variants of the current route
+     * (/about?tab=2, /about#details) too.
+     *
+     * They do get taken back to the top, though. Clicking the wordmark from the
+     * footer reads as "go home", and arriving home in the middle of the page
+     * you were already on reads as the click having done nothing — which,
+     * before this, is exactly what happened.
+     */
+    if (normalisePath(destination.pathname) === normalisePath(pathname)) {
+      // Anything pointing at an anchor owns its own scrolling; leave it be
+      if (destination.hash === "") {
+        event.preventDefault()
+        // No behavior override on purpose: the default defers to
+        // html { scroll-behavior }, which globals.css already scopes to
+        // prefers-reduced-motion: no-preference. Reduced motion jumps.
+        window.scrollTo({ top: 0, left: 0 })
+      }
+      return
+    }
 
     /*
      * Only the click knows whether this navigation carries a shared element, so

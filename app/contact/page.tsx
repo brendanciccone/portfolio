@@ -27,7 +27,7 @@ export default function ContactPage() {
                 <span className="block anim-line">Let&apos;s ship</span>
               </span>
               <span className="anim-line-mask">
-                <span className="block anim-line [animation-delay:110ms]">
+                <span className="block anim-line [animation-delay:90ms]">
                   something <span className="text-primary">great</span>
                   <span className="text-primary inline-block anim-stamp">.</span>
                 </span>

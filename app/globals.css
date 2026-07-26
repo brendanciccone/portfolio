@@ -87,7 +87,7 @@
  *   touch  (150ms) — color/opacity feedback: hovers, presses
  *   settle (250ms) — anything that physically moves: lifts, wipes, nudges
  *   morph  (300ms) — cross-page shared-element view transitions
- *   enter  (800ms) — load entrances: hero lines, meta, intro
+ *   enter  (620ms) — load entrances: hero lines, meta, intro
  *   wipe   (1000/1200ms) — one-shot image clip-path reveals
  * The stamp (340ms on an overshoot curve) is the single deliberate
  * exception, and it is spent on exactly one glyph: the red period.
@@ -96,7 +96,13 @@
   --motion-touch: 150ms;
   --motion-settle: 250ms;
   --motion-morph: 300ms;
-  --motion-enter: 800ms;
+  /*
+   * Was 800ms, which put the home hero's full sequence at roughly 1.5s
+   * counting delays — past the point where a considered entrance starts
+   * reading as a slow one. The whole choreography is scaled together rather
+   * than just this token, so the beats keep their spacing.
+   */
+  --motion-enter: 620ms;
   /*
    * The reference direction specifies 1000/1200ms here. That reads as
    * considered on a single hero reveal and as sluggish on a case study with
@@ -310,6 +316,15 @@ body {
 
 @media (prefers-reduced-motion: no-preference) {
   /*
+   * These are written as longhands on purpose — never collapse them into the
+   * `animation` shorthand. The shorthand resets every sub-property it omits,
+   * including animation-delay, and at this selector's specificity (0,3,0) it
+   * outranks Tailwind's [animation-delay:90ms] utilities (0,1,0). Written
+   * short, every staggered entrance on the site fired simultaneously: the
+   * hero lines, the stat bar cascade, the About bio columns and the
+   * case-study header all played as one flat fade with no sequence at all.
+   * Only the dot grid escaped it, because its delay is an inline style.
+   *
    * Entrance choreography plays once per page per session, gated on
    * [data-entrance] which TransitionLink sets or clears before each
    * navigation commits.
@@ -330,7 +345,10 @@ body {
    * of every frame — the fix for the "not buttery smooth" jitter on mobile.
    */
   :root[data-entrance] .anim-rise {
-    animation: rise-in var(--motion-enter) var(--ease-settle) both;
+    animation-name: rise-in;
+    animation-duration: var(--motion-enter);
+    animation-timing-function: var(--ease-settle);
+    animation-fill-mode: both;
     will-change: transform, opacity;
     backface-visibility: hidden;
   }
@@ -341,7 +359,10 @@ body {
    * after a client navigation the morph is the entrance.
    */
   :root[data-entrance] .anim-line {
-    animation: line-rise var(--motion-enter) var(--ease-settle) both;
+    animation-name: line-rise;
+    animation-duration: var(--motion-enter);
+    animation-timing-function: var(--ease-settle);
+    animation-fill-mode: both;
     will-change: transform;
     backface-visibility: hidden;
   }
@@ -350,14 +371,22 @@ body {
      overshoots — grow-in is an in-place entrance with no direction, so it
      can't fight the page's motion if it lands mid-scroll */
   :root[data-entrance] .anim-stamp {
-    animation: grow-in var(--motion-stamp) var(--ease-stamp) 1050ms both;
+    animation-name: grow-in;
+    animation-duration: var(--motion-stamp);
+    animation-timing-function: var(--ease-stamp);
+    animation-delay: 820ms;
+    animation-fill-mode: both;
     will-change: transform, opacity;
     backface-visibility: hidden;
   }
 
   .anim-rule {
     transform-origin: left;
-    animation: draw-rule 700ms var(--ease-settle) 330ms both;
+    animation-name: draw-rule;
+    animation-duration: 560ms;
+    animation-timing-function: var(--ease-settle);
+    animation-delay: 260ms;
+    animation-fill-mode: both;
     will-change: transform;
     backface-visibility: hidden;
   }
@@ -366,7 +395,7 @@ body {
    * DrawnRule states. The hold keeps the line undrawn until it can actually
    * be seen; scoping it to no-preference means reduced-motion users always
    * get a static, fully drawn line. -now must follow .anim-rule so its
-   * animation-delay wins over the shorthand's 330ms at equal specificity —
+   * animation-delay wins over the shorthand's 260ms at equal specificity —
    * a scroll-triggered draw should start immediately (a delay reads as lag).
    */
   .anim-rule-hold {
@@ -381,7 +410,10 @@ body {
   /* Dot-grid cascade; per-dot delay set inline. Load-only, same reasoning as
      the rise/stamp entrances above. */
   :root[data-entrance] .anim-dot {
-    animation: rise-in 350ms var(--ease-settle) both;
+    animation-name: rise-in;
+    animation-duration: 350ms;
+    animation-timing-function: var(--ease-settle);
+    animation-fill-mode: both;
     will-change: transform, opacity;
     backface-visibility: hidden;
   }
