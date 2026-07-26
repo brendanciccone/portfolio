@@ -539,6 +539,22 @@ body {
 }
 
 /*
+ * A navigation that cannot morph meaningfully drops every shared-element name,
+ * so the root cross-fade carries the whole page on its own.
+ *
+ * Without this, leaving a case study scrolled 2800px down still morphed its
+ * hero into the home card: the browser had both names, so it flew the image
+ * in from far above the viewport and the page read as being thrown upward.
+ * It also let the three unpaired card names animate as separate new entries.
+ *
+ * Unlayered, and specific enough (0,3,0) to beat the Tailwind utilities that
+ * assign the names — same layering reasoning as the longhand note above.
+ */
+:root[data-flat-transition] [class*="view-transition-name"] {
+  view-transition-name: none;
+}
+
+/*
  * View transitions — the page morphs as one surface. Shared card→hero
  * elements ride the settle curve; reduced motion gets an instant swap.
  */

@@ -54,6 +54,26 @@ const containsSharedElement = (link: HTMLElement): boolean =>
     return name !== "" && name !== "none"
   })
 
+/* Names are assigned by Tailwind arbitrary-property classes, so the class
+   attribute is the cheapest way to find them without walking the whole tree */
+const SHARED_ELEMENT_SELECTOR = '[class*="view-transition-name"]'
+
+/*
+ * Is there a shared element the visitor can actually see right now?
+ *
+ * A morph only makes sense between two things on screen. Leaving a case study
+ * scrolled to the bottom, its hero sits thousands of pixels above the
+ * viewport, and the browser will still happily morph it into the home card —
+ * flying it down from off-screen, which reads as the page being flung. When
+ * nothing named is visible, the whole transition is flattened to a root
+ * cross-fade instead.
+ */
+const hasVisibleSharedElement = (): boolean =>
+  Array.from(document.querySelectorAll<HTMLElement>(SHARED_ELEMENT_SELECTOR)).some((element) => {
+    const rect = element.getBoundingClientRect()
+    return rect.bottom > 0 && rect.top < window.innerHeight
+  })
+
 /* Layout effects don't run on the server; this keeps React from warning about it */
 const useIsomorphicLayoutEffect = typeof window === "undefined" ? useEffect : useLayoutEffect
 
@@ -170,8 +190,13 @@ export const TransitionLink = ({ href, onClick, children, ...rest }: TransitionL
       return
     }
 
+    // Set before the outgoing snapshot is taken and cleared only once the
+    // transition ends, so both snapshots agree on which names exist
+    const root = document.documentElement
+    if (!hasVisibleSharedElement()) root.dataset.flatTransition = ""
+
     event.preventDefault()
-    document.startViewTransition(() => {
+    const transition = document.startViewTransition(() => {
       const settled = new Promise<void>((resolve) => {
         settleNavigation = resolve
       })
@@ -183,6 +208,11 @@ export const TransitionLink = ({ href, onClick, children, ...rest }: TransitionL
       })
       return Promise.race([settled, timeout])
     })
+
+    // Cleared on both settle and skip; a skipped transition rejects, and an
+    // attribute left behind would suppress the next genuine morph
+    const clearFlatTransition = () => root.removeAttribute("data-flat-transition")
+    transition.finished.then(clearFlatTransition, clearFlatTransition)
   }
 
   return (
