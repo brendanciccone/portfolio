@@ -2,6 +2,13 @@
 
 import { usePathname } from "next/navigation"
 import { useEffect } from "react"
+import {
+  computeFlow,
+  computeRecede,
+  parseFlowFactor,
+  shouldReleaseWipe,
+  WIPE_TRIGGER_RATIO,
+} from "@/lib/scroll-flow-math"
 
 /*
  * Scroll flow — the site's one continuous motion.
@@ -20,99 +27,57 @@ import { useEffect } from "react"
  *
  * Deliberately synchronous inside the scroll handler rather than scheduled on
  * requestAnimationFrame: throttled tabs and background iframes starve rAF,
- * which would strand content at opacity 0 with no way to recover. rAF drives
- * no content in this system — only the decorative dot field. The 300ms
- * interval is the safety net for scroll positions that change without firing
- * a scroll event: anchor jumps, streamed layout shifts, images loading late
- * and resizing the page underneath.
+ * which would strand content at opacity 0 with no way to recover. Nothing in
+ * this system gates content on a frame callback. The 300ms interval is the
+ * safety net for scroll positions that change without firing a scroll event:
+ * anchor jumps, streamed layout shifts, images loading late and resizing the
+ * page underneath.
+ *
+ * The arithmetic lives in lib/scroll-flow-math.ts, where it is unit-tested.
  */
 
 const SAFETY_INTERVAL_MS = 300
-/* Beyond this margin an element cannot be seen, so its math is skipped */
-const OFFSCREEN_MARGIN = 80
-/* An image starts its wipe once its top clears this fraction of the viewport */
-const WIPE_TRIGGER_RATIO = 0.86
-/* Shallower than the reference's 14/8: less distance to travel is most of what
-   makes the reveal feel prompt rather than laboured */
-const WIPE_CLIP_START = "inset(8% 5% 8% 5%)"
-const WIPE_CLIP_END = "inset(0%)"
 /*
  * Anything not yet armed or finished. Matched by exclusion rather than by
  * value: JSX renders a bare `data-wipe` as the string "true", so authored
  * elements arrive carrying a value we never chose.
  */
 const UNARMED_WIPE_SELECTOR = '[data-wipe]:not([data-wipe="armed"]):not([data-wipe="done"])'
-
-const clamp01 = (value: number): number => Math.min(1, Math.max(0, value))
+const WIPE_CLIP_START = "inset(8% 5% 8% 5%)"
+const WIPE_CLIP_END = "inset(0%)"
 
 interface Measured {
   element: HTMLElement
   rect: DOMRect
 }
 
+const queryAll = (selector: string): HTMLElement[] =>
+  Array.from(document.querySelectorAll<HTMLElement>(selector))
+
 const measure = (elements: readonly HTMLElement[]): Measured[] =>
   elements.map((element) => ({ element, rect: element.getBoundingClientRect() }))
 
-/*
- * enter ramps over the bottom 20% of the viewport; exit melts the element as
- * its bottom edge approaches the header. k stretches the exit ramp only —
- * siblings given 1 / 1.07 / 1.14 leave at slightly different rates, and that
- * differential is what reads as considered rather than batch-animated.
- *
- * Lower k means a later, shorter melt (an element stays crisp until its bottom
- * is nearly at the header). Body prose therefore runs at 0.5, well under the
- * structure around it. The reference direction put text columns at 1.15, which
- * made prose the FIRST thing to dissolve — on a case study, a paragraph still
- * sitting comfortably on screen was already down to 0.63 opacity and blurred.
- * On a page whose job is reading, the scaffolding should go before the words.
- *
- * remainingScroll is what keeps the last element on the page honest. Whatever
- * sits at the bottom of the document — in practice the footer — can never
- * climb out of the enter ramp, because the page runs out of scroll before the
- * element runs out of ramp. Left alone it parks forever at a third opacity
- * under a blur. So the final screenful raises a floor under enter: no effect
- * while there's a ramp's worth of scrolling left, rising smoothly to fully
- * resolved as the page lands.
- */
 const applyFlow = (
   { element, rect }: Measured,
   viewportHeight: number,
   remainingScroll: number,
 ): void => {
-  if (rect.bottom < -OFFSCREEN_MARGIN || rect.top > viewportHeight + OFFSCREEN_MARGIN) {
-    element.style.opacity = "0"
-    return
-  }
+  const factor = parseFlowFactor(element.dataset.flow)
+  const { opacity, translateY, blurPx } = computeFlow(rect, viewportHeight, remainingScroll, factor)
 
-  const k = Number(element.dataset.flow) || 1
-  const rampHeight = viewportHeight * 0.2
-  const enterFloor = clamp01(1 - remainingScroll / rampHeight)
-  const enter = Math.max(
-    clamp01((viewportHeight * 0.96 - rect.top) / rampHeight),
-    enterFloor,
-  )
-  const exit = clamp01((rect.bottom - viewportHeight * 0.06) / (viewportHeight * 0.22 * k))
-  const visibility = Math.min(enter, exit)
-
-  element.style.opacity = String(visibility ** 1.15)
-  element.style.transform = `translate3d(0, ${(1 - enter) * 32 - (1 - exit) * 26}px, 0)`
-  // Blur is by far the most expensive property here; drop it outright once
-  // the element has effectively settled rather than leaving a 0.07px filter
-  // pinning it to a blur-capable layer for the rest of the scroll.
-  element.style.filter = visibility > 0.98 ? "" : `blur(${(1 - visibility) * 3.5}px)`
+  element.style.opacity = String(opacity)
+  element.style.transform = `translate3d(0, ${translateY}px, 0)`
+  // Cleared rather than set to 0 so an offscreen element stops paying for a
+  // blur-capable compositing layer it isn't using
+  element.style.filter = blurPx === 0 ? "" : `blur(${blurPx}px)`
 }
 
-/*
- * The hero doesn't scroll away so much as hand the page off: the title drifts
- * up faster than the page and thins to a quarter, the meta row travels at
- * half that rate and leaves completely.
- */
 const applyRecede = (element: HTMLElement, viewportHeight: number, scrollY: number): void => {
-  const isMeta = element.dataset.recede === "meta"
-  const progress = clamp01(scrollY / (viewportHeight * 0.9))
+  const kind = element.dataset.recede === "meta" ? "meta" : "title"
+  const { opacity, translateY } = computeRecede(kind, viewportHeight, scrollY)
 
-  element.style.transform = `translate3d(0, ${scrollY * (isMeta ? 0.08 : 0.16)}px, 0)`
-  element.style.opacity = String(isMeta ? 1 - progress : 1 - progress * 0.75)
+  element.style.transform = `translate3d(0, ${translateY}px, 0)`
+  element.style.opacity = String(opacity)
 }
 
 /*
@@ -134,73 +99,121 @@ const armWipe = ({ element, rect }: Measured, viewportHeight: number): void => {
 }
 
 const releaseWipe = ({ element, rect }: Measured, viewportHeight: number): void => {
-  if (rect.top >= viewportHeight * WIPE_TRIGGER_RATIO) return
+  if (!shouldReleaseWipe(rect.top, viewportHeight)) return
 
   element.style.clipPath = WIPE_CLIP_END
   element.style.scale = "1"
   element.dataset.wipe = "done"
 }
 
-const queryAll = (selector: string): HTMLElement[] =>
-  Array.from(document.querySelectorAll<HTMLElement>(selector))
+/*
+ * Hand every element back to its static default. Needed when reduced motion is
+ * switched on mid-session: the CSS half of the system reverts on its own
+ * because media queries are live, but inline styles this engine already wrote
+ * would otherwise stay put and leave content stranded mid-melt.
+ */
+const clearInlineMotion = (): void => {
+  for (const element of queryAll("[data-flow], [data-recede]")) {
+    element.style.opacity = ""
+    element.style.transform = ""
+    element.style.filter = ""
+  }
+  for (const element of queryAll("[data-wipe]")) {
+    element.style.clipPath = ""
+    element.style.scale = ""
+    element.dataset.wipe = "done"
+  }
+}
 
 export const ScrollFlow = (): null => {
   const pathname = usePathname()
 
   useEffect(() => {
-    // Reduced motion opts out of the engine entirely rather than running it
-    // with the numbers turned down: no inline styles are ever written, so
-    // every page renders static and complete.
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
+    const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)")
+    let stopEngine: (() => void) | null = null
 
-    let flowElements: HTMLElement[] = []
-    let recedeElements: HTMLElement[] = []
+    const startEngine = (): (() => void) => {
+      let flowElements: HTMLElement[] = []
+      let recedeElements: HTMLElement[] = []
+      let armedWipes: HTMLElement[] = []
 
-    const rescan = () => {
-      flowElements = queryAll("[data-flow]")
-      recedeElements = queryAll("[data-recede]")
-      const pending = queryAll(UNARMED_WIPE_SELECTOR)
-      if (pending.length > 0) {
-        for (const target of measure(pending)) armWipe(target, window.innerHeight)
+      const rescan = () => {
+        flowElements = queryAll("[data-flow]")
+        recedeElements = queryAll("[data-recede]")
+        for (const target of measure(queryAll(UNARMED_WIPE_SELECTOR))) {
+          armWipe(target, window.innerHeight)
+        }
+        // Cached here so the scroll handler never queries the document. The
+        // handler runs far more often than this 300ms rescan, and a
+        // document-wide attribute query per scroll event is exactly the kind
+        // of work the read-before-write ordering below exists to avoid.
+        armedWipes = queryAll('[data-wipe="armed"]')
+      }
+
+      const update = () => {
+        const viewportHeight = window.innerHeight
+        const { scrollY } = window
+
+        // Every rect is read before a single style is written. Interleaving the
+        // two forces a synchronous layout per element, which is what makes a
+        // scroll handler stutter. scrollHeight is a layout read too, so it
+        // belongs up here with the rects.
+        const remainingScroll = Math.max(
+          0,
+          document.documentElement.scrollHeight - viewportHeight - scrollY,
+        )
+        const flowTargets = measure(flowElements)
+        const wipeTargets = armedWipes.length > 0 ? measure(armedWipes) : []
+
+        for (const target of flowTargets) applyFlow(target, viewportHeight, remainingScroll)
+        for (const element of recedeElements) applyRecede(element, viewportHeight, scrollY)
+        for (const target of wipeTargets) releaseWipe(target, viewportHeight)
+
+        if (wipeTargets.length > 0) {
+          armedWipes = armedWipes.filter((element) => element.dataset.wipe === "armed")
+        }
+      }
+
+      const tick = () => {
+        rescan()
+        update()
+      }
+
+      tick()
+
+      const interval = setInterval(tick, SAFETY_INTERVAL_MS)
+      window.addEventListener("scroll", update, { passive: true })
+      window.addEventListener("resize", tick, { passive: true })
+
+      return () => {
+        clearInterval(interval)
+        window.removeEventListener("scroll", update)
+        window.removeEventListener("resize", tick)
       }
     }
 
-    const update = () => {
-      const viewportHeight = window.innerHeight
-      const { scrollY } = window
-
-      // Every rect is read before a single style is written. Interleaving the
-      // two forces a synchronous layout per element, which is exactly what
-      // makes a scroll handler stutter. scrollHeight is a layout read too, so
-      // it belongs up here with the rects.
-      const remainingScroll = Math.max(
-        0,
-        document.documentElement.scrollHeight - viewportHeight - scrollY,
-      )
-      const flowTargets = measure(flowElements)
-      const wipeTargets = measure(queryAll('[data-wipe="armed"]'))
-
-      for (const target of flowTargets) applyFlow(target, viewportHeight, remainingScroll)
-      for (const element of recedeElements) applyRecede(element, viewportHeight, scrollY)
-      for (const target of wipeTargets) releaseWipe(target, viewportHeight)
+    /*
+     * Reduced motion opts out of the engine entirely rather than running it
+     * with the numbers turned down: no inline styles are written, so every
+     * page renders static and complete. Re-checked on change so toggling the
+     * OS setting mid-session takes effect without a reload.
+     */
+    const syncToMotionPreference = () => {
+      if (motionQuery.matches) {
+        stopEngine?.()
+        stopEngine = null
+        clearInlineMotion()
+        return
+      }
+      stopEngine ??= startEngine()
     }
 
-    rescan()
-    update()
-
-    const tick = () => {
-      rescan()
-      update()
-    }
-
-    const interval = setInterval(tick, SAFETY_INTERVAL_MS)
-    window.addEventListener("scroll", update, { passive: true })
-    window.addEventListener("resize", tick, { passive: true })
+    syncToMotionPreference()
+    motionQuery.addEventListener("change", syncToMotionPreference)
 
     return () => {
-      clearInterval(interval)
-      window.removeEventListener("scroll", update)
-      window.removeEventListener("resize", tick)
+      motionQuery.removeEventListener("change", syncToMotionPreference)
+      stopEngine?.()
     }
   }, [pathname])
 
