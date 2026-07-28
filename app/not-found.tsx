@@ -1,6 +1,7 @@
 import Link from "next/link"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
+import { StampPeriod } from "@/components/stamp-period"
 
 export default function NotFound() {
   return (
@@ -20,7 +21,7 @@ export default function NotFound() {
             </div>
 
             <h1 className="title-display text-[44px] sm:text-6xl md:text-[72px] mt-6 anim-rise [animation-delay:100ms]">
-              Nothing here<span className="text-primary inline-block anim-stamp">.</span>
+              Nothing here<StampPeriod className="anim-stamp" />
             </h1>
 
             <p className="text-[15px] leading-[1.55] text-ink-soft mt-4 max-w-[440px] anim-rise [animation-delay:200ms]">

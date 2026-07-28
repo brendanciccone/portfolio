@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { StampPeriod } from "@/components/stamp-period"
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
@@ -11,9 +12,7 @@ export default function Footer() {
       <div className="text-xs font-mono text-muted-foreground uppercase tracking-[0.1em] flex items-center gap-1">
         <span className="text-sm leading-none">&copy;</span>
         <span>
-          {/* The mark: the heaviest weight gives the period enough mass to read
-              as the square it is meant to be at this size */}
-          {currentYear} Brendan Ciccone<span className="text-primary font-heading font-extrabold">.</span>
+          {currentYear} Brendan Ciccone<StampPeriod />
         </span>
       </div>
       <div className="flex gap-4">

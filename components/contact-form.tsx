@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Checkbox } from "@/components/ui/checkbox"
+import { StampPeriod } from "@/components/stamp-period"
 import { Send } from "lucide-react"
 import { z } from "zod"
 
@@ -181,7 +182,7 @@ export default function ContactForm() {
         className="w-full flex-1 flex flex-col justify-center gap-4"
       >
         <h3 className="title-display text-3xl sm:text-[40px] anim-rise">
-          Message sent<span className="text-primary inline-block anim-stamp">.</span>
+          Message sent<StampPeriod className="anim-stamp" />
         </h3>
         <p className="text-[15px] leading-[1.55] text-ink-soft anim-rise [animation-delay:100ms]">
           Thanks for reaching out. I&apos;ll get back to you shortly.

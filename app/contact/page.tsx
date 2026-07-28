@@ -4,6 +4,7 @@ import { DotGrid } from "@/components/dot-grid";
 import { DrawnRule } from "@/components/drawn-rule";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import { StampPeriod } from "@/components/stamp-period";
 
 export const metadata = generatePageMetadata({
   title: "Contact",
@@ -29,7 +30,7 @@ export default function ContactPage() {
               <span className="anim-line-mask">
                 <span className="block anim-line [animation-delay:90ms]">
                   something <span className="text-primary">great</span>
-                  <span className="text-primary inline-block anim-stamp">.</span>
+                  <StampPeriod className="anim-stamp" />
                 </span>
               </span>
             </h1>

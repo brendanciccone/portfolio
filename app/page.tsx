@@ -5,6 +5,7 @@ import Footer from "@/components/footer"
 import { CountUp } from "@/components/count-up"
 import { DrawnRule } from "@/components/drawn-rule"
 import { SectionLabel } from "@/components/section-label"
+import { StampPeriod } from "@/components/stamp-period"
 import { WorkCard, type WorkCardData } from "@/components/work-card"
 import { cn } from "@/lib/utils"
 
@@ -132,7 +133,7 @@ export default function Portfolio() {
               </span>
               <span className="anim-line-mask">
                 <span className="block anim-line [animation-delay:90ms]">
-                  Brendan<span className="text-primary inline-block anim-stamp">.</span>
+                  Brendan<StampPeriod className="anim-stamp" />
                 </span>
               </span>
             </h1>
