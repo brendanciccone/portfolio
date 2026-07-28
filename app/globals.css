@@ -1,14 +1,19 @@
 @import "tailwindcss";
 
 @theme {
-  /* Single-face system: every role resolves to Inter. The four tokens are kept
+  /* Single-face system: every role resolves to Inter. The three tokens are kept
      apart so the utilities that carry design intent (font-heading on display
      type, font-mono on the small uppercase meta labels) still say what they
-     mean, and so a second face could be reintroduced in one place. */
+     mean, and so a second face could be reintroduced in one place.
+     There is no --font-display: Tailwind only emits a theme variable that some
+     utility actually references, and nothing uses font-display — so the token
+     shipped as nothing at all, and any rule reading var(--font-display) was
+     silently invalid at computed-value time and inherited instead. Display type
+     runs on --font-heading, which the section labels, case-study titles and
+     stat values keep alive. */
   --font-sans: var(--font-inter);
   --font-heading: var(--font-inter);
   --font-mono: var(--font-inter);
-  --font-display: var(--font-inter);
 
   /* Clamped to 0px so the derived tokens don't go negative when --radius is 0. */
   --radius-lg: var(--radius);
@@ -469,9 +474,14 @@ body {
 /*
  * Title display utility — Inter 800, uppercase, tight leading. Used for the
  * hero h1s on home, about, and contact.
+ *
+ * Reads the semantic --font-heading rather than --font-inter directly, so a
+ * future display face swapped in at the token reaches these headings too. That
+ * depends on the token still being emitted, which holds as long as something
+ * in the markup uses a font-heading utility — see the @theme note above.
  */
 .title-display {
-  font-family: var(--font-inter), system-ui, sans-serif;
+  font-family: var(--font-heading), system-ui, sans-serif;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: -0.02em;

@@ -1,3 +1,4 @@
+import type React from "react"
 import { cn } from "@/lib/utils"
 
 /*
@@ -17,7 +18,7 @@ import { cn } from "@/lib/utils"
  * optical correction for curves, and a square that used it would read as
  * sunken.
  */
-export const StampPeriod = ({ className }: { className?: string }) => (
+export const StampPeriod = ({ className }: { className?: string }): React.JSX.Element => (
   <span className={cn("relative inline-block size-[0.19em] bg-primary mx-[0.08em]", className)}>
     {/* The period stays in the text so copy/paste and screen readers get the
         sentence, not a gap. sr-only is out of flow, so it can't disturb the
