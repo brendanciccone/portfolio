@@ -31,9 +31,6 @@ export interface WorkCardData {
 interface WorkCardProps extends WorkCardData {
   variant?: "selected" | "other"
   priority?: boolean
-  /* Red index rendered above a plate title ("01 / 04") — ties each full-width
-     plate back to the section counter so the run reads as a numbered series */
-  counter?: string
 }
 
 /*
@@ -75,18 +72,13 @@ export const WorkCard = ({
   external,
   variant = "selected",
   priority,
-  counter,
 }: WorkCardProps): React.JSX.Element => {
   const isPlate = variant === "selected"
-  /* Plates run one per row on md+ with the screenshot at 3/5 of the card, so
-     the largest render is ~590px inside the 1024px container */
+  /* Plates run one per row, so their screenshots render at full container
+     width right up to the 1024px cap */
   const sizes = isPlate
-    ? "(max-width: 768px) 100vw, (max-width: 1024px) 60vw, 620px"
+    ? "(max-width: 1024px) 100vw, 1024px"
     : "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 512px"
-
-  /* Plates split horizontally on md+ — screenshot left, spec sheet right.
-     Small cards keep the stacked block layout at every width. */
-  const rootClasses = cn(cardClasses, isPlate && "md:grid md:grid-cols-[3fr_2fr]")
 
   const body = (
     <>
@@ -95,9 +87,6 @@ export const WorkCard = ({
       <div
         className={cn(
           "bg-mockup-frame overflow-hidden border-b border-border p-2.5",
-          /* In the horizontal split the hairline moves to the shared edge, and
-             the mat centers the screenshot when the text column runs taller */
-          isPlate && "md:border-b-0 md:border-r md:flex md:items-center",
           href && transitionFrameClassByHref.get(href),
         )}
       >
@@ -118,17 +107,10 @@ export const WorkCard = ({
           />
         </div>
       </div>
-      {/* Plate text columns pin the tags to the bottom edge on md+, so the
-          title block and the tag row frame the column like a spec sheet */}
-      <div className={cn("p-5", isPlate && "md:p-8 md:flex md:flex-col md:justify-between")}>
+      <div className="p-5">
         <div className="mb-4">
-          {isPlate && counter && (
-            <span className="block text-[11px] font-semibold tracking-[0.14em] text-primary tabular-nums mb-3">
-              {counter}
-            </span>
-          )}
           {isPlate ? (
-            <h2 className="text-lg sm:text-[22px] md:text-[28px] font-heading font-bold uppercase leading-tight mb-1">
+            <h2 className="text-lg sm:text-[22px] font-heading font-bold uppercase leading-tight mb-1">
               <span className={titleWipeClasses}>{title}</span>
             </h2>
           ) : (
@@ -138,7 +120,7 @@ export const WorkCard = ({
               </LightboxTrigger>
             </h3>
           )}
-          <p className={cn("text-muted-foreground text-sm", isPlate && "md:text-[15px]")}>{description}</p>
+          <p className="text-muted-foreground text-sm">{description}</p>
         </div>
         <div className="flex flex-wrap gap-2">
           {tags.map((tag) => (
@@ -151,7 +133,7 @@ export const WorkCard = ({
 
   if (href && !external) {
     return (
-      <TransitionLink href={href} className={rootClasses}>
+      <TransitionLink href={href} className={cardClasses}>
         {body}
       </TransitionLink>
     )
@@ -159,11 +141,11 @@ export const WorkCard = ({
 
   if (href) {
     return (
-      <Link href={href} className={rootClasses} target="_blank" rel="noopener noreferrer">
+      <Link href={href} className={cardClasses} target="_blank" rel="noopener noreferrer">
         {body}
       </Link>
     )
   }
 
-  return <div className={rootClasses}>{body}</div>
+  return <div className={cardClasses}>{body}</div>
 }

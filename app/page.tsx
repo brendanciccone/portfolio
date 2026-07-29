@@ -185,19 +185,16 @@ export default function Portfolio() {
           <SectionLabel title="Selected Work" counter="04" />
         </div>
 
-        {/* Selected work runs one full-width plate per row so the four career
-            projects visibly outrank the Other Work grid below. data-flow rides
-            a wrapper rather than the card itself so the card keeps sole
-            ownership of its own hover transform. */}
+        {/* Selected work runs one card per row so the four career projects'
+            screenshots land at full container width and visibly outrank the
+            Other Work grid below. data-flow rides a wrapper rather than the
+            card itself so the card keeps sole ownership of its own hover
+            transform. */}
         <div className="grid grid-cols-1 gap-6">
           {selectedWork.map((project, index) => (
             <div key={project.title} data-flow={flowStagger[index % flowStagger.length]} className="h-full">
-              {/* Only the first plate is above the fold; the rest lazy-load */}
-              <WorkCard
-                {...project}
-                priority={index === 0}
-                counter={`0${index + 1} / 0${selectedWork.length}`}
-              />
+              {/* Only the first card is above the fold; the rest lazy-load */}
+              <WorkCard {...project} priority={index === 0} />
             </div>
           ))}
         </div>
