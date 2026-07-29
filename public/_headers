@@ -5,6 +5,12 @@
 /_next/static/*
   Cache-Control: public,max-age=31536000,immutable
 
+# The arrow subset (see the @font-face in app/globals.css) is hand-placed rather
+# than emitted by Next, so it carries no content hash and can't be immutable —
+# a week matches the other unhashed assets below.
+/fonts/inter-arrows.woff2
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
 # Long-lived caching for static images, mirroring the headers the Next server
 # sent on Railway (next.config.mjs headers() is ignored under output: 'export').
 # Placeholder rules (`:name`) match exactly one path segment, so the
