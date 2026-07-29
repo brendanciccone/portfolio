@@ -74,8 +74,11 @@ export const WorkCard = ({
   priority,
 }: WorkCardProps): React.JSX.Element => {
   const isPlate = variant === "selected"
+  /* Plates run one per row: full width below md, then the 16:9 mat letterboxes
+     the 3:2 screenshot to 84% of the mat width (16:9 box height × 3:2 ratio) —
+     ~80vw of the viewport, 812px once the 1024px container caps out */
   const sizes = isPlate
-    ? "(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
+    ? "(max-width: 768px) 100vw, (max-width: 1024px) 80vw, 812px"
     : "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 512px"
 
   const body = (
@@ -92,23 +95,30 @@ export const WorkCard = ({
             trigger button here, which made only the screenshot clickable on a
             card that looks identical to the linked ones above; the trigger now
             lives on the title and covers the whole card. */}
-        <div className="relative w-full overflow-hidden">
+        {/* Full-width plates cap the image area at 16:9 on md+ so a whole card
+            fits closer to one viewport. The 3:2 screenshot scales down to the
+            box height and centers, letting the mat letterbox the sides —
+            cropping instead would clip toolbars and controls at the edges. */}
+        <div className={cn("relative w-full overflow-hidden", isPlate && "md:aspect-video md:flex md:justify-center")}>
           <MockupImage
             src={image.src}
             alt={image.alt}
             width={1200}
             height={800}
-            className={imageClasses}
+            className={cn(imageClasses, isPlate && "md:h-full md:w-auto")}
             priority={priority}
             quality={80}
             sizes={sizes}
           />
         </div>
       </div>
-      <div className="p-5">
-        <div className="mb-4">
+      {/* Plate info bands span the card on md+ — title and description anchor
+          the left edge, tags sign off the right — so the band carries the same
+          width as the screenshot instead of captioning its corner */}
+      <div className={cn("p-5", isPlate && "md:flex md:items-center md:justify-between md:gap-8")}>
+        <div className={cn("mb-4", isPlate && "md:mb-0")}>
           {isPlate ? (
-            <h2 className="text-lg sm:text-[22px] font-heading font-bold uppercase leading-tight mb-1">
+            <h2 className="text-lg sm:text-[22px] md:text-[28px] font-heading font-bold uppercase leading-tight mb-1">
               <span className={titleWipeClasses}>{title}</span>
             </h2>
           ) : (
@@ -118,9 +128,9 @@ export const WorkCard = ({
               </LightboxTrigger>
             </h3>
           )}
-          <p className="text-muted-foreground text-sm">{description}</p>
+          <p className={cn("text-muted-foreground text-sm", isPlate && "md:text-[15px]")}>{description}</p>
         </div>
-        <div className="flex flex-wrap gap-2">
+        <div className={cn("flex flex-wrap gap-2", isPlate && "md:justify-end md:shrink-0")}>
           {tags.map((tag) => (
             <Badge key={tag}>{tag}</Badge>
           ))}
