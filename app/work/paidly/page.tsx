@@ -38,21 +38,13 @@ export default function PaidlyPage() {
       
       <div className="max-w-[1024px] mx-auto px-5 pt-24 pb-6 sm:pb-8 flex flex-col gap-8 sm:gap-10">
         
-        {/* Page header — full-bleed hero image in a mat frame, then title row */}
+        {/* Page header — inverted: title row and role first so a skimmer gets
+            who/what/outcome before the viewport-height hero image */}
         <header>
-          <div className="bg-mockup-frame border border-border p-3 anim-rise [view-transition-name:vt-paidly]">
-            <LightboxImage
-              src="/work/paidly/1.webp"
-              alt="Paidly mobile app showing invoice screens"
-              width={1200}
-              height={800}
-              className="w-full"
-              priority
-              quality={80}
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
-            />
-          </div>
-          <div data-recede="meta" className="pt-6 sm:pt-7 flex flex-col sm:flex-row sm:items-center gap-4">
+          {/* The title row recedes as the case study takes over; the framed
+              hero below it is left alone because it carries the shared-element
+              name for the card→case-study morph */}
+          <div data-recede="meta" className="flex flex-col sm:flex-row sm:items-center gap-4">
             <Image
               src="/about/logos/paidly.jpeg"
               alt="Paidly logo"
@@ -63,7 +55,7 @@ export default function PaidlyPage() {
               sizes="60px"
             />
             <div className="min-w-0 anim-rise [animation-delay:100ms]">
-              <h1 className="font-heading font-extrabold uppercase tracking-[-0.02em] text-2xl sm:text-[32px] leading-none sm:whitespace-nowrap">Paidly</h1>
+              <h1 className="font-heading font-extrabold tracking-[-0.02em] text-2xl sm:text-[32px] leading-none sm:whitespace-nowrap">Paidly</h1>
               <p className="text-[15px] text-muted-foreground mt-1.5 sm:whitespace-nowrap">
                 Stripe-integrated invoicing mobile app for SMEs
               </p>
@@ -76,6 +68,18 @@ export default function PaidlyPage() {
                 <Badge>Fintech</Badge>
               </div>
             </div>
+          </div>
+          <div className="mt-6 sm:mt-7 bg-mockup-frame border border-border p-3 anim-rise [animation-delay:140ms] [view-transition-name:vt-paidly]">
+            <LightboxImage
+              src="/work/paidly/1.webp"
+              alt="Paidly mobile app showing invoice screens"
+              width={1200}
+              height={800}
+              className="w-full"
+              priority
+              quality={80}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
+            />
           </div>
         </header>
 

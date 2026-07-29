@@ -117,12 +117,18 @@ export const WorkCard = ({
           width as the screenshot instead of captioning its corner */}
       <div className={cn("p-5", isPlate && "md:flex md:items-center md:justify-between md:gap-8")}>
         <div className={cn("mb-4", isPlate && "md:mb-0")}>
+          {/* Caps are for chrome — nav, section labels, meta labels, badges,
+              captions. Project names stay in sentence case because they are
+              other companies' wordmarks, and uppercasing flattens the
+              ascender/descender silhouette that makes a name recognizable. The
+              case-study h1s follow the same rule, so both title levels here and
+              those four headings have to stay in step. */}
           {isPlate ? (
-            <h2 className="text-lg sm:text-[22px] md:text-[28px] font-heading font-bold uppercase leading-tight mb-1">
+            <h2 className="text-lg sm:text-[22px] md:text-[28px] font-heading font-bold leading-tight mb-1">
               <span className={titleWipeClasses}>{title}</span>
             </h2>
           ) : (
-            <h3 className="text-base sm:text-lg font-heading font-bold uppercase leading-tight mb-1">
+            <h3 className="text-base sm:text-lg font-heading font-bold leading-tight mb-1">
               <LightboxTrigger src={image.src} alt={image.alt} width={1200} height={800}>
                 <span className={titleWipeClasses}>{title}</span>
               </LightboxTrigger>

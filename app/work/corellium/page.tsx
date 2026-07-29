@@ -56,7 +56,7 @@ export default function CorelliumPage() {
               sizes="60px"
             />
             <div className="min-w-0 anim-rise [animation-delay:100ms]">
-              <h1 className="font-heading font-extrabold uppercase tracking-[-0.02em] text-2xl sm:text-[32px] leading-none sm:whitespace-nowrap">Corellium</h1>
+              <h1 className="font-heading font-extrabold tracking-[-0.02em] text-2xl sm:text-[32px] leading-none sm:whitespace-nowrap">Corellium</h1>
               <p className="text-[15px] text-muted-foreground mt-1.5 sm:whitespace-nowrap">
                 Mobile virtualization for cybersecurity teams
               </p>
