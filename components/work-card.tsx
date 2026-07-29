@@ -74,10 +74,11 @@ export const WorkCard = ({
   priority,
 }: WorkCardProps): React.JSX.Element => {
   const isPlate = variant === "selected"
-  /* Plates run one per row, so their screenshots render at full container
-     width right up to the 1024px cap */
+  /* Plates run one per row: full width below md, then the 16:9 mat letterboxes
+     the 3:2 screenshot to 84% of the mat width (16:9 box height × 3:2 ratio) —
+     ~80vw of the viewport, 812px once the 1024px container caps out */
   const sizes = isPlate
-    ? "(max-width: 1024px) 100vw, 1024px"
+    ? "(max-width: 768px) 100vw, (max-width: 1024px) 80vw, 812px"
     : "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 512px"
 
   const body = (
