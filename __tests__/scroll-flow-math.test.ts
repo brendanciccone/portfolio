@@ -65,12 +65,15 @@ describe("parseFlowFactor", () => {
 })
 
 describe("enterRamp", () => {
-  it("holds the original geometry on a full-height window", () => {
+  it("ramps over a narrow band at the bottom of a full-height window", () => {
     const tall = 1000
     const { start, height } = enterRamp(tall)
 
     expect(start).toBeCloseTo(tall * 0.96)
-    expect(height).toBeCloseTo(tall * 0.2)
+    expect(height).toBeCloseTo(tall * 0.12)
+    // Resolved by the time it is this far up the screen — comfortably below
+    // reading height, which is the point of the band being short
+    expect(start - height).toBeGreaterThan(tall * 0.8)
   })
 
   /*

@@ -5,6 +5,7 @@ import Footer from "@/components/footer"
 import { CountUp } from "@/components/count-up"
 import { DrawnRule } from "@/components/drawn-rule"
 import { SectionLabel } from "@/components/section-label"
+import { StampPeriod } from "@/components/stamp-period"
 import { WorkCard, type WorkCardData } from "@/components/work-card"
 import { cn } from "@/lib/utils"
 
@@ -132,7 +133,7 @@ export default function Portfolio() {
               </span>
               <span className="anim-line-mask">
                 <span className="block anim-line [animation-delay:90ms]">
-                  Brendan<span className="text-primary inline-block anim-stamp">.</span>
+                  Brendan<StampPeriod className="anim-stamp" />
                 </span>
               </span>
             </h1>
@@ -157,7 +158,15 @@ export default function Portfolio() {
                 )}
               >
                 <dt className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary">{stat.label}</dt>
-                <dd className="text-lg sm:text-[26px] font-heading font-bold leading-tight text-right sm:text-left tabular-nums">
+                {/* Sized so the longest value — "Staff Product Designer" — holds
+                    one line in a third of the container at every width the grid
+                    is live. At the full 1024px that phrase measures 288px against
+                    a 286px column at 26px, which is what wrapped it; the display
+                    tracking Inter wants at this size buys back the difference and
+                    the designed 26px survives on desktop. Below lg the column is
+                    genuinely too narrow for it, so the type steps down with the
+                    grid rather than breaking. */}
+                <dd className="text-lg sm:text-[14px] md:text-[18px] lg:text-[26px] font-heading font-bold leading-tight tracking-[-0.02em] text-right sm:text-left sm:whitespace-nowrap tabular-nums">
                   {stat.href ? (
                     <Link href={stat.href} target="_blank" rel="noopener noreferrer" className="hover:underline">
                       {stat.value}

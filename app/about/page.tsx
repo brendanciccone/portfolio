@@ -4,6 +4,7 @@ import { tools } from "@/components/tool-icons"
 import Link from "next/link"
 import Footer from "@/components/footer"
 import { DrawnRule } from "@/components/drawn-rule"
+import { StampPeriod } from "@/components/stamp-period"
 import { GitHubHeatmap } from "@/components/github-heatmap"
 import { SectionLabel } from "@/components/section-label"
 import { generatePageMetadata } from "@/lib/metadata"
@@ -231,7 +232,7 @@ export default function About() {
           <h1 data-recede="title" className="title-display text-[44px] sm:text-[60px]">
             <span className="anim-line-mask">
               <span className="block anim-line">
-                About<span className="text-primary inline-block anim-stamp">.</span>
+                About<StampPeriod className="anim-stamp" />
               </span>
             </span>
           </h1>

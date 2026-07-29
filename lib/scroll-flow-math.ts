@@ -38,16 +38,19 @@ export interface RecedeStyle {
 const TALL_VIEWPORT = 900
 const SHORT_VIEWPORT = 700
 /* No ramp shorter than this, however squat the window — below roughly a line
- * and a half of scroll the rise stops reading as motion and starts reading as
- * a pop */
-export const MIN_RAMP_HEIGHT = 64
+ * of scroll the rise stops reading as motion and starts reading as a pop.
+ * Scaled down with the ramp fractions below; left at 64 it became the binding
+ * constraint on every viewport under ~740px, which flattened the tightening
+ * that enterRamp exists to do. */
+export const MIN_RAMP_HEIGHT = 44
 /*
  * How far an element rises on its way in, as a share of the ramp it rises
  * over. A share rather than a fixed distance because the two compose: the
  * element climbs its own rise on top of the page's scroll, so a constant
  * distance over a variable ramp would make the same content overshoot faster
- * on a phone than on a desktop. The ratio is the one a full-height window has
- * always had — 32px across a 180px ramp — now held everywhere.
+ * on a phone than on a desktop. The ratio comes from the geometry a full-height
+ * window originally had — 32px of rise across a 180px ramp — and is now held
+ * everywhere, so shortening the ramp shortens the rise with it.
  */
 const RISE_RATIO = 32 / 180
 
@@ -63,21 +66,22 @@ export const clamp01 = (value: number): number => Math.min(1, Math.max(0, value)
 /*
  * Where the enter ramp starts and how long it runs, in pixels.
  *
- * Both used to be flat fractions of the viewport: begin at 0.96, finish 0.2
- * later. On a full-height window that is a comfortable runway — a fifth of the
- * screen to arrive in, settling a quarter of the way up. On a phone the same
- * fractions describe most of what the reader can see at once: the lowest ~150px
- * never resolved, and with the browser's own chrome sitting under them the page
- * read as cut off rather than as in motion.
+ * The start is a flat fraction of the viewport that tightens as the window
+ * shortens — the ramp begins nearer the bottom edge on a phone, where the
+ * lowest ~150px otherwise never resolved and the page read as cut off rather
+ * than as in motion under the browser's own chrome.
  *
- * So the fractions tighten as the viewport shortens — the ramp finishes nearer
- * the bottom edge and spends less of the screen getting there — while a tall
- * window keeps exactly the geometry it has always had.
+ * The ramp height tightens on the same curve. It used to run a fifth of a
+ * full-height screen, which put a tall band of half-blurred, half-faded
+ * content along the bottom edge on every scroll — enough of the viewport that
+ * the softening read as a permanent state rather than as an arrival. Cut to
+ * roughly 0.6 of that, so content is resolved well before it reaches reading
+ * height and the ramp is something you pass through instead of sit in.
  */
 export const enterRamp = (viewportHeight: number): EnterRamp => {
   const shortness = clamp01((TALL_VIEWPORT - viewportHeight) / (TALL_VIEWPORT - SHORT_VIEWPORT))
   const startFraction = 0.96 + 0.04 * shortness
-  const rampFraction = 0.2 - 0.1 * shortness
+  const rampFraction = 0.12 - 0.06 * shortness
 
   return {
     start: viewportHeight * startFraction,
