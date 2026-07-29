@@ -59,6 +59,14 @@ const cardClasses =
 const imageClasses =
   "w-full transition-[scale] duration-700 ease-(--ease-settle) group-hover:scale-[1.03] motion-reduce:transition-none"
 
+/*
+ * Caps are for chrome — nav, section labels, meta labels, badges, captions.
+ * Project names stay in sentence case because they are other companies'
+ * wordmarks, and uppercasing flattens the ascender/descender silhouette that
+ * makes a name recognizable. The case-study h1s follow the same rule, so both
+ * title levels here and those four headings have to stay in step.
+ */
+
 /* Titles take the same wiping rule as the nav — one underline system */
 const titleWipeClasses =
   "relative inline-block after:absolute after:inset-x-0 after:-bottom-0.5 after:h-[2px] after:bg-primary after:origin-right after:scale-x-0 group-hover:after:origin-left group-hover:after:scale-x-100 after:transition-transform after:duration-(--motion-settle) after:ease-(--ease-settle) motion-reduce:after:transition-none"
@@ -118,11 +126,11 @@ export const WorkCard = ({
       <div className={cn("p-5", isPlate && "md:flex md:items-center md:justify-between md:gap-8")}>
         <div className={cn("mb-4", isPlate && "md:mb-0")}>
           {isPlate ? (
-            <h2 className="text-lg sm:text-[22px] md:text-[28px] font-heading font-bold uppercase leading-tight mb-1">
+            <h2 className="text-lg sm:text-[22px] md:text-[28px] font-heading font-bold leading-tight mb-1">
               <span className={titleWipeClasses}>{title}</span>
             </h2>
           ) : (
-            <h3 className="text-base sm:text-lg font-heading font-bold uppercase leading-tight mb-1">
+            <h3 className="text-base sm:text-lg font-heading font-bold leading-tight mb-1">
               <LightboxTrigger src={image.src} alt={image.alt} width={1200} height={800}>
                 <span className={titleWipeClasses}>{title}</span>
               </LightboxTrigger>
