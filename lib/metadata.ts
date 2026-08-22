@@ -73,8 +73,12 @@ export function generatePageMetadata({
   path = '',
   imageUrl = baseMetadata.defaultImage,
   imageAlt = "Brendan Ciccone - 0 → 1 Staff Product Designer",
-  imageWidth = 1024,
-  imageHeight = 537,
+  /* The real dimensions of public/og.png, and the same pair app/layout.tsx
+     declares. These were 1024x537, which did not describe the file then either
+     — it was already 1200x630. Scrapers lay the card out from the declared size
+     before the image arrives, so a wrong pair reserves the wrong box. */
+  imageWidth = 1200,
+  imageHeight = 630,
 }: PageMetadataParams): Metadata {
   const pageTitle = title
     ? `${title} - Brendan Ciccone - 0 → 1 Staff Product Designer`
