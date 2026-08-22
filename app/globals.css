@@ -281,11 +281,23 @@
    * trace the accumulated result, so putting the blurred layers first would
    * make the outline trace the blur instead of the artwork.
    */
+  /* The ring reads a touch heavy, and colour is the only lever that can fix it.
+     Geometry is fixed at 1px a side by the technique — a drop-shadow offset
+     below a whole pixel antialiases into a blur instead of a thinner line,
+     which trades sharpness for the exact width it was trying to buy, and the
+     chaining means corners already run about 1.4x regardless. So the ink comes
+     off instead: 95% of --border rather than a lighter literal, because the
+     token still has to follow the mode. This is the same lever --edge-soft
+     pulls for the thumbnails, and for the same reason — matching the yardstick
+     by value and matching it by eye are different targets.
+
+     Derived rather than hardcoded so it cannot drift from --border. */
+  --edge-ring: color-mix(in srgb, var(--border) 95%, transparent);
   --edge-mockup:
-    drop-shadow(1px 0 0 var(--border))
-    drop-shadow(-1px 0 0 var(--border))
-    drop-shadow(0 1px 0 var(--border))
-    drop-shadow(0 -1px 0 var(--border));
+    drop-shadow(1px 0 0 var(--edge-ring))
+    drop-shadow(-1px 0 0 var(--edge-ring))
+    drop-shadow(0 1px 0 var(--edge-ring))
+    drop-shadow(0 -1px 0 var(--edge-ring));
   --drop-mockup:
     var(--edge-mockup)
     drop-shadow(0 2px 3px hsl(var(--shadow-color) / 0.035))
