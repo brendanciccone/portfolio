@@ -215,9 +215,24 @@ export const WorkCard = ({
           runs edge to edge while theirs sits in a padded frame. Matching them
           up reads as consistency and costs the hierarchy the section headings
           are asserting. */}
+      {/* rounded-t-[11px], not rounded-t-xl, and the missing pixel is the
+          point. The card around this mat is rounded-xl with a 1px border, so
+          its OUTER radius is 12 and its INNER radius — the curve this mat has
+          to sit against — is 12 minus the border, 11. Drawn at 12 the mat's
+          corner is rounder than the hole it fills, so a sliver of the card's
+          own white background shows between the fill and the border along the
+          curve. Measured at 4 page-coloured pixels inside the border per
+          corner at 2x, which is invisible at size and unmistakable the moment
+          anyone zooms a screenshot.
+
+          The card cannot clip it away either: it is overflow-visible, because
+          hover-lift needs to translate without its shadow being cut.
+
+          The rule, wherever a filled child meets a bordered parent's corner:
+          inner radius = outer radius - border width. */}
       <div
         className={cn(
-          "bg-mockup-frame overflow-hidden rounded-t-xl border-b border-border p-2.5",
+          "bg-mockup-frame overflow-hidden rounded-t-[11px] border-b border-border p-2.5",
           href && transitionFrameClassByHref.get(href),
         )}
       >
