@@ -667,7 +667,7 @@ body {
  *   16  body copy, card titles, stat values (600)
  *   14  secondary copy (400), interactive labels — nav and form (500),
  *       dense list rows such as the About experience entries (600),
- *       stat labels (400 muted)
+ *       stat labels (500 muted — the optical floor, not a rank)
  *   12  meta, badges, captions, the side rail — things you skim past, never
  *       something you have to act on. Form validation used to sit here and was
  *       moved up to 14: it is the one small text a visitor is required to read
