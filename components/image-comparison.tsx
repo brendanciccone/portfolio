@@ -113,30 +113,7 @@ export const ImageComparison = ({
     <div
       ref={containerRef}
       tabIndex={0}
-      /*
-       * The edge ring, which every other mockup on the site gets from
-       * --drop-mockup and this one was missing entirely: plate cards, the Other
-       * Work thumbnails and LightboxImage all carry it, so a before/after
-       * figure was the only screenshot on the page sitting in its mat with no
-       * edge of its own.
-       *
-       * Drawn as an inset ring on a pseudo-element rather than with the
-       * drop-shadow chain the others use, because neither half of that
-       * technique applies here. Those images are object-contain with
-       * transparent margins baked into the file, so the only way to find the
-       * artwork's edge is to trace its alpha. These two are object-cover and
-       * fill the box exactly, so the box edge IS the artwork edge and a plain
-       * ring lands in the same place for a fraction of the cost. And tracing
-       * alpha would actively break: the before layer is clipped by the slider,
-       * so a drop-shadow ring would follow that clip and draw a vertical line
-       * down the middle of the figure, moving with the handle.
-       *
-       * On ::after so it paints above both images — an inset box-shadow on the
-       * container itself would sit under them. rounded-md matches the frame's
-       * inner clip so the corners line up with the mat rather than being cut
-       * square by it.
-       */
-      className="group relative w-full cursor-ew-resize touch-none overflow-hidden rounded-md select-none outline-none after:pointer-events-none after:absolute after:inset-0 after:rounded-md after:shadow-[inset_0_0_0_1px_var(--border)] focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background [-webkit-tap-highlight-color:transparent]"
+      className="group relative w-full cursor-ew-resize touch-none overflow-hidden select-none outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background [-webkit-tap-highlight-color:transparent]"
       style={{ aspectRatio: `${width}/${height}` }}
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}
