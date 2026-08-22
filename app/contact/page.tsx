@@ -2,7 +2,6 @@ import { generatePageMetadata } from "@/lib/metadata";
 import ContactForm from "@/components/contact-form";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
-import { DotGrid } from "@/components/dot-grid";
 
 export const metadata = generatePageMetadata({
   title: "Contact",
@@ -30,12 +29,21 @@ export default function ContactPage() {
           in the order the page is written, which on a page whose only job is a
           form is the entire brief.
 
-          The dot lattice is back, and it is not the thing that was removed.
-          That one sat beside the form as a column filler on a two-column split,
-          competing for width with the only content on the page. This one runs
-          the full rail between the copy and the form, and it answers the
-          cursor: texture at rest, one live dot tracking the pointer. A short
-          page needs a floor and a break, not a second column.
+          A dot lattice was tried again and removed again. The second attempt
+          was a better object than the first — full rail rather than a column,
+          proportional by construction, with one live dot tracking the cursor —
+          and it still failed the same test. The page reads thin because the
+          form is four wide, short, empty boxes, and a lattice decorates the gap
+          beside that rather than touching it. Filling space next to a problem
+          is not the same as solving it.
+
+          Making the fields denser is the fix that would work, and it is the one
+          this layout already spent: narrowing them is what the two-column split
+          did, and at ~320px they came out half the width of every other input
+          on the site.
+
+          So the page stays sparse, which is what a page with one job looks
+          like.
         */}
         <section className="flex flex-col gap-3 sm:gap-4">
           {/* One line. It was split across two hand-authored masks, which was
@@ -53,16 +61,6 @@ export default function ContactPage() {
             Looking for feedback on your product or how to take an idea from 0 → 1? Reach out below.
           </p>
         </section>
-
-        {/* Between the copy and the form, which is the one gap on this page
-            worth filling. Below the form it sat under the send button, where
-            nobody who came here to write a message ever looks; here it reads as
-            the rule between what the page says and what it asks for. Three rows
-            rather than four, because it is now inside the reading order and has
-            to be crossed rather than arrived at. */}
-        <div data-flow="0.5">
-          <DotGrid />
-        </div>
 
         {/* Flowed as one block rather than per field: melting the form on its
             own schedule would fade inputs out from under someone filling them */}
