@@ -7,7 +7,7 @@ This is the portfolio site of Brendan Ciccone. It contains four in-depth product
 ## Case studies
 
 - [Corellium](https://brendanciccone.com/work/corellium/): Mobile virtualization for cybersecurity teams — designing the virtual device creation and management flow for mobile security testing.
-- [Spontivly](https://brendanciccone.com/work/spontivly/): Analytics dashboards for non-technical users — social engagement metrics, impression trends, and top performing content.
+- [Spontivly](https://brendanciccone.com/work/spontivly/): Analytics dashboards for non-technical users — social engagement metrics, impression trends, and top-performing content.
 - [Immertec](https://brendanciccone.com/work/immertec/): VR medical training for live surgical procedures with multiple participating doctors.
 - [Paidly](https://brendanciccone.com/work/paidly/): Stripe-integrated invoicing mobile app for SMEs — invoicing, automatic payment reminders, and customer management.
 
