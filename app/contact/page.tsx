@@ -31,12 +31,11 @@ export default function ContactPage() {
           form is the entire brief.
 
           The dot lattice is back, and it is not the thing that was removed.
-          That one sat beside the form as a column filler, so it was competing
-          with the only content on the page. This one runs the full rail below
-          the form, after the reading order is finished with, and it answers the
-          cursor — texture at rest, response on contact. It is placed there for
-          the same reason the old one was placed wrongly: what a short page
-          needs is a floor, not a second column.
+          That one sat beside the form as a column filler on a two-column split,
+          competing for width with the only content on the page. This one runs
+          the full rail between the copy and the form, and it answers the
+          cursor: texture at rest, one live dot tracking the pointer. A short
+          page needs a floor and a break, not a second column.
         */}
         <section className="flex flex-col gap-3 sm:gap-4">
           {/* One line. It was split across two hand-authored masks, which was
@@ -55,17 +54,20 @@ export default function ContactPage() {
           </p>
         </section>
 
+        {/* Between the copy and the form, which is the one gap on this page
+            worth filling. Below the form it sat under the send button, where
+            nobody who came here to write a message ever looks; here it reads as
+            the rule between what the page says and what it asks for. Three rows
+            rather than four, because it is now inside the reading order and has
+            to be crossed rather than arrived at. */}
+        <div data-flow="0.5">
+          <DotGrid />
+        </div>
+
         {/* Flowed as one block rather than per field: melting the form on its
             own schedule would fade inputs out from under someone filling them */}
         <div data-flow>
           <ContactForm />
-        </div>
-
-        {/* Below the form, never above it. The page's whole brief is that the
-            reading order runs title, line, form — so anything decorative has to
-            wait until that is done rather than sit between two of its steps. */}
-        <div data-flow="0.5">
-          <DotGrid />
         </div>
 
         <Footer />
