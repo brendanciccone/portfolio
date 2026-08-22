@@ -16,7 +16,7 @@ import { ArrowRight } from "lucide-react"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
+import { StatRows, type StatRow } from "@/components/stat-rows"
 import { CountUp } from "@/components/count-up"
 import { FigureFrame } from "@/components/figure-frame"
 import { SectionLabel } from "@/components/section-label"
@@ -31,6 +31,13 @@ const sections = [
   { id: "insights", label: "Insights" },
 ]
 
+const caseMeta: readonly StatRow[] = [
+  { label: "Role", value: "Staff Product Designer" },
+  { label: "Timeline", value: "2023–Present" },
+  { label: "Status", value: "Acquired" },
+  { label: "Industry", value: "Cybersecurity" },
+]
+
 export default function CorelliumPage() {
   return (
     <div className="min-h-screen text-foreground">
@@ -39,8 +46,10 @@ export default function CorelliumPage() {
 
       <div className="max-w-[var(--page-width)] mx-auto px-5 pt-32 sm:pt-36 pb-6 sm:pb-8 flex flex-col gap-10 sm:gap-12">
 
-        {/* Page header — inverted: title row and role first so a skimmer gets
-            who/what/outcome before the viewport-height hero image */}
+        {/* Page header: title row, then the hero image, then the particulars
+            as stat rows. The role used to ride above the image in the chip row,
+            where it sat as one tag among four and competed with the project name
+            two lines above it. */}
         <header>
           {/* The framed hero below is left alone: it carries the
               shared-element name for the card→case-study morph */}
@@ -61,25 +70,6 @@ export default function CorelliumPage() {
               </p>
             </div>
           </div>
-          {/* Metadata gets the full rail, on its own row.
-
-              It used to sit in a right-hand column beside the title, which on
-              this 680px rail left it about 250px wide — enough for two badges,
-              so the third wrapped and hung alone on a second line, right-
-              aligned against a ragged edge. The home cards already went through
-              this and ended up stacking tags under the title; this is the same
-              content in a different context, so it should resolve the same way.
-
-              The role is a badge now rather than a lone 12px muted paragraph —
-              it is the same kind of fact as the others and was the only thing
-              on the page in that style. Outline rather than filled keeps it
-              distinct: what he did, versus what the project was. */}
-          <div className="flex flex-wrap items-center gap-1.5 mt-4 anim-rise [animation-delay:180ms]">
-            <Badge variant="outline">Staff Product Designer</Badge>
-            <Badge>2023-Present</Badge>
-            <Badge>Acquired</Badge>
-            <Badge>Cybersecurity</Badge>
-          </div>
           <div className="mt-6 sm:mt-7 bg-mockup-frame rounded-xl border border-border p-3 anim-rise [animation-delay:140ms] [view-transition-name:vt-corellium]">
             <LightboxImage
               src="/work/corellium/1.webp"
@@ -92,6 +82,13 @@ export default function CorelliumPage() {
               sizes="(max-width: 640px) 100vw, (max-width: 768px) 90vw, 680px"
             />
           </div>
+          {/* Under the image, not above it: as chips these four wrapped to two
+              rows at 390px and orphaned the last one, and the role — the only
+              fact here about the designer rather than the company — read as a
+              peer of "Acquired". Below the hero they are also read in the right
+              order: what the project is, then what it looked like, then the
+              particulars. Same component as the home hero. */}
+          <StatRows rows={caseMeta} className="mt-6 anim-rise [animation-delay:180ms]" />
         </header>
 
         {/* Overview + Highlights */}

@@ -445,9 +445,25 @@ body {
  * It has shed two companions: first a hairline that filled the rest of the row,
  * then the tabular counter pushed to the far edge — which left the flex row
  * wrapping a single child, so that went with it. A label is just a label now.
+ *
+ * Muted, not ink, and that is what separates it from the things it names. At
+ * 18/600 ink it was character-for-character identical to a plate card's title —
+ * same size, same weight, same colour — so "Selected Work" and "Corellium"
+ * claimed the same rank, and on a case study it put two ink-semibold blocks
+ * back to back with the metadata above it. The muted step drops it out of the
+ * content ladder entirely: a label is chrome, and chrome should be findable and
+ * then ignorable rather than ranked against the content under it.
+ *
+ * Size stays at 18 because the muted register below is now occupied. The stat
+ * rows put 14/400 muted labels on the same pages, so a section label shrunk to
+ * 14 — or to 12 in caps — would have landed in that register instead of above
+ * it, and on About it would have collided with the 14/600 experience entries
+ * the same way 18 ink collides with card titles. 18 muted is the one setting
+ * clear of both: colour separates it from the content above, size from the
+ * metadata below.
  */
 .sys-section-label {
-  @apply text-lg font-semibold text-foreground;
+  @apply text-lg font-semibold text-muted-foreground;
 }
 
 /*
@@ -647,10 +663,11 @@ body {
  *
  *   24  page titles            text-2xl  (heroes and case studies alike)
  *   20  card plates, stat and metric values, closing CTAs
- *   18  section headings       .sys-section-label
- *   16  body copy, card titles
+ *   18  section headings       .sys-section-label — muted, and off the ladder
+ *   16  body copy, card titles, stat values (600)
  *   14  secondary copy (400), interactive labels — nav and form (500),
- *       dense list rows such as the About experience entries (600)
+ *       dense list rows such as the About experience entries (600),
+ *       stat labels (400 muted)
  *   12  meta, badges, captions, the side rail — things you skim past, never
  *       something you have to act on. Form validation used to sit here and was
  *       moved up to 14: it is the one small text a visitor is required to read
@@ -697,6 +714,15 @@ body {
  * next to a regular 16 reads as one undifferentiated block. Body copy also sat
  * at 15px for a while, a step in neither this scale nor Tailwind's, one pixel
  * under the labels it was meant to rank below.
+ *
+ * Section labels are the exception to that rule, because they are not a level.
+ * They are chrome — you read "Selected Work" once to know where you are and
+ * never again — so ranking them against the content they name is the wrong
+ * question, and it is what produced the 18/600 ink collision with card titles.
+ * They carry the same size and weight as before and are separated by COLOUR
+ * alone. That works precisely because nothing else on the page is 18 muted:
+ * content is ink, and the other muted text (descriptions, stat labels) sits at
+ * 14. See .sys-section-label for why moving them down instead did not work.
  */
 
 /*
