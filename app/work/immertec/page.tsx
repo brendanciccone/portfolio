@@ -24,11 +24,11 @@ import { SectionNav } from "@/components/section-nav"
 import { LightboxImage } from "@/components/lightbox"
 
 const sections = [
-  { id: "overview", number: "01", label: "Overview" },
-  { id: "vr-viewer", number: "02", label: "VR Viewer" },
-  { id: "admin-dashboard", number: "03", label: "Dashboard" },
-  { id: "web-viewer", number: "04", label: "Web Viewer" },
-  { id: "insights", number: "05", label: "Insights" },
+  { id: "overview", label: "Overview" },
+  { id: "vr-viewer", label: "VR Viewer" },
+  { id: "admin-dashboard", label: "Dashboard" },
+  { id: "web-viewer", label: "Web Viewer" },
+  { id: "insights", label: "Insights" },
 ]
 
 export default function ImmertecPage() {
@@ -37,7 +37,7 @@ export default function ImmertecPage() {
       <Header />
       <SectionNav items={sections} />
       
-      <div className="max-w-[1024px] mx-auto px-5 pt-24 pb-6 sm:pb-8 flex flex-col gap-8 sm:gap-10">
+      <div className="max-w-[var(--page-width)] mx-auto px-5 pt-32 sm:pt-36 pb-6 sm:pb-8 flex flex-col gap-10 sm:gap-12">
         
         {/* Page header — inverted: title row and role first so a skimmer gets
             who/what/outcome before the viewport-height hero image */}
@@ -45,82 +45,93 @@ export default function ImmertecPage() {
           {/* The title row recedes as the case study takes over; the framed
               hero below it is left alone because it carries the shared-element
               name for the card→case-study morph */}
-          <div data-recede="meta" className="flex flex-col sm:flex-row sm:items-center gap-4">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4">
             <Image
               src="/about/logos/immertec.jpeg"
               alt="Immertec logo"
               width={60}
               height={60}
-              className="w-12 h-12 sm:w-[60px] sm:h-[60px] object-cover border border-input flex-shrink-0 anim-rise [animation-delay:60ms]"
+              className="w-12 h-12 sm:w-[60px] sm:h-[60px] object-cover rounded-lg border border-border flex-shrink-0 anim-rise [animation-delay:60ms]"
               quality={80}
               sizes="60px"
             />
             <div className="min-w-0 anim-rise [animation-delay:100ms]">
-              <h1 className="font-heading font-extrabold tracking-[-0.02em] text-2xl sm:text-[32px] leading-none sm:whitespace-nowrap">Immertec</h1>
-              <p className="text-[15px] text-muted-foreground mt-1.5 sm:whitespace-nowrap">
+              <h1 className="title-display text-2xl">Immertec</h1>
+              <p className="text-base leading-[1.6] text-ink-soft mt-1.5 sm:whitespace-nowrap">
                 VR medical training for live surgical procedures
               </p>
             </div>
-            <div className="flex flex-col gap-2.5 sm:gap-1.5 sm:flex-1 sm:min-w-0 sm:items-end anim-rise [animation-delay:180ms]">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary">Founding Designer</p>
-              <div className="flex flex-wrap gap-1.5 sm:justify-end">
-                <Badge>2018-2023</Badge>
-                <Badge>Series A</Badge>
-                <Badge>Healthcare</Badge>
-              </div>
-            </div>
           </div>
-          <div className="mt-6 sm:mt-7 bg-mockup-frame border border-border p-3 anim-rise [animation-delay:140ms] [view-transition-name:vt-immertec]">
+          {/* Metadata gets the full rail, on its own row.
+
+              It used to sit in a right-hand column beside the title, which on
+              this 680px rail left it about 250px wide — enough for two badges,
+              so the third wrapped and hung alone on a second line, right-
+              aligned against a ragged edge. The home cards already went through
+              this and ended up stacking tags under the title; this is the same
+              content in a different context, so it should resolve the same way.
+
+              The role is a badge now rather than a lone 12px muted paragraph —
+              it is the same kind of fact as the others and was the only thing
+              on the page in that style. Outline rather than filled keeps it
+              distinct: what he did, versus what the project was. */}
+          <div className="flex flex-wrap items-center gap-1.5 mt-4 anim-rise [animation-delay:180ms]">
+            <Badge variant="outline">Founding Designer</Badge>
+            <Badge>2018-2023</Badge>
+            <Badge>Series A</Badge>
+            <Badge>Healthcare</Badge>
+          </div>
+          <div className="mt-6 sm:mt-7 bg-mockup-frame rounded-xl border border-border p-3 anim-rise [animation-delay:140ms] [view-transition-name:vt-immertec]">
             <LightboxImage
               src="/work/immertec/1.webp"
               alt="Immertec platform showing a live surgical procedure with multiple participants"
               width={1200}
-              height={800}
+              height={900}
               className="w-full"
               priority
               quality={80}
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
+              sizes="(max-width: 640px) 100vw, (max-width: 768px) 90vw, 680px"
             />
           </div>
         </header>
 
         {/* Overview + Highlights */}
         <section id="overview" className="scroll-mt-16">
-          <SectionLabel flow title="Overview" number="01" className="mb-6" />
-          <p data-flow="0.5" className="text-[15px] leading-[1.6] text-ink-soft mb-5">
+          <SectionLabel flow title="Overview" className="mb-6" />
+          <p data-flow="0.5" className="text-base leading-[1.6] text-ink-soft mb-5">
             In 2018, I joined Immertec as the <span className="text-foreground font-semibold">founding designer and second hire</span>. For the first two years, there was no product team. It was the cofounders and me shaping the product together across VR, web, and mobile. Over five years, we grew to <span className="text-foreground font-semibold">50+ team members</span>, secured a <span className="text-foreground font-semibold">$12M Series A</span>, and worked with top medtech companies to train surgical teams using real-time VR.
           </p>
-          <ul data-flow="0.5" className="list-[square] pl-5 space-y-2 text-[15px] leading-[1.7] text-ink-soft mb-6">
+          <ul data-flow="0.5" className="list-disc pl-5 space-y-2 text-base leading-[1.6] text-ink-soft mb-6">
             <li>Participated in investor meetings and created materials that contributed to $12M Series A</li>
             <li>Hired and managed 2 designers, establishing critique practices and documentation standards</li>
             <li>Published 3 papers on accessibility and VR in HFES and SSH journals</li>
             <li>Contributed to 4 company awards, including Startup of the Year (2019)</li>
           </ul>
-          {/* Metric box — same cell anatomy as the home stat bar: red caps
+          {/* Metric box — same cell anatomy as the home stat bar: muted
               label, ink value, description only where it adds a fact */}
-          <div data-flow className="grid grid-cols-1 sm:grid-cols-3 border border-border bg-card">
+          <div data-flow className="grid grid-cols-1 sm:grid-cols-3 rounded-xl border border-border bg-card overflow-hidden">
             <div className="px-5 py-[18px] border-b border-border sm:border-b-0 sm:border-r">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary">Usability</p>
-              <p className="text-lg sm:text-[26px] font-heading font-bold leading-tight tabular-nums mt-1.5">SUS 68 → <CountUp to={83} /></p>
-              <p className="text-[13px] leading-normal text-muted-foreground mt-1.5">15-point lift through the full platform redesign</p>
+              <p className="text-xs font-medium text-muted-foreground">Usability</p>
+              <p className="text-lg sm:text-xl font-heading font-semibold leading-tight tabular-nums mt-1.5">SUS 68 → <CountUp to={83} /></p>
+              <p className="text-sm leading-normal text-muted-foreground mt-1.5">15-point lift through the full platform redesign</p>
             </div>
             <div className="px-5 py-[18px] border-b border-border sm:border-b-0 sm:border-r">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary">Sales cycles</p>
-              <p className="text-lg sm:text-[26px] font-heading font-bold leading-tight tabular-nums mt-1.5">Cut <CountUp to={50} suffix="%" /></p>
-              <p className="text-[13px] leading-normal text-muted-foreground mt-1.5">For medical device partners after the web viewer shipped</p>
+              <p className="text-xs font-medium text-muted-foreground">Sales cycles</p>
+              <p className="text-lg sm:text-xl font-heading font-semibold leading-tight tabular-nums mt-1.5">Cut <CountUp to={50} suffix="%" /></p>
+              <p className="text-sm leading-normal text-muted-foreground mt-1.5">For medical device partners after the web viewer shipped</p>
             </div>
             <div className="px-5 py-[18px]">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary">Satisfaction</p>
-              <p className="text-lg sm:text-[26px] font-heading font-bold leading-tight tabular-nums mt-1.5">NPS <CountUp to={80} suffix="+" /></p>
-              <p className="text-[13px] leading-normal text-muted-foreground mt-1.5">Maintained alongside strong retention</p>
+              <p className="text-xs font-medium text-muted-foreground">Satisfaction</p>
+              <p className="text-lg sm:text-xl font-heading font-semibold leading-tight tabular-nums mt-1.5">NPS <CountUp to={80} suffix="+" /></p>
+              <p className="text-sm leading-normal text-muted-foreground mt-1.5">Maintained alongside strong retention</p>
             </div>
           </div>
         </section>
 
         {/* Virtual Reality Section */}
         <section id="vr-viewer" className="scroll-mt-16">
-          <SectionLabel flow title="Virtual Reality Viewer" number="02" className="mb-6" />
-          <div data-flow="0.5" className="space-y-3.5 text-[15px] leading-[1.6] text-ink-soft mb-6">
+          <SectionLabel flow title="Virtual Reality Viewer" className="mb-6" />
+          <div data-flow="0.5" className="space-y-3.5 text-base leading-[1.6] text-ink-soft mb-6">
             <p>
               At the core of our platform was the Virtual Reality Viewer, immersing healthcare professionals as if
               they were in the operating room. These were not simulations. When users donned a VR headset, they&apos;d
@@ -141,18 +152,18 @@ export default function ImmertecPage() {
               src="/work/immertec/2.webp"
               alt="Immertec VR interface showing participant list, medical imaging with annotations, and surgical procedure views"
               width={1200}
-              height={800}
+              height={900}
               className="w-full"
               quality={80}
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
+              sizes="(max-width: 640px) 100vw, (max-width: 768px) 90vw, 680px"
             />
           </FigureFrame>
         </section>
 
         {/* Admin Dashboard Section */}
         <section id="admin-dashboard" className="scroll-mt-16">
-          <SectionLabel flow title="Admin Dashboard" number="03" className="mb-6" />
-          <div data-flow="0.5" className="space-y-3.5 text-[15px] leading-[1.6] text-ink-soft mb-6">
+          <SectionLabel flow title="Admin Dashboard" className="mb-6" />
+          <div data-flow="0.5" className="space-y-3.5 text-base leading-[1.6] text-ink-soft mb-6">
             <p>
               Our primary users were physicians and surgeons in orthopedics, ENT, and other specialties, including those from Cleveland Clinic and Baylor. A smaller subset were sales managers and salespeople from medical device companies who scheduled events and managed invitations.
             </p>
@@ -170,10 +181,10 @@ export default function ImmertecPage() {
                 src="/work/immertec/3.webp"
                 alt="Immertec admin dashboard showing analytics overview, attendance trends, and user management interface"
                 width={1200}
-                height={800}
+                height={900}
                 className="w-full"
                 quality={80}
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
+                sizes="(max-width: 640px) 100vw, (max-width: 768px) 90vw, 680px"
               />
             </FigureFrame>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -229,8 +240,8 @@ export default function ImmertecPage() {
 
         {/* Interactive Web Player Section */}
         <section id="web-viewer" className="scroll-mt-16">
-          <SectionLabel flow title="Interactive Web Viewer" number="04" className="mb-6" />
-          <div data-flow="0.5" className="space-y-3.5 text-[15px] leading-[1.6] text-ink-soft mb-6">
+          <SectionLabel flow title="Interactive Web Viewer" className="mb-6" />
+          <div data-flow="0.5" className="space-y-3.5 text-base leading-[1.6] text-ink-soft mb-6">
             <p>
               I noticed recurring issues while collaborating with customer success where users struggled to access
               events. Initially, it appeared to be an authentication user flow issue. I eventually discovered the
@@ -254,18 +265,18 @@ export default function ImmertecPage() {
               src="/work/immertec/8.webp"
               alt="Immertec web viewer interface showing live surgical procedure with participant list and interactive controls"
               width={1200}
-              height={800}
+              height={900}
               className="w-full"
               quality={80}
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
+              sizes="(max-width: 640px) 100vw, (max-width: 768px) 90vw, 680px"
             />
           </FigureFrame>
         </section>
 
         {/* Insights Section */}
         <section id="insights" className="scroll-mt-16">
-          <SectionLabel flow title="Insights" number="05" className="mb-6" />
-          <div data-flow="0.5" className="space-y-3.5 text-[15px] leading-[1.6] text-ink-soft mb-6">
+          <SectionLabel flow title="Insights" className="mb-6" />
+          <div data-flow="0.5" className="space-y-3.5 text-base leading-[1.6] text-ink-soft mb-6">
             <p>
               The web viewer taught me that the best design decisions sometimes challenge a company&apos;s core assumptions. The entire business was built around VR, but users needed flexibility. I pushed for a browser-based alternative, built support across the team, and the results validated it. Today I&apos;d pair that conviction with earlier prototypes and data to bring stakeholders along faster.
             </p>
@@ -280,18 +291,18 @@ export default function ImmertecPage() {
               src="/work/immertec/9.webp"
               alt="Immertec sign-in interface showing streamlined authentication options"
               width={1200}
-              height={800}
+              height={900}
               className="w-full"
               quality={80}
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
+              sizes="(max-width: 640px) 100vw, (max-width: 768px) 90vw, 680px"
             />
           </FigureFrame>
         </section>
 
         {/* CTA Section */}
         <section data-flow className="py-4 sm:py-6 text-center">
-          <h2 className="title-display text-2xl sm:text-[30px] mb-2">Let&apos;s ship something <span className="text-primary">great.</span></h2>
-          <p className="text-[15px] text-muted-foreground mb-6">
+          <h2 className="title-display text-lg sm:text-xl mb-2">Let&apos;s ship something great.</h2>
+          <p className="text-base text-muted-foreground mb-6">
             Looking for feedback on your product or how to take an idea from 0 → 1?
           </p>
           <Button asChild size="lg" className="px-6 group">

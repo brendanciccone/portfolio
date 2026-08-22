@@ -25,10 +25,10 @@ import { LightboxImage } from "@/components/lightbox"
 import { ImageComparison } from "@/components/image-comparison"
 
 const sections = [
-  { id: "overview", number: "01", label: "Overview" },
-  { id: "device-creation", number: "02", label: "Devices" },
-  { id: "simplifying", number: "03", label: "Simplifying" },
-  { id: "insights", number: "04", label: "Insights" },
+  { id: "overview", label: "Overview" },
+  { id: "device-creation", label: "Devices" },
+  { id: "simplifying", label: "Simplifying" },
+  { id: "insights", label: "Insights" },
 ]
 
 export default function CorelliumPage() {
@@ -37,7 +37,7 @@ export default function CorelliumPage() {
       <Header />
       <SectionNav items={sections} />
 
-      <div className="max-w-[1024px] mx-auto px-5 pt-24 pb-6 sm:pb-8 flex flex-col gap-8 sm:gap-10">
+      <div className="max-w-[var(--page-width)] mx-auto px-5 pt-32 sm:pt-36 pb-6 sm:pb-8 flex flex-col gap-10 sm:gap-12">
 
         {/* Page header — inverted: title row and role first so a skimmer gets
             who/what/outcome before the viewport-height hero image */}
@@ -45,81 +45,92 @@ export default function CorelliumPage() {
           {/* The title row recedes as the case study takes over; the framed
               hero below it is left alone because it carries the shared-element
               name for the card→case-study morph */}
-          <div data-recede="meta" className="flex flex-col sm:flex-row sm:items-center gap-4">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4">
             <Image
               src="/about/logos/corellium.jpeg"
               alt="Corellium logo"
               width={60}
               height={60}
-              className="w-12 h-12 sm:w-[60px] sm:h-[60px] object-cover border border-input flex-shrink-0 anim-rise [animation-delay:60ms]"
+              className="w-12 h-12 sm:w-[60px] sm:h-[60px] object-cover rounded-lg border border-border flex-shrink-0 anim-rise [animation-delay:60ms]"
               quality={80}
               sizes="60px"
             />
             <div className="min-w-0 anim-rise [animation-delay:100ms]">
-              <h1 className="font-heading font-extrabold tracking-[-0.02em] text-2xl sm:text-[32px] leading-none sm:whitespace-nowrap">Corellium</h1>
-              <p className="text-[15px] text-muted-foreground mt-1.5 sm:whitespace-nowrap">
+              <h1 className="title-display text-2xl">Corellium</h1>
+              <p className="text-base leading-[1.6] text-ink-soft mt-1.5 sm:whitespace-nowrap">
                 Mobile virtualization for cybersecurity teams
               </p>
             </div>
-            <div className="flex flex-col gap-2.5 sm:gap-1.5 sm:flex-1 sm:min-w-0 sm:items-end anim-rise [animation-delay:180ms]">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary">Staff Product Designer</p>
-              <div className="flex flex-wrap gap-1.5 sm:justify-end">
-                <Badge>2023-Present</Badge>
-                <Badge>Acquired</Badge>
-                <Badge>Cybersecurity</Badge>
-              </div>
-            </div>
           </div>
-          <div className="mt-6 sm:mt-7 bg-mockup-frame border border-border p-3 anim-rise [animation-delay:140ms] [view-transition-name:vt-corellium]">
+          {/* Metadata gets the full rail, on its own row.
+
+              It used to sit in a right-hand column beside the title, which on
+              this 680px rail left it about 250px wide — enough for two badges,
+              so the third wrapped and hung alone on a second line, right-
+              aligned against a ragged edge. The home cards already went through
+              this and ended up stacking tags under the title; this is the same
+              content in a different context, so it should resolve the same way.
+
+              The role is a badge now rather than a lone 12px muted paragraph —
+              it is the same kind of fact as the others and was the only thing
+              on the page in that style. Outline rather than filled keeps it
+              distinct: what he did, versus what the project was. */}
+          <div className="flex flex-wrap items-center gap-1.5 mt-4 anim-rise [animation-delay:180ms]">
+            <Badge variant="outline">Staff Product Designer</Badge>
+            <Badge>2023-Present</Badge>
+            <Badge>Acquired</Badge>
+            <Badge>Cybersecurity</Badge>
+          </div>
+          <div className="mt-6 sm:mt-7 bg-mockup-frame rounded-xl border border-border p-3 anim-rise [animation-delay:140ms] [view-transition-name:vt-corellium]">
             <LightboxImage
               src="/work/corellium/1.webp"
               alt="Corellium virtual device platform dashboard"
               width={1200}
-              height={800}
+              height={900}
               className="w-full"
               priority
               quality={80}
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
+              sizes="(max-width: 640px) 100vw, (max-width: 768px) 90vw, 680px"
             />
           </div>
         </header>
 
         {/* Overview + Highlights */}
         <section id="overview" className="scroll-mt-16">
-          <SectionLabel flow title="Overview" number="01" className="mb-5" />
-          <p data-flow="0.5" className="text-[15px] leading-[1.6] text-ink-soft mb-5">
+          <SectionLabel flow title="Overview" className="mb-5" />
+          <p data-flow="0.5" className="text-base leading-[1.6] text-ink-soft mb-5">
             In 2023, I joined Corellium as the <span className="text-foreground font-semibold">solo designer</span> on a virtualization platform used by security researchers, enterprises, and government agencies to test mobile applications and firmware. I owned end-to-end product design across web and mobile, partnering with product and engineering teams to ship improvements while navigating the constraints of a complex platform.
           </p>
-          <ul data-flow="0.5" className="list-[square] pl-5 space-y-2 text-[15px] leading-[1.7] text-ink-soft mb-6">
+          <ul data-flow="0.5" className="list-disc pl-5 space-y-2 text-base leading-[1.6] text-ink-soft mb-6">
             <li>Shipped CI/CD-integrated mobile threat analysis tool, reducing review time for security teams</li>
             <li>Built the entire platform in Figma for the first time, with full mobile parity and a scalable design system</li>
             <li>Led WCAG accessibility initiative, enabling enterprise sales and streamlining compliance</li>
           </ul>
-          {/* Metric box — same cell anatomy as the home stat bar: red caps
+          {/* Metric box — same cell anatomy as the home stat bar: muted
               label, ink value, description only where it adds a fact */}
-          <div data-flow className="grid grid-cols-1 sm:grid-cols-3 border border-border bg-card">
+          <div data-flow className="grid grid-cols-1 sm:grid-cols-3 rounded-xl border border-border bg-card overflow-hidden">
             <div className="px-5 py-[18px] border-b border-border sm:border-b-0 sm:border-r">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary">Usability</p>
-              <p className="text-lg sm:text-[26px] font-heading font-bold leading-tight tabular-nums mt-1.5">SUS <CountUp to={81} /></p>
-              <p className="text-[13px] leading-normal text-muted-foreground mt-1.5">Post-launch score via in-product surveys</p>
+              <p className="text-xs font-medium text-muted-foreground">Usability</p>
+              <p className="text-lg sm:text-xl font-heading font-semibold leading-tight tabular-nums mt-1.5">SUS <CountUp to={81} /></p>
+              <p className="text-sm leading-normal text-muted-foreground mt-1.5">Post-launch score via in-product surveys</p>
             </div>
             <div className="px-5 py-[18px] border-b border-border sm:border-b-0 sm:border-r">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary">Exit</p>
-              <p className="text-lg sm:text-[26px] font-heading font-bold leading-tight tabular-nums mt-1.5"><CountUp to={200} prefix="$" suffix="M" /></p>
-              <p className="text-[13px] leading-normal text-muted-foreground mt-1.5">WCAG and design system work made the platform acquisition-ready</p>
+              <p className="text-xs font-medium text-muted-foreground">Exit</p>
+              <p className="text-lg sm:text-xl font-heading font-semibold leading-tight tabular-nums mt-1.5"><CountUp to={200} prefix="$" suffix="M" /></p>
+              <p className="text-sm leading-normal text-muted-foreground mt-1.5">WCAG and design system work made the platform acquisition-ready</p>
             </div>
             <div className="px-5 py-[18px]">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary">Compliance</p>
-              <p className="text-lg sm:text-[26px] font-heading font-bold leading-tight tabular-nums mt-1.5">WCAG 2.1 AA</p>
-              <p className="text-[13px] leading-normal text-muted-foreground mt-1.5">Accessibility work that unblocked enterprise sales</p>
+              <p className="text-xs font-medium text-muted-foreground">Compliance</p>
+              <p className="text-lg sm:text-xl font-heading font-semibold leading-tight tabular-nums mt-1.5">WCAG 2.1 AA</p>
+              <p className="text-sm leading-normal text-muted-foreground mt-1.5">Accessibility work that unblocked enterprise sales</p>
             </div>
           </div>
         </section>
 
         {/* The Problem - Old Flow */}
         <section id="device-creation" className="scroll-mt-16">
-          <SectionLabel flow title="Device Creation: The Core Experience" number="02" className="mb-5" />
-          <div data-flow="0.5" className="space-y-3.5 text-[15px] leading-[1.6] text-ink-soft mb-6">
+          <SectionLabel flow title="Device Creation: The Core Experience" className="mb-5" />
+          <div data-flow="0.5" className="space-y-3.5 text-base leading-[1.6] text-ink-soft mb-6">
             <p>
               Device creation is the most critical flow in the platform. It&apos;s how every user starts their work. If this flow is painful, the entire product feels painful.
             </p>
@@ -144,15 +155,15 @@ export default function CorelliumPage() {
               beforeAlt="FigJam diagram showing the original device creation flow with multiple steps and decision points"
               afterAlt="FigJam diagram showing the redesigned device creation flow with simplified steps"
               width={1200}
-              height={800}
+              height={900}
             />
           </FigureFrame>
         </section>
 
         {/* Redesign narrative + redesigned UI */}
         <section id="simplifying" className="scroll-mt-16">
-          <SectionLabel flow title="Simplifying the Experience" number="03" className="mb-5" />
-          <div data-flow="0.5" className="space-y-3.5 text-[15px] leading-[1.6] text-ink-soft mb-6">
+          <SectionLabel flow title="Simplifying the Experience" className="mb-5" />
+          <div data-flow="0.5" className="space-y-3.5 text-base leading-[1.6] text-ink-soft mb-6">
             <p>
               The goal was to reduce cognitive load and eliminate unnecessary steps without sacrificing flexibility. I redesigned the flow down to <span className="text-foreground font-semibold">3 steps</span>. In the new design, one click gives you the latest iOS, Android, or IoT device with smart defaults. Power users can still customize everything, but the common path is fast. Changing your mind no longer punishes you with extra steps: device type, OS version, project, and advanced options can all be adjusted without starting over.
             </p>
@@ -174,10 +185,10 @@ export default function CorelliumPage() {
                 src="/work/corellium/4.webp"
                 alt="Corellium project selection interface"
                 width={1200}
-                height={800}
+                height={900}
                 className="w-full"
                 quality={80}
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
+                sizes="(max-width: 640px) 100vw, (max-width: 768px) 90vw, 680px"
               />
             </FigureFrame>
             {/* Before/After: original vs redesigned device configuration */}
@@ -221,8 +232,8 @@ export default function CorelliumPage() {
 
         {/* Insights */}
         <section id="insights" className="scroll-mt-16">
-          <SectionLabel flow title="Insights" number="04" className="mb-5" />
-          <div data-flow="0.5" className="space-y-3.5 text-[15px] leading-[1.6] text-ink-soft mb-6">
+          <SectionLabel flow title="Insights" className="mb-5" />
+          <div data-flow="0.5" className="space-y-3.5 text-base leading-[1.6] text-ink-soft mb-6">
             <p>
               In B2B enterprise, customer requests translate directly to revenue, which means platform-wide UX improvements often lose the prioritization battle. Find the intersection between what users need and what a PM can justify on their roadmap to get foundational work prioritized.
             </p>
@@ -244,18 +255,18 @@ export default function CorelliumPage() {
               src="/work/corellium/7.webp"
               alt="Corellium IoT device selection showing modular configuration"
               width={1200}
-              height={800}
+              height={900}
               className="w-full"
               quality={80}
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
+              sizes="(max-width: 640px) 100vw, (max-width: 768px) 90vw, 680px"
             />
           </FigureFrame>
         </section>
 
         {/* CTA Section */}
         <section data-flow className="py-4 sm:py-6 text-center">
-          <h2 className="title-display text-2xl sm:text-[30px] mb-2">Let&apos;s ship something <span className="text-primary">great.</span></h2>
-          <p className="text-[15px] text-muted-foreground mb-6">
+          <h2 className="title-display text-lg sm:text-xl mb-2">Let&apos;s ship something great.</h2>
+          <p className="text-base text-muted-foreground mb-6">
             Looking for feedback on your product or how to take an idea from 0 → 1?
           </p>
           <Button asChild size="lg" className="px-6 group">

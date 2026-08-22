@@ -3,19 +3,26 @@ import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
 
+/*
+ * The reference badge is a filled pill, not an outlined chip: secondary
+ * surface, transparent border to hold the same box as the outline variant, and
+ * 12px semibold in sentence case. Tags are proper nouns and years — caps
+ * flattened "Stripe Partner" and "2018-2023" into the same undifferentiated
+ * band, which is exactly what the border-only chip was already doing.
+ */
 const badgeVariants = cva(
-  "inline-flex items-center gap-x-1.5 rounded-none px-2 py-0.5 text-[10px] uppercase tracking-[0.06em] transition-colors",
+  "inline-flex items-center gap-x-1.5 rounded-full px-2.5 py-0.5 text-xs font-semibold transition-colors",
   {
     variants: {
       variant: {
         default:
-          "border border-input bg-transparent text-muted-foreground",
+          "border border-transparent bg-secondary text-secondary-foreground",
         secondary:
-          "border-0 bg-muted text-muted-foreground",
+          "border border-transparent bg-secondary text-secondary-foreground",
         outline:
-          "bg-transparent text-muted-foreground border border-input",
+          "border border-input bg-transparent text-foreground",
         destructive:
-          "border border-destructive/30 bg-transparent text-destructive",
+          "border border-transparent bg-destructive text-destructive-foreground",
       },
     },
     defaultVariants: {

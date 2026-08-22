@@ -1,4 +1,4 @@
-import { Inter } from "next/font/google"
+import { GeistSans } from "geist/font/sans"
 import type React from "react"
 import type { Metadata, Viewport } from "next"
 import "./globals.css"
@@ -11,14 +11,11 @@ import { ReadingProgress } from "@/components/reading-progress"
 import { ViewTransitionSettler } from "@/components/view-transition-link"
 import JsonLd from "@/components/json-ld"
 
-// One face for the whole site: Inter carries display, body, UI, and the small
-// uppercase meta labels/tags/dates alike. No weight list — Google serves Inter
-// as a variable font, so the full 100–900 range comes down in a single file and
-// the display weights (700/800) stay available.
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-})
+// One face for the whole site: Geist carries display, body, UI, and the small
+// meta labels, tags and dates alike. It ships as a variable font, so the whole
+// 100–900 range arrives in a single file and the three weights the system uses
+// (400, 500, 600) are all real rather than synthesised. Self-hosted from the
+// package, so there is no third-party font request on any page.
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -89,12 +86,12 @@ export default function RootLayout({
     // data-entrance ships on in the served HTML so a cold load plays its
     // choreography with no script involved and no flash of final state;
     // TransitionLink clears it for navigations that morph instead.
-    <html lang="en" suppressHydrationWarning data-entrance="" className={`${inter.variable} ${inter.className}`}>
+    <html lang="en" suppressHydrationWarning data-entrance="" className={`${GeistSans.variable} ${GeistSans.className}`}>
       <head>
         <JsonLd />
       </head>
       <body suppressHydrationWarning>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem storageKey="theme-v2" disableTransitionOnChange>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem storageKey="theme-v3" disableTransitionOnChange>
           <ErrorBoundary>
             <ScrollToTop />
             <ViewTransitionSettler />

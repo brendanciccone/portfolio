@@ -1,53 +1,30 @@
 @import "tailwindcss";
 
-/*
- * Patches one hole in the Inter that next/font serves. Google's `latin` subset
- * carries U+2191 ↑ and U+2193 ↓ but not U+2192 →, so every "0 → 1" on the site
- * — hero, about, contact, the four case-study CTAs, and the bold "SUS 68 → 83"
- * stat — fell out of Inter at that one glyph: down to "Inter Fallback"
- * (local Arial, size-adjust 107.12%) where Arial exists, and past it to
- * whatever sans/serif the OS offers where it doesn't.
- *
- * Declared under the same family name, so the browser stitches it into Inter
- * rather than treating it as a separate fallback; unicode-range keeps it off
- * the wire until an arrow is actually on the page.
- *
- * public/fonts/inter-arrows.woff2 is the U+2190–21FF block cut from the same
- * upstream Inter 4.001 that Google serves, opsz pinned to 14 to match their
- * build (their subsets ship wght only) and the wght axis left live so the arrow
- * tracks font-weight into display type. Regenerate with fonttools:
- *   fonttools varLib.instancer "Inter[opsz,wght].ttf" opsz=14 -o inter-14.ttf
- *   pyftsubset inter-14.ttf --unicodes="U+2190-21FF" --flavor=woff2 \
- *     --output-file=public/fonts/inter-arrows.woff2
- */
-@font-face {
-  font-family: Inter;
-  font-style: normal;
-  font-weight: 100 900;
-  font-display: swap;
-  src: url("/fonts/inter-arrows.woff2") format("woff2");
-  unicode-range: U+2190-21FF;
-}
-
 @theme {
-  /* Single-face system: every role resolves to Inter. The three tokens are kept
+  /* Single-face system: every role resolves to Geist. The three tokens are kept
      apart so the utilities that carry design intent (font-heading on display
-     type, font-mono on the small uppercase meta labels) still say what they
-     mean, and so a second face could be reintroduced in one place.
+     type, font-mono on small meta labels) still say what they mean, and so a
+     second face could be reintroduced in one place.
      There is no --font-display: Tailwind only emits a theme variable that some
      utility actually references, and nothing uses font-display — so the token
      shipped as nothing at all, and any rule reading var(--font-display) was
      silently invalid at computed-value time and inherited instead. Display type
      runs on --font-heading, which the section labels, case-study titles and
      stat values keep alive. */
-  --font-sans: var(--font-inter);
-  --font-heading: var(--font-inter);
-  --font-mono: var(--font-inter);
+  --font-sans: var(--font-geist-sans);
+  --font-heading: var(--font-geist-sans);
+  --font-mono: var(--font-geist-sans);
 
-  /* Clamped to 0px so the derived tokens don't go negative when --radius is 0. */
+  /* shadcn's derivation, which is what the reference file's radius tokens were
+     built on: with --radius at 8px this lands md on 6px and sm on 4px, the two
+     values the design actually uses (controls and checkboxes respectively).
+     The steps were -1px/-2px under the previous system, where --radius was 0
+     and the whole scale collapsed to square anyway. rounded-xl (12px, the card
+     and mat radius) is Tailwind's own default and needs no override.
+     Still clamped at 0px so the derived tokens can't go negative. */
   --radius-lg: var(--radius);
-  --radius-md: max(0px, calc(var(--radius) - 1px));
-  --radius-sm: max(0px, calc(var(--radius) - 2px));
+  --radius-md: max(0px, calc(var(--radius) - 2px));
+  --radius-sm: max(0px, calc(var(--radius) - 4px));
 
   --color-slate-50: oklch(97.5% 0.004 260);
   --color-slate-100: oklch(94% 0.004 260);
@@ -125,8 +102,8 @@
  *   morph  (300ms) — cross-page shared-element view transitions
  *   enter  (620ms) — load entrances: hero lines, meta, intro
  *   wipe   (1000/1200ms) — one-shot image clip-path reveals
- * The stamp (340ms on an overshoot curve) is the single deliberate
- * exception, and it is spent on exactly one glyph: the red period.
+ * There used to be a sixth: a 340ms overshoot spent on one glyph, the
+ * period that ended each hero. The period is gone, and so is the curve.
  */
 :root {
   --motion-touch: 150ms;
@@ -149,80 +126,263 @@
    */
   --motion-wipe: 550ms;
   --motion-wipe-long: 700ms;
-  --motion-stamp: 340ms;
   --ease-settle: cubic-bezier(0.22, 1, 0.36, 1);
-  --ease-stamp: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 /*
- * Swiss Light — warm paper neutrals, single red accent.
- * paper #faf9f7 · card #fff · ink #1a1a1a · line #e4e2dd · mat #f3f1ec · accent #e5372a
+ * Zinc — the shadcn/ui neutral scale, taken from the Figma "🌐 Website" page.
+ * Monochrome by design: there is no accent hue. Emphasis is carried by weight,
+ * by fill (near-black blocks with near-white type), and by the muted step —
+ * never by colour. paper #fff · ink #18181b · line #e4e4e7 · mat #fafafa
  */
 :root {
-  --background: #faf9f7;
-  --foreground: #1a1a1a;
+  --background: #ffffff;
+  --foreground: #18181b;
   --card: #ffffff;
-  --card-foreground: #1a1a1a;
+  --card-foreground: #18181b;
   --popover: #ffffff;
-  --popover-foreground: #1a1a1a;
-  /* The one accent: red. Drives active nav, labels, links, and the CTA button.
-     #d73427 is the brightest red on the spec hue (#e5372a) that clears WCAG
-     AA 4.5:1 both as text on paper (4.53:1) and under white type (4.76:1). */
-  --primary: #d73427;
-  --primary-foreground: #ffffff;
-  /* Filled red surfaces (active nav, buttons): self-contained pair, identical
-     in both modes so red blocks always carry white type. */
-  --primary-fill: #d73427;
-  --primary-fill-foreground: #ffffff;
-  --secondary: #f3f1ec;
-  --secondary-foreground: #1a1a1a;
-  --muted: #f3f1ec;
-  /* Image mat behind screenshots — same tone on cards and case studies */
-  --mockup-frame: #f3f1ec;
-  --muted-foreground: #55554e;
-  --accent: #f3f1ec;
-  --accent-foreground: #1a1a1a;
-  --destructive: #d73427;
-  --destructive-foreground: #ffffff;
-  --border: #e4e2dd;
-  /* Doubles as the chip/tag outline (--line-mute in the spec) */
-  --input: #d8d6d0;
-  --ring: #d73427;
-  --radius: 0;
-  --ink-soft: #4a4a44;
-  --ink-faint: #6a6a63;
+  --popover-foreground: #18181b;
+  --primary: #18181b;
+  --primary-foreground: #fafafa;
+  /* Filled surfaces (buttons, active nav, selection). Unlike the previous
+     system these are NOT mode-independent: a monochrome palette inverts, so
+     the filled block is near-black on paper and near-white on ink. */
+  --primary-fill: #18181b;
+  --primary-fill-foreground: #fafafa;
+  --secondary: #f4f4f5;
+  --secondary-foreground: #18181b;
+  --muted: #f4f4f5;
+  /* Image mat behind screenshots — one step off paper so a white mockup still
+     reads as a separate object inside the card */
+  --mockup-frame: #fafafa;
+  --muted-foreground: #71717a;
+  --accent: #f4f4f5;
+  --accent-foreground: #18181b;
+  /* The one place colour survives: form validation, where red is the message
+     rather than the decoration. 5.2:1 on paper. */
+  --destructive: #dc2626;
+  --destructive-foreground: #fafafa;
+  --border: #e4e4e7;
+  --input: #e4e4e7;
+  --ring: #18181b;
+  /*
+   * ── Shadows ──────────────────────────────────────────────────────────────
+   *
+   * Matched to the Spontivly dashboard frame in the Figma file, measured off
+   * the render rather than guessed. On a 1541px-wide card that shadow reaches
+   * ~77px below the bottom edge, ~20px to the sides, and essentially nothing
+   * above, peaking at only 4.65% darker than the page. Rescaled to the 658px
+   * plate cards here that is ~33px down, ~9px across.
+   *
+   * Two things follow from those numbers, and they are the whole system:
+   *
+   * 1. DIRECTIONAL. The drop is roughly 0.7x the blur, so the shadow is pushed
+   *    far enough down that almost none of it escapes above the element. A
+   *    symmetrical shadow (drop much smaller than blur) haloes evenly on all
+   *    four sides, which reads as a glow around a sticker rather than as an
+   *    object standing off the page.
+   *
+   * 2. LONG AND FAINT, not short and dark. The reach is several times what a
+   *    contact shadow would give, but the peak is under 5%. Getting presence
+   *    from distance instead of from opacity is what keeps it from looking
+   *    like a border.
+   *
+   * Each token is a tight contact layer plus one long directional layer. The
+   * contact layer is what stops the object looking like it is hovering
+   * detached; the long layer is the float.
+   *
+   * Colour is zinc, not black. A neutral black shadow over a zinc page goes
+   * muddy, because it is the only thing on screen with no hue in it.
+   */
+  --shadow-color: 240 6% 10%;
+
+  /*
+   * The nav shell — the one element that actually floats.
+   *
+   * There was a wider ambient layer here once (0 12px 32px -8px). On a 64px bar
+   * that reach is most of the bar's own height, so instead of reading as
+   * elevation it resolved into a flat grey band hanging below the nav with a
+   * visible edge of its own — the exact fog an ambient layer exists to avoid.
+   * Ambient layers work under a large surface; this one is too small.
+   *
+   * The inset white line on the top edge is the specular one: it catches the
+   * light the others are blocking, which is what makes a translucent surface
+   * read as glass rather than as a card.
+   */
+  --shadow-float:
+    0 1px 2px hsl(var(--shadow-color) / 0.04),
+    0 6px 10px -4px hsl(var(--shadow-color) / 0.06),
+    inset 0 1px 0 0 rgb(255 255 255 / 0.65);
+
+  /*
+   * Screenshots sitting on their mat — lifted a few millimetres off a mount,
+   * not floating over the page, so two doublings rather than three.
+   *
+   * A filter, not a box-shadow, because every mockup is a transparent WebP with
+   * its artwork floating inside a much larger canvas — 46px of empty pixels on
+   * each side of the large ones. box-shadow traces the element box, so it drew a
+   * rectangle 46px out from the screenshot with nothing in between, reading as a
+   * halo around the mat rather than a shadow under the mockup. drop-shadow
+   * traces the alpha channel, so it hugs the artwork itself. On an opaque image
+   * it degrades to exactly what box-shadow would have done.
+   *
+   * Chained rather than comma-separated: drop-shadow() takes one shadow and no
+   * spread, so each layer is its own function. The second shadows the result of
+   * the first, which is what stacking two layers of one silhouette wants anyway.
+   */
+  /*
+   * A 1px hairline that follows the screenshot's own silhouette rather than its
+   * bounding box — the mockups are mostly white UI on a near-white mat, so
+   * their outer edge dissolved into the frame.
+   *
+   * One zero-offset, 1px-blur drop-shadow. The shadow is drawn from the alpha
+   * channel with no displacement, so the blur is the only thing that pushes it
+   * past the artwork — which produces a ring of exactly one radius, uniform all
+   * the way round. It works here because these files have a razor-sharp alpha
+   * edge — 0 to 252 in about two source pixels — so there is a real silhouette
+   * to trace; on a PNG with a soft baked-in shadow this technique smears.
+   *
+   * It replaced four hard 1px offsets, one per direction. That construction
+   * chains, and each link traces the *accumulated* result, so the ring came out
+   * a full offset thick on straight runs and about 1.4x that on the diagonals —
+   * a wide soft halo rather than a hairline, worst exactly at the rounded
+   * corners the eye goes to. One layer cannot compound with itself, so the
+   * corner and the straight edge are finally the same weight.
+   *
+   * It is also four filter passes cheaper. The chain was six deep over a 658px
+   * image and had to re-run on every frame of the load fade, which is why the
+   * ring visibly lagged the image it belonged to.
+   *
+   * It is also resolution-independent in the right direction: filters operate
+   * in CSS pixels on the rendered element, so this holds its weight whether the
+   * source is 2400px wide or 400px, and whether it renders at 658px or 114px.
+   *
+   * The colour is --border itself, not a value tuned to look like it. That is
+   * the whole point: a hard-edged drop-shadow is an exact copy of the alpha
+   * channel filled with one colour, so a ring built from four of them renders
+   * the same ink a real 1px solid --border rule does. Measured against exactly
+   * that — a real bordered box injected onto the same mat — this lands at a
+   * luminance dip of 21 against the yardstick's 22, in Chromium and WebKit
+   * alike, and it follows both themes for free because it reads the token.
+   *
+   * A blurred ring cannot do this. Blur spreads the alpha, so the ramp never
+   * reaches full strength and the colour has to be darkened to register at all
+   * — which is why every blurred version read as either too soft to see or too
+   * dark to belong next to the site's other hairlines. Sharpness and colour
+   * fidelity are the same property here, and blur trades one for the other.
+   *
+   * The cost is the corners. These four layers chain, each tracing the
+   * accumulated result, so a diagonal picks up both axes and comes out about
+   * 1.4x — half a CSS pixel wider than a real border, in Chromium only; WebKit
+   * matches the yardstick on width too. That is the one thing this technique
+   * cannot fix, and it is a better trade than being the wrong colour.
+   *
+   * ORDER MATTERS. These must come before the float. Chained drop-shadows each
+   * trace the accumulated result, so putting the blurred layers first would
+   * make the outline trace the blur instead of the artwork.
+   */
+  --edge-mockup:
+    drop-shadow(1px 0 0 var(--border))
+    drop-shadow(-1px 0 0 var(--border))
+    drop-shadow(0 1px 0 var(--border))
+    drop-shadow(0 -1px 0 var(--border));
+  --drop-mockup:
+    var(--edge-mockup)
+    drop-shadow(0 2px 3px hsl(var(--shadow-color) / 0.035))
+    drop-shadow(0 10px 14px hsl(var(--shadow-color) / 0.045));
+
+  /* The Other Work thumbnails run the same ring a step lighter than --border.
+     Not a fudge — the ring traces the image's alpha, and these are downsampled
+     about 3.4x (a 563px source into 141px of artwork), so their alpha edge is
+     antialiased across two or three pixels rather than one. The four hard
+     copies then land at fractional alphas spread over that width and come out
+     as a soft band instead of a line, which is why the same construction that
+     matches a real 1px border on a plate card reads heavy here. On top of that
+     the ring is 0.71% of this artwork's width against 0.18% on a plate, so it
+     is carrying four times the proportional weight. Lighter is what makes it
+     the same visual line, even though it is no longer the same value.
+
+     The float stays off entirely.
+     Proportion was not the problem — a ~5px reach on a 114px chip is 4.4% of
+     its width against the plate cards' 5.0%, so it was already scaled. The
+     problem is that there is nowhere to put it: the artwork fills a 114x82 clip
+     inside a 128x96 mat, so the shadow had 6px of padding to land in and got
+     compressed against the mat's edge, reading as a smudge rather than a lift.
+     A shadow needs room to fall off before it looks like elevation.
+     At this size the border alone does the whole job — a 114px chip in a list
+     row is not floating off a mount, it just needs its edge defined. */
+  --drop-mockup-sm:
+    drop-shadow(1px 0 0 var(--edge-soft))
+    drop-shadow(-1px 0 0 var(--edge-soft))
+    drop-shadow(0 1px 0 var(--edge-soft))
+    drop-shadow(0 -1px 0 var(--edge-soft));
+  --edge-soft: #ececef;
+  --radius: 0.5rem;
+  /* Content rail — every page and the floating nav read it, so the two can
+     never stop at different edges. 45rem is the measure the About page was
+     already running; the rest of the site came down from 64rem to join it,
+     which also puts body copy on a line length you can actually read. */
+  --page-width: 45rem;
+  --ink-soft: #52525b;
+  --ink-faint: #71717a;
 }
 
 /*
- * Swiss Dark — the same warm-neutral system inverted; red lifted for contrast
- * on near-black so 11px mono labels stay legible.
+ * Zinc dark — the same scale inverted. Card and background share a value, so
+ * in this mode a card is defined by its border alone; the image mat is the one
+ * surface that lifts off the page.
  */
 .dark {
-  --background: #141412;
-  --foreground: #f0eee9;
-  --card: #1b1b18;
-  --card-foreground: #f0eee9;
-  --popover: #1b1b18;
-  --popover-foreground: #f0eee9;
-  /* Lifted for legibility as small text on near-black; fills use --primary-fill */
-  --primary: #ff5a4d;
-  --primary-foreground: #1a0b09;
-  --primary-fill: #d73427;
-  --primary-fill-foreground: #ffffff;
-  --secondary: #22211d;
-  --secondary-foreground: #f0eee9;
-  --muted: #22211d;
-  --mockup-frame: #22211d;
-  --muted-foreground: #a3a098;
-  --accent: #22211d;
-  --accent-foreground: #f0eee9;
-  --destructive: #ff5a4d;
-  --destructive-foreground: #1a0b09;
-  --border: #2b2a26;
-  --input: #38362f;
-  --ring: #ff5a4d;
-  --ink-soft: #c7c4bc;
-  --ink-faint: #8b887f;
+  --background: #09090b;
+  --foreground: #fafafa;
+  --card: #09090b;
+  --card-foreground: #fafafa;
+  --popover: #18181b;
+  --popover-foreground: #fafafa;
+  --primary: #fafafa;
+  --primary-foreground: #18181b;
+  --primary-fill: #fafafa;
+  --primary-fill-foreground: #18181b;
+  --secondary: #27272a;
+  --secondary-foreground: #fafafa;
+  --muted: #27272a;
+  --mockup-frame: #18181b;
+  --muted-foreground: #a1a1aa;
+  --accent: #27272a;
+  --accent-foreground: #fafafa;
+  --destructive: #f87171;
+  --destructive-foreground: #18181b;
+  --border: #27272a;
+  --input: #27272a;
+  --ring: #d4d4d8;
+  /*
+   * Dark mode inverts which layer does the work. Cast shadow is nearly
+   * invisible against #09090b — you cannot darken near-black — so the lift comes
+   * from the inset highlight along the top edge, which reads as the shell
+   * catching light from above. The cast layers stay, deeper and fewer, to keep
+   * the shell from sitting flat on the page where content scrolls under it.
+   */
+  /* Cast shadow barely registers on near-black, so the mat itself does the
+     lifting in dark mode and this stays a whisper rather than a smudge. */
+  --drop-mockup:
+    var(--edge-mockup)
+    drop-shadow(0 2px 3px hsl(var(--shadow-color) / 0.3))
+    drop-shadow(0 10px 14px hsl(var(--shadow-color) / 0.35));
+  --drop-mockup-sm:
+    drop-shadow(1px 0 0 var(--edge-soft))
+    drop-shadow(-1px 0 0 var(--edge-soft))
+    drop-shadow(0 1px 0 var(--edge-soft))
+    drop-shadow(0 -1px 0 var(--edge-soft));
+  --edge-soft: #232326;
+  /* Same ratio, higher alpha: on a near-black page a 4% shadow is invisible,
+     so the layers carry more while the geometry stays identical. */
+  --shadow-color: 240 10% 2%;
+  --shadow-float:
+    0 1px 2px hsl(var(--shadow-color) / 0.4),
+    0 6px 10px -4px hsl(var(--shadow-color) / 0.45),
+    inset 0 1px 0 0 rgb(250 250 250 / 0.07);
+  --ink-soft: #d4d4d8;
+  --ink-faint: #a1a1aa;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -253,40 +413,41 @@ html {
 
 /*
  * Note: no -webkit-font-smoothing: antialiased here — macOS antialiased
- * smoothing visibly thins Inter; subpixel default keeps the intended weight.
+ * smoothing visibly thins the face; subpixel default keeps the intended weight.
  */
+
 body {
   @apply text-foreground min-h-screen relative;
+
+  /* The face sets a touch loose at body sizes. A hair of negative tracking across
+     the whole page tightens the colour of the setting without any per-rule
+     work; display type overrides it with its own tighter value. */
+  letter-spacing: -0.01em;
 }
 
 
 
 .sys-panel {
-  @apply border border-border bg-card relative;
+  @apply border border-border bg-card rounded-xl relative;
 }
 
 /*
- * Section header — heading-weight label, hairline that fills the row, and an
- * optional accent counter appended in markup: [ 04 ].
+ * Section header — the label on its own, with an optional counter pushed to the
+ * far edge.
+ *
+ * This was text-base, which put it at exactly the size of the body copy it
+ * ranks above, separated by weight alone. Weight alone is the weakest
+ * separation there is: at a glance a semibold 16 and a regular 16 read as the
+ * same line of text. It is text-lg now, so the step is carried by size *and*
+ * weight, and the sub-headings nested under it (text-sm) sit a clear step
+ * below the body rather than tangled up with it.
+ *
+ * It has shed two companions: first a hairline that filled the rest of the row,
+ * then the tabular counter pushed to the far edge — which left the flex row
+ * wrapping a single child, so that went with it. A label is just a label now.
  */
 .sys-section-label {
-  @apply text-sm font-heading font-extrabold uppercase tracking-[0.05em] text-foreground;
-}
-
-.sys-section-header {
-  @apply flex items-center gap-3 w-full;
-}
-
-.sys-section-line {
-  flex: 1;
-  height: 1px;
-  background-color: var(--border);
-}
-
-.sys-section-counter {
-  @apply text-xs font-semibold tracking-[0.1em] text-primary;
-
-  font-variant-numeric: tabular-nums;
+  @apply text-lg font-semibold text-foreground;
 }
 
 /*
@@ -325,27 +486,28 @@ body {
 }
 
 /*
- * The red full stop grows from its own spot rather than pressing down from
- * above — an in-place entrance has no direction, so it can't fight the
- * page's motion if it lands while the user is already scrolling.
+ * Dialog entrance. The backdrop fades; the panel arrives with it, rising a
+ * little and settling from just under full size — the same settle curve every
+ * other physical move on the site uses, so the overlay reads as part of the
+ * same material rather than as a component library dropped on top.
  */
-@keyframes grow-in {
+@keyframes dialog-backdrop-in {
   from {
     opacity: 0;
-    transform: scale(0);
   }
   to {
     opacity: 1;
-    transform: scale(1);
   }
 }
 
-@keyframes draw-rule {
+@keyframes dialog-panel-in {
   from {
-    transform: scaleX(0);
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
   }
   to {
-    transform: scaleX(1);
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }
 
@@ -402,53 +564,16 @@ body {
     backface-visibility: hidden;
   }
 
-  /* The red period lands last and is the only thing in the system that
-     overshoots — grow-in is an in-place entrance with no direction, so it
-     can't fight the page's motion if it lands mid-scroll */
-  :root[data-entrance] .anim-stamp {
-    animation-name: grow-in;
-    animation-duration: var(--motion-stamp);
-    animation-timing-function: var(--ease-stamp);
-    animation-delay: 820ms;
-    animation-fill-mode: both;
-    will-change: transform, opacity;
-    backface-visibility: hidden;
-  }
-
-  .anim-rule {
-    transform-origin: left;
-    animation-name: draw-rule;
-    animation-duration: 560ms;
-    animation-timing-function: var(--ease-settle);
-    animation-delay: 260ms;
-    animation-fill-mode: both;
-    will-change: transform;
-    backface-visibility: hidden;
-  }
-
   /*
-   * DrawnRule states. The hold keeps the line undrawn until it can actually
-   * be seen; scoping it to no-preference means reduced-motion users always
-   * get a static, fully drawn line. -now must follow .anim-rule so its
-   * animation-delay wins over the shorthand's 260ms at equal specificity —
-   * a scroll-triggered draw should start immediately (a delay reads as lag).
+   * Dialog entrance. Ungated by [data-entrance] unlike the load choreography:
+   * this plays every time the dialog opens, not once per page.
    */
-  .anim-rule-hold {
-    transform: scaleX(0);
-    transform-origin: left;
+  .anim-dialog-backdrop {
+    animation: dialog-backdrop-in var(--motion-settle) ease-out both;
   }
 
-  .anim-rule-now {
-    animation-delay: 0ms;
-  }
-
-  /* Dot-grid cascade; per-dot delay set inline. Load-only, same reasoning as
-     the rise/stamp entrances above. */
-  :root[data-entrance] .anim-dot {
-    animation-name: rise-in;
-    animation-duration: 350ms;
-    animation-timing-function: var(--ease-settle);
-    animation-fill-mode: both;
+  .anim-dialog-panel {
+    animation: dialog-panel-in var(--motion-settle) var(--ease-settle) both;
     will-change: transform, opacity;
     backface-visibility: hidden;
   }
@@ -486,11 +611,25 @@ body {
    * unmasking that never re-runs. The engine arms the clipped start state
    * only for images still below the fold, so an image already on screen is
    * never clipped in the first place.
+   *
+   * It fades as it unmasks. This used to pair the clip with scale 1.06 -> 1,
+   * which is a photographic gesture — a picture settling out of a slow zoom —
+   * on a site whose every other entrance is the typographic one in rise-in:
+   * translate up, fade, and sharpen out of a blur. Nothing else here scales on
+   * entry, so the images were the only element arriving by a different physics.
+   * Trading scale for opacity keeps the unmasking, which is worth having and is
+   * genuinely the images' own move, while sharing the fade with everything else
+   * so it reads as the same system rather than a borrowed one.
+   *
+   * Blur is deliberately not part of it, even though rise-in has one: these
+   * elements already carry a drop-shadow filter chain for the mockup edge, and
+   * animating a blur on the ancestor would compose a second filter pass over a
+   * large image every frame of the reveal.
    */
   [data-wipe] {
     transition:
       clip-path var(--motion-wipe) var(--ease-settle),
-      scale var(--motion-wipe) var(--ease-settle);
+      opacity var(--motion-wipe) var(--ease-settle);
   }
 
   /* Full-bleed figures get the longer wipe — the same speed over a larger
@@ -501,20 +640,89 @@ body {
 }
 
 /*
- * Title display utility — Inter 800, uppercase, tight leading. Used for the
- * hero h1s on home, about, and contact.
+ * Type ladder. The reference file specifies four steps — 12/14/16/20 — because
+ * it is a UI kit with no display type in it; this site needs a ramp above that,
+ * so the scale extends upward on Tailwind's named steps and stops there. Every
+ * size on the site is one of these; there are no arbitrary px values left.
  *
- * Reads the semantic --font-heading rather than --font-inter directly, so a
+ *   24  page titles            text-2xl  (heroes and case studies alike)
+ *   20  card plates, stat and metric values, closing CTAs
+ *   18  section headings       .sys-section-label
+ *   16  body copy, card titles
+ *   14  secondary copy (400), interactive labels — nav and form (500),
+ *       dense list rows such as the About experience entries (600)
+ *   12  meta, badges, captions, the side rail — things you skim past, never
+ *       something you have to act on. Form validation used to sit here and was
+ *       moved up to 14: it is the one small text a visitor is required to read
+ *       and respond to, and 12px muted is the wrong size for the only message
+ *       standing between someone and sending you work.
+ *
+ * THREE WEIGHTS, each answering a different question.
+ *
+ *   400  prose. Body copy, descriptions, anything read as sentences. Only used
+ *        at 16 and above, where 400 has the stroke to hold its own colour.
+ *   500  small UI text — nav pills, buttons, meta labels, captions. Not a rank
+ *        between 400 and 600: an optical floor. Below about 16px, 400 thins out
+ *        and muted 400 thins out badly, so controls and labels set at 12–14
+ *        take 500 simply to keep their presence on the page.
+ *   600  names and emphasis. Headings, card titles, badges, form field labels,
+ *        and bold runs inside body copy.
+ *
+ * This was briefly reduced to two by dropping 500, on the reasoning that weight
+ * should only ever carry information — and by that test 500 was redundant
+ * everywhere except form labels, since a nav pill has a pill and a meta label
+ * has a colour step already doing the work. The test was incomplete. Weight has
+ * a second job that has nothing to do with information: at small sizes it
+ * decides whether text reads as present or as faint. Nav pills and stat labels
+ * at 400 lost no meaning and still looked weak.
+ *
+ * Form field labels sit at 500 with the rest of the UI text. They were tried at
+ * 600 on the argument that a label and the value typed under it share a size and
+ * a colour, so weight is their only separator and deserved two steps — but 600
+ * reads as a heading above each field rather than as its name, and the input's
+ * own border already marks where the field begins. One step is enough.
+ *
+ * Six steps over a 2x range, and no responsive step on the page title — it is
+ * 24 at every width, the way the reference this was measured against sets it.
+ *
+ * It started this rebuild at 72px over a 6x range, which is what a 64rem rail
+ * and an all-caps display face could carry; neither is true any more. Coming
+ * down to 24 also collapses the old split between "hero" and "case-study
+ * title": both are the name of the page you are on, so both are 24, and
+ * nothing below them is allowed to outrank them.
+ *
+ * Every level is separated from its neighbours by BOTH size and weight. The one
+ * place that was not — section labels at 16 semibold sitting on body copy at 16
+ * regular — is what a good reference page made obvious, since a semibold 16
+ * next to a regular 16 reads as one undifferentiated block. Body copy also sat
+ * at 15px for a while, a step in neither this scale nor Tailwind's, one pixel
+ * under the labels it was meant to rank below.
+ */
+
+/*
+ * Title display utility — used for the hero h1s on home, about, and contact.
+ *
+ * Geist 600 in sentence case. The previous system set these in 800 uppercase at
+ * 0.92 leading, which is the one treatment the zinc reference never uses: every
+ * heading in it is sentence case and semibold, and the size alone carries the
+ * hierarchy.
+ *
+ * Leading is 1.2. It was 0.92, then 1.05, both of which were tuned when these
+ * headings were 60-72px — at that size lines can nearly touch and still read as
+ * separate. At 24px they cannot: "Hi, I'm / Brendan." closed up into a single
+ * grey mass. Tight leading is a property of display sizes, not of headings, and
+ * these are not display sizes any more.
+ *
+ * Reads the semantic --font-heading rather than --font-geist-sans directly, so a
  * future display face swapped in at the token reaches these headings too. That
  * depends on the token still being emitted, which holds as long as something
  * in the markup uses a font-heading utility — see the @theme note above.
  */
 .title-display {
   font-family: var(--font-heading), system-ui, sans-serif;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: -0.02em;
-  line-height: 0.92;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
 }
 
 /*
@@ -548,7 +756,7 @@ body {
   }
 }
 
-/* Text selection carries the accent — red block, paper type, both modes */
+/* Text selection is a filled block: ink on paper, paper on ink */
 ::selection {
   background-color: var(--primary-fill);
   color: var(--primary-fill-foreground);
@@ -561,12 +769,21 @@ body {
 @layer base {
   a {
     text-underline-offset: 3px;
-    text-decoration-thickness: 2px;
+    /*
+     * 1px. It was 2px, which was set when underlines were an accent device on
+     * a heavier type system; against 16px body copy in a muted colour a 2px
+     * rule reads as a bar under the word rather than an underline. The About
+     * page had already opted down to 1px on its org links, which is what left
+     * the same word — "Corellium" — underlined two different weights depending
+     * on which page you were reading.
+     */
+    text-decoration-thickness: 1px;
   }
 
-  /* Content-list markers are small red squares — the grid's bullet */
+  /* Content-list markers sit back with the muted step — nothing in this
+     system is coloured for emphasis */
   ::marker {
-    color: var(--primary);
+    color: var(--muted-foreground);
   }
 }
 

@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react"
 import { usePathname } from "next/navigation"
 
 /*
- * Reading progress — a 2px red rule pinned under the header that fills as the
+ * Reading progress — a 2px ink rule pinned under the header that fills as the
  * page scrolls. Driven by scaleX rather than width: the motion system animates
  * transforms and opacity only, and a width that changes on every scroll event
  * relayouts the bar each frame for no visual gain.
@@ -52,7 +52,7 @@ export const ReadingProgress = (): React.JSX.Element => {
   }, [pathname])
 
   return (
-    <div aria-hidden className="fixed top-14 left-0 right-0 z-40 h-[2px] pointer-events-none">
+    <div aria-hidden className="fixed top-0 left-0 right-0 z-40 h-[2px] pointer-events-none">
       <div ref={barRef} className="h-full w-full origin-left scale-x-0 bg-primary" />
     </div>
   )

@@ -20,7 +20,7 @@ const contributionsSchema = z.object({
 
 type Contributions = z.infer<typeof contributionsSchema>
 
-/* Intensity scale in the site's single accent, level 0 = empty mat square */
+/* Intensity scale in the site's single accent, level 0 = empty mat cell */
 const levelClasses = [
   "bg-muted",
   "bg-primary/30",
@@ -92,7 +92,7 @@ export const GitHubHeatmap = (): React.JSX.Element => {
           href="https://github.com/brendanciccone"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-primary hover:underline"
+          className="underline underline-offset-4 decoration-border hover:decoration-foreground transition-colors"
         >
           View it on GitHub
         </a>
@@ -129,7 +129,7 @@ export const GitHubHeatmap = (): React.JSX.Element => {
                   <div
                     key={dayIndex}
                     title={day ? `${day.count} contributions on ${day.date}` : undefined}
-                    className={cn("h-2.5 w-2.5", day ? levelClasses[day.level] : "bg-transparent")}
+                    className={cn("h-2.5 w-2.5 rounded-[2px]", day ? levelClasses[day.level] : "bg-transparent")}
                   />
                 )
               })}
@@ -138,15 +138,15 @@ export const GitHubHeatmap = (): React.JSX.Element => {
         </div>
       </div>
       <div className="mt-4 flex items-center justify-between gap-4">
-        <p className="text-[10px] uppercase tracking-[0.08em] text-muted-foreground">
+        <p className="text-xs text-muted-foreground">
           {state.status === "ready"
             ? `${state.data.total.lastYear.toLocaleString("en-US")} contributions in the last year`
             : "Loading contributions"}
         </p>
-        <div className="flex items-center gap-1.5 text-[10px] uppercase tracking-[0.08em] text-muted-foreground">
+        <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
           <span>Less</span>
           {levelClasses.map((level) => (
-            <span key={level} className={cn("h-2.5 w-2.5", level)} />
+            <span key={level} className={cn("h-2.5 w-2.5 rounded-[2px]", level)} />
           ))}
           <span>More</span>
         </div>

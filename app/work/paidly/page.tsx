@@ -24,10 +24,10 @@ import { SectionNav } from "@/components/section-nav"
 import { LightboxImage } from "@/components/lightbox"
 
 const sections = [
-  { id: "overview", number: "01", label: "Overview" },
-  { id: "research", number: "02", label: "Research" },
-  { id: "mobile-invoicing", number: "03", label: "Mobile App" },
-  { id: "insights", number: "04", label: "Insights" },
+  { id: "overview", label: "Overview" },
+  { id: "research", label: "Research" },
+  { id: "mobile-invoicing", label: "Mobile App" },
+  { id: "insights", label: "Insights" },
 ]
 
 export default function PaidlyPage() {
@@ -36,7 +36,7 @@ export default function PaidlyPage() {
       <Header />
       <SectionNav items={sections} />
       
-      <div className="max-w-[1024px] mx-auto px-5 pt-24 pb-6 sm:pb-8 flex flex-col gap-8 sm:gap-10">
+      <div className="max-w-[var(--page-width)] mx-auto px-5 pt-32 sm:pt-36 pb-6 sm:pb-8 flex flex-col gap-10 sm:gap-12">
         
         {/* Page header — inverted: title row and role first so a skimmer gets
             who/what/outcome before the viewport-height hero image */}
@@ -44,76 +44,87 @@ export default function PaidlyPage() {
           {/* The title row recedes as the case study takes over; the framed
               hero below it is left alone because it carries the shared-element
               name for the card→case-study morph */}
-          <div data-recede="meta" className="flex flex-col sm:flex-row sm:items-center gap-4">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4">
             <Image
               src="/about/logos/paidly.jpeg"
               alt="Paidly logo"
               width={60}
               height={60}
-              className="w-12 h-12 sm:w-[60px] sm:h-[60px] object-cover border border-input flex-shrink-0 anim-rise [animation-delay:60ms]"
+              className="w-12 h-12 sm:w-[60px] sm:h-[60px] object-cover rounded-lg border border-border flex-shrink-0 anim-rise [animation-delay:60ms]"
               quality={80}
               sizes="60px"
             />
             <div className="min-w-0 anim-rise [animation-delay:100ms]">
-              <h1 className="font-heading font-extrabold tracking-[-0.02em] text-2xl sm:text-[32px] leading-none sm:whitespace-nowrap">Paidly</h1>
-              <p className="text-[15px] text-muted-foreground mt-1.5 sm:whitespace-nowrap">
+              <h1 className="title-display text-2xl">Paidly</h1>
+              <p className="text-base leading-[1.6] text-ink-soft mt-1.5 sm:whitespace-nowrap">
                 Stripe-integrated invoicing mobile app for SMEs
               </p>
             </div>
-            <div className="flex flex-col gap-2.5 sm:gap-1.5 sm:flex-1 sm:min-w-0 sm:items-end anim-rise [animation-delay:180ms]">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary">Founder</p>
-              <div className="flex flex-wrap gap-1.5 sm:justify-end">
-                <Badge>2020</Badge>
-                <Badge>Stripe Partner</Badge>
-                <Badge>Fintech</Badge>
-              </div>
-            </div>
           </div>
-          <div className="mt-6 sm:mt-7 bg-mockup-frame border border-border p-3 anim-rise [animation-delay:140ms] [view-transition-name:vt-paidly]">
+          {/* Metadata gets the full rail, on its own row.
+
+              It used to sit in a right-hand column beside the title, which on
+              this 680px rail left it about 250px wide — enough for two badges,
+              so the third wrapped and hung alone on a second line, right-
+              aligned against a ragged edge. The home cards already went through
+              this and ended up stacking tags under the title; this is the same
+              content in a different context, so it should resolve the same way.
+
+              The role is a badge now rather than a lone 12px muted paragraph —
+              it is the same kind of fact as the others and was the only thing
+              on the page in that style. Outline rather than filled keeps it
+              distinct: what he did, versus what the project was. */}
+          <div className="flex flex-wrap items-center gap-1.5 mt-4 anim-rise [animation-delay:180ms]">
+            <Badge variant="outline">Founder</Badge>
+            <Badge>2020</Badge>
+            <Badge>Stripe Partner</Badge>
+            <Badge>Fintech</Badge>
+          </div>
+          <div className="mt-6 sm:mt-7 bg-mockup-frame rounded-xl border border-border p-3 anim-rise [animation-delay:140ms] [view-transition-name:vt-paidly]">
             <LightboxImage
               src="/work/paidly/1.webp"
               alt="Paidly mobile app showing invoice screens"
               width={1200}
-              height={800}
+              height={900}
               className="w-full"
               priority
               quality={80}
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
+              sizes="(max-width: 640px) 100vw, (max-width: 768px) 90vw, 680px"
             />
           </div>
         </header>
 
         {/* Overview + Highlights */}
         <section id="overview" className="scroll-mt-16">
-          <SectionLabel flow title="Overview" number="01" className="mb-6" />
-          <p data-flow="0.5" className="text-[15px] leading-[1.6] text-ink-soft mb-5">
+          <SectionLabel flow title="Overview" className="mb-6" />
+          <p data-flow="0.5" className="text-base leading-[1.6] text-ink-soft mb-5">
             As a freelancer, I experienced a common frustration: no way to send Stripe invoices on the go for free. In 2020, with remote work booming and freelancing on the rise, I saw an opportunity to solve my own problem at scale. After conducting market research, I founded Paidly and assembled a small team of developers, designing the entire application that launched on iOS and Android. From idea to launch took <span className="text-foreground font-semibold">2.5 months</span>.
           </p>
-          {/* Metric box — same cell anatomy as the home stat bar: red caps
+          {/* Metric box — same cell anatomy as the home stat bar: muted
               label, ink value, description only where it adds a fact */}
-          <div data-flow className="grid grid-cols-1 sm:grid-cols-3 border border-border bg-card">
+          <div data-flow className="grid grid-cols-1 sm:grid-cols-3 rounded-xl border border-border bg-card overflow-hidden">
             <div className="px-5 py-[18px] border-b border-border sm:border-b-0 sm:border-r">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary">Users</p>
-              <p className="text-lg sm:text-[26px] font-heading font-bold leading-tight tabular-nums mt-1.5"><CountUp to={2000} suffix="+" /></p>
-              <p className="text-[13px] leading-normal text-muted-foreground mt-1.5">Small and medium businesses</p>
+              <p className="text-xs font-medium text-muted-foreground">Users</p>
+              <p className="text-lg sm:text-xl font-heading font-semibold leading-tight tabular-nums mt-1.5"><CountUp to={2000} suffix="+" /></p>
+              <p className="text-sm leading-normal text-muted-foreground mt-1.5">Small and medium businesses</p>
             </div>
             <div className="px-5 py-[18px] border-b border-border sm:border-b-0 sm:border-r">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary">Partnership</p>
-              <p className="text-lg sm:text-[26px] font-heading font-bold leading-tight tabular-nums mt-1.5">Stripe</p>
-              <p className="text-[13px] leading-normal text-muted-foreground mt-1.5">Official integration partner</p>
+              <p className="text-xs font-medium text-muted-foreground">Partnership</p>
+              <p className="text-lg sm:text-xl font-heading font-semibold leading-tight tabular-nums mt-1.5">Stripe</p>
+              <p className="text-sm leading-normal text-muted-foreground mt-1.5">Official integration partner</p>
             </div>
             <div className="px-5 py-[18px]">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary">Volume</p>
-              <p className="text-lg sm:text-[26px] font-heading font-bold leading-tight tabular-nums mt-1.5"><CountUp to={500} prefix="$" suffix="k+" /></p>
-              <p className="text-[13px] leading-normal text-muted-foreground mt-1.5">Invoiced through the platform</p>
+              <p className="text-xs font-medium text-muted-foreground">Volume</p>
+              <p className="text-lg sm:text-xl font-heading font-semibold leading-tight tabular-nums mt-1.5"><CountUp to={500} prefix="$" suffix="k+" /></p>
+              <p className="text-sm leading-normal text-muted-foreground mt-1.5">Invoiced through the platform</p>
             </div>
           </div>
         </section>
 
         {/* Research Section */}
         <section id="research" className="scroll-mt-16">
-          <SectionLabel flow title="Research" number="02" className="mb-6" />
-          <div data-flow="0.5" className="space-y-3.5 text-[15px] leading-[1.6] text-ink-soft mb-6">
+          <SectionLabel flow title="Research" className="mb-6" />
+          <div data-flow="0.5" className="space-y-3.5 text-base leading-[1.6] text-ink-soft mb-6">
             <p>
               Drawing on my experiences with invoicing, I looked into what was available in the market for iOS and
               Android. While many industry leaders had comprehensive invoicing in their mobile apps, I was surprised
@@ -135,10 +146,10 @@ export default function PaidlyPage() {
                 src="/work/paidly/2.webp"
                 alt="Paidly app screens showing onboarding flow, invoice creation, business setup, and Stripe integration"
                 width={1200}
-                height={800}
+                height={900}
                 className="w-full"
                 quality={80}
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
+                sizes="(max-width: 640px) 100vw, (max-width: 768px) 90vw, 680px"
               />
             </FigureFrame>
             <FigureFrame number="02" caption="Brand identity and app icons">
@@ -146,10 +157,10 @@ export default function PaidlyPage() {
                 src="/work/paidly/3.webp"
                 alt="Paidly brand identity showing the full logo and app icon variations"
                 width={1200}
-                height={800}
+                height={900}
                 className="w-full"
                 quality={80}
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
+                sizes="(max-width: 640px) 100vw, (max-width: 768px) 90vw, 680px"
               />
             </FigureFrame>
           </div>
@@ -157,8 +168,8 @@ export default function PaidlyPage() {
 
         {/* Stripe-Based Invoicing App Section */}
         <section id="mobile-invoicing" className="scroll-mt-16">
-          <SectionLabel flow title="Bringing Stripe Invoices to Mobile" number="03" className="mb-6" />
-          <div data-flow="0.5" className="space-y-3.5 text-[15px] leading-[1.6] text-ink-soft mb-6">
+          <SectionLabel flow title="Bringing Stripe Invoices to Mobile" className="mb-6" />
+          <div data-flow="0.5" className="space-y-3.5 text-base leading-[1.6] text-ink-soft mb-6">
             <p>
               Using a prototype in Figma and testing it in Maze, I was ready to take things to development and build
               an MVP. Realizing my development knowledge was not deep enough for the technical challenges ahead, I
@@ -175,18 +186,18 @@ export default function PaidlyPage() {
               src="/work/paidly/4.webp"
               alt="Paidly app screens showing item management: adding items, empty state, and item creation form"
               width={1200}
-              height={800}
+              height={900}
               className="w-full"
               quality={80}
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
+              sizes="(max-width: 640px) 100vw, (max-width: 768px) 90vw, 680px"
             />
           </FigureFrame>
         </section>
 
         {/* Insights Section */}
         <section id="insights" className="scroll-mt-16">
-          <SectionLabel flow title="Insights" number="04" className="mb-6" />
-          <p data-flow="0.5" className="text-[15px] leading-[1.6] text-ink-soft mb-5">
+          <SectionLabel flow title="Insights" className="mb-6" />
+          <p data-flow="0.5" className="text-base leading-[1.6] text-ink-soft mb-5">
             After 6 months live and 2,000 SMBs running $500K+ in invoices through the platform, a contractor issue forced me to wind it down. It taught me that technical{' '}
             <span className="text-foreground font-semibold">vetting and code audits are non-negotiable</span>
             {' '}for anything high-stakes. That mindset now carries into every project I touch, especially in compliance-driven products.
@@ -196,18 +207,18 @@ export default function PaidlyPage() {
               src="/work/paidly/5.webp"
               alt="Paidly app screens showing customer management: customer list, success confirmation, and customer details form"
               width={1200}
-              height={800}
+              height={900}
               className="w-full"
               quality={80}
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
+              sizes="(max-width: 640px) 100vw, (max-width: 768px) 90vw, 680px"
             />
           </FigureFrame>
         </section>
 
         {/* CTA Section */}
         <section data-flow className="py-4 sm:py-6 text-center">
-          <h2 className="title-display text-2xl sm:text-[30px] mb-2">Let&apos;s ship something <span className="text-primary">great.</span></h2>
-          <p className="text-[15px] text-muted-foreground mb-6">
+          <h2 className="title-display text-lg sm:text-xl mb-2">Let&apos;s ship something great.</h2>
+          <p className="text-base text-muted-foreground mb-6">
             Looking for feedback on your product or how to take an idea from 0 → 1?
           </p>
           <Button asChild size="lg" className="px-6 group">

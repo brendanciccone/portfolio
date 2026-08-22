@@ -94,7 +94,7 @@ const armWipe = ({ element, rect }: Measured, viewportHeight: number): void => {
   }
 
   element.style.clipPath = WIPE_CLIP_START
-  element.style.scale = "1.06"
+  element.style.opacity = "0"
   element.dataset.wipe = "armed"
 }
 
@@ -102,7 +102,7 @@ const releaseWipe = ({ element, rect }: Measured, viewportHeight: number): void 
   if (!shouldReleaseWipe(rect.top, viewportHeight)) return
 
   element.style.clipPath = WIPE_CLIP_END
-  element.style.scale = "1"
+  element.style.opacity = "1"
   element.dataset.wipe = "done"
 }
 
@@ -120,7 +120,7 @@ const clearInlineMotion = (): void => {
   }
   for (const element of queryAll("[data-wipe]")) {
     element.style.clipPath = ""
-    element.style.scale = ""
+    element.style.opacity = ""
     element.dataset.wipe = "done"
   }
 }
