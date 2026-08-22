@@ -114,7 +114,18 @@ export const WorkCard = ({
             card's width, and beside the text it is 176px wide so the height
             follows at 132 rather than being pinned separately. It was 128x96
             there, small enough that the screenshot read as a smudge next to a
-            502px text column. */}
+            502px text column.
+
+            The ratio sits on the inner clip rather than on this mat, and that
+            is what actually centres the screenshot. With aspect-[4/3] on the
+            mat, the padding came off both dimensions equally and left the padded
+            box at 88x64 — 1.375, not the 1.3333 the files are — so
+            object-contain letterboxed the artwork by 1.33px a side. It stayed
+            symmetric, but it then sat in 5.33px of mat left and right against
+            4px top and bottom, and an uneven margin is what reads as
+            off-centre. Inside the padding the clip is exactly 4:3, so the
+            screenshot fills it edge to edge and the mat shows one even margin
+            all round. */}
         {/* Tint, no outline. This carried a full border once, back when the
             screenshot inside it had no edge of its own and the frame had to
             supply one. It does now, so the border was drawing a third
@@ -125,7 +136,7 @@ export const WorkCard = ({
             only, which divides picture from text rather than enclosing it. This
             matches that: the mockup-frame tint still marks the image area, and
             the only outlines left are the card's and the screenshot's own. */}
-        <div className="aspect-[4/3] w-24 shrink-0 self-start overflow-hidden rounded-lg bg-mockup-frame p-1 sm:self-auto sm:p-1.5 sm:w-44">
+        <div className="w-24 shrink-0 self-start overflow-hidden rounded-lg bg-mockup-frame p-1 sm:self-auto sm:p-1.5 sm:w-44">
           {/*
             [&>div]:size-full is load-bearing. MockupImage wraps its <Image> in
             a plain `relative` div with no height of its own, so the image's
@@ -136,19 +147,22 @@ export const WorkCard = ({
             wrapper gives h-full a real height, so object-contain has a box to
             resolve against and the thumbnail is actually centred.
           */}
-          <div className="relative size-full overflow-hidden rounded [filter:var(--drop-mockup-sm)] [&>div]:size-full">
+          <div className="relative aspect-[4/3] w-full overflow-hidden rounded [filter:var(--drop-mockup-sm)] [&>div]:size-full">
             <MockupImage
               src={image.src}
               alt={image.alt}
               width={1200}
               height={900}
               /*
-               * contain, not cover. Padding comes off both dimensions of the
-               * aspect-[4/3] mat equally, so the clip inside it does not land at
-               * 4:3 — and cover was quietly cropping the screenshot to make up
-               * the difference. contain always shows the whole frame and lets
-               * the mat absorb what is left over, which is how the plate cards
-               * present a screenshot too.
+               * contain, not cover. The clip this sits in is exactly 4:3 and so
+               * are the files, so the two fit with nothing left over and either
+               * value would paint the same pixels today. contain is what keeps
+               * that true: it shows the whole frame no matter what ratio a
+               * screenshot arrives at, where cover silently crops to fill. That
+               * was not hypothetical — while the ratio lived on the padded mat
+               * the clip resolved to 1.375 and cover was cropping the
+               * screenshot to make up the difference. Showing the whole frame
+               * is also how the plate cards present a screenshot.
                */
               className={cn(imageClasses, "h-full object-contain")}
               quality={80}
@@ -201,9 +215,24 @@ export const WorkCard = ({
           runs edge to edge while theirs sits in a padded frame. Matching them
           up reads as consistency and costs the hierarchy the section headings
           are asserting. */}
+      {/* rounded-t-[11px], not rounded-t-xl, and the missing pixel is the
+          point. The card around this mat is rounded-xl with a 1px border, so
+          its OUTER radius is 12 and its INNER radius — the curve this mat has
+          to sit against — is 12 minus the border, 11. Drawn at 12 the mat's
+          corner is rounder than the hole it fills, so a sliver of the card's
+          own white background shows between the fill and the border along the
+          curve. Measured at 4 page-coloured pixels inside the border per
+          corner at 2x, which is invisible at size and unmistakable the moment
+          anyone zooms a screenshot.
+
+          The card cannot clip it away either: it is overflow-visible, because
+          hover-lift needs to translate without its shadow being cut.
+
+          The rule, wherever a filled child meets a bordered parent's corner:
+          inner radius = outer radius - border width. */}
       <div
         className={cn(
-          "bg-mockup-frame overflow-hidden rounded-t-xl border-b border-border p-2.5",
+          "bg-mockup-frame overflow-hidden rounded-t-[11px] border-b border-border p-2.5",
           href && transitionFrameClassByHref.get(href),
         )}
       >

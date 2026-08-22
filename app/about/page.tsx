@@ -5,6 +5,7 @@ import Link from "next/link"
 import Footer from "@/components/footer"
 import { GitHubHeatmap } from "@/components/github-heatmap"
 import { SectionLabel } from "@/components/section-label"
+import { Badge } from "@/components/ui/badge"
 import { generatePageMetadata } from "@/lib/metadata"
 import { cn } from "@/lib/utils"
 import Image from "next/image"
@@ -21,28 +22,36 @@ interface ExperienceEntry {
   logo: { src: string; alt: string }
   url?: string
   external?: boolean
+  /* How the engagement or the company ended — "Contract", "Acquired". Pulled
+     out of the role string so the role is one job title on every row; rendered
+     as a chip on the role line, because that is the line this list is scanned
+     down. See ExperienceRow. */
+  badge?: string
 }
 
 const experience: readonly ExperienceEntry[] = [
   {
     role: "Staff Product Designer",
     org: "Corellium",
+    badge: "Acquired",
     date: "2023-Present",
     logo: { src: "/about/logos/corellium.jpeg", alt: "Corellium logo" },
     url: "https://www.corellium.com",
     external: true,
   },
   {
-    role: "Senior Product Designer (Contract)",
+    role: "Senior Product Designer",
     org: "Spontivly",
+    badge: "Contract",
     date: "2023",
     logo: { src: "/about/logos/spontivly.jpeg", alt: "Spontivly logo" },
     url: "https://www.spontivly.com",
     external: true,
   },
   {
-    role: "Senior Product Designer (Contract)",
+    role: "Senior Product Designer",
     org: "FCB Health NY",
+    badge: "Contract",
     date: "2023",
     logo: { src: "/about/logos/fcb_health_ny.jpeg", alt: "FCB Health logo" },
     url: "https://www.fcb.com",
@@ -82,8 +91,9 @@ const founderWork: readonly ExperienceEntry[] = [
     logo: { src: "/about/logos/crenel.jpeg", alt: "Crenel logo" },
   },
   {
-    role: "Founder (Acquired)",
+    role: "Founder",
     org: "Magier",
+    badge: "Acquired",
     date: "2023",
     logo: { src: "/about/logos/magier.jpeg", alt: "Magier logo" },
     url: "https://magier.ai",
@@ -184,7 +194,38 @@ const books = [
   },
 ]
 
-const ExperienceRow = ({ role, org, date, logo, url, external }: ExperienceEntry): React.JSX.Element => {
+/*
+ * "Contract" and "Acquired" are badges on the role line, not text inside the
+ * role.
+ *
+ * They were parenthetical suffixes on the job title — "Senior Product Designer
+ * (Contract)", "Founder (Acquired)" — which made the longest role string on
+ * the page 35 characters for the two entries needing the least emphasis, and
+ * buried a qualifier inside a title that is otherwise identical between rows.
+ * Pulled out, "Senior Product Designer" reads as the same job three times,
+ * because it was.
+ *
+ * They sit on the role line rather than the org line under it because this
+ * list is scanned rather than read: the role is the bold 14/600 the eye tracks
+ * down, and the org is muted and second. A qualifier on the second line is
+ * found only by someone already reading the row.
+ *
+ * At 12/600, the size the scale gives badges and the size the work cards
+ * already render. An earlier pass here used 11/500, which is a step the ladder
+ * does not have.
+ *
+ * Outlined, which is now the Badge default site-wide rather than anything
+ * special to this list — see components/ui/badge.tsx. It happens to matter
+ * most here: every row already opens with a hairline-bordered logo tile, so
+ * the chip is made of the same line as the row around it, and a qualifier that
+ * appears alone has to survive a scan.
+ *
+ * Corellium carries Acquired too. It was the one company on the page whose
+ * outcome was missing — the bio two sections up cites the $200M Cellebrite
+ * acquisition and the case study's own stat rows say Status / Acquired, so the
+ * omission was an inconsistency rather than a decision.
+ */
+const ExperienceRow = ({ role, org, date, logo, url, external, badge }: ExperienceEntry): React.JSX.Element => {
   return (
     <li className="flex items-start gap-3">
       <div className="flex-shrink-0 w-[34px] h-[34px] rounded-md border border-border bg-card flex items-center justify-center overflow-hidden">
@@ -192,7 +233,40 @@ const ExperienceRow = ({ role, org, date, logo, url, external }: ExperienceEntry
       </div>
       <div className="flex-1 flex justify-between min-w-0 gap-2">
         <div className="min-w-0">
-          <p className="font-semibold leading-none text-sm">{role}</p>
+          {/* The badge rides the role line, not the org line under it.
+              A list like this is scanned down its left edge, and the role is
+              the bold 14/600 target that scan lands on — the org beneath it is
+              muted and second in the path, so a qualifier there is read only by
+              someone already reading the row rather than skimming it.
+
+              flex rather than inline text: the badge carries its own padding,
+              and leading-none on a line mixing 14px text with a 12px pill puts
+              the two on different baselines. items-center hangs them off one
+              axis. flex-wrap so a long role and a badge break rather than push
+              the date column at 390px.
+
+              The badge is 22px tall — 12px text on a 16px line box, plus 2px of
+              padding and 1px of border a side — against 14px of role text, so
+              left alone it grows its row. -my-1 takes 4px off each end of its
+              margin box, which brings what it contributes to the line back to
+              exactly the 14px the role text occupies. It still paints at full
+              size; it just stops pushing.
+
+              Holding the line at 22px instead was tried and is worse. It does
+              even the rows out, but at 42px rather than 34, and 34 is not an
+              arbitrary number: the logo tile is 34px, and an unbadged row's
+              text block — 14px role, 6px gap, 14px org — comes to exactly 34
+              too, so tile and text terminate on the same line. Padding the row
+              to 42 left every text block hanging 8px below its own logo, which
+              trades one inconsistency for a subtler one on every row rather
+              than four.
+
+              The overhang has room at both ends: 24px of list gap above, and
+              the org line 6px below. */}
+          <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <p className="font-semibold leading-none text-sm">{role}</p>
+            {badge ? <Badge className="-my-1">{badge}</Badge> : null}
+          </div>
           <p className="text-sm mt-1.5 leading-none">
             {url ? (
               <Link
@@ -246,12 +320,19 @@ export default function About() {
                 As founding product designer at Immertec, I led a platform redesign that <span className="text-foreground font-semibold">increased SUS from 68 to 83</span>, hired and managed 2 product designers, and helped secure <span className="text-foreground font-semibold">$12M in Series A</span> funding. At Corellium, I owned end-to-end product design, shipped CI/CD-integrated threat analysis tools, and achieved an 81 SUS score that contributed to a <span className="text-foreground font-semibold">$200M acquisition</span> by Cellebrite.
               </p>
             </div>
-            <div className="space-y-4 anim-rise [animation-delay:200ms]">
+            {/* The publications sentence that used to close this block is gone.
+                Every fact in it — accessibility, virtual environments, HFES,
+                SSH — appears verbatim in the Publications section below, in the
+                paper titles and venues, and it named neither the journal nor a
+                single study. The paragraphs around it earn their place by
+                carrying what their lists cannot show: the Experience list has
+                no room for an SUS score or an acquisition figure, and Founder
+                Work has none for Techstars or the Coinbase intake. That one had
+                nothing of its own, so it read as a hedge in front of stronger
+                evidence. */}
+            <div className="anim-rise [animation-delay:200ms]">
               <p>
                 I founded Paidly in 2020, a Stripe-integrated invoicing app used by <span className="text-foreground font-semibold">over 2,000 SMEs</span>. In 2023 I started Magier, an AI startup that was <span className="text-foreground font-semibold">acquired the same year</span> and accepted into <span className="text-foreground font-semibold">Techstars&apos; 2024</span> cohort. In late 2025, I launched Crenel, a tool for automatic crossposting across social platforms, and was <span className="text-foreground font-semibold">selected for Coinbase&apos;s accelerator</span> (50 of 900+ applicants).
-              </p>
-              <p>
-                I&apos;ve also published research on accessibility and virtual environments in publications by the Human Factors and Ergonomics Society (HFES) and the Society for Simulation in Healthcare (SSH).
               </p>
             </div>
           </div>
@@ -287,20 +368,30 @@ export default function About() {
           <p className="text-base leading-[1.6] text-ink-soft mb-6 max-w-[560px]">
             <span className="text-foreground font-semibold">Figma</span> for fast exploration;{" "}
             <span className="text-foreground font-semibold">Claude Code</span> for anything I actually
-            want to build. The commits below are mine.
+            want to build.
           </p>
+          {/* 34px tiles with rounded-md, the same object ExperienceRow gives a
+              company logo two sections up. They were 48px rounded-lg, which
+              made a row of tools the largest repeated element on the page —
+              larger than the companies worked at and the companies founded,
+              which is the wrong order of importance for a page that ranks its
+              sections by substance. The mark inside stays proportional at 20px
+              rather than filling the tile: a company logo is a square image
+              that can bleed to the border, while these are transparent SVG
+              marks that need the padding to read as icons rather than as
+              stickers. */}
           <div className="flex flex-wrap gap-5 sm:gap-6">
             {tools.map((tool) => (
               <div
                 key={tool.name}
                 title={tool.name}
                 className={cn(
-                  "h-12 w-12 rounded-lg border border-border flex items-center justify-center transition-[translate] duration-(--motion-settle) ease-(--ease-settle) hover:-translate-y-0.5 motion-reduce:transition-none motion-reduce:hover:translate-none",
+                  "h-[34px] w-[34px] rounded-md border border-border flex items-center justify-center transition-[translate] duration-(--motion-settle) ease-(--ease-settle) hover:-translate-y-0.5 motion-reduce:transition-none motion-reduce:hover:translate-none",
                   tool.tile ?? "bg-card",
                 )}
               >
                 {/* unoptimized: static full-color SVGs must skip the Cloudflare image loader */}
-                <Image src={tool.src} alt={`${tool.name} logo`} width={24} height={24} unoptimized className="h-6 w-6 object-contain" />
+                <Image src={tool.src} alt={`${tool.name} logo`} width={20} height={20} unoptimized className="h-5 w-5 object-contain" />
               </div>
             ))}
           </div>

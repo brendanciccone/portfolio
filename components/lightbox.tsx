@@ -183,14 +183,9 @@ export const LightboxImage = ({
   sizes,
 }: LightboxImageProps): React.JSX.Element => {
   const { isOpen, open, close } = useLightboxState()
-  const [isThumbnailLoaded, setIsThumbnailLoaded] = useState(false)
 
   // Catch thumbnails that finished loading before React hydrated — the ref
   // callback fires on mount with the live node, ahead of onLoad
-  const handleThumbnailRef = (node: HTMLImageElement | null) => {
-    if (node?.complete) setIsThumbnailLoaded(true)
-  }
-
   return (
     <>
       <button
@@ -201,20 +196,17 @@ export const LightboxImage = ({
       >
         <div className="relative">
           <Image
-            ref={handleThumbnailRef}
             src={src}
             alt={alt}
             width={width}
             height={height}
-            className={cn(
-              "transition-opacity duration-(--motion-settle)",
-              isThumbnailLoaded ? "opacity-100" : "opacity-0",
-              className,
-            )}
+            /* No load fade — see MockupImage for why. The ring is drawn from
+               this image's alpha, and cross-fading the two puts them on one
+               curve without putting them on one perceived arrival. */
+            className={className}
             priority={priority}
             quality={quality}
             sizes={sizes}
-            onLoad={() => setIsThumbnailLoaded(true)}
           />
         </div>
       </button>

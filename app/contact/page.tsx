@@ -22,13 +22,28 @@ export default function ContactPage() {
           built for the old 64rem rail. On the 45rem one each column came out
           around 320px, so the form fields were half the width of every other
           input on the site and the left column was mostly there to stop the
-          right one looking lonely. The dot grid was filling space rather than
-          saying anything, and the hairline was separating two things that did
-          not need separating.
+          right one looking lonely. The hairline was separating two things that
+          did not need separating.
 
           One column also means the person filling this in reads top to bottom
           in the order the page is written, which on a page whose only job is a
           form is the entire brief.
+
+          A dot lattice was tried again and removed again. The second attempt
+          was a better object than the first — full rail rather than a column,
+          proportional by construction, with one live dot tracking the cursor —
+          and it still failed the same test. The page reads thin because the
+          form is four wide, short, empty boxes, and a lattice decorates the gap
+          beside that rather than touching it. Filling space next to a problem
+          is not the same as solving it.
+
+          Making the fields denser is the fix that would work, and it is the one
+          this layout already spent: narrowing them is what the two-column split
+          did, and at ~320px they came out half the width of every other input
+          on the site.
+
+          So the page stays sparse, which is what a page with one job looks
+          like.
         */}
         <section className="flex flex-col gap-3 sm:gap-4">
           {/* One line. It was split across two hand-authored masks, which was

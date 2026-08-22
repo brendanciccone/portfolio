@@ -7,7 +7,6 @@ import ScrollToTop from "@/components/scroll-to-top"
 import { ErrorBoundary } from "@/components/error-boundary"
 import { GridOverlay } from "@/components/grid-overlay"
 import { ScrollFlow } from "@/components/scroll-flow"
-import { ReadingProgress } from "@/components/reading-progress"
 import { ViewTransitionSettler } from "@/components/view-transition-link"
 import JsonLd from "@/components/json-ld"
 
@@ -100,14 +99,22 @@ export default function RootLayout({
           <ErrorBoundary>
             <ScrollToTop />
             <ViewTransitionSettler />
-            {/* Motion system, mounted once for every route: the flow engine
-                drives the page, the rail measures it. GridOverlay is the G
-                easter egg — the site's one grid reveal, and deliberately the
-                only one; an ambient background lattice did the same job
-                permanently and spent this one's payoff before anybody found
-                it. */}
+            {/* Motion system, mounted once for every route. The reading
+                progress rail is NOT here: it lives in app/work/layout.tsx,
+                because a progress rail is a promise that there is a length
+                worth tracking, and only a case study has one. On the home,
+                about and contact pages it measured a screen or two of scroll
+                and read as a loading bar for a page that had already loaded.
+
+                It was global until now only because it never painted — the
+                scale-x-0 bug meant nobody saw it anywhere, so the wrong scope
+                went unnoticed. Fixing the paint is what surfaced it.
+
+                GridOverlay is the G easter egg — the site's one grid reveal,
+                and deliberately the only one; an ambient background lattice did
+                the same job permanently and spent this one's payoff before
+                anybody found it. */}
             <ScrollFlow />
-            <ReadingProgress />
             <GridOverlay />
             <main id="main-content">
               {children}

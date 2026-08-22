@@ -3,6 +3,7 @@ import Link from "next/link"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { SectionLabel } from "@/components/section-label"
+import { StatRows, type StatRow } from "@/components/stat-rows"
 import { WorkCard, type WorkCardData } from "@/components/work-card"
 
 /*
@@ -52,6 +53,42 @@ const selectedWork: readonly WorkCardData[] = [
     },
     tags: ["2020", "Stripe Partner", "Fintech"],
     href: "/work/paidly",
+  },
+]
+
+/*
+ * The hero's facts, lifted back out of the intro sentence.
+ *
+ * They were a three-cell bordered stat bar once, which cost 162px before the
+ * first case study; the fix for that was to fold them into the intro as a
+ * clause, which cost less height but put every fact behind a sentence you had
+ * to read rather than scan — and left a six-line paragraph as the largest mass
+ * on the page, out-weighing the title above it.
+ *
+ * As label/value rows they are scannable again for about 130px, and the intro
+ * gets to be one line, which is what actually restored the title's rank. The
+ * bordered box does not come back with them: it would put another rounded
+ * container directly above the work cards, and the hairlines carry the same
+ * information without competing with them.
+ *
+ * "Currently" holds the page's single link to corellium.com, which used to sit
+ * in that sentence.
+ */
+const introStats: readonly StatRow[] = [
+  { label: "Experience", value: "8 years" },
+  { label: "Role", value: "Staff Product Designer" },
+  {
+    label: "Currently",
+    value: (
+      <Link
+        href="https://www.corellium.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="underline underline-offset-4 decoration-border hover:decoration-foreground transition-colors"
+      >
+        Corellium
+      </Link>
+    ),
   },
 ]
 
@@ -107,14 +144,16 @@ export default function Portfolio() {
               as depth. At 24px in a single column there is nothing to sink
               behind — it just looks like the title has come unstuck from the
               text under it, which is exactly how it read. */}
-        {/* This line is the whole introduction, so it carries the facts itself.
-            There was a three-cell stat bar under it — Experience / Role /
-            Currently — which cost 162px before the first case study and said in
-            a bordered box what one sentence says in a clause. A portfolio's
-            argument is the work, so that height is better spent getting to it.
-            The years, the title and the current company all live here now, and
-            the link to corellium.com that used to sit in the bar comes with
-            them, so the page still has exactly one of it. */}
+        {/* Greeting, one line of positioning, then the facts as rows.
+
+            The greeting stays at 24 rather than growing. Tested at 26/28/30 it
+            reads louder without reading more important — a hello does not earn
+            display size, and 30 is where the contact page's "Let's ship
+            something great" wraps to two lines at 390px, so the scale has a
+            ceiling anyway. What the title was actually losing to was the mass
+            underneath it: against six lines of intro it was outweighed by its
+            own supporting copy. One line fixes the ratio without a single
+            change to the title. */}
         <section className="flex flex-col gap-3 sm:gap-4">
           <h1 className="title-display text-2xl">
             <span className="anim-line-mask">
@@ -122,15 +161,34 @@ export default function Portfolio() {
             </span>
           </h1>
           <div>
-            {/* text-pretty, because the fix for a widow is not just more words.
-                Landing "Corellium." alone on the last line was a function of
-                this exact measure — adding a clause cures it at 1440px and can
-                just as easily recreate it at 1180. text-wrap: pretty tells the
-                browser to avoid a one-word final line at whatever width it is
-                actually laying out, which is the part copy cannot control. */}
+            {/* text-pretty stays: at one sentence a widow is less likely, but
+                the measure still varies with the viewport and this is the part
+                copy cannot control.
+
+                The line runs to two lines at desktop, deliberately. It was one,
+                and one was too little: the sentence named what he does and the
+                verticals he does it in, and left out that he founds the
+                companies too — the one fact here that the stat rows below do
+                not already carry (they give Experience, Role and Currently).
+
+                Two lines is affordable and six was not. The block that
+                outweighed the h1 ran to six lines at 156px against a 29px
+                title; this is 51px, a ratio of 1.78 rather than 5.4, and the
+                title still reads first. "0 → 1" appears once and on the verb,
+                where it describes the work, rather than twice as both a label
+                and an action. */}
             <p className="text-base leading-[1.6] text-ink-soft text-pretty anim-rise [animation-delay:180ms]">
-                I&apos;m a 0 → 1 product designer and founder. For 8 years I&apos;ve shipped B2B products at early-stage startups in healthcare, cybersecurity, and finance. Currently Staff Product Designer at <Link href="https://www.corellium.com" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 decoration-border hover:decoration-foreground transition-colors">Corellium</Link>, simplifying complex security workflows.
+              I&apos;m a product designer and founder, taking B2B products from 0 → 1 at early-stage startups across healthcare, cybersecurity, and finance.
             </p>
+            {/* Lands after the intro in the entrance sequence rather than with
+                it, so the facts read as a second beat — and sits 40px down
+                rather than 16. At mt-4 the block's top rule was closer to the
+                intro's baseline than the intro was to the greeting above it, so
+                the rule read as underlining the sentence instead of opening the
+                list. This is wider than the 24px a case-study header gives its
+                rows, and deliberately so: there the hero image already separates
+                the sentence from the facts, and here nothing does. */}
+            <StatRows rows={introStats} className="mt-10 anim-rise [animation-delay:220ms]" />
           </div>
         </section>
 

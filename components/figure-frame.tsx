@@ -6,10 +6,6 @@ interface FigureFrameProps {
   caption: string
   /* tight = 10px padding for images sharing a row; default = 12px full-width */
   padding?: "default" | "tight"
-  /* lightbox = clickable still; its frame darkens its border on hover to
-       signal zoom. comparison = a drag slider, which takes no hover feedback at
-       all and shouldn't imply a lightbox in the first place */
-  variant?: "lightbox" | "comparison"
   className?: string
   children: React.ReactNode
 }
@@ -18,29 +14,36 @@ export const FigureFrame = ({
   number,
   caption,
   padding = "default",
-  variant = "lightbox",
   className,
   children,
 }: FigureFrameProps): React.JSX.Element => {
   return (
     <figure className={className}>
-      {/* Hover feedback lives on the mat, never on the image.
+      {/* The frame takes no hover feedback at all, and the cursor carries the
+          affordance on its own — the image inside is a button with
+          cursor-zoom-in.
 
-          The mockup's hairline and its float are both drop-shadows tracing the
-          image's alpha, so anything that touches the image touches them too.
-          Dimming it to opacity-90 took a tenth of the ink off a one-pixel line;
-          swapping that for brightness-95 kept the end states level but still
-          re-rasterised the whole filter chain over a 658px image on every frame
-          of the transition. Both read as the edge flickering.
+          It used to darken its border on hover. That was already the second
+          answer: hover on the image itself was tried first and abandoned,
+          because the mockup's hairline and its float are both drop-shadows
+          tracing the image's alpha, so anything touching the image touches them
+          too. Dimming to opacity-90 took a tenth of the ink off a one-pixel
+          line; brightness-95 kept the end states level but re-rasterised the
+          whole filter chain over a 658px image every frame. Both read as the
+          edge flickering.
 
-          The frame is the image's parent and sits outside the filter, so
-          darkening its border says "this is clickable" without the filtered
-          subtree changing at all. */}
+          Moving it to the border fixed the flicker but kept the underlying
+          problem: the frame is a hairline in a page built out of hairlines, so
+          darkening one of them reads as the edge changing rather than as an
+          invitation. A frame that holds still is what the rest of the page
+          does.
+
+          That also retired the lightbox/comparison variant, which existed only
+          to withhold this hover from the drag sliders. With no hover to
+          withhold, the two are the same object. */}
       <div
         className={cn(
           "bg-mockup-frame border border-border rounded-xl",
-          variant === "lightbox" &&
-            "transition-colors duration-(--motion-touch) hover:border-foreground/25",
           padding === "tight" ? "p-2.5" : "p-3",
         )}
       >

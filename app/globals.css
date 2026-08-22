@@ -281,11 +281,39 @@
    * trace the accumulated result, so putting the blurred layers first would
    * make the outline trace the blur instead of the artwork.
    */
+  /* The ring reads a touch heavy against a real border, and colour is the only
+     lever left. Geometry is fixed at 1px a side by the technique — a
+     drop-shadow offset below a whole pixel antialiases into a blur instead of
+     a thinner line, trading sharpness for the exact width it was trying to
+     buy, and the chaining puts corners at about 1.4x regardless. So the ink
+     comes off instead: 95% of --border.
+
+     Mixed toward the MAT, not toward transparent, and that distinction is the
+     whole reason this works. Thinning the colour with alpha does nothing here:
+     the four shadows chain, each tracing the accumulated result, so along the
+     ring a 95%-alpha layer composites over a 95%-alpha layer and comes back as
+     1 - 0.05^2, or 99.75%. Measured, `color-mix(... 95%, transparent)` left the
+     dip at 21.8 — unchanged to the tenth. An opaque colour cannot compound
+     with itself, so mixing 5% of --mockup-frame into --border actually lands
+     the 5%.
+
+     --mockup-frame is the right thing to mix into because it is always what
+     the ring is drawn against: --drop-mockup is applied to the plate card
+     mats, the Other Work thumbnails, LightboxImage and the comparison figures,
+     and every one of those sits on a mockup-frame mat.
+
+     Derived with color-mix rather than written as a lighter literal, so it
+     cannot drift from --border and still follows the mode — both the light and
+     dark --drop-mockup read --edge-mockup, so one token covers both. Same
+     lever --edge-soft already pulls for the Other Work thumbnails, and for the
+     same reason: matching the yardstick by value and matching it by eye are
+     different targets. */
+  --edge-ring: color-mix(in srgb, var(--border) 95%, var(--mockup-frame));
   --edge-mockup:
-    drop-shadow(1px 0 0 var(--border))
-    drop-shadow(-1px 0 0 var(--border))
-    drop-shadow(0 1px 0 var(--border))
-    drop-shadow(0 -1px 0 var(--border));
+    drop-shadow(1px 0 0 var(--edge-ring))
+    drop-shadow(-1px 0 0 var(--edge-ring))
+    drop-shadow(0 1px 0 var(--edge-ring))
+    drop-shadow(0 -1px 0 var(--edge-ring));
   --drop-mockup:
     var(--edge-mockup)
     drop-shadow(0 2px 3px hsl(var(--shadow-color) / 0.035))
@@ -445,6 +473,14 @@ body {
  * It has shed two companions: first a hairline that filled the rest of the row,
  * then the tabular counter pushed to the far edge — which left the flex row
  * wrapping a single child, so that went with it. A label is just a label now.
+ *
+ * Ink, at the same 18/600 as a plate card title. A muted step was tried and
+ * reverted: it does separate the label from the content it names, but it also
+ * pushes the one piece of wayfinding on the page into the register the site
+ * uses for things you skim past, and a section heading you have to hunt for
+ * costs more than the collision it fixes. Rank here is carried by position and
+ * by the space around the label — see the section wrapper in app/page.tsx —
+ * rather than by colour.
  */
 .sys-section-label {
   @apply text-lg font-semibold text-foreground;
@@ -648,9 +684,10 @@ body {
  *   24  page titles            text-2xl  (heroes and case studies alike)
  *   20  card plates, stat and metric values, closing CTAs
  *   18  section headings       .sys-section-label
- *   16  body copy, card titles
+ *   16  body copy, card titles, stat values (600)
  *   14  secondary copy (400), interactive labels — nav and form (500),
- *       dense list rows such as the About experience entries (600)
+ *       dense list rows such as the About experience entries (600),
+ *       stat labels (500 muted — the optical floor, not a rank)
  *   12  meta, badges, captions, the side rail — things you skim past, never
  *       something you have to act on. Form validation used to sit here and was
  *       moved up to 14: it is the one small text a visitor is required to read
