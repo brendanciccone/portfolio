@@ -171,8 +171,8 @@ export default function ContactForm() {
   }
 
   if (isSuccess) {
-    // Confirmation in the site's own grammar: left-aligned, the stamp period
-    // as the confirmation mark, and a quiet underline-wipe action
+    // Confirmation in the site's own grammar: left-aligned, with a quiet
+    // underline-wipe action
     return (
       <div
         role="status"

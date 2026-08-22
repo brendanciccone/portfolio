@@ -3,8 +3,11 @@
 import { useCallback, useEffect, useState, useSyncExternalStore, type RefObject } from "react"
 
 /* Everything focusable the trap needs to cycle between */
+/* :not([disabled]) matters — if the first or last match is disabled, .focus()
+   is a no-op and Tab escapes the dialog, which is the one thing the trap
+   exists to prevent. */
 const FOCUSABLE_SELECTOR =
-  'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+  'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
 
 // Never-changing store: subscribers get no updates; the snapshot is simply
 // "am I on the client" (true) vs. the server render (false)
@@ -46,11 +49,15 @@ export const useModalState = (): ModalState => {
       if (event.key === "Escape") setIsOpen(false)
     }
     document.addEventListener("keydown", handleKeyDown)
+    /* Captured rather than assumed: writing "unset" on cleanup discards any
+       inline overflow the page had before this opened, and releases the lock
+       even if something else still wants it held. */
+    const previousOverflow = document.body.style.overflow
     document.body.style.overflow = "hidden"
 
     return () => {
       document.removeEventListener("keydown", handleKeyDown)
-      document.body.style.overflow = "unset"
+      document.body.style.overflow = previousOverflow
     }
   }, [isOpen])
 

@@ -5,7 +5,8 @@ import { useEffect, useRef } from "react"
 import { usePathname } from "next/navigation"
 
 /*
- * Reading progress — a 2px ink rule pinned under the header that fills as the
+ * Reading progress — a 2px ink rule pinned to the top edge of the viewport,
+ * above the floating nav, that fills as the
  * page scrolls. Driven by scaleX rather than width: the motion system animates
  * transforms and opacity only, and a width that changes on every scroll event
  * relayouts the bar each frame for no visual gain.

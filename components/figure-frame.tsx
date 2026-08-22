@@ -6,9 +6,9 @@ interface FigureFrameProps {
   caption: string
   /* tight = 10px padding for images sharing a row; default = 12px full-width */
   padding?: "default" | "tight"
-  /* lightbox = clickable still that dims on hover to signal zoom; comparison =
-     a drag slider, which must NOT dim (its two stacked images would bleed
-     through each other) and shouldn't imply a lightbox in the first place */
+  /* lightbox = clickable still; its frame darkens its border on hover to
+       signal zoom. comparison = a drag slider, which takes no hover feedback at
+       all and shouldn't imply a lightbox in the first place */
   variant?: "lightbox" | "comparison"
   className?: string
   children: React.ReactNode
@@ -58,10 +58,6 @@ export const FigureFrame = ({
          * the unmasking. Full-width figures take the longer wipe, since the
          * same speed across a larger area reads as hurried.
          */}
-        {/* No overflow-hidden: it would clip the mockup's shadow the same way the
-             old inset(0%) clip did. Containment during the wipe comes from the
-             clip-path, which is inset while the screenshot is scaled up and
-             opens past the edge once it settles. */}
         <div data-wipe className={cn("overflow-hidden rounded-md", padding === "default" && "wipe-long")}>
           {children}
         </div>

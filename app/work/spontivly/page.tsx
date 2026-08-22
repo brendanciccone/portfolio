@@ -43,9 +43,8 @@ export default function SpontivlyPage() {
         {/* Page header — inverted: title row and role first so a skimmer gets
             who/what/outcome before the viewport-height hero image */}
         <header>
-          {/* The title row recedes as the case study takes over; the framed
-              hero below it is left alone because it carries the shared-element
-              name for the card→case-study morph */}
+          {/* The framed hero below is left alone: it carries the
+              shared-element name for the card→case-study morph */}
           <div className="flex flex-col sm:flex-row sm:items-center gap-4">
             <Image
               src="/about/logos/spontivly.jpeg"

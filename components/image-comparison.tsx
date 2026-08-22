@@ -192,10 +192,10 @@ export const ImageComparison = ({
       */}
       <div
         className={cn(
-          "absolute top-0 bottom-0 w-px bg-foreground/70 shadow-[0_0_0_1px_rgba(255,255,255,0.6)]",
+          "absolute top-0 bottom-0 w-px -translate-x-1/2 bg-foreground/70 shadow-[0_0_0_1px_rgba(255,255,255,0.6)]",
           !isDragging && "transition-[left] duration-(--motion-settle) ease-(--ease-settle) motion-reduce:transition-none",
         )}
-        style={{ left: `${sliderPosition}%`, transform: "translateX(-50%)" }}
+        style={{ left: `${sliderPosition}%` }}
       >
         {/* Slider handle — acknowledges touch: grows on hover, sits down while dragging */}
         <div
@@ -205,7 +205,7 @@ export const ImageComparison = ({
             isDragging ? "scale-95" : "group-hover:scale-105",
           )}
         >
-          <svg width="18" height="18" viewBox="0 0 20 20" fill="none" className="text-foreground">
+          <svg aria-hidden width="18" height="18" viewBox="0 0 20 20" fill="none" className="text-foreground">
             <path d="M6 10L2 10M2 10L5 7M2 10L5 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             <path d="M14 10L18 10M18 10L15 7M18 10L15 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>

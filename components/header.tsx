@@ -178,6 +178,7 @@ export default function Header() {
                 type="button"
                 onClick={handleMenuToggle}
                 onKeyDown={handleMenuKeyDown}
+                tabIndex={0}
                 aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
                 aria-expanded={mobileMenuOpen}
                 aria-controls="mobile-menu"
@@ -223,14 +224,13 @@ export default function Header() {
             opacity) onto --motion-settle (250ms) with the settle curve, which
             is what everything else that physically moves on this site uses.
           */}
-          <div
+          <nav
             className={cn(
               "md:hidden grid transition-[grid-template-rows,opacity] duration-(--motion-settle) ease-(--ease-settle) motion-reduce:transition-none",
               mobileMenuOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",
             )}
             id="mobile-menu"
             aria-hidden={!mobileMenuOpen}
-            role="navigation"
             aria-label="Mobile Navigation"
             onKeyDown={handleMenuKeyDown}
           >
@@ -260,7 +260,7 @@ export default function Header() {
 
               </div>
             </div>
-          </div>
+          </nav>
         </div>
       </div>
     </header>

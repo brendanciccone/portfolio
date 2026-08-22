@@ -161,14 +161,10 @@ export const LightboxOverlay = ({
         />
       </div>
 
-      {/* The caption is chrome, not content — a press on it should dismiss like
-          any other empty region rather than being a dead patch of screen. */}
-      <p
-        className="shrink-0 cursor-default text-center text-sm font-semibold text-white"
-        onMouseDown={onClose}
-      >
-        {caption ?? alt}
-      </p>
+      {/* Content, not a control. A <p> with a mouse handler is reachable by
+          neither keyboard nor screen reader, and it adds nothing: Escape, the
+          close button, and every empty region already dismiss. */}
+      <p className="shrink-0 text-center text-sm font-semibold text-white">{caption ?? alt}</p>
     </div>,
     document.body,
   )
@@ -200,7 +196,7 @@ export const LightboxImage = ({
       <button
         type="button"
         onClick={open}
-        className="cursor-pointer md:cursor-zoom-in w-full block overflow-hidden rounded-md [filter:var(--drop-mockup)]"
+        className="cursor-pointer md:cursor-zoom-in w-full block overflow-hidden rounded-md [filter:var(--drop-mockup)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
         aria-label={`View ${alt} in fullscreen`}
       >
         <div className="relative">

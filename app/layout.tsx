@@ -16,6 +16,11 @@ import JsonLd from "@/components/json-ld"
 // 100–900 range arrives in a single file and the three weights the system uses
 // (400, 500, 600) are all real rather than synthesised. Self-hosted from the
 // package, so there is no third-party font request on any page.
+//
+// The root takes the variable plus the semantic font-sans utility rather than
+// GeistSans.className. Both resolve to the same stack — GeistSans followed by
+// the metric-adjusted "GeistSans Fallback" — but going through the utility
+// makes --font-sans load-bearing instead of a token nothing reads.
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -86,7 +91,7 @@ export default function RootLayout({
     // data-entrance ships on in the served HTML so a cold load plays its
     // choreography with no script involved and no flash of final state;
     // TransitionLink clears it for navigations that morph instead.
-    <html lang="en" suppressHydrationWarning data-entrance="" className={`${GeistSans.variable} ${GeistSans.className}`}>
+    <html lang="en" suppressHydrationWarning data-entrance="" className={`${GeistSans.variable} font-sans`}>
       <head>
         <JsonLd />
       </head>

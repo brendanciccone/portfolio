@@ -75,8 +75,10 @@ export const WorkCard = ({
   const isPlate = variant === "selected"
   /* Plates run one per row and their screenshot fills the mat, so it asks for
      the rail width less the card's own padding. Small cards are a fixed
-     thumbnail beside their text from sm up, and a full-width one below that. */
-  const sizes = isPlate ? "(max-width: 768px) 100vw, 660px" : "(max-width: 640px) 100vw, 176px"
+     thumbnail beside their text at every width — 96px on a phone, 176px from sm
+     up — so asking for 100vw below sm fetched an image about four times wider
+     than the slot it lands in, on the viewport with the most traffic. */
+  const sizes = isPlate ? "(max-width: 768px) 100vw, 660px" : "(max-width: 640px) 96px, 176px"
 
   /*
    * Small cards run horizontally: a fixed thumbnail on the left, the text
@@ -87,25 +89,21 @@ export const WorkCard = ({
    */
   if (!isPlate) {
     /*
-     * Thumbnail beside the text from sm up, stacked below it on a phone.
+     * A row at every width: a thumbnail beside its text, 96px on a phone and
+     * 176px from sm up.
      *
-     * Side by side at 390px the thumbnail takes 144px of a ~350px card, leaving
-     * the text column about 158 — narrower than a single tag. "Coinbase
-     * Accelerator" on its own is wider than that, so every tag wrapped onto its
-     * own line and the badge row became a badge column. Stacking gives the text
-     * its full width back and the tags sit on one line again.
+     * It used to stack to a full-width card below sm, because at 390px a 144px
+     * thumbnail left the text column about 158 — narrower than "Coinbase
+     * Accelerator" on its own, so every tag wrapped and the badge row became a
+     * badge column. The fix for that was a smaller thumbnail, not a different
+     * layout: at 96px the column gets about 218 and the tags fit again.
      *
-     * It stays a row at every width now, rather than stacking to a full-width
-     * card below sm.
-     *
-     * Stacked, this became the same object as a plate card: 272x197 of artwork
-     * against the featured card's 282x200, a 4% difference, with the same
-     * 14px description under it. Two sections headed "Selected Work" and
-     * "Other Work" rendering as the same component is worse than a cramped
-     * badge row, and the padding was never going to fix a 4% gap.
-     *
-     * As a row it is unambiguous — a 96px thumbnail beside its text against a
-     * full-width picture card — which is what the two tiers actually are.
+     * Stacked, this also became the same object as a plate card: 272x197 of
+     * artwork against the featured card's 282x200, a 4% difference, with the
+     * same 14px description under it. Two sections headed "Selected Work" and
+     * "Other Work" rendering as one component is worse than a cramped badge
+     * row, and no amount of padding was going to close a 4% gap. As a row the
+     * two tiers are unambiguous, which is what they actually are.
      */
     const row = (
       <div className="flex items-center gap-3 p-3 sm:gap-4 sm:p-4">
@@ -135,8 +133,8 @@ export const WorkCard = ({
             an auto-height parent computes to auto — and it fell back to its
             natural aspect. The result was a 98px-tall image in an 82px box,
             pinned to the top with the bottom 16px cropped off. Stretching the
-            wrapper gives h-full a real height, so object-cover crops evenly
-            from both edges and the thumbnail is actually centred.
+            wrapper gives h-full a real height, so object-contain has a box to
+            resolve against and the thumbnail is actually centred.
           */}
           <div className="relative size-full overflow-hidden rounded [filter:var(--drop-mockup-sm)] [&>div]:size-full">
             <MockupImage
@@ -145,12 +143,12 @@ export const WorkCard = ({
               width={1200}
               height={900}
               /*
-               * contain, not cover. The mat has p-1.5, and padding is taken off
-               * both dimensions of an aspect-[3/2] box equally — so the clip
-               * inside it lands at 1.53 rather than 1.5, and cover was quietly
-               * cropping the screenshot to fill the difference. contain always
-               * shows the whole frame and lets the mat absorb whatever is left
-               * over, which is how the plate cards present a screenshot too.
+               * contain, not cover. Padding comes off both dimensions of the
+               * aspect-[4/3] mat equally, so the clip inside it does not land at
+               * 4:3 — and cover was quietly cropping the screenshot to make up
+               * the difference. contain always shows the whole frame and lets
+               * the mat absorb what is left over, which is how the plate cards
+               * present a screenshot too.
                */
               className={cn(imageClasses, "h-full object-contain")}
               quality={80}
@@ -213,17 +211,17 @@ export const WorkCard = ({
             trigger button here, which made only the screenshot clickable on a
             card that looks identical to the linked ones above; the trigger now
             lives on the title and covers the whole card. */}
-        {/* The screenshot fills the mat's width at its own 3:2 ratio.
+        {/* The screenshot fills the mat's width at its own 4:3 ratio — the
+            files are 2400x1800 and are declared 1200x900.
             It used to be letterboxed inside a forced 16:9 box, which was sized
             for the old 64rem rail — at 45rem that left the screenshot 494px
             wide inside a 678px mat, with 92px of dead mat down either side.
             Nothing was gained for it: the cap existed to keep a whole card near
             one viewport, and the card is 300px narrower than it was. */}
-        {/* Filter on the clipper rather than the <img>: overflow-hidden here contains
-            the hover swell, and a filter on the image inside would be cropped at
-            that boundary. Applied outside it, the shadow is drawn from the
-            already-clipped result and has the image's own transparent margin to
-            land in. */}
+        {/* Filter on the clipper rather than the <img>: a filter on the image
+            inside would be cropped at this boundary. Applied outside it, the
+            shadow is drawn from the already-clipped result and has the image's
+            own transparent margin to land in. */}
         <div className="relative w-full overflow-hidden rounded-md [filter:var(--drop-mockup)]">
           <MockupImage
             src={image.src}

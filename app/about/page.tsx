@@ -227,11 +227,9 @@ export default function About() {
             part of the heading it belongs to. A title and the line that
             qualifies it read as one unit; the section rhythm resumes below. */}
         <section className="flex flex-col gap-3 sm:gap-4">
-          {/* Same hero grammar as contact: the line rises out from behind its
-              mask, the period stamps in last, the rule draws itself once in
-              view. Only the display title recedes on scroll — the bio is real
-              content, so it takes the bidirectional flow instead of the
-              hero's one-way fade-out. */}
+          {/* Same hero grammar as contact: the line rises out from behind
+              its mask. The bio below takes the bidirectional flow, since it is
+              real content rather than chrome. */}
           <h1 className="title-display text-2xl">
             <span className="anim-line-mask">
               <span className="block anim-line">

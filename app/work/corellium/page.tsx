@@ -42,9 +42,8 @@ export default function CorelliumPage() {
         {/* Page header — inverted: title row and role first so a skimmer gets
             who/what/outcome before the viewport-height hero image */}
         <header>
-          {/* The title row recedes as the case study takes over; the framed
-              hero below it is left alone because it carries the shared-element
-              name for the card→case-study morph */}
+          {/* The framed hero below is left alone: it carries the
+              shared-element name for the card→case-study morph */}
           <div className="flex flex-col sm:flex-row sm:items-center gap-4">
             <Image
               src="/about/logos/corellium.jpeg"
@@ -97,7 +96,7 @@ export default function CorelliumPage() {
 
         {/* Overview + Highlights */}
         <section id="overview" className="scroll-mt-16">
-          <SectionLabel flow title="Overview" className="mb-5" />
+          <SectionLabel flow title="Overview" className="mb-6" />
           <p data-flow="0.5" className="text-base leading-[1.6] text-ink-soft mb-5">
             In 2023, I joined Corellium as the <span className="text-foreground font-semibold">solo designer</span> on a virtualization platform used by security researchers, enterprises, and government agencies to test mobile applications and firmware. I owned end-to-end product design across web and mobile, partnering with product and engineering teams to ship improvements while navigating the constraints of a complex platform.
           </p>
@@ -129,7 +128,7 @@ export default function CorelliumPage() {
 
         {/* The Problem - Old Flow */}
         <section id="device-creation" className="scroll-mt-16">
-          <SectionLabel flow title="Device Creation: The Core Experience" className="mb-5" />
+          <SectionLabel flow title="Device Creation: The Core Experience" className="mb-6" />
           <div data-flow="0.5" className="space-y-3.5 text-base leading-[1.6] text-ink-soft mb-6">
             <p>
               Device creation is the most critical flow in the platform. It&apos;s how every user starts their work. If this flow is painful, the entire product feels painful.
@@ -162,7 +161,7 @@ export default function CorelliumPage() {
 
         {/* Redesign narrative + redesigned UI */}
         <section id="simplifying" className="scroll-mt-16">
-          <SectionLabel flow title="Simplifying the Experience" className="mb-5" />
+          <SectionLabel flow title="Simplifying the Experience" className="mb-6" />
           <div data-flow="0.5" className="space-y-3.5 text-base leading-[1.6] text-ink-soft mb-6">
             <p>
               The goal was to reduce cognitive load and eliminate unnecessary steps without sacrificing flexibility. I redesigned the flow down to <span className="text-foreground font-semibold">3 steps</span>. In the new design, one click gives you the latest iOS, Android, or IoT device with smart defaults. Power users can still customize everything, but the common path is fast. Changing your mind no longer punishes you with extra steps: device type, OS version, project, and advanced options can all be adjusted without starting over.
@@ -232,7 +231,7 @@ export default function CorelliumPage() {
 
         {/* Insights */}
         <section id="insights" className="scroll-mt-16">
-          <SectionLabel flow title="Insights" className="mb-5" />
+          <SectionLabel flow title="Insights" className="mb-6" />
           <div data-flow="0.5" className="space-y-3.5 text-base leading-[1.6] text-ink-soft mb-6">
             <p>
               In B2B enterprise, customer requests translate directly to revenue, which means platform-wide UX improvements often lose the prioritization battle. Find the intersection between what users need and what a PM can justify on their roadmap to get foundational work prioritized.
