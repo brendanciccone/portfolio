@@ -163,9 +163,18 @@ export default function Portfolio() {
           <div>
             {/* text-pretty stays: at one sentence a widow is less likely, but
                 the measure still varies with the viewport and this is the part
-                copy cannot control. */}
+                copy cannot control.
+
+                The line names the stage as well as the verticals, and pays
+                nothing for it. "at early-stage startups" is 18 characters more
+                than the version without it, and the em-dash list gives them
+                back by dropping "in … and …" — measured at 2 lines at 390px and
+                1 at 1280px, the same as the shorter line. That matters because
+                the length here is load-bearing: this block is what outweighed
+                the h1 when it ran to six lines. Anything that costs a line
+                (naming seed and Series A, for one) costs the title its rank. */}
             <p className="text-base leading-[1.6] text-ink-soft text-pretty anim-rise [animation-delay:180ms]">
-              I take B2B products from 0 → 1, in healthcare, cybersecurity, and finance.
+              I take B2B products from 0 → 1 at early-stage startups — healthcare, cybersecurity, finance.
             </p>
             {/* Lands after the intro in the entrance sequence rather than with
                 it, so the facts read as a second beat — and sits 40px down
