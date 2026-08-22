@@ -139,8 +139,59 @@ export const ImageComparison = ({
         />
       )}
 
-      {/* After image (background) */}
-      <div className={cn("pointer-events-none absolute inset-0", !isLoaded && "opacity-0")}>
+      {/*
+        After image (background), and the layer that carries the edge ring for
+        both halves.
+
+        --drop-mockup is applied in exactly three other places — plate cards,
+        the Other Work thumbnails and LightboxImage — and a comparison was not
+        one of them, so a before/after figure was the only screenshot on the
+        site sitting in its mat with nothing marking where the artwork stopped.
+
+        It has to be an alpha trace, same as everywhere else. These files are
+        not the exception they look like: a 2400x1800 canvas with the artwork
+        inset a uniform 171px on all four sides, which is 7.12% of the width and
+        9.50% of the height (a square margin on a 4:3 canvas is not square in
+        percent). object-cover fills the box because the source is 4:3 and so is
+        the box, but the box edge is still ~47px out from the artwork at render
+        size. A plain ring on the container draws around the mat, not the work.
+
+        It goes on this layer ONLY, and both halves of that matter.
+
+        Not on the clipped Before layer, because filter is applied BEFORE
+        clip-path — that is the painting order, filter then clip — so the ring
+        is computed from the full artwork and then cut off at the seam. It does
+        not trace the slider; it is truncated by it, which is quieter and worse:
+        measured against this version, moving the filter to the Before layer
+        leaves the left edge pixel-identical and erases the entire right edge
+        ring (28.4k pixels differing, all of them in the right margin, none at
+        the seam).
+
+        And not on both layers, because they share a margin. Filtering both
+        double-composites the float into it — 22.7k pixels differing, peaking at
+        13% in the band just outside the left edge, which reads as one half of
+        the figure sitting lower than the other.
+
+        One ring off the unclipped layer covers both, because both layers land
+        on the same rect. Every source measures the same inset to within 0.02%
+        of its width — including corellium/9.webp, which is 2800x2100 with a
+        200px margin and so proportionally identical — about 0.13px at a 654px
+        render. The Before layer is transparent across the margin the ring and
+        float occupy, so it hides neither, and the ring measures the same 21.8
+        luminance dip at every x, straight through the seam. That is the number
+        --edge-mockup is built to hit: globals.css measures a real 1px --border
+        rule at 22.
+
+        This is also the layer that never moves: clip-path animates on the
+        Before wrapper and left animates on the divider, so the filter
+        rasterises once and is untouched for the rest of a drag.
+      */}
+      <div
+        className={cn(
+          "pointer-events-none absolute inset-0 [filter:var(--drop-mockup)]",
+          !isLoaded && "opacity-0",
+        )}
+      >
         <Image
           ref={afterRef}
           src={afterSrc}
@@ -154,7 +205,13 @@ export const ImageComparison = ({
         />
       </div>
 
-      {/* Before image (clipped) — jumps glide on the settle curve; drags track 1:1 */}
+      {/* Before image (clipped) — jumps glide on the settle curve; drags track 1:1.
+
+          Deliberately unfiltered: the ring for both halves is drawn once off
+          the After layer above, which shares this layer's bounds. Adding
+          --drop-mockup here would double the float in the shared margin, and
+          moving it here would truncate the ring at the seam — see that layer's
+          comment for the measurements. */}
       <div
         className={cn(
           "pointer-events-none absolute inset-0 overflow-hidden",

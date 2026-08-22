@@ -168,8 +168,14 @@ export default function Portfolio() {
               I take B2B products from 0 → 1, in healthcare, cybersecurity, and finance.
             </p>
             {/* Lands after the intro in the entrance sequence rather than with
-                it, so the facts read as a second beat */}
-            <StatRows rows={introStats} className="mt-4 anim-rise [animation-delay:220ms]" />
+                it, so the facts read as a second beat — and sits 40px down
+                rather than 16. At mt-4 the block's top rule was closer to the
+                intro's baseline than the intro was to the greeting above it, so
+                the rule read as underlining the sentence instead of opening the
+                list. This is wider than the 24px a case-study header gives its
+                rows, and deliberately so: there the hero image already separates
+                the sentence from the facts, and here nothing does. */}
+            <StatRows rows={introStats} className="mt-10 anim-rise [animation-delay:220ms]" />
           </div>
         </section>
 
