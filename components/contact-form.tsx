@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Checkbox } from "@/components/ui/checkbox"
-import { StampPeriod } from "@/components/stamp-period"
 import { Send } from "lucide-react"
 import { z } from "zod"
 
@@ -172,8 +171,8 @@ export default function ContactForm() {
   }
 
   if (isSuccess) {
-    // Confirmation in the site's own grammar: left-aligned, the stamp period
-    // as the confirmation mark, and a quiet underline-wipe action
+    // Confirmation in the site's own grammar: left-aligned, with a quiet
+    // underline-wipe action
     return (
       <div
         role="status"
@@ -181,16 +180,16 @@ export default function ContactForm() {
         aria-atomic="true"
         className="w-full flex-1 flex flex-col justify-center gap-4"
       >
-        <h3 className="title-display text-3xl sm:text-[40px] anim-rise">
-          Message sent<StampPeriod className="anim-stamp" />
+        <h3 className="title-display text-lg sm:text-xl anim-rise">
+          Message sent
         </h3>
-        <p className="text-[15px] leading-[1.55] text-ink-soft anim-rise [animation-delay:100ms]">
+        <p className="text-base leading-[1.6] text-ink-soft anim-rise [animation-delay:100ms]">
           Thanks for reaching out. I&apos;ll get back to you shortly.
         </p>
         <button
           type="button"
           onClick={() => setIsSuccess(false)}
-          className="self-start mt-2 cursor-pointer text-[13px] font-semibold uppercase tracking-[0.04em] text-foreground anim-rise [animation-delay:200ms] relative after:absolute after:left-0 after:right-0 after:-bottom-1 after:h-[2px] after:bg-primary after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-(--motion-settle) motion-reduce:after:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+          className="self-start mt-2 cursor-pointer text-sm font-medium text-foreground anim-rise [animation-delay:200ms] relative after:absolute after:left-0 after:right-0 after:-bottom-1 after:h-[2px] after:bg-foreground after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-(--motion-settle) motion-reduce:after:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
         >
           Send another
         </button>
@@ -202,16 +201,22 @@ export default function ContactForm() {
     <div className="w-full">
       {errors.submit && (
         <div className="mb-4 p-3 bg-destructive/10 text-destructive rounded-sm border border-destructive/20 text-sm">
-          <p className="font-medium">Error sending message:</p>
+          <p className="font-semibold">Error sending message:</p>
           <p>{errors.submit}</p>
         </div>
       )}
 
       <form className="space-y-3 sm:space-y-4 w-full" onSubmit={handleSubmit}>
+        {/* Name and Email share a row from sm up. Four identical full-width
+            boxes stacked in a column is the least interesting shape a form can
+            take, and the two shortest answers were taking the same width as the
+            longest. Pairing them gives the column a rhythm — a row, a row, a
+            block — without adding a single word to the page. */}
+        <div className="grid gap-3 sm:grid-cols-2 sm:gap-4">
         <div>
           <label
             htmlFor="name"
-            className="block text-xs font-mono uppercase tracking-wider mb-1 sm:mb-2 text-muted-foreground"
+            className="block text-sm font-medium mb-2 text-foreground"
           >
             Name
           </label>
@@ -225,7 +230,7 @@ export default function ContactForm() {
             aria-describedby={errors.name ? "name-error" : undefined}
           />
           {errors.name && (
-            <p className="text-destructive text-xs mt-1" id="name-error">
+            <p className="text-destructive text-sm mt-1" id="name-error">
               {errors.name}
             </p>
           )}
@@ -233,7 +238,7 @@ export default function ContactForm() {
         <div>
           <label
             htmlFor="email"
-            className="block text-xs font-mono uppercase tracking-wider mb-1 sm:mb-2 text-muted-foreground"
+            className="block text-sm font-medium mb-2 text-foreground"
           >
             Email
           </label>
@@ -248,15 +253,16 @@ export default function ContactForm() {
             aria-describedby={errors.email ? "email-error" : undefined}
           />
           {errors.email && (
-            <p className="text-destructive text-xs mt-1" id="email-error">
+            <p className="text-destructive text-sm mt-1" id="email-error">
               {errors.email}
             </p>
           )}
         </div>
+        </div>
         <div>
           <label
             htmlFor="company"
-            className="block text-xs font-mono uppercase tracking-wider mb-1 sm:mb-2 text-muted-foreground"
+            className="block text-sm font-medium mb-2 text-foreground"
           >
             Company
           </label>
@@ -269,7 +275,7 @@ export default function ContactForm() {
             aria-describedby={errors.company ? "company-error" : undefined}
           />
           {errors.company && (
-            <p className="text-destructive text-xs mt-1" id="company-error">
+            <p className="text-destructive text-sm mt-1" id="company-error">
               {errors.company}
             </p>
           )}
@@ -277,7 +283,7 @@ export default function ContactForm() {
         <div>
           <label
             htmlFor="message"
-            className="block text-xs font-mono uppercase tracking-wider mb-1 sm:mb-2 text-muted-foreground"
+            className="block text-sm font-medium mb-2 text-foreground"
           >
             Message
           </label>
@@ -292,7 +298,7 @@ export default function ContactForm() {
             aria-describedby={errors.message ? "message-error" : undefined}
           />
           {errors.message && (
-            <p className="text-destructive text-xs mt-1" id="message-error">
+            <p className="text-destructive text-sm mt-1" id="message-error">
               {errors.message}
             </p>
           )}
@@ -308,13 +314,13 @@ export default function ContactForm() {
           />
           <label
             htmlFor="termsAccepted"
-            className={`text-[13px] sm:text-[14px] ${formData.termsAccepted ? "text-foreground" : "text-muted-foreground"} cursor-pointer`}
+            className={`text-sm ${formData.termsAccepted ? "text-foreground" : "text-muted-foreground"} cursor-pointer`}
           >
             I accept this information will be used to contact me.
           </label>
         </div>
         {errors.termsAccepted && (
-          <p className="text-destructive text-xs -mt-2" id="terms-error">
+          <p className="text-destructive text-sm -mt-2" id="terms-error">
             {errors.termsAccepted}
           </p>
         )}

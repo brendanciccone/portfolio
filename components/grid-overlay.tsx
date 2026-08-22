@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 
 /*
- * The layout grid, on demand: pressing G draws the 12-column grid in red
+ * The layout grid, on demand: pressing G draws the 12-column grid in tinted
  * hairlines over the page; G or Escape dismisses it. Deliberately hinted
  * nowhere — it exists for the visitor who suspects there's a grid and
  * checks. Ignores keystrokes while typing and all modifier combos.
@@ -33,7 +33,7 @@ export const GridOverlay = (): React.JSX.Element | null => {
   return (
     /* Keyboard-summoned, so desktop-only by nature — hidden below md */
     <div aria-hidden className="pointer-events-none fixed inset-0 z-[90] hidden md:block">
-      <div className="mx-auto h-full max-w-[1024px] px-5">
+      <div className="mx-auto h-full max-w-[var(--page-width)] px-5">
         <div className="grid h-full grid-cols-12 gap-6">
           {Array.from({ length: 12 }, (_, index) => (
             <div key={index} className="h-full border-x border-primary/20 bg-primary/[0.03]" />

@@ -3,8 +3,6 @@ import Header from "@/components/header"
 import { tools } from "@/components/tool-icons"
 import Link from "next/link"
 import Footer from "@/components/footer"
-import { DrawnRule } from "@/components/drawn-rule"
-import { StampPeriod } from "@/components/stamp-period"
 import { GitHubHeatmap } from "@/components/github-heatmap"
 import { SectionLabel } from "@/components/section-label"
 import { generatePageMetadata } from "@/lib/metadata"
@@ -35,7 +33,7 @@ const experience: readonly ExperienceEntry[] = [
     external: true,
   },
   {
-    role: "Senior Product Designer",
+    role: "Senior Product Designer (Contract)",
     org: "Spontivly",
     date: "2023",
     logo: { src: "/about/logos/spontivly.jpeg", alt: "Spontivly logo" },
@@ -43,7 +41,7 @@ const experience: readonly ExperienceEntry[] = [
     external: true,
   },
   {
-    role: "Senior Product Designer",
+    role: "Senior Product Designer (Contract)",
     org: "FCB Health NY",
     date: "2023",
     logo: { src: "/about/logos/fcb_health_ny.jpeg", alt: "FCB Health logo" },
@@ -84,7 +82,7 @@ const founderWork: readonly ExperienceEntry[] = [
     logo: { src: "/about/logos/crenel.jpeg", alt: "Crenel logo" },
   },
   {
-    role: "Founder",
+    role: "Founder (Acquired)",
     org: "Magier",
     date: "2023",
     logo: { src: "/about/logos/magier.jpeg", alt: "Magier logo" },
@@ -189,27 +187,27 @@ const books = [
 const ExperienceRow = ({ role, org, date, logo, url, external }: ExperienceEntry): React.JSX.Element => {
   return (
     <li className="flex items-start gap-3">
-      <div className="flex-shrink-0 w-[34px] h-[34px] border border-border bg-card flex items-center justify-center overflow-hidden">
+      <div className="flex-shrink-0 w-[34px] h-[34px] rounded-md border border-border bg-card flex items-center justify-center overflow-hidden">
         <Image src={logo.src} alt={logo.alt} width={34} height={34} className="w-full h-full object-contain" />
       </div>
       <div className="flex-1 flex justify-between min-w-0 gap-2">
         <div className="min-w-0">
           <p className="font-semibold leading-none text-sm">{role}</p>
-          <p className="text-[13px] mt-1.5 leading-none">
+          <p className="text-sm mt-1.5 leading-none">
             {url ? (
               <Link
                 href={url}
                 {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                className="text-primary hover:underline"
+                className="text-muted-foreground underline underline-offset-4 decoration-border hover:text-foreground hover:decoration-foreground transition-colors"
               >
                 {org}
               </Link>
             ) : (
-              <span className="text-primary">{org}</span>
+              <span className="text-muted-foreground">{org}</span>
             )}
           </p>
         </div>
-        <span className="text-[11px] text-muted-foreground flex-shrink-0 leading-none uppercase tracking-wider">
+        <span className="text-xs text-muted-foreground flex-shrink-0 leading-none">
           {date}
         </span>
       </div>
@@ -221,22 +219,25 @@ export default function About() {
   return (
     <div className="min-h-screen text-foreground">
       <Header />
-      <div className="max-w-[1024px] mx-auto px-5 pt-24 pb-6 sm:pb-8 flex flex-col gap-6 sm:gap-8">
-        {/* Intro — display title + 2-col bio */}
-        <section className="flex flex-col gap-6 sm:gap-8">
-          {/* Same hero grammar as contact: the line rises out from behind its
-              mask, the period stamps in last, the rule draws itself once in
-              view. Only the display title recedes on scroll — the bio is real
-              content, so it takes the bidirectional flow instead of the
-              hero's one-way fade-out. */}
-          <h1 data-recede="title" className="title-display text-[44px] sm:text-[60px]">
+      <div className="max-w-[var(--page-width)] mx-auto px-5 pt-32 sm:pt-36 pb-6 sm:pb-8 flex flex-col gap-10 sm:gap-12">
+        {/* Intro — display title + bio, single column */}
+        {/* 12/16px between the title and the copy under it. It was 32, which
+            is the gap this page uses between whole sections — so the standfirst
+            was being spaced as though it were a separate section rather than
+            part of the heading it belongs to. A title and the line that
+            qualifies it read as one unit; the section rhythm resumes below. */}
+        <section className="flex flex-col gap-3 sm:gap-4">
+          {/* Same hero grammar as contact: the line rises out from behind
+              its mask. The bio below takes the bidirectional flow, since it is
+              real content rather than chrome. */}
+          <h1 className="title-display text-2xl">
             <span className="anim-line-mask">
               <span className="block anim-line">
-                About<StampPeriod className="anim-stamp" />
+                About
               </span>
             </span>
           </h1>
-          <div data-flow="0.5" className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-9 text-[15px] leading-[1.55] text-ink-soft">
+          <div data-flow="0.5" className="flex flex-col gap-4 text-base leading-[1.6] text-ink-soft">
             <div className="space-y-4 anim-rise [animation-delay:120ms]">
               <p>
                 I&apos;m a 0 → 1 product designer and founder with <span className="text-foreground font-semibold">8 years of experience</span> shipping B2B products at early-stage startups in healthcare, cybersecurity, and finance.
@@ -254,65 +255,36 @@ export default function About() {
               </p>
             </div>
           </div>
-          <DrawnRule />
         </section>
 
-        {/* Experience + Founder Work | Publications + Certificates.
-            The two columns melt at slightly different rates as they leave. */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:items-stretch">
-          <section data-flow className="sys-panel p-5 sm:p-7">
-            <SectionLabel title="Experience" className="mb-6" />
-            <ul className="space-y-6">
-              {experience.map((entry) => (
-                <ExperienceRow key={`${entry.org}-${entry.role}-${entry.date}`} {...entry} />
-              ))}
-            </ul>
+        {/* Descending order of substance: where I've worked, what I founded,
+            how I work, then the receipts (talks, certificates), then what I'm
+            into right now. How I Ship used to sit after Certificates, which put
+            the one section describing how he actually works *below* two lists of
+            credentials — and made the page bounce substance / credentials /
+            substance / personal instead of running down in one direction. */}
+        <section data-flow>
+          <SectionLabel title="Experience" className="mb-5" />
+          <ul className="space-y-6">
+            {experience.map((entry) => (
+              <ExperienceRow key={`${entry.org}-${entry.role}-${entry.date}`} {...entry} />
+            ))}
+          </ul>
+        </section>
 
-            <SectionLabel title="Founder Work" className="mt-10 mb-6" />
-            <ul className="space-y-6">
-              {founderWork.map((entry) => (
-                <ExperienceRow key={`${entry.org}-${entry.role}-${entry.date}`} {...entry} />
-              ))}
-            </ul>
-          </section>
-
-          <div data-flow="1.07" className="flex flex-col gap-6">
-            <section className="sys-panel p-5 sm:p-7 flex-1">
-              <SectionLabel title="Publications" className="mb-6" />
-              <div className="space-y-6">
-                {publications.map((publication) => (
-                  <Link
-                    key={publication.url}
-                    href={publication.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group block border-l-2 border-primary pl-4 transition-[translate] duration-(--motion-settle) ease-out hover:translate-x-1 motion-reduce:transition-none motion-reduce:hover:translate-none"
-                  >
-                    <h3 className="font-semibold text-sm sm:text-base leading-snug mb-1.5 group-hover:underline">
-                      {publication.title}
-                    </h3>
-                    <p className="text-sm text-muted-foreground mb-1">{publication.venue}</p>
-                    <p className="text-xs font-mono text-muted-foreground uppercase tracking-wider">{publication.date}</p>
-                  </Link>
-                ))}
-              </div>
-            </section>
-
-            <section className="sys-panel p-5 sm:p-7">
-              <SectionLabel title="Certificates" className="mb-6" />
-              <ul className="space-y-6">
-                {certificates.map((entry) => (
-                  <ExperienceRow key={`${entry.org}-${entry.role}-${entry.date}`} {...entry} />
-                ))}
-              </ul>
-            </section>
-          </div>
-        </div>
+        <section data-flow="1.04">
+          <SectionLabel title="Founder Work" className="mb-5" />
+          <ul className="space-y-6">
+            {founderWork.map((entry) => (
+              <ExperienceRow key={`${entry.org}-${entry.role}-${entry.date}`} {...entry} />
+            ))}
+          </ul>
+        </section>
 
         {/* How I Ship — tools plus the shipping proof under one roof */}
-        <section data-flow className="sys-panel p-5 sm:p-7">
-          <SectionLabel title="How I Ship" className="mb-4" />
-          <p className="text-[15px] leading-[1.55] text-ink-soft mb-6 max-w-[560px]">
+        <section data-flow="1.08">
+          <SectionLabel title="How I Ship" className="mb-5" />
+          <p className="text-base leading-[1.6] text-ink-soft mb-6 max-w-[560px]">
             <span className="text-foreground font-semibold">Figma</span> for fast exploration;{" "}
             <span className="text-foreground font-semibold">Claude Code</span> for anything I actually
             want to build. The commits below are mine.
@@ -323,7 +295,7 @@ export default function About() {
                 key={tool.name}
                 title={tool.name}
                 className={cn(
-                  "h-12 w-12 border border-border flex items-center justify-center transition-[translate] duration-(--motion-settle) ease-(--ease-settle) hover:-translate-y-0.5 motion-reduce:transition-none motion-reduce:hover:translate-none",
+                  "h-12 w-12 rounded-lg border border-border flex items-center justify-center transition-[translate] duration-(--motion-settle) ease-(--ease-settle) hover:-translate-y-0.5 motion-reduce:transition-none motion-reduce:hover:translate-none",
                   tool.tile ?? "bg-card",
                 )}
               >
@@ -333,19 +305,49 @@ export default function About() {
             ))}
           </div>
 
-          <h3 className="text-xs font-mono uppercase tracking-[0.18em] text-muted-foreground mt-8 mb-4">
+          <h3 className="text-sm font-semibold text-foreground mt-8 mb-4">
             GitHub Activity
           </h3>
           <GitHubHeatmap />
         </section>
 
+        <section data-flow="1.12">
+          <SectionLabel title="Publications" className="mb-5" />
+          <div className="space-y-6">
+            {publications.map((publication) => (
+              <Link
+                key={publication.url}
+                href={publication.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block border-l border-border pl-4 transition-[translate] duration-(--motion-settle) ease-out hover:translate-x-1 motion-reduce:transition-none motion-reduce:hover:translate-none"
+              >
+                <h3 className="font-semibold text-base leading-snug mb-1.5 group-hover:underline">
+                  {publication.title}
+                </h3>
+                <p className="text-sm text-muted-foreground mb-1">{publication.venue}</p>
+                <p className="text-xs text-muted-foreground">{publication.date}</p>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        <section data-flow="1.16">
+          <SectionLabel title="Certificates" className="mb-5" />
+          <ul className="space-y-6">
+            {certificates.map((entry) => (
+              <ExperienceRow key={`${entry.org}-${entry.role}-${entry.date}`} {...entry} />
+            ))}
+          </ul>
+        </section>
+
         {/* Currently */}
-        <section data-flow className="sys-panel p-5 sm:p-7 flex flex-col">
-          <SectionLabel title="Currently" className="mb-6" />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <section data-flow className="flex flex-col">
+          <SectionLabel title="Currently" className="mb-5" />
+          <div className="flex flex-col gap-8">
             <div>
-              <h3 className="text-xs font-mono uppercase tracking-[0.18em] text-muted-foreground mb-4">Listening to</h3>
-              <div className="grid grid-cols-2 gap-4">
+              <h3 className="text-sm font-semibold text-foreground mb-4">Listening to</h3>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                 {albums.map((album) => (
                   <Link
                     key={album.name}
@@ -354,7 +356,7 @@ export default function About() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <div className="relative w-full aspect-square mb-2 overflow-hidden border border-border">
+                    <div className="relative w-full aspect-square mb-2 overflow-hidden rounded-lg border border-border">
                       <Image src={album.cover} alt={`${album.name} by ${album.artist}`} fill sizes="(max-width: 768px) 45vw, 220px" className="object-cover" />
                     </div>
                     <p className="text-sm font-medium">{album.name}</p>
@@ -364,8 +366,8 @@ export default function About() {
               </div>
             </div>
             <div>
-              <h3 className="text-xs font-mono uppercase tracking-[0.18em] text-muted-foreground mb-4">Reading</h3>
-              <div className="grid grid-cols-2 gap-4">
+              <h3 className="text-sm font-semibold text-foreground mb-4">Reading</h3>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                 {books.map((book) => (
                   <Link
                     key={book.name}
@@ -374,7 +376,7 @@ export default function About() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <div className="relative w-full aspect-[2/3] mb-2 overflow-hidden border border-border">
+                    <div className="relative w-full aspect-[2/3] mb-2 overflow-hidden rounded-lg border border-border">
                       <Image src={book.cover} alt={`${book.name} by ${book.author}`} fill sizes="(max-width: 768px) 45vw, 220px" className="object-cover" />
                     </div>
                     <p className="text-sm font-medium">{book.name}</p>

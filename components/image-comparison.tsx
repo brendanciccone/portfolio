@@ -149,7 +149,7 @@ export const ImageComparison = ({
           draggable={false}
           className="object-cover select-none"
           quality={80}
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
+          sizes="(max-width: 640px) 100vw, (max-width: 768px) 90vw, 680px"
           onLoad={() => setIsAfterLoaded(true)}
         />
       </div>
@@ -171,28 +171,41 @@ export const ImageComparison = ({
           draggable={false}
           className="object-cover select-none"
           quality={80}
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 1024px"
+          sizes="(max-width: 640px) 100vw, (max-width: 768px) 90vw, 680px"
           onLoad={() => setIsBeforeLoaded(true)}
         />
       </div>
 
-      {/* Dark line + handle: case-study shots are mostly light UI; reads clearly over pale backgrounds */}
+      {/*
+        Divider and handle, rebuilt to the site's own chrome.
+
+        This was a 2px pure-black rule with a black rounded-square handle — the
+        highest-contrast object on a page whose whole language is 1px hairlines
+        and soft pills, so the control read louder than the work it exists to
+        compare. It is a 1px rule now, foreground at 70% rather than zinc-950,
+        keeping a white halo so it still separates over pale UI screenshots.
+
+        The handle is the nav's object: a background-coloured circle with a
+        hairline border and the float shadow. That is already what a piece of
+        chrome floating over the page looks like here, so the slider stops
+        inventing a second answer to a question the nav already answered.
+      */}
       <div
         className={cn(
-          "absolute top-0 bottom-0 w-0.5 bg-zinc-950 shadow-[0_0_0_1px_rgba(255,255,255,0.35)]",
+          "absolute top-0 bottom-0 w-px -translate-x-1/2 bg-foreground/70 shadow-[0_0_0_1px_rgba(255,255,255,0.6)]",
           !isDragging && "transition-[left] duration-(--motion-settle) ease-(--ease-settle) motion-reduce:transition-none",
         )}
-        style={{ left: `${sliderPosition}%`, transform: "translateX(-50%)" }}
+        style={{ left: `${sliderPosition}%` }}
       >
         {/* Slider handle — acknowledges touch: grows on hover, sits down while dragging */}
         <div
           className={cn(
-            "absolute top-1/2 left-1/2 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-sm bg-zinc-950 shadow-md ring-1 ring-white/35",
+            "absolute top-1/2 left-1/2 flex size-9 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-background shadow-[var(--shadow-float)]",
             "transition-[scale] duration-(--motion-touch) ease-out motion-reduce:transition-none",
             isDragging ? "scale-95" : "group-hover:scale-105",
           )}
         >
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="text-zinc-100">
+          <svg aria-hidden width="18" height="18" viewBox="0 0 20 20" fill="none" className="text-foreground">
             <path d="M6 10L2 10M2 10L5 7M2 10L5 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             <path d="M14 10L18 10M18 10L15 7M18 10L15 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
@@ -200,10 +213,10 @@ export const ImageComparison = ({
       </div>
 
       {/* Labels */}
-      <div className="absolute bottom-3 left-3 bg-foreground/70 text-background text-[10px] font-mono uppercase tracking-wider px-3 py-1 rounded-sm">
+      <div className="absolute bottom-3 left-3 bg-foreground/80 text-background text-xs font-semibold px-2.5 py-0.5 rounded-full">
         Before
       </div>
-      <div className="absolute bottom-3 right-3 bg-foreground/70 text-background text-[10px] font-mono uppercase tracking-wider px-3 py-1 rounded-sm">
+      <div className="absolute bottom-3 right-3 bg-foreground/80 text-background text-xs font-semibold px-2.5 py-0.5 rounded-full">
         After
       </div>
     </div>

@@ -2,7 +2,6 @@
 
 import { useState } from "react"
 import Image from "next/image"
-import { Skeleton } from "@/components/ui/skeleton"
 import { cn } from "@/lib/utils"
 
 interface MockupImageProps {
@@ -35,13 +34,19 @@ export const MockupImage = ({
   }
 
   return (
+    /*
+     * Nothing opaque may live in here. An ancestor applies a drop-shadow chain
+     * that traces this subtree's alpha, so a full-box placeholder made the
+     * border and shadow draw around the whole image bounds while loading and
+     * then snap inward to the artwork the moment it arrived. There used to be a
+     * Skeleton here doing exactly that — and it was invisible anyway: it was
+     * bg-mockup-frame, the same colour as the mat behind it, and animate-pulse
+     * only animates opacity, so it was #fafafa fading over #fafafa.
+     *
+     * With it gone the shadow has no alpha to trace until the image itself
+     * fades in, so the two arrive together on the same curve.
+     */
     <div className="relative">
-      {!isLoaded && (
-        <Skeleton
-          aria-hidden
-          className="absolute inset-0 z-10 rounded-sm bg-mockup-frame"
-        />
-      )}
       <Image
         ref={handleImageRef}
         src={src}

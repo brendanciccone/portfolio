@@ -2,12 +2,8 @@ import type React from "react"
 import Link from "next/link"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
-import { CountUp } from "@/components/count-up"
-import { DrawnRule } from "@/components/drawn-rule"
 import { SectionLabel } from "@/components/section-label"
-import { StampPeriod } from "@/components/stamp-period"
 import { WorkCard, type WorkCardData } from "@/components/work-card"
-import { cn } from "@/lib/utils"
 
 /*
  * Grid siblings melt at slightly different rates as they leave the top of the
@@ -89,128 +85,103 @@ const otherWork: readonly WorkCardData[] = [
   },
 ]
 
-interface Stat {
-  label: string
-  value: React.ReactNode
-  href?: string
-  delayClass: string
-}
-
-/* Delays slot the cells in behind the hairline draw, ahead of the red period */
-const stats: readonly Stat[] = [
-  {
-    label: "Experience",
-    value: (
-      <>
-        <CountUp to={8} /> Years
-      </>
-    ),
-    delayClass: "[animation-delay:400ms]",
-  },
-  { label: "Role", value: "Staff Product Designer", delayClass: "[animation-delay:470ms]" },
-  { label: "Currently", value: "Corellium", href: "https://www.corellium.com", delayClass: "[animation-delay:540ms]" },
-]
-
 export default function Portfolio() {
   return (
     <div className="min-h-screen text-foreground">
       <Header />
 
-      <div className="max-w-[1024px] mx-auto px-5 pt-24 pb-6 sm:pb-8 flex flex-col gap-6 sm:gap-8">
-        <div className="flex flex-col gap-6 sm:gap-8">
-          {/* Hero — display type left, intro right, baseline-aligned. Lines
-              rise out from behind their masks, the hairline draws, the red
-              period stamps last. On scroll the whole block recedes: the title
-              drifts up at 0.16 and thins to a quarter, the intro travels at
-              half that and leaves entirely, handing the page to the work.
-              data-recede lives on the outer element and the load animation on
-              the inner one — a filled CSS animation would otherwise own
-              transform for good and the parallax would never land. */}
-          <section className="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-6 md:gap-x-10 md:gap-y-8 items-end">
-            <h1 data-recede="title" className="title-display text-[44px] sm:text-6xl md:text-[72px]">
-              <span className="anim-line-mask">
-                <span className="block anim-line">Hi, I&apos;m</span>
-              </span>
-              <span className="anim-line-mask">
-                <span className="block anim-line [animation-delay:90ms]">
-                  Brendan<StampPeriod className="anim-stamp" />
-                </span>
-              </span>
-            </h1>
-            <div data-recede="meta">
-              <p className="text-[15px] leading-[1.55] text-ink-soft anim-rise [animation-delay:180ms]">
-                0 → 1 product designer and founder with 8 years of experience shipping B2B products at early-stage startups in healthcare, cybersecurity, and finance. Currently at <Link href="https://www.corellium.com" target="_blank" rel="noopener noreferrer" className="text-primary font-medium hover:underline">Corellium</Link>, simplifying complex cybersecurity workflows.
-              </p>
-            </div>
-            <DrawnRule className="md:col-span-2" />
-          </section>
+      <div className="max-w-[var(--page-width)] mx-auto px-5 pt-32 sm:pt-36 pb-6 sm:pb-8 flex flex-col gap-10 sm:gap-12">
+          {/* Hero — title, then intro, then the rule. This ran as a 2fr/1fr
+              split with the two baseline-aligned, which worked on the old 64rem
+              rail; at 45rem the intro column came out ~210px wide and eight
+              lines tall, so aligning the two-line title to its baseline dropped
+              the title halfway down the viewport behind a void. Stacked, it
+              also matches how About reads.
 
-          {/* Stat bar */}
-          <dl data-flow className="flex flex-col sm:grid sm:grid-cols-3 border border-border bg-card">
-            {stats.map((stat, index) => (
-              <div
-                key={stat.label}
-                className={cn(
-                  "p-4 sm:p-5 flex flex-row items-center justify-between gap-4 sm:flex-col sm:items-stretch sm:justify-start sm:gap-1.5 min-w-0 anim-rise",
-                  /* Cells rise in sequence behind the hero */
-                  stat.delayClass,
-                  index < stats.length - 1 && "border-b border-border sm:border-b-0 sm:border-r",
-                )}
-              >
-                <dt className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary">{stat.label}</dt>
-                {/* Sized so the longest value — "Staff Product Designer" — holds
-                    one line in a third of the container at every width the grid
-                    is live. At the full 1024px that phrase measures 288px against
-                    a 286px column at 26px, which is what wrapped it; the display
-                    tracking Inter wants at this size buys back the difference and
-                    the designed 26px survives on desktop. Below lg the column is
-                    genuinely too narrow for it, so the type steps down with the
-                    grid rather than breaking. */}
-                <dd className="text-lg sm:text-[14px] md:text-[18px] lg:text-[26px] font-heading font-bold leading-tight tracking-[-0.02em] text-right sm:text-left sm:whitespace-nowrap tabular-nums">
-                  {stat.href ? (
-                    <Link href={stat.href} target="_blank" rel="noopener noreferrer" className="hover:underline">
-                      {stat.value}
-                    </Link>
-                  ) : (
-                    stat.value
-                  )}
-                </dd>
+              The lines still rise out from behind their masks on load. What is
+              gone is the hairline that used to close the block, and before that
+              the scroll-linked recede:
+              the block used to translate down at 0.16x the scroll and fade to a
+              quarter, handing the page over to the work. That was written for a
+              72px hero, where a title sinking slowly behind the content reads
+              as depth. At 24px in a single column there is nothing to sink
+              behind — it just looks like the title has come unstuck from the
+              text under it, which is exactly how it read. */}
+        {/* This line is the whole introduction, so it carries the facts itself.
+            There was a three-cell stat bar under it — Experience / Role /
+            Currently — which cost 162px before the first case study and said in
+            a bordered box what one sentence says in a clause. A portfolio's
+            argument is the work, so that height is better spent getting to it.
+            The years, the title and the current company all live here now, and
+            the link to corellium.com that used to sit in the bar comes with
+            them, so the page still has exactly one of it. */}
+        <section className="flex flex-col gap-3 sm:gap-4">
+          <h1 className="title-display text-2xl">
+            <span className="anim-line-mask">
+              <span className="block anim-line">Howdy! 🤠</span>
+            </span>
+          </h1>
+          <div>
+            {/* text-pretty, because the fix for a widow is not just more words.
+                Landing "Corellium." alone on the last line was a function of
+                this exact measure — adding a clause cures it at 1440px and can
+                just as easily recreate it at 1180. text-wrap: pretty tells the
+                browser to avoid a one-word final line at whatever width it is
+                actually laying out, which is the part copy cannot control. */}
+            <p className="text-base leading-[1.6] text-ink-soft text-pretty anim-rise [animation-delay:180ms]">
+                I&apos;m a 0 → 1 product designer and founder. For 8 years I&apos;ve shipped B2B products at early-stage startups in healthcare, cybersecurity, and finance. Currently Staff Product Designer at <Link href="https://www.corellium.com" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 decoration-border hover:decoration-foreground transition-colors">Corellium</Link>, simplifying complex security workflows.
+            </p>
+          </div>
+        </section>
+
+        {/*
+          Each label is grouped with the work it labels rather than floating as
+          a sibling of it.
+
+          Both were direct children of the page container, so a heading sat 48px
+          above its own first card while the cards sat 24px from each other —
+          the label was twice as far from the thing it names as that thing was
+          from the next one, which reads as a heading belonging to nothing. The
+          section wrapper pulls it to 20px, and the 48px page rhythm now falls
+          between sections, where the separation is actually meant to be.
+
+          Cards go 24 → 32. At 500px tall with a 24px gap they were closer to
+          each other than a card's own image is to its own title.
+        */}
+        <section data-flow className="flex flex-col gap-5">
+          <SectionLabel title="Selected Work" />
+
+          {/* One card per row so the four career projects' screenshots land at
+              full container width and visibly outrank the Other Work list
+              below. data-flow rides a wrapper rather than the card itself so
+              the card keeps sole ownership of its own hover transform. */}
+          <div className="grid grid-cols-1 gap-8">
+            {selectedWork.map((project, index) => (
+              <div key={project.title} data-flow={flowStagger[index % flowStagger.length]} className="h-full">
+                {/* Only the first card is above the fold; the rest lazy-load */}
+                <WorkCard {...project} priority={index === 0} />
               </div>
             ))}
-          </dl>
-        </div>
+          </div>
+        </section>
 
-        {/* Selected Work */}
-        <div data-flow>
-          <SectionLabel title="Selected Work" counter="04" />
-        </div>
+        {/* Tight at 12px from sm up, where these are list rows and a list only
+            reads as one object while its items sit closer to each other than to
+            anything outside it. On a phone they stack into ~400px cards, and a
+            list gap between two cards that size reads as a rendering fault, so
+            it opens to 24 — still half the plates' gap, which is what keeps
+            them the lesser set. */}
+        <section data-flow className="flex flex-col gap-5">
+          <SectionLabel title="Other Work" />
 
-        {/* Selected work runs one card per row so the four career projects'
-            screenshots land at full container width and visibly outrank the
-            Other Work grid below. data-flow rides a wrapper rather than the
-            card itself so the card keeps sole ownership of its own hover
-            transform. */}
-        <div className="grid grid-cols-1 gap-6">
-          {selectedWork.map((project, index) => (
-            <div key={project.title} data-flow={flowStagger[index % flowStagger.length]} className="h-full">
-              {/* Only the first card is above the fold; the rest lazy-load */}
-              <WorkCard {...project} priority={index === 0} />
-            </div>
-          ))}
-        </div>
-
-        {/* Other Work */}
-        <div data-flow className="pt-2 sm:pt-4">
-          <SectionLabel title="Other Work" counter="03" />
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {otherWork.map((project, index) => (
-            <div key={project.title} data-flow={flowStagger[index % flowStagger.length]} className="h-full">
-              <WorkCard {...project} variant="other" />
-            </div>
-          ))}
-        </div>
+          <div className="flex flex-col gap-6 sm:gap-3">
+            {otherWork.map((project, index) => (
+              <div key={project.title} data-flow={flowStagger[index % flowStagger.length]} className="h-full">
+                <WorkCard {...project} variant="other" />
+              </div>
+            ))}
+          </div>
+        </section>
 
         <Footer />
       </div>

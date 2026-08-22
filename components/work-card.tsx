@@ -37,13 +37,12 @@ interface WorkCardProps extends WorkCardData {
  * One hover grammar for every card, plate or small. Press cancels the lift so
  * clicks read as a physical push-back.
  *
- * Exactly one red mark per hover, and it is the title underline — the same
- * stroke the nav uses, on the thing you are actually navigating toward. Two
- * earlier candidates were cut: the border going to ink (which made a single
- * hover fire two different accents, leaving the outline part red and part
- * grey) and a red rule wiping across the card's top edge (which said the same
- * thing as the underline, twice, in the same colour). Everything else the
- * card does is physical: it lifts, and the screenshot swells.
+ * Exactly one mark per hover, and it is the title underline, on the thing you
+ * are actually navigating toward. Everything else the card does is physical:
+ * it lifts, and the screenshot swells. The palette is monochrome now, so the
+ * underline draws in ink rather than in an accent — which is also why the nav
+ * dropped its matching rule for a filled pill: a rule and a fill in the same
+ * colour said the same thing twice.
  */
 const cardClasses =
   "group block h-full sys-panel hover-lift hover:-translate-y-1 active:translate-y-0 active:scale-[0.995] motion-reduce:hover:translate-none motion-reduce:active:scale-100"
@@ -57,11 +56,11 @@ const cardClasses =
  * were built separately.
  */
 const imageClasses =
-  "w-full transition-[scale] duration-700 ease-(--ease-settle) group-hover:scale-[1.03] motion-reduce:transition-none"
+  "w-full"
 
 /* Titles take the same wiping rule as the nav — one underline system */
 const titleWipeClasses =
-  "relative inline-block after:absolute after:inset-x-0 after:-bottom-0.5 after:h-[2px] after:bg-primary after:origin-right after:scale-x-0 group-hover:after:origin-left group-hover:after:scale-x-100 after:transition-transform after:duration-(--motion-settle) after:ease-(--ease-settle) motion-reduce:after:transition-none"
+  "relative inline-block after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:bg-foreground after:origin-right after:scale-x-0 group-hover:after:origin-left group-hover:after:scale-x-100 after:transition-transform after:duration-(--motion-settle) after:ease-(--ease-settle) motion-reduce:after:transition-none"
 
 export const WorkCard = ({
   title,
@@ -74,20 +73,137 @@ export const WorkCard = ({
   priority,
 }: WorkCardProps): React.JSX.Element => {
   const isPlate = variant === "selected"
-  /* Plates run one per row: full width below md, then the 16:9 mat letterboxes
-     the 3:2 screenshot to 84% of the mat width (16:9 box height × 3:2 ratio) —
-     ~80vw of the viewport, 812px once the 1024px container caps out */
-  const sizes = isPlate
-    ? "(max-width: 768px) 100vw, (max-width: 1024px) 80vw, 812px"
-    : "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 512px"
+  /* Plates run one per row and their screenshot fills the mat, so it asks for
+     the rail width less the card's own padding. Small cards are a fixed
+     thumbnail beside their text at every width — 96px on a phone, 176px from sm
+     up — so asking for 100vw below sm fetched an image about four times wider
+     than the slot it lands in, on the viewport with the most traffic. */
+  const sizes = isPlate ? "(max-width: 768px) 100vw, 660px" : "(max-width: 640px) 96px, 176px"
+
+  /*
+   * Small cards run horizontally: a fixed thumbnail on the left, the text
+   * beside it. Stacked in one column they read as a list of side projects,
+   * which is what they are — a three-across grid of the same card the selected
+   * work uses gave them the same visual weight as the four career projects and
+   * made the page argue with itself about what matters.
+   */
+  if (!isPlate) {
+    /*
+     * A row at every width: a thumbnail beside its text, 96px on a phone and
+     * 176px from sm up.
+     *
+     * It used to stack to a full-width card below sm, because at 390px a 144px
+     * thumbnail left the text column about 158 — narrower than "Coinbase
+     * Accelerator" on its own, so every tag wrapped and the badge row became a
+     * badge column. The fix for that was a smaller thumbnail, not a different
+     * layout: at 96px the column gets about 218 and the tags fit again.
+     *
+     * Stacked, this also became the same object as a plate card: 272x197 of
+     * artwork against the featured card's 282x200, a 4% difference, with the
+     * same 14px description under it. Two sections headed "Selected Work" and
+     * "Other Work" rendering as one component is worse than a cramped badge
+     * row, and no amount of padding was going to close a 4% gap. As a row the
+     * two tiers are unambiguous, which is what they actually are.
+     */
+    const row = (
+      <div className="flex items-center gap-3 p-3 sm:gap-4 sm:p-4">
+        {/* 4:3 — the screenshots' actual ratio. This was 3:2, matching a
+            width/height the code declared but the files never had: every one of
+            the 38 work images is 2400x1800, and they were all being declared
+            1200x800. The ratio holds at every width — stacked it takes the
+            card's width, and beside the text it is 176px wide so the height
+            follows at 132 rather than being pinned separately. It was 128x96
+            there, small enough that the screenshot read as a smudge next to a
+            502px text column. */}
+        {/* Tint, no outline. This carried a full border once, back when the
+            screenshot inside it had no edge of its own and the frame had to
+            supply one. It does now, so the border was drawing a third
+            concentric #e4e4e7 rectangle: card, then mat, then mockup, three
+            nested outlines of the same colour inside about twenty pixels.
+
+            The plate cards never had this — their mat carries a bottom hairline
+            only, which divides picture from text rather than enclosing it. This
+            matches that: the mockup-frame tint still marks the image area, and
+            the only outlines left are the card's and the screenshot's own. */}
+        <div className="aspect-[4/3] w-24 shrink-0 self-start overflow-hidden rounded-lg bg-mockup-frame p-1 sm:self-auto sm:p-1.5 sm:w-44">
+          {/*
+            [&>div]:size-full is load-bearing. MockupImage wraps its <Image> in
+            a plain `relative` div with no height of its own, so the image's
+            h-full had nothing to resolve against — a percentage height against
+            an auto-height parent computes to auto — and it fell back to its
+            natural aspect. The result was a 98px-tall image in an 82px box,
+            pinned to the top with the bottom 16px cropped off. Stretching the
+            wrapper gives h-full a real height, so object-contain has a box to
+            resolve against and the thumbnail is actually centred.
+          */}
+          <div className="relative size-full overflow-hidden rounded [filter:var(--drop-mockup-sm)] [&>div]:size-full">
+            <MockupImage
+              src={image.src}
+              alt={image.alt}
+              width={1200}
+              height={900}
+              /*
+               * contain, not cover. Padding comes off both dimensions of the
+               * aspect-[4/3] mat equally, so the clip inside it does not land at
+               * 4:3 — and cover was quietly cropping the screenshot to make up
+               * the difference. contain always shows the whole frame and lets
+               * the mat absorb what is left over, which is how the plate cards
+               * present a screenshot too.
+               */
+              className={cn(imageClasses, "h-full object-contain")}
+              quality={80}
+              sizes={sizes}
+            />
+          </div>
+        </div>
+        <div className="min-w-0 flex-1">
+          <h3 className="text-base font-heading font-semibold leading-tight mb-1">
+            <LightboxTrigger src={image.src} alt={image.alt} width={1200} height={900} title={title}>
+              <span className={titleWipeClasses}>{title}</span>
+            </LightboxTrigger>
+          </h3>
+          <p className="text-muted-foreground text-sm sm:mb-2.5">{description}</p>
+          {/* Tags are a desktop-only enrichment on these rows.
+
+              Stacked into a ~218px column they could not hold one line: Biobox
+              wrapped "Web3" onto a second row on its own, which made that card
+              150px tall against the other two at 122. Uneven row heights caused
+              by an orphaned chip is what makes a list read as accidental rather
+              than laid out — and the wrap was ragged in the bargain.
+
+              At this size the row's job is what it is and what it does, which
+              the title and description already do. The year and the accolade
+              are context worth having when there is room for them on one line,
+              and not worth a broken rhythm when there isn't. */}
+          <div className="mt-2.5 hidden flex-wrap gap-1.5 sm:flex">
+            {tags.map((tag) => (
+              <Badge key={tag}>{tag}</Badge>
+            ))}
+          </div>
+        </div>
+      </div>
+    )
+
+    return <div className={cardClasses}>{row}</div>
+  }
 
   const body = (
     <>
       {/* Screenshot sits in the mat frame with a bottom hairline; internal
-          cards name the frame so it morphs into the case-study hero */}
+          cards name the frame so it morphs into the case-study hero.
+
+          Full-bleed, deliberately — and specifically not the inset bordered box
+          the Other Work rows use. That difference is the tier. On mobile both
+          card types stack to full width and land within a few percent of each
+          other on every dimension: 379px tall against 363, a 243px image area
+          against 237, and the same 14px description. The only strong signal
+          left that one is featured and the other is a list is that this mat
+          runs edge to edge while theirs sits in a padded frame. Matching them
+          up reads as consistency and costs the hierarchy the section headings
+          are asserting. */}
       <div
         className={cn(
-          "bg-mockup-frame overflow-hidden border-b border-border p-2.5",
+          "bg-mockup-frame overflow-hidden rounded-t-xl border-b border-border p-2.5",
           href && transitionFrameClassByHref.get(href),
         )}
       >
@@ -95,48 +211,59 @@ export const WorkCard = ({
             trigger button here, which made only the screenshot clickable on a
             card that looks identical to the linked ones above; the trigger now
             lives on the title and covers the whole card. */}
-        {/* Full-width plates cap the image area at 16:9 on md+ so a whole card
-            fits closer to one viewport. The 3:2 screenshot scales down to the
-            box height and centers, letting the mat letterbox the sides —
-            cropping instead would clip toolbars and controls at the edges. */}
-        <div className={cn("relative w-full overflow-hidden", isPlate && "md:aspect-video md:flex md:justify-center")}>
+        {/* The screenshot fills the mat's width at its own 4:3 ratio — the
+            files are 2400x1800 and are declared 1200x900.
+            It used to be letterboxed inside a forced 16:9 box, which was sized
+            for the old 64rem rail — at 45rem that left the screenshot 494px
+            wide inside a 678px mat, with 92px of dead mat down either side.
+            Nothing was gained for it: the cap existed to keep a whole card near
+            one viewport, and the card is 300px narrower than it was. */}
+        {/* Filter on the clipper rather than the <img>: a filter on the image
+            inside would be cropped at this boundary. Applied outside it, the
+            shadow is drawn from the already-clipped result and has the image's
+            own transparent margin to land in. */}
+        <div className="relative w-full overflow-hidden rounded-md [filter:var(--drop-mockup)]">
           <MockupImage
             src={image.src}
             alt={image.alt}
             width={1200}
-            height={800}
-            className={cn(imageClasses, isPlate && "md:h-full md:w-auto")}
+            height={900}
+            className={imageClasses}
             priority={priority}
             quality={80}
             sizes={sizes}
           />
         </div>
       </div>
-      {/* Plate info bands span the card on md+ — title and description anchor
-          the left edge, tags sign off the right — so the band carries the same
-          width as the screenshot instead of captioning its corner */}
-      <div className={cn("p-5", isPlate && "md:flex md:items-center md:justify-between md:gap-8")}>
-        <div className={cn("mb-4", isPlate && "md:mb-0")}>
-          {/* Caps are for chrome — nav, section labels, meta labels, badges,
-              captions. Project names stay in sentence case because they are
-              other companies' wordmarks, and uppercasing flattens the
-              ascender/descender silhouette that makes a name recognizable. The
-              case-study h1s follow the same rule, so both title levels here and
-              those four headings have to stay in step. */}
-          {isPlate ? (
-            <h2 className="text-lg sm:text-[22px] md:text-[28px] font-heading font-bold leading-tight mb-1">
-              <span className={titleWipeClasses}>{title}</span>
-            </h2>
-          ) : (
-            <h3 className="text-base sm:text-lg font-heading font-bold leading-tight mb-1">
-              <LightboxTrigger src={image.src} alt={image.alt} width={1200} height={800}>
-                <span className={titleWipeClasses}>{title}</span>
-              </LightboxTrigger>
-            </h3>
-          )}
-          <p className={cn("text-muted-foreground text-sm", isPlate && "md:text-[15px]")}>{description}</p>
+      {/*
+        Title, description, then tags — stacked, all left-aligned.
+
+        The tags used to sit on the same row, pushed to the right edge with the
+        text block vertically centred against them. Two things went wrong with
+        that. They took half the row, which squeezed the description into a
+        column narrow enough to wrap — "Mobile virtualization for cybersecurity
+        teams" broke across two lines at full card width, which it has no
+        business doing. And items-center then centred the tags against a
+        two-line block, so they landed level with the middle of the description,
+        aligned to nothing at all.
+
+        Stacked, the description gets the full width and stops wrapping, and the
+        tags sit where they do on the small cards and in the reference file.
+      */}
+      <div className="p-6">
+        <div className="mb-4">
+          {/* Nothing on the site is set in caps any more — the reference
+              separates chrome from content by weight and by the muted step, not
+              by case. Project names were already exempt (they are other
+              companies' wordmarks, and caps flatten the ascender/descender
+              silhouette that makes a name recognizable); the rest of the chrome
+              simply joined them. */}
+          <h2 className="text-lg sm:text-xl font-heading font-semibold leading-tight mb-1.5">
+            <span className={titleWipeClasses}>{title}</span>
+          </h2>
+          <p className="text-muted-foreground text-sm md:text-base">{description}</p>
         </div>
-        <div className={cn("flex flex-wrap gap-2", isPlate && "md:justify-end md:shrink-0")}>
+        <div className="flex flex-wrap gap-2">
           {tags.map((tag) => (
             <Badge key={tag}>{tag}</Badge>
           ))}

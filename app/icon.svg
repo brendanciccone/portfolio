@@ -1,11 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <!-- The mark: the red stamp period on paper, matching the hero -->
+  <!-- The mark: the period that ends the hero, drawn round like the typeface's own -->
   <style>
-    .paper { fill: #faf9f7; }
+    .paper { fill: #ffffff; }
+    .mark { fill: #18181b; }
     @media (prefers-color-scheme: dark) {
-      .paper { fill: #141412; }
+      .paper { fill: #09090b; }
+      .mark { fill: #fafafa; }
     }
   </style>
-  <rect class="paper" width="32" height="32" />
-  <rect fill="#d73427" x="9" y="9" width="14" height="14" />
+  <rect class="paper" width="32" height="32" rx="8" />
+  <circle class="mark" cx="16" cy="16" r="7" />
 </svg>

@@ -36,7 +36,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
       // You can render any custom fallback UI
       return this.props.fallback || (
         <div className="p-4 rounded-md bg-destructive/10 border border-destructive/30">
-          <h2 className="text-lg font-medium text-destructive">Something went wrong</h2>
+          <h2 className="text-lg font-semibold text-destructive">Something went wrong</h2>
           <p className="mt-2 text-sm text-destructive/80">
             {this.state.error?.message || "An unexpected error occurred"}
           </p>

@@ -28,6 +28,9 @@ interface LightboxTriggerProps {
   alt: string
   width: number
   height: number
+  /* Shown under the image in the viewer — the project name, where alt is a
+     long description written for screen readers rather than for reading */
+  title?: string
   className?: string
   children: React.ReactNode
 }
@@ -37,6 +40,7 @@ export const LightboxTrigger = ({
   alt,
   width,
   height,
+  title,
   className,
   children,
 }: LightboxTriggerProps): React.JSX.Element => {
@@ -58,7 +62,9 @@ export const LightboxTrigger = ({
         {children}
       </button>
 
-      {isOpen && <LightboxOverlay src={src} alt={alt} width={width} height={height} onClose={close} />}
+      {isOpen && (
+        <LightboxOverlay src={src} alt={alt} width={width} height={height} caption={title} onClose={close} />
+      )}
     </>
   )
 }
