@@ -114,7 +114,18 @@ export const WorkCard = ({
             card's width, and beside the text it is 176px wide so the height
             follows at 132 rather than being pinned separately. It was 128x96
             there, small enough that the screenshot read as a smudge next to a
-            502px text column. */}
+            502px text column.
+
+            The ratio sits on the inner clip rather than on this mat, and that
+            is what actually centres the screenshot. With aspect-[4/3] on the
+            mat, the padding came off both dimensions equally and left the padded
+            box at 88x64 — 1.375, not the 1.3333 the files are — so
+            object-contain letterboxed the artwork by 1.33px a side. It stayed
+            symmetric, but it then sat in 5.33px of mat left and right against
+            4px top and bottom, and an uneven margin is what reads as
+            off-centre. Inside the padding the clip is exactly 4:3, so the
+            screenshot fills it edge to edge and the mat shows one even margin
+            all round. */}
         {/* Tint, no outline. This carried a full border once, back when the
             screenshot inside it had no edge of its own and the frame had to
             supply one. It does now, so the border was drawing a third
@@ -125,7 +136,7 @@ export const WorkCard = ({
             only, which divides picture from text rather than enclosing it. This
             matches that: the mockup-frame tint still marks the image area, and
             the only outlines left are the card's and the screenshot's own. */}
-        <div className="aspect-[4/3] w-24 shrink-0 self-start overflow-hidden rounded-lg bg-mockup-frame p-1 sm:self-auto sm:p-1.5 sm:w-44">
+        <div className="w-24 shrink-0 self-start overflow-hidden rounded-lg bg-mockup-frame p-1 sm:self-auto sm:p-1.5 sm:w-44">
           {/*
             [&>div]:size-full is load-bearing. MockupImage wraps its <Image> in
             a plain `relative` div with no height of its own, so the image's
@@ -136,7 +147,7 @@ export const WorkCard = ({
             wrapper gives h-full a real height, so object-contain has a box to
             resolve against and the thumbnail is actually centred.
           */}
-          <div className="relative size-full overflow-hidden rounded [filter:var(--drop-mockup-sm)] [&>div]:size-full">
+          <div className="relative aspect-[4/3] w-full overflow-hidden rounded [filter:var(--drop-mockup-sm)] [&>div]:size-full">
             <MockupImage
               src={image.src}
               alt={image.alt}
