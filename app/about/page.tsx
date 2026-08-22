@@ -5,6 +5,7 @@ import Link from "next/link"
 import Footer from "@/components/footer"
 import { GitHubHeatmap } from "@/components/github-heatmap"
 import { SectionLabel } from "@/components/section-label"
+import { Badge } from "@/components/ui/badge"
 import { generatePageMetadata } from "@/lib/metadata"
 import { cn } from "@/lib/utils"
 import Image from "next/image"
@@ -21,28 +22,35 @@ interface ExperienceEntry {
   logo: { src: string; alt: string }
   url?: string
   external?: boolean
+  /* How the engagement or the company ended — "Contract", "Acquired". A
+     property of the org, not of the job, which is why it renders beside the
+     org rather than inside the role. */
+  badge?: string
 }
 
 const experience: readonly ExperienceEntry[] = [
   {
     role: "Staff Product Designer",
     org: "Corellium",
+    badge: "Acquired",
     date: "2023-Present",
     logo: { src: "/about/logos/corellium.jpeg", alt: "Corellium logo" },
     url: "https://www.corellium.com",
     external: true,
   },
   {
-    role: "Senior Product Designer (Contract)",
+    role: "Senior Product Designer",
     org: "Spontivly",
+    badge: "Contract",
     date: "2023",
     logo: { src: "/about/logos/spontivly.jpeg", alt: "Spontivly logo" },
     url: "https://www.spontivly.com",
     external: true,
   },
   {
-    role: "Senior Product Designer (Contract)",
+    role: "Senior Product Designer",
     org: "FCB Health NY",
+    badge: "Contract",
     date: "2023",
     logo: { src: "/about/logos/fcb_health_ny.jpeg", alt: "FCB Health logo" },
     url: "https://www.fcb.com",
@@ -82,8 +90,9 @@ const founderWork: readonly ExperienceEntry[] = [
     logo: { src: "/about/logos/crenel.jpeg", alt: "Crenel logo" },
   },
   {
-    role: "Founder (Acquired)",
+    role: "Founder",
     org: "Magier",
+    badge: "Acquired",
     date: "2023",
     logo: { src: "/about/logos/magier.jpeg", alt: "Magier logo" },
     url: "https://magier.ai",
@@ -184,7 +193,23 @@ const books = [
   },
 ]
 
-const ExperienceRow = ({ role, org, date, logo, url, external }: ExperienceEntry): React.JSX.Element => {
+/*
+ * "Contract" and "Acquired" sit beside the org, not inside the role.
+ *
+ * They were parenthetical suffixes on the job title — "Senior Product Designer
+ * (Contract)", "Founder (Acquired)" — which put a fact about the company
+ * inside the name of the job, and made the longest role string on the page 35
+ * characters for the two entries that needed the least emphasis. Neither
+ * qualifier describes the work: Spontivly was the contract, Magier was the
+ * acquisition. Beside the org they read as what they are, and the role column
+ * is one job title on every row.
+ *
+ * Corellium carries Acquired too. It was the one company on the page whose
+ * outcome was missing — the bio two sections up cites the $200M Cellebrite
+ * acquisition and the case study's own stat rows say Status / Acquired, so the
+ * omission was an inconsistency rather than a decision.
+ */
+const ExperienceRow = ({ role, org, date, logo, url, external, badge }: ExperienceEntry): React.JSX.Element => {
   return (
     <li className="flex items-start gap-3">
       <div className="flex-shrink-0 w-[34px] h-[34px] rounded-md border border-border bg-card flex items-center justify-center overflow-hidden">
@@ -193,7 +218,11 @@ const ExperienceRow = ({ role, org, date, logo, url, external }: ExperienceEntry
       <div className="flex-1 flex justify-between min-w-0 gap-2">
         <div className="min-w-0">
           <p className="font-semibold leading-none text-sm">{role}</p>
-          <p className="text-sm mt-1.5 leading-none">
+          {/* flex rather than inline text: the badge has its own padding, and
+              leading-none on a line mixing 14px text with a 12px pill leaves
+              the two sitting on different baselines. items-center hangs them
+              off one axis instead. */}
+          <div className="mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm leading-none">
             {url ? (
               <Link
                 href={url}
@@ -205,7 +234,10 @@ const ExperienceRow = ({ role, org, date, logo, url, external }: ExperienceEntry
             ) : (
               <span className="text-muted-foreground">{org}</span>
             )}
-          </p>
+            {badge ? (
+              <Badge className="px-2 py-0 text-[11px] font-medium">{badge}</Badge>
+            ) : null}
+          </div>
         </div>
         <span className="text-xs text-muted-foreground flex-shrink-0 leading-none">
           {date}
@@ -294,20 +326,30 @@ export default function About() {
           <p className="text-base leading-[1.6] text-ink-soft mb-6 max-w-[560px]">
             <span className="text-foreground font-semibold">Figma</span> for fast exploration;{" "}
             <span className="text-foreground font-semibold">Claude Code</span> for anything I actually
-            want to build. The commits below are mine.
+            want to build.
           </p>
+          {/* 34px tiles with rounded-md, the same object ExperienceRow gives a
+              company logo two sections up. They were 48px rounded-lg, which
+              made a row of tools the largest repeated element on the page —
+              larger than the companies worked at and the companies founded,
+              which is the wrong order of importance for a page that ranks its
+              sections by substance. The mark inside stays proportional at 20px
+              rather than filling the tile: a company logo is a square image
+              that can bleed to the border, while these are transparent SVG
+              marks that need the padding to read as icons rather than as
+              stickers. */}
           <div className="flex flex-wrap gap-5 sm:gap-6">
             {tools.map((tool) => (
               <div
                 key={tool.name}
                 title={tool.name}
                 className={cn(
-                  "h-12 w-12 rounded-lg border border-border flex items-center justify-center transition-[translate] duration-(--motion-settle) ease-(--ease-settle) hover:-translate-y-0.5 motion-reduce:transition-none motion-reduce:hover:translate-none",
+                  "h-[34px] w-[34px] rounded-md border border-border flex items-center justify-center transition-[translate] duration-(--motion-settle) ease-(--ease-settle) hover:-translate-y-0.5 motion-reduce:transition-none motion-reduce:hover:translate-none",
                   tool.tile ?? "bg-card",
                 )}
               >
                 {/* unoptimized: static full-color SVGs must skip the Cloudflare image loader */}
-                <Image src={tool.src} alt={`${tool.name} logo`} width={24} height={24} unoptimized className="h-6 w-6 object-contain" />
+                <Image src={tool.src} alt={`${tool.name} logo`} width={20} height={20} unoptimized className="h-5 w-5 object-contain" />
               </div>
             ))}
           </div>

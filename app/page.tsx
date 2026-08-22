@@ -165,16 +165,20 @@ export default function Portfolio() {
                 the measure still varies with the viewport and this is the part
                 copy cannot control.
 
-                The line names the stage as well as the verticals, and pays
-                nothing for it. "at early-stage startups" is 18 characters more
-                than the version without it, and the em-dash list gives them
-                back by dropping "in … and …" — measured at 2 lines at 390px and
-                1 at 1280px, the same as the shorter line. That matters because
-                the length here is load-bearing: this block is what outweighed
-                the h1 when it ran to six lines. Anything that costs a line
-                (naming seed and Series A, for one) costs the title its rank. */}
+                The line runs to two lines at desktop, deliberately. It was one,
+                and one was too little: the sentence named what he does and the
+                verticals he does it in, and left out that he founds the
+                companies too — the one fact here that the stat rows below do
+                not already carry (they give Experience, Role and Currently).
+
+                Two lines is affordable and six was not. The block that
+                outweighed the h1 ran to six lines at 156px against a 29px
+                title; this is 51px, a ratio of 1.78 rather than 5.4, and the
+                title still reads first. "0 → 1" appears once and on the verb,
+                where it describes the work, rather than twice as both a label
+                and an action. */}
             <p className="text-base leading-[1.6] text-ink-soft text-pretty anim-rise [animation-delay:180ms]">
-              I take B2B products from 0 → 1 at early-stage startups — healthcare, cybersecurity, finance.
+              I&apos;m a product designer and founder, taking B2B products from 0 → 1 at early-stage startups across healthcare, cybersecurity, and finance.
             </p>
             {/* Lands after the intro in the entrance sequence rather than with
                 it, so the facts read as a second beat — and sits 40px down
