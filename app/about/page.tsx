@@ -213,12 +213,11 @@ const books = [
  * already render. An earlier pass here used 11/500, which is a step the ladder
  * does not have.
  *
- * The outline variant, where the cards use the filled one. Every row here
- * already opens with a hairline-bordered logo tile, so a solid pill was the
- * only filled object in the list and gave a qualifier more weight than the
- * company logo beside it. On a card, badges arrive as a cluster of tags on a
- * card surface and filled is right; here it is one qualifier inline with a
- * title, and the hairline is what the rest of the row is made of.
+ * Outlined, which is now the Badge default site-wide rather than anything
+ * special to this list — see components/ui/badge.tsx. It happens to matter
+ * most here: every row already opens with a hairline-bordered logo tile, so
+ * the chip is made of the same line as the row around it, and a qualifier that
+ * appears alone has to survive a scan.
  *
  * Corellium carries Acquired too. It was the one company on the page whose
  * outcome was missing — the bio two sections up cites the $200M Cellebrite
@@ -246,7 +245,7 @@ const ExperienceRow = ({ role, org, date, logo, url, external, badge }: Experien
               the date column at 390px. */}
           <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
             <p className="font-semibold leading-none text-sm">{role}</p>
-            {badge ? <Badge variant="outline">{badge}</Badge> : null}
+            {badge ? <Badge>{badge}</Badge> : null}
           </div>
           <p className="text-sm mt-1.5 leading-none">
             {url ? (
