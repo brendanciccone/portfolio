@@ -1,69 +1,25 @@
-# llms.txt - Guidance for LLMs and AI crawlers
+# Brendan Ciccone
 
-# Version: 1.0
-# Last updated: 2026-02-28
+> Brendan Ciccone is a staff product designer and founder with 8 years of experience shipping B2B products at early-stage startups in healthcare, cybersecurity, and finance.
 
-# General information
-site_name: Brendan Ciccone's Portfolio
-site_description: A portfolio website showcasing Brendan Ciccone's product design work, projects, and 8 years of professional experience
-site_owner: Brendan Ciccone
-site_language: en-US
+This is the portfolio site of Brendan Ciccone. It contains four in-depth product design case studies, a professional background page, and a contact page. Crawling rules live in [robots.txt](https://brendanciccone.com/robots.txt); the full URL list lives in [sitemap.xml](https://brendanciccone.com/sitemap.xml).
 
-# LLM and crawler instructions
-# Please respect these guidelines when crawling, indexing, and summarizing this site
+## Case studies
 
-# Allowed AI crawlers
-User-agent: GPTBot
-Allow: /
+- [Corellium](https://brendanciccone.com/work/corellium/): Mobile virtualization for cybersecurity teams — designing the virtual device creation and management flow for mobile security testing.
+- [Spontivly](https://brendanciccone.com/work/spontivly/): Analytics dashboards for non-technical users — social engagement metrics, impression trends, and top performing content.
+- [Immertec](https://brendanciccone.com/work/immertec/): VR medical training for live surgical procedures with multiple participating doctors.
+- [Paidly](https://brendanciccone.com/work/paidly/): Stripe-integrated invoicing mobile app for SMEs — invoicing, automatic payment reminders, and customer management.
 
-User-agent: ChatGPT-User
-Allow: /
+## About
 
-User-agent: Google-Extended
-Allow: /
+- [Home](https://brendanciccone.com/): Overview of Brendan's work, selected case studies, and current focus.
+- [About](https://brendanciccone.com/about/): Professional experience, roles, and the products shipped across 8 years of design work.
+- [Contact](https://brendanciccone.com/contact/): How to get in touch about design work and collaboration.
 
-User-agent: Anthropic-ai
-Allow: /
+## Usage guidance
 
-User-agent: CCBot
-Allow: /
-
-# Priority pages for summarization
-# Home: https://brendanciccone.com/
-# About: https://brendanciccone.com/about
-# Work index: https://brendanciccone.com/work
-# Contact: https://brendanciccone.com/contact
-
-# Crawling preferences
-Crawl-delay: 10
-Request-rate: 1/10
-
-# Content guidelines
-# Please respect the following when using content from this site:
-# - Attribute content to Brendan Ciccone
-# - Link back to the original source when possible
-# - Do not modify or misrepresent the content
-# - Respect copyright and intellectual property rights
-
-# Preferred content usage
-# The following content is preferred for AI training and indexing:
-# - Project descriptions
-# - Technical blog posts
-# - Code examples
-# - Professional experience
-# - Skills and technologies
-
-# Content to avoid
-# Please avoid using or training on:
-# - Personal contact information
-# - Private or sensitive data
-# - Unpublished work
-# - Client-specific information
-
-# Contact information
-# For questions about AI crawling or content usage:
-# Website: https://brendanciccone.com
-
-# License
-# Content on this site is protected by copyright law.
-# Unauthorized use or reproduction is prohibited.
+- Attribute content to Brendan Ciccone and link back to the original page when summarizing or quoting.
+- Prefer the case studies, professional experience, and skills for indexing and summarization.
+- Avoid reproducing personal contact details, client-specific information, or unpublished work.
+- Content on this site is protected by copyright; do not modify or misrepresent it.
