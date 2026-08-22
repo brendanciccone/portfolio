@@ -245,18 +245,27 @@ const ExperienceRow = ({ role, org, date, logo, url, external, badge }: Experien
               axis. flex-wrap so a long role and a badge break rather than push
               the date column at 390px.
 
-              min-h-[22px] is the badge's own height — 12px text on a 16px line
-              box, plus 2px of padding and 1px of border a side — held whether a
-              badge is present or not. Without it a badged row is 42px and a
-              bare one 34px, so the four rows carrying Contract or Acquired
-              stood 8px taller than their neighbours and the list read as though
-              its spacing were arbitrary. Row rhythm should not depend on
-              whether a job happened to end in an acquisition.
+              The badge is 22px tall — 12px text on a 16px line box, plus 2px of
+              padding and 1px of border a side — against 14px of role text, so
+              left alone it grows its row. -my-1 takes 4px off each end of its
+              margin box, which brings what it contributes to the line back to
+              exactly the 14px the role text occupies. It still paints at full
+              size; it just stops pushing.
 
-              If the badge's type or padding changes, this number follows it. */}
-          <div className="flex min-h-[22px] flex-wrap items-center gap-x-2 gap-y-1">
+              Holding the line at 22px instead was tried and is worse. It does
+              even the rows out, but at 42px rather than 34, and 34 is not an
+              arbitrary number: the logo tile is 34px, and an unbadged row's
+              text block — 14px role, 6px gap, 14px org — comes to exactly 34
+              too, so tile and text terminate on the same line. Padding the row
+              to 42 left every text block hanging 8px below its own logo, which
+              trades one inconsistency for a subtler one on every row rather
+              than four.
+
+              The overhang has room at both ends: 24px of list gap above, and
+              the org line 6px below. */}
+          <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
             <p className="font-semibold leading-none text-sm">{role}</p>
-            {badge ? <Badge>{badge}</Badge> : null}
+            {badge ? <Badge className="-my-1">{badge}</Badge> : null}
           </div>
           <p className="text-sm mt-1.5 leading-none">
             {url ? (
