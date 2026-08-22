@@ -22,9 +22,10 @@ interface ExperienceEntry {
   logo: { src: string; alt: string }
   url?: string
   external?: boolean
-  /* How the engagement or the company ended — "Contract", "Acquired". A
-     property of the org, not of the job, which is why it renders beside the
-     org rather than inside the role. */
+  /* How the engagement or the company ended — "Contract", "Acquired". Pulled
+     out of the role string so the role is one job title on every row; rendered
+     as a chip on the role line, because that is the line this list is scanned
+     down. See ExperienceRow. */
   badge?: string
 }
 

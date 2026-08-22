@@ -43,9 +43,10 @@ export const ReadingProgress = (): React.JSX.Element => {
     window.addEventListener("resize", update, { passive: true })
 
     /*
-     * Scroll events alone don't keep this honest. The rail lives in the root
-     * layout, so it survives navigation while the document under it changes
-     * height — and if the outgoing page was already at the top, ScrollToTop's
+     * Scroll events alone don't keep this honest. The rail is mounted in
+     * app/work/layout.tsx, which persists across case-study navigations, so it
+     * survives a route change while the document under it changes height — and
+     * if the outgoing page was already at the top, ScrollToTop's
      * scrollTo(0) moves nothing and therefore fires no scroll event, leaving
      * the previous route's progress on screen. Re-running on pathname change
      * covers that; observing the document covers the slower half, where a
