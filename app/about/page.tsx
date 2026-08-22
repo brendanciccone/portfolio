@@ -194,15 +194,31 @@ const books = [
 ]
 
 /*
- * "Contract" and "Acquired" sit beside the org, not inside the role.
+ * "Contract" and "Acquired" are badges on the role line, not text inside the
+ * role.
  *
  * They were parenthetical suffixes on the job title — "Senior Product Designer
- * (Contract)", "Founder (Acquired)" — which put a fact about the company
- * inside the name of the job, and made the longest role string on the page 35
- * characters for the two entries that needed the least emphasis. Neither
- * qualifier describes the work: Spontivly was the contract, Magier was the
- * acquisition. Beside the org they read as what they are, and the role column
- * is one job title on every row.
+ * (Contract)", "Founder (Acquired)" — which made the longest role string on
+ * the page 35 characters for the two entries needing the least emphasis, and
+ * buried a qualifier inside a title that is otherwise identical between rows.
+ * Pulled out, "Senior Product Designer" reads as the same job three times,
+ * because it was.
+ *
+ * They sit on the role line rather than the org line under it because this
+ * list is scanned rather than read: the role is the bold 14/600 the eye tracks
+ * down, and the org is muted and second. A qualifier on the second line is
+ * found only by someone already reading the row.
+ *
+ * At 12/600, the size the scale gives badges and the size the work cards
+ * already render. An earlier pass here used 11/500, which is a step the ladder
+ * does not have.
+ *
+ * The outline variant, where the cards use the filled one. Every row here
+ * already opens with a hairline-bordered logo tile, so a solid pill was the
+ * only filled object in the list and gave a qualifier more weight than the
+ * company logo beside it. On a card, badges arrive as a cluster of tags on a
+ * card surface and filled is right; here it is one qualifier inline with a
+ * title, and the hairline is what the rest of the row is made of.
  *
  * Corellium carries Acquired too. It was the one company on the page whose
  * outcome was missing — the bio two sections up cites the $200M Cellebrite
@@ -217,12 +233,22 @@ const ExperienceRow = ({ role, org, date, logo, url, external, badge }: Experien
       </div>
       <div className="flex-1 flex justify-between min-w-0 gap-2">
         <div className="min-w-0">
-          <p className="font-semibold leading-none text-sm">{role}</p>
-          {/* flex rather than inline text: the badge has its own padding, and
-              leading-none on a line mixing 14px text with a 12px pill leaves
-              the two sitting on different baselines. items-center hangs them
-              off one axis instead. */}
-          <div className="mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm leading-none">
+          {/* The badge rides the role line, not the org line under it.
+              A list like this is scanned down its left edge, and the role is
+              the bold 14/600 target that scan lands on — the org beneath it is
+              muted and second in the path, so a qualifier there is read only by
+              someone already reading the row rather than skimming it.
+
+              flex rather than inline text: the badge carries its own padding,
+              and leading-none on a line mixing 14px text with a 12px pill puts
+              the two on different baselines. items-center hangs them off one
+              axis. flex-wrap so a long role and a badge break rather than push
+              the date column at 390px. */}
+          <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <p className="font-semibold leading-none text-sm">{role}</p>
+            {badge ? <Badge variant="outline">{badge}</Badge> : null}
+          </div>
+          <p className="text-sm mt-1.5 leading-none">
             {url ? (
               <Link
                 href={url}
@@ -234,10 +260,7 @@ const ExperienceRow = ({ role, org, date, logo, url, external, badge }: Experien
             ) : (
               <span className="text-muted-foreground">{org}</span>
             )}
-            {badge ? (
-              <Badge className="px-2 py-0 text-[11px] font-medium">{badge}</Badge>
-            ) : null}
-          </div>
+          </p>
         </div>
         <span className="text-xs text-muted-foreground flex-shrink-0 leading-none">
           {date}
