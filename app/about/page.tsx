@@ -246,12 +246,19 @@ export default function About() {
                 As founding product designer at Immertec, I led a platform redesign that <span className="text-foreground font-semibold">increased SUS from 68 to 83</span>, hired and managed 2 product designers, and helped secure <span className="text-foreground font-semibold">$12M in Series A</span> funding. At Corellium, I owned end-to-end product design, shipped CI/CD-integrated threat analysis tools, and achieved an 81 SUS score that contributed to a <span className="text-foreground font-semibold">$200M acquisition</span> by Cellebrite.
               </p>
             </div>
-            <div className="space-y-4 anim-rise [animation-delay:200ms]">
+            {/* The publications sentence that used to close this block is gone.
+                Every fact in it — accessibility, virtual environments, HFES,
+                SSH — appears verbatim in the Publications section below, in the
+                paper titles and venues, and it named neither the journal nor a
+                single study. The paragraphs around it earn their place by
+                carrying what their lists cannot show: the Experience list has
+                no room for an SUS score or an acquisition figure, and Founder
+                Work has none for Techstars or the Coinbase intake. That one had
+                nothing of its own, so it read as a hedge in front of stronger
+                evidence. */}
+            <div className="anim-rise [animation-delay:200ms]">
               <p>
                 I founded Paidly in 2020, a Stripe-integrated invoicing app used by <span className="text-foreground font-semibold">over 2,000 SMEs</span>. In 2023 I started Magier, an AI startup that was <span className="text-foreground font-semibold">acquired the same year</span> and accepted into <span className="text-foreground font-semibold">Techstars&apos; 2024</span> cohort. In late 2025, I launched Crenel, a tool for automatic crossposting across social platforms, and was <span className="text-foreground font-semibold">selected for Coinbase&apos;s accelerator</span> (50 of 900+ applicants).
-              </p>
-              <p>
-                I&apos;ve also published research on accessibility and virtual environments in publications by the Human Factors and Ergonomics Society (HFES) and the Society for Simulation in Healthcare (SSH).
               </p>
             </div>
           </div>
