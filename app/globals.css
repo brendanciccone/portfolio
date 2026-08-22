@@ -281,39 +281,36 @@
    * trace the accumulated result, so putting the blurred layers first would
    * make the outline trace the blur instead of the artwork.
    */
-  /* The ring reads a touch heavy against a real border, and colour is the only
-     lever left. Geometry is fixed at 1px a side by the technique — a
-     drop-shadow offset below a whole pixel antialiases into a blur instead of
-     a thinner line, trading sharpness for the exact width it was trying to
-     buy, and the chaining puts corners at about 1.4x regardless. So the ink
-     comes off instead: 95% of --border.
-
-     Mixed toward the MAT, not toward transparent, and that distinction is the
-     whole reason this works. Thinning the colour with alpha does nothing here:
-     the four shadows chain, each tracing the accumulated result, so along the
-     ring a 95%-alpha layer composites over a 95%-alpha layer and comes back as
-     1 - 0.05^2, or 99.75%. Measured, `color-mix(... 95%, transparent)` left the
-     dip at 21.8 — unchanged to the tenth. An opaque colour cannot compound
-     with itself, so mixing 5% of --mockup-frame into --border actually lands
-     the 5%.
-
-     --mockup-frame is the right thing to mix into because it is always what
-     the ring is drawn against: --drop-mockup is applied to the plate card
-     mats, the Other Work thumbnails, LightboxImage and the comparison figures,
-     and every one of those sits on a mockup-frame mat.
-
-     Derived with color-mix rather than written as a lighter literal, so it
-     cannot drift from --border and still follows the mode — both the light and
-     dark --drop-mockup read --edge-mockup, so one token covers both. Same
-     lever --edge-soft already pulls for the Other Work thumbnails, and for the
-     same reason: matching the yardstick by value and matching it by eye are
-     different targets. */
-  --edge-ring: color-mix(in srgb, var(--border) 95%, var(--mockup-frame));
+  /*
+   * The ring is --border itself. Not a value tuned to look like it, and not a
+   * lightened derivative — the same token every other hairline on the site
+   * reads, so a mockup's edge cannot drift from the mat it sits on.
+   *
+   * 95% of --border was tried, on the report that the ring read a touch heavy,
+   * and it is what produced the mismatch that replaced the complaint. Mixed
+   * toward the mat it landed at rgb(229,229,231) against a real border's
+   * rgb(228,228,231) — one luminance unit, which sounds like nothing until you
+   * notice a figure frame puts the two hairlines 12px apart. At that distance
+   * the eye stops reading weight and starts reading colour, and one of them is
+   * visibly the wrong grey.
+   *
+   * Mixing toward `transparent` was tried before that and did nothing at all:
+   * the four shadows chain, each tracing the accumulated result, so along the
+   * ring a 95%-alpha layer composites over a 95%-alpha layer and returns
+   * 1 - 0.05^2, or 99.75%. Alpha cannot thin this construction; only an opaque
+   * mix can, which is how the mismatch above got in.
+   *
+   * If the ring ever reads heavy again, ink is the wrong lever. It is already
+   * the same ink. What differs from a real border is geometry: the chain puts
+   * corners at about 1.4x, and the trace inherits the source artwork's
+   * antialiased alpha edge as a shoulder on each side. Neither is fixable by
+   * making the colour paler, and both were measured before this went back.
+   */
   --edge-mockup:
-    drop-shadow(1px 0 0 var(--edge-ring))
-    drop-shadow(-1px 0 0 var(--edge-ring))
-    drop-shadow(0 1px 0 var(--edge-ring))
-    drop-shadow(0 -1px 0 var(--edge-ring));
+    drop-shadow(1px 0 0 var(--border))
+    drop-shadow(-1px 0 0 var(--border))
+    drop-shadow(0 1px 0 var(--border))
+    drop-shadow(0 -1px 0 var(--border));
   --drop-mockup:
     var(--edge-mockup)
     drop-shadow(0 2px 3px hsl(var(--shadow-color) / 0.035))
