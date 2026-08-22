@@ -231,57 +231,90 @@ const ExperienceRow = ({ role, org, date, logo, url, external, badge }: Experien
       <div className="flex-shrink-0 w-[34px] h-[34px] rounded-md border border-border bg-card flex items-center justify-center overflow-hidden">
         <Image src={logo.src} alt={logo.alt} width={34} height={34} className="w-full h-full object-contain" />
       </div>
-      <div className="flex-1 flex justify-between min-w-0 gap-2">
-        <div className="min-w-0">
-          {/* The badge rides the role line, not the org line under it.
-              A list like this is scanned down its left edge, and the role is
-              the bold 14/600 target that scan lands on — the org beneath it is
-              muted and second in the path, so a qualifier there is read only by
-              someone already reading the row rather than skimming it.
+      {/* Text left, date right — a grid rather than a justify-between flex,
+          because below sm the date has to move to the second line and a flex
+          row has no way to send it there.
 
-              flex rather than inline text: the badge carries its own padding,
-              and leading-none on a line mixing 14px text with a 12px pill puts
-              the two on different baselines. items-center hangs them off one
-              axis. flex-wrap so a long role and a badge break rather than push
-              the date column at 390px.
+          Under 430px there was no longer room for role + badge + date on one
+          line, and the row broke rather than degraded: the badge wrapped to a
+          line of its own, where -my-1 (see below) ate the gap above it, so
+          Corellium rendered as a 52px row of role / crammed badge / org
+          against a 34px logo tile. On a 360px phone all three badged
+          Experience rows did it.
 
-              The badge is 22px tall — 12px text on a 16px line box, plus 2px of
-              padding and 1px of border a side — against 14px of role text, so
-              left alone it grows its row. -my-1 takes 4px off each end of its
-              margin box, which brings what it contributes to the line back to
-              exactly the 14px the role text occupies. It still paints at full
-              size; it just stops pushing.
+          Giving the role line the whole column below sm is what fixes it, not
+          respacing the wrap: the widest pairing on the page, "Senior Product
+          Designer" + Contract, is 241px against the 274 a 360px phone leaves
+          after the tile — so nothing wraps and every row stays 34px, tile and
+          text still terminating together.
 
-              Holding the line at 22px instead was tried and is worse. It does
-              even the rows out, but at 42px rather than 34, and 34 is not an
-              arbitrary number: the logo tile is 34px, and an unbadged row's
-              text block — 14px role, 6px gap, 14px org — comes to exactly 34
-              too, so tile and text terminate on the same line. Padding the row
-              to 42 left every text block hanging 8px below its own logo, which
-              trades one inconsistency for a subtler one on every row rather
-              than four.
+          The date is no worse off on the org line, and the rows that never had
+          a badge are better: at 390px "Founding Product Designer" and
+          "2018-2020" were 4px from colliding.
 
-              The overhang has room at both ends: 24px of list gap above, and
-              the org line 6px below. */}
-          <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
-            <p className="font-semibold leading-none text-sm">{role}</p>
-            {badge ? <Badge className="-my-1">{badge}</Badge> : null}
-          </div>
-          <p className="text-sm mt-1.5 leading-none">
-            {url ? (
-              <Link
-                href={url}
-                {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                className="text-muted-foreground underline underline-offset-4 decoration-border hover:text-foreground hover:decoration-foreground transition-colors"
-              >
-                {org}
-              </Link>
-            ) : (
-              <span className="text-muted-foreground">{org}</span>
-            )}
-          </p>
+          sm is the site's phone/desktop line — the one px-5, pt-32 and the
+          section gaps already turn on — rather than a 430px cut made for this
+          row alone. */}
+      <div className="flex-1 min-w-0 grid grid-cols-[minmax(0,1fr)_auto] gap-x-2">
+        {/* The badge rides the role line, not the org line under it.
+            A list like this is scanned down its left edge, and the role is
+            the bold 14/600 target that scan lands on — the org beneath it is
+            muted and second in the path, so a qualifier there is read only by
+            someone already reading the row rather than skimming it.
+
+            flex rather than inline text: the badge carries its own padding,
+            and leading-none on a line mixing 14px text with a 12px pill puts
+            the two on different baselines. items-center hangs them off one
+            axis. flex-wrap is kept as the floor below ~330px, where the role
+            and the badge stop fitting even with the date moved away and a
+            break beats an overflow — no shipping phone is that narrow.
+
+            The badge is 22px tall — 12px text on a 16px line box, plus 2px of
+            padding and 1px of border a side — against 14px of role text, so
+            left alone it grows its row. -my-1 takes 4px off each end of its
+            margin box, which brings what it contributes to the line back to
+            exactly the 14px the role text occupies. It still paints at full
+            size; it just stops pushing.
+
+            That correction assumes the badge is sharing the role's line. On a
+            line of its own it has nothing to correct and instead cancels the
+            4px gap-y above it, which is why a wrap here read as a bug rather
+            than as a narrow layout — and why the fix is to keep the pair on
+            one line rather than to space the wrap.
+
+            Holding the line at 22px instead was tried and is worse. It does
+            even the rows out, but at 42px rather than 34, and 34 is not an
+            arbitrary number: the logo tile is 34px, and an unbadged row's
+            text block — 14px role, 6px gap, 14px org — comes to exactly 34
+            too, so tile and text terminate on the same line. Padding the row
+            to 42 left every text block hanging 8px below its own logo, which
+            trades one inconsistency for a subtler one on every row rather
+            than four.
+
+            The overhang has room at both ends: 24px of list gap above, and
+            the org line 6px below. */}
+        <div className="col-span-2 sm:col-span-1 row-start-1 flex flex-wrap items-center gap-x-2 gap-y-1">
+          <p className="font-semibold leading-none text-sm">{role}</p>
+          {badge ? <Badge className="-my-1">{badge}</Badge> : null}
         </div>
-        <span className="text-xs text-muted-foreground flex-shrink-0 leading-none">
+        <p className="col-start-1 row-start-2 text-sm mt-1.5 leading-none">
+          {url ? (
+            <Link
+              href={url}
+              {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+              className="text-muted-foreground underline underline-offset-4 decoration-border hover:text-foreground hover:decoration-foreground transition-colors"
+            >
+              {org}
+            </Link>
+          ) : (
+            <span className="text-muted-foreground">{org}</span>
+          )}
+        </p>
+        {/* self-end on the shared line rather than self-start: 12px date
+            against 14px org, both leading-none, so squaring the bottoms of the
+            two boxes lands the baselines within half a pixel. Above sm it goes
+            back to the top of row 1, where the role text starts. */}
+        <span className="col-start-2 row-start-2 self-end sm:row-start-1 sm:self-start text-xs text-muted-foreground leading-none">
           {date}
         </span>
       </div>
