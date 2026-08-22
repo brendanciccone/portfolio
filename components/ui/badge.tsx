@@ -21,6 +21,11 @@ import { cn } from "@/lib/utils"
  * found only by someone already reading. That matters most where a badge
  * appears alone, as the Contract/Acquired qualifiers do on About.
  *
+ * The border reads --border, not --input. The two hold the same value in both
+ * modes today, which is exactly why this is worth pinning: a chip is chrome and
+ * has to be the same line as the mats, cards and mockup rings around it, and
+ * --input exists to be retuned for form fields independently of those.
+ *
  * The filled treatment is still here as `secondary` for anything that needs to
  * recede rather than be found. Nothing uses it today.
  */
@@ -34,7 +39,7 @@ const badgeVariants = cva(
         secondary:
           "border border-transparent bg-secondary text-secondary-foreground",
         outline:
-          "border border-input bg-transparent text-foreground",
+          "border border-border bg-transparent text-foreground",
         destructive:
           "border border-transparent bg-destructive text-destructive-foreground",
       },

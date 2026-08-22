@@ -2,6 +2,7 @@ import { generatePageMetadata } from "@/lib/metadata";
 import ContactForm from "@/components/contact-form";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import { DotGrid } from "@/components/dot-grid";
 
 export const metadata = generatePageMetadata({
   title: "Contact",
@@ -22,13 +23,20 @@ export default function ContactPage() {
           built for the old 64rem rail. On the 45rem one each column came out
           around 320px, so the form fields were half the width of every other
           input on the site and the left column was mostly there to stop the
-          right one looking lonely. The dot grid was filling space rather than
-          saying anything, and the hairline was separating two things that did
-          not need separating.
+          right one looking lonely. The hairline was separating two things that
+          did not need separating.
 
           One column also means the person filling this in reads top to bottom
           in the order the page is written, which on a page whose only job is a
           form is the entire brief.
+
+          The dot lattice is back, and it is not the thing that was removed.
+          That one sat beside the form as a column filler, so it was competing
+          with the only content on the page. This one runs the full rail below
+          the form, after the reading order is finished with, and it answers the
+          cursor — texture at rest, response on contact. It is placed there for
+          the same reason the old one was placed wrongly: what a short page
+          needs is a floor, not a second column.
         */}
         <section className="flex flex-col gap-3 sm:gap-4">
           {/* One line. It was split across two hand-authored masks, which was
@@ -51,6 +59,13 @@ export default function ContactPage() {
             own schedule would fade inputs out from under someone filling them */}
         <div data-flow>
           <ContactForm />
+        </div>
+
+        {/* Below the form, never above it. The page's whole brief is that the
+            reading order runs title, line, form — so anything decorative has to
+            wait until that is done rather than sit between two of its steps. */}
+        <div data-flow="0.5">
+          <DotGrid />
         </div>
 
         <Footer />

@@ -1,8 +1,4 @@
-"use client"
-
-import { useState } from "react"
 import Image from "next/image"
-import { cn } from "@/lib/utils"
 
 interface MockupImageProps {
   src: string
@@ -25,14 +21,6 @@ export const MockupImage = ({
   quality = 80,
   sizes,
 }: MockupImageProps) => {
-  const [isLoaded, setIsLoaded] = useState(false)
-
-  // Catch images that finished loading before React hydrated — the ref
-  // callback fires on mount with the live node, ahead of onLoad
-  const handleImageRef = (node: HTMLImageElement | null) => {
-    if (node?.complete) setIsLoaded(true)
-  }
-
   return (
     /*
      * Nothing opaque may live in here. An ancestor applies a drop-shadow chain
@@ -43,25 +31,30 @@ export const MockupImage = ({
      * bg-mockup-frame, the same colour as the mat behind it, and animate-pulse
      * only animates opacity, so it was #fafafa fading over #fafafa.
      *
-     * With it gone the shadow has no alpha to trace until the image itself
-     * fades in, so the two arrive together on the same curve.
+     * There is no load fade either, and that is deliberate rather than an
+     * omission. A fade put the image and the ring on one alpha curve, which
+     * sounds like the two arriving together and is not: at 25% alpha the
+     * artwork sits 37 luminance below the mat and reads as present, while the
+     * ring — a 21-luminance line at full strength — is 5 off the mat and
+     * invisible. It only crosses the threshold past halfway, so the ring
+     * always appeared to pop in after the screenshot it belongs to. Same
+     * curve, different arrival, because the two have an order of magnitude
+     * between their contrast.
+     *
+     * No cross-fade can fix that; only not having one. The image paints when
+     * it decodes, and the shadow, which is drawn from its alpha, paints in the
+     * same frame.
      */
     <div className="relative">
       <Image
-        ref={handleImageRef}
         src={src}
         alt={alt}
         width={width}
         height={height}
-        className={cn(
-          "transition-opacity duration-(--motion-settle)",
-          isLoaded ? "opacity-100" : "opacity-0",
-          className,
-        )}
+        className={className}
         priority={priority}
         quality={quality}
         sizes={sizes}
-        onLoad={() => setIsLoaded(true)}
       />
     </div>
   )
