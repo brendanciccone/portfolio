@@ -154,12 +154,15 @@ export const WorkCard = ({
               width={1200}
               height={900}
               /*
-               * contain, not cover. Padding comes off both dimensions of the
-               * aspect-[4/3] mat equally, so the clip inside it does not land at
-               * 4:3 — and cover was quietly cropping the screenshot to make up
-               * the difference. contain always shows the whole frame and lets
-               * the mat absorb what is left over, which is how the plate cards
-               * present a screenshot too.
+               * contain, not cover. The clip this sits in is exactly 4:3 and so
+               * are the files, so the two fit with nothing left over and either
+               * value would paint the same pixels today. contain is what keeps
+               * that true: it shows the whole frame no matter what ratio a
+               * screenshot arrives at, where cover silently crops to fill. That
+               * was not hypothetical — while the ratio lived on the padded mat
+               * the clip resolved to 1.375 and cover was cropping the
+               * screenshot to make up the difference. Showing the whole frame
+               * is also how the plate cards present a screenshot.
                */
               className={cn(imageClasses, "h-full object-contain")}
               quality={80}

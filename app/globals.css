@@ -455,7 +455,7 @@ body {
  * then ignorable rather than ranked against the content under it.
  *
  * Size stays at 18 because the muted register below is now occupied. The stat
- * rows put 14/400 muted labels on the same pages, so a section label shrunk to
+ * rows put 14/500 muted labels on the same pages, so a section label shrunk to
  * 14 — or to 12 in caps — would have landed in that register instead of above
  * it, and on About it would have collided with the 14/600 experience entries
  * the same way 18 ink collides with card titles. 18 muted is the one setting
