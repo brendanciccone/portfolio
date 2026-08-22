@@ -243,8 +243,18 @@ const ExperienceRow = ({ role, org, date, logo, url, external, badge }: Experien
               and leading-none on a line mixing 14px text with a 12px pill puts
               the two on different baselines. items-center hangs them off one
               axis. flex-wrap so a long role and a badge break rather than push
-              the date column at 390px. */}
-          <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+              the date column at 390px.
+
+              min-h-[22px] is the badge's own height — 12px text on a 16px line
+              box, plus 2px of padding and 1px of border a side — held whether a
+              badge is present or not. Without it a badged row is 42px and a
+              bare one 34px, so the four rows carrying Contract or Acquired
+              stood 8px taller than their neighbours and the list read as though
+              its spacing were arbitrary. Row rhythm should not depend on
+              whether a job happened to end in an acquisition.
+
+              If the badge's type or padding changes, this number follows it. */}
+          <div className="flex min-h-[22px] flex-wrap items-center gap-x-2 gap-y-1">
             <p className="font-semibold leading-none text-sm">{role}</p>
             {badge ? <Badge>{badge}</Badge> : null}
           </div>
