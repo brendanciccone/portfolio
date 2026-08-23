@@ -9,10 +9,10 @@
  *
  * Six is the ceiling, not a coincidence. The row is 34px tiles on a 20px gap,
  * so n of them need 54n - 20 px, against the 320 a 360px phone leaves after
- * the page padding — six fit, seven do not. At seven the row broke 6 + 1 on
- * every phone narrower than 430px, and a single tile alone on a second line
- * reads as a mistake rather than as a list. Adding a tool means swapping one
- * out, or accepting two lines.
+ * the page padding — six fit at 304, seven need 358 and do not. So the row
+ * broke 6 + 1 below 398px, a 390px iPhone included, and a single tile alone
+ * on a second line reads as a mistake rather than as a list. Adding a tool
+ * means swapping one out, or accepting two lines.
  */
 
 export interface Tool {
