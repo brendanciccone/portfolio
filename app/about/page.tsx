@@ -231,43 +231,64 @@ const ExperienceRow = ({ role, org, date, logo, url, external, badge }: Experien
       <div className="flex-shrink-0 w-[34px] h-[34px] rounded-md border border-border bg-card flex items-center justify-center overflow-hidden">
         <Image src={logo.src} alt={logo.alt} width={34} height={34} className="w-full h-full object-contain" />
       </div>
+      {/* Text left, date right, unchanged from where this started — the row
+          only needed the badge to move, not the date. */}
       <div className="flex-1 flex justify-between min-w-0 gap-2">
-        <div className="min-w-0">
-          {/* The badge rides the role line, not the org line under it.
-              A list like this is scanned down its left edge, and the role is
-              the bold 14/600 target that scan lands on — the org beneath it is
-              muted and second in the path, so a qualifier there is read only by
-              someone already reading the row rather than skimming it.
+        {/* Role, org and badge share one wrapping flex line-box rather than
+            sitting in fixed lines, because the badge changes which line it
+            belongs to.
 
-              flex rather than inline text: the badge carries its own padding,
-              and leading-none on a line mixing 14px text with a 12px pill puts
-              the two on different baselines. items-center hangs them off one
-              axis. flex-wrap so a long role and a badge break rather than push
-              the date column at 390px.
+            Above 480px it rides the role line. A list like this is scanned
+            down its left edge, and the role is the bold 14/600 target that
+            scan lands on — the org beneath it is muted and second in the path,
+            so a qualifier there is read only by someone already reading the
+            row rather than skimming it.
 
-              The badge is 22px tall — 12px text on a 16px line box, plus 2px of
-              padding and 1px of border a side — against 14px of role text, so
-              left alone it grows its row. -my-1 takes 4px off each end of its
-              margin box, which brings what it contributes to the line back to
-              exactly the 14px the role text occupies. It still paints at full
-              size; it just stops pushing.
+            On a phone there is no room for that. Role + badge + date needs
+            317px on the widest row ("Staff Product Designer" + Acquired +
+            2023-Present) against the 304 a 390px phone leaves after the tile,
+            so the badge wrapped to a line of its own — where -my-1 (below)
+            cancelled the gap above it and left the chip crammed between the
+            role and the org, on a row 52px tall against a 34px logo tile.
 
-              Holding the line at 22px instead was tried and is worse. It does
-              even the rows out, but at 42px rather than 34, and 34 is not an
-              arbitrary number: the logo tile is 34px, and an unbadged row's
-              text block — 14px role, 6px gap, 14px org — comes to exactly 34
-              too, so tile and text terminate on the same line. Padding the row
-              to 42 left every text block hanging 8px below its own logo, which
-              trades one inconsistency for a subtler one on every row rather
-              than four.
+            Below 480px it attaches to the org instead. That line is the one
+            with room: muted 14/400 company names run 70-100px where the roles
+            run 150-180, so the chip has 150px of slack to sit in and nothing
+            wraps. It reads differently there — a qualifier on the company
+            rather than on the job — but on a phone the row is read, not
+            scanned down a column, so the scanning argument that puts it on the
+            role line above 480 is not buying anything below it.
 
-              The overhang has room at both ends: 24px of list gap above, and
-              the org line 6px below. */}
-          <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
-            <p className="font-semibold leading-none text-sm">{role}</p>
-            {badge ? <Badge className="-my-1">{badge}</Badge> : null}
-          </div>
-          <p className="text-sm mt-1.5 leading-none">
+            480 rather than sm: sm is 640, and nothing here is constrained
+            between 480 and 640 — that cut would restyle a layout that is not
+            broken. 480 is the first round number clear of the 403px where the
+            binding row actually starts to wrap, and it sits above every phone
+            in portrait, so no handset straddles it.
+
+            The badge is 22px tall — 12px text on a 16px line box, plus 2px of
+            padding and 1px of border a side — against 14px of text either side
+            of the break, so left alone it grows whichever line it lands on.
+            -my-1 takes 4px off each end of its margin box, bringing what it
+            contributes back to exactly the 14px the text occupies. It still
+            paints at full size; it just stops pushing. That holds on the org
+            line as well as the role line, which is why the swap is free.
+
+            34 is not an arbitrary number to protect: the logo tile is 34px,
+            and a row's text — 14px role, 6px gap, 14px org — comes to exactly
+            34 too, so tile and text terminate on the same line. Letting the
+            badge push instead evens the rows out at 42px and leaves every text
+            block hanging 8px below its own logo.
+
+            The overhang has room at both ends: 24px of list gap above, and the
+            same below. */}
+        <div className="min-w-0 flex flex-wrap items-center gap-x-2 gap-y-1.5">
+          <p className="w-full min-[480px]:w-auto font-semibold leading-none text-sm">{role}</p>
+          {/* order pulls the badge ahead of the org above 480 and w-full drops
+              the org to its own line there. Below it every item is order-0, so
+              the three fall in DOM order — role, then org and badge together —
+              and the DOM order is the one a screen reader wants either way:
+              "Staff Product Designer, Corellium, Acquired". */}
+          <p className="text-sm leading-none min-[480px]:order-2 min-[480px]:w-full">
             {url ? (
               <Link
                 href={url}
@@ -280,6 +301,7 @@ const ExperienceRow = ({ role, org, date, logo, url, external, badge }: Experien
               <span className="text-muted-foreground">{org}</span>
             )}
           </p>
+          {badge ? <Badge className="-my-1 min-[480px]:order-1">{badge}</Badge> : null}
         </div>
         <span className="text-xs text-muted-foreground flex-shrink-0 leading-none">
           {date}
