@@ -249,7 +249,26 @@ export const TransitionLink = ({ href, onClick, children, ...rest }: TransitionL
      */
     if (activeTransition !== null) {
       const superseded = activeTransition
-      const navigate = () => router.push(href)
+      /*
+       * The entrance decision is recomputed at fire time rather than inherited.
+       * pendingEntrance still holds the superseded click's answer, which is
+       * always false — a navigation that plays an entrance never starts a
+       * transition, so reaching this branch means one did.
+       *
+       * In practice the route the superseded transition was carrying commits
+       * before its finished promise resolves, which consumes that false and
+       * resets the slot, so the destination falls back to the visited set and
+       * lands on the right answer anyway. But that ordering is React's to
+       * change, and inheriting a stale false would silently rob an unvisited
+       * page of its introduction. Answering for this navigation explicitly
+       * costs a line and does not depend on the ordering at all.
+       *
+       * No shared frame: nothing is named for a deferred plain navigation.
+       */
+      const navigate = () => {
+        pendingEntrance = playsEntranceOnNavigation(destination.pathname, visitedPaths, false)
+        router.push(href)
+      }
 
       event.preventDefault()
       superseded.skipTransition()
