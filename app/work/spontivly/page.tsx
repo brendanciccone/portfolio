@@ -71,7 +71,7 @@ export default function SpontivlyPage() {
               </p>
             </div>
           </div>
-          <div className="mt-6 sm:mt-7 bg-mockup-frame rounded-xl border border-border p-3 anim-rise [animation-delay:140ms] [view-transition-name:vt-spontivly]">
+          <div data-frame="spontivly" className="mt-6 sm:mt-7 bg-mockup-frame rounded-xl border border-border p-3 anim-rise [animation-delay:140ms]">
             <LightboxImage
               src="/work/spontivly/1.webp"
               alt="Spontivly social analytics dashboard showing engagement metrics, impression trends, and top performing content"

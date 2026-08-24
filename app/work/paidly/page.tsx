@@ -69,7 +69,7 @@ export default function PaidlyPage() {
               </p>
             </div>
           </div>
-          <div className="mt-6 sm:mt-7 bg-mockup-frame rounded-xl border border-border p-3 anim-rise [animation-delay:140ms] [view-transition-name:vt-paidly]">
+          <div data-frame="paidly" className="mt-6 sm:mt-7 bg-mockup-frame rounded-xl border border-border p-3 anim-rise [animation-delay:140ms]">
             <LightboxImage
               src="/work/paidly/1.webp"
               alt="Paidly mobile app showing invoice screens"
