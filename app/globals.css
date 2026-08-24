@@ -833,19 +833,33 @@ body {
 }
 
 /*
- * A navigation that cannot morph meaningfully drops every shared-element name,
- * so the root cross-fade carries the whole page on its own.
+ * The one shared-element name on the site, handed out for the length of a
+ * single navigation.
  *
- * Without this, leaving a case study scrolled 2800px down still morphed its
- * hero into the home card: the browser had both names, so it flew the image
- * in from far above the viewport and the page read as being thrown upward.
- * It also let the three unpaired card names animate as separate new entries.
+ * TransitionLink puts the project's slug on the root before it takes the
+ * outgoing snapshot and takes it off again when the transition ends, so both
+ * documents agree on which element is named — and only ever one is, which is
+ * why a single name is enough for four projects.
  *
- * Unlayered, and specific enough (0,3,0) to beat the Tailwind utilities that
- * assign the names — same layering reasoning as the longhand note above.
+ * Naming all four permanently, which is how this worked, meant every home ↔
+ * case-study trip carried three names that could not pair. Unpaired names do
+ * not sit the transition out: the browser lifts each one out of the root
+ * snapshot and gives it its own fade, so the home page arrived with holes where
+ * three of the four cards belong and they faded in a beat behind everything
+ * else. The morph is worth having; three orphans a navigation are not.
+ *
+ * A navigation with no frame to morph — about, contact, leaving a case study
+ * scrolled past its hero — sets nothing, so no element is named at all and the
+ * root cross-fade carries the whole page on its own.
+ *
+ * Unlayered, so it sits above Tailwind's utility layer, the same way the
+ * longhand animation rules above do.
  */
-:root[data-flat-transition] [class*="view-transition-name"] {
-  view-transition-name: none;
+:root[data-morph="corellium"] [data-frame="corellium"],
+:root[data-morph="immertec"] [data-frame="immertec"],
+:root[data-morph="spontivly"] [data-frame="spontivly"],
+:root[data-morph="paidly"] [data-frame="paidly"] {
+  view-transition-name: vt-frame;
 }
 
 /*

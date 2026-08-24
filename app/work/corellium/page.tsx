@@ -70,7 +70,7 @@ export default function CorelliumPage() {
               </p>
             </div>
           </div>
-          <div className="mt-6 sm:mt-7 bg-mockup-frame rounded-xl border border-border p-3 anim-rise [animation-delay:140ms] [view-transition-name:vt-corellium]">
+          <div data-frame="corellium" className="mt-6 sm:mt-7 bg-mockup-frame rounded-xl border border-border p-3 anim-rise [animation-delay:140ms]">
             <LightboxImage
               src="/work/corellium/1.webp"
               alt="Corellium virtual device platform dashboard"

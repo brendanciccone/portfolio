@@ -4,19 +4,8 @@ import { Badge } from "@/components/ui/badge"
 import { LightboxTrigger } from "@/components/lightbox-trigger"
 import { MockupImage } from "@/components/mockup-image"
 import { TransitionLink } from "@/components/view-transition-link"
+import { caseStudySlug } from "@/lib/shared-frame"
 import { cn } from "@/lib/utils"
-
-/*
- * Shared-element names for the card→case-study morph. Static literals so the
- * Tailwind scanner generates each class; the case-study hero frame carries
- * the matching name.
- */
-const transitionFrameClassByHref = new Map<string, string>([
-  ["/work/corellium", "[view-transition-name:vt-corellium]"],
-  ["/work/immertec", "[view-transition-name:vt-immertec]"],
-  ["/work/spontivly", "[view-transition-name:vt-spontivly]"],
-  ["/work/paidly", "[view-transition-name:vt-paidly]"],
-])
 
 export interface WorkCardData {
   title: string
@@ -73,6 +62,10 @@ export const WorkCard = ({
   priority,
 }: WorkCardProps): React.JSX.Element => {
   const isPlate = variant === "selected"
+  /* Marks the mat as this project's shared frame for the card→case-study
+     morph; the case study's hero carries the same slug. Lightbox and external
+     cards get nothing — there is no page on the other side to morph into. */
+  const frameSlug = href && !external ? caseStudySlug(href) : null
   /* Plates run one per row and their screenshot fills the mat, so it asks for
      the rail width less the card's own padding. Small cards are a fixed
      thumbnail beside their text at every width — 96px on a phone, 176px from sm
@@ -231,10 +224,8 @@ export const WorkCard = ({
           The rule, wherever a filled child meets a bordered parent's corner:
           inner radius = outer radius - border width. */}
       <div
-        className={cn(
-          "bg-mockup-frame overflow-hidden rounded-t-[11px] border-b border-border p-2.5",
-          href && transitionFrameClassByHref.get(href),
-        )}
+        data-frame={frameSlug ?? undefined}
+        className="bg-mockup-frame overflow-hidden rounded-t-[11px] border-b border-border p-2.5"
       >
         {/* Both variants render a plain image. Lightbox cards used to put the
             trigger button here, which made only the screenshot clickable on a

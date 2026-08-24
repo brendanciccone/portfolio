@@ -70,7 +70,7 @@ export default function ImmertecPage() {
               </p>
             </div>
           </div>
-          <div className="mt-6 sm:mt-7 bg-mockup-frame rounded-xl border border-border p-3 anim-rise [animation-delay:140ms] [view-transition-name:vt-immertec]">
+          <div data-frame="immertec" className="mt-6 sm:mt-7 bg-mockup-frame rounded-xl border border-border p-3 anim-rise [animation-delay:140ms]">
             <LightboxImage
               src="/work/immertec/1.webp"
               alt="Immertec platform showing a live surgical procedure with multiple participants"
