@@ -3,7 +3,6 @@ import type React from "react"
 import type { Metadata, Viewport } from "next"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
-import ScrollToTop from "@/components/scroll-to-top"
 import { ErrorBoundary } from "@/components/error-boundary"
 import { GridOverlay } from "@/components/grid-overlay"
 import { ScrollFlow } from "@/components/scroll-flow"
@@ -90,14 +89,36 @@ export default function RootLayout({
     // data-entrance ships on in the served HTML so a cold load plays its
     // choreography with no script involved and no flash of final state;
     // TransitionLink clears it for navigations that morph instead.
-    <html lang="en" suppressHydrationWarning data-entrance="" className={`${GeistSans.variable} font-sans`}>
+    //
+    // data-scroll-behavior is Next 16's opt-in for keeping the router's
+    // scroll reset instant while globals.css sets scroll-behavior: smooth.
+    // Without it, arriving on a new route from a scrolled page smooth-scrolls
+    // to the top: the case study painted mid-page at the home page's old
+    // offset, crawled upward, then snapped — on every navigation the view
+    // transition didn't cover (no browser support, failsafe skips, a click
+    // landing while a transition was in flight). The attribute makes Next
+    // force scroll-behavior: auto for the reset, so the new page's first
+    // painted frame is already at the top.
+    <html
+      lang="en"
+      suppressHydrationWarning
+      data-entrance=""
+      data-scroll-behavior="smooth"
+      className={`${GeistSans.variable} font-sans`}
+    >
       <head>
         <JsonLd />
       </head>
       <body suppressHydrationWarning>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem storageKey="theme-v3" disableTransitionOnChange>
           <ErrorBoundary>
-            <ScrollToTop />
+            {/* No manual scroll-to-top component here. The router already
+                resets scroll on push navigations (instantly, thanks to
+                data-scroll-behavior on <html>), and on Back/Forward the
+                browser restores the previous position. The old ScrollToTop
+                effect re-scrolled to 0 on every pathname change, which fought
+                that restoration: Back landed at the remembered offset, got
+                yanked to the top, then snapped back down. */}
             <ViewTransitionSettler />
             {/* Motion system, mounted once for every route. The reading
                 progress rail is NOT here: it lives in app/work/layout.tsx,
