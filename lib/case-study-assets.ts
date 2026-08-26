@@ -27,9 +27,11 @@ const caseStudyLogos = {
 export type CaseStudySlug = keyof typeof caseStudyLogos
 
 /* caseStudySlug() accepts any /work/ route shape; this narrows to the slugs
-   that actually have a logo to warm */
+   that actually have a logo to warm. Own-property check rather than `in`,
+   which also finds Object.prototype — and "constructor" is a lowercase name
+   the route-slug pattern would let through. */
 export const hasCaseStudyLogo = (slug: string): slug is CaseStudySlug =>
-  slug in caseStudyLogos
+  Object.prototype.hasOwnProperty.call(caseStudyLogos, slug)
 
 export interface CaseStudyLogoProps extends CaseStudyLogoImage {
   width: number

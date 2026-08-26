@@ -27,6 +27,13 @@ describe("hasCaseStudyLogo", () => {
     expect(hasCaseStudyLogo("about")).toBe(false)
     expect(hasCaseStudyLogo("")).toBe(false)
   })
+
+  /* `in` would say yes to anything Object.prototype carries, and
+     "constructor" is the one such name the route-slug pattern also allows */
+  it("rejects inherited object properties", () => {
+    expect(hasCaseStudyLogo("constructor")).toBe(false)
+    expect(hasCaseStudyLogo("toString")).toBe(false)
+  })
 })
 
 describe("caseStudyLogoProps", () => {
