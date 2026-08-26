@@ -11,6 +11,7 @@ export const metadata = generatePageMetadata({
 });
 
 import Image from "next/image"
+import { caseStudyLogoProps, WORK_FRAME_SIZES } from "@/lib/case-study-assets"
 import { LightboxImage } from "@/components/lightbox"
 import { ImageComparison } from "@/components/image-comparison"
 import Link from "next/link"
@@ -31,6 +32,10 @@ const sections = [
   { id: "chart-customization", label: "Charts" },
   { id: "insights", label: "Insights" },
 ]
+
+/* Rendered by the header below and warmed by TransitionLink before the
+   navigation that lands here — one set of props, one URL. */
+const headerLogo = caseStudyLogoProps("spontivly")
 
 const caseMeta: readonly StatRow[] = [
   { label: "Role", value: "Senior Product Designer (Contract)" },
@@ -55,14 +60,17 @@ export default function SpontivlyPage() {
           {/* The framed hero below is left alone: it carries the
               shared-element name for the card→case-study morph */}
           <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+            {/* Props shared with the TransitionLink warm-up — see
+                lib/case-study-assets.ts. priority, because a client navigation
+                still fetches this one header asset and the lazy-load gate held
+                the request until after layout; bg-card, so any instant the
+                fetch does need reads as a designed plate rather than a hollow
+                border. */}
             <Image
-              src="/about/logos/spontivly.jpeg"
-              alt="Spontivly logo"
-              width={60}
-              height={60}
-              className="w-12 h-12 sm:w-[60px] sm:h-[60px] object-cover rounded-lg border border-border flex-shrink-0 anim-rise [animation-delay:60ms]"
-              quality={80}
-              sizes="60px"
+              {...headerLogo}
+              alt={headerLogo.alt}
+              priority
+              className="w-12 h-12 sm:w-[60px] sm:h-[60px] object-cover rounded-lg border border-border bg-card flex-shrink-0 anim-rise [animation-delay:60ms]"
             />
             <div className="min-w-0 anim-rise [animation-delay:100ms]">
               <h1 className="title-display text-2xl">Spontivly</h1>
@@ -80,7 +88,7 @@ export default function SpontivlyPage() {
               className="w-full"
               priority
               quality={80}
-              sizes="(max-width: 640px) 100vw, (max-width: 768px) 90vw, 680px"
+              sizes={WORK_FRAME_SIZES}
             />
           </div>
           {/* Under the image, not above it: as chips these four wrapped to two
