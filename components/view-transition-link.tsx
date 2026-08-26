@@ -2,14 +2,17 @@
 
 import type React from "react"
 import Link from "next/link"
+import { getImageProps } from "next/image"
 import { usePathname, useRouter } from "next/navigation"
 import { useEffect, useLayoutEffect } from "react"
+import { preload } from "react-dom"
+import { caseStudyLogoProps, hasCaseStudyLogo, type CaseStudySlug } from "@/lib/case-study-assets"
 import {
   normalisePath,
   playsEntranceOnNavigation,
   resolveEntranceOnCommit,
 } from "@/lib/entrance"
-import { sharedFrameSlug } from "@/lib/shared-frame"
+import { caseStudySlug, sharedFrameSlug } from "@/lib/shared-frame"
 
 /*
  * Same-document view transitions for internal navigation. The card's framed
@@ -74,6 +77,40 @@ let pendingEntrance: boolean | null = null
 /* Assigned by the [data-morph] rule in globals.css. One name, because only one
    pair is ever named at a time — see lib/shared-frame.ts. */
 const frameSelector = (slug: string): string => `[data-frame="${slug}"]`
+
+/*
+ * Logos already handed to the browser this session. preload() dedupes by URL,
+ * but building the URL means running the image loader; this makes every mount
+ * after a logo's first — each return to the home page — free.
+ */
+const warmedLogoSlugs = new Set<CaseStudySlug>()
+
+/*
+ * Hands the browser a case-study logo before the click that needs it.
+ *
+ * The logo is the one asset in a case study's header the page linking to it
+ * has never fetched: the hero is the card's own screenshot and arrives from
+ * cache, so the logo was the piece that popped into an already-settled header
+ * a beat after every navigation — cold, and behind a lazy-load gate that
+ * didn't even start the request until the new page had laid out.
+ *
+ * getImageProps runs the same loader with the same shared props the header's
+ * <Image> renders with, and the srcset/sizes pair rides along on the preload,
+ * so the browser resolves the exact URL the case study will ask for — a warm
+ * fetch that misses the render's URL would be pure waste.
+ */
+const warmCaseStudyLogo = (slug: CaseStudySlug): void => {
+  if (warmedLogoSlugs.has(slug)) return
+  warmedLogoSlugs.add(slug)
+
+  const { props } = getImageProps(caseStudyLogoProps(slug))
+  preload(props.src, {
+    as: "image",
+    imageSrcSet: props.srcSet,
+    imageSizes: props.sizes,
+    fetchPriority: "low",
+  })
+}
 
 /*
  * Is this frame on screen right now?
@@ -193,6 +230,30 @@ type TransitionLinkProps = Omit<React.ComponentProps<typeof Link>, "href"> & { h
 export const TransitionLink = ({ href, onClick, children, ...rest }: TransitionLinkProps): React.JSX.Element => {
   const router = useRouter()
   const pathname = usePathname()
+
+  /*
+   * A rendered link into a case study is a navigation the visitor may well
+   * take, and the logo on the far side is a couple of KB — so it is warmed as
+   * soon as this page has finished its own loading, rather than on hover,
+   * which would leave touch visitors (who get no hover) exactly the cold
+   * fetch this exists to remove.
+   *
+   * Waiting for window load instead of firing on mount keeps the warm-up out
+   * of the page's own critical path on a hard load; after a client
+   * navigation readyState is already complete and it runs at once.
+   */
+  useEffect(() => {
+    const slug = caseStudySlug(href)
+    if (slug === null || !hasCaseStudyLogo(slug)) return
+
+    if (document.readyState === "complete") {
+      warmCaseStudyLogo(slug)
+      return
+    }
+    const handleLoad = () => warmCaseStudyLogo(slug)
+    window.addEventListener("load", handleLoad, { once: true })
+    return () => window.removeEventListener("load", handleLoad)
+  }, [href])
 
   const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     onClick?.(event)

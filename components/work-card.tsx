@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge"
 import { LightboxTrigger } from "@/components/lightbox-trigger"
 import { MockupImage } from "@/components/mockup-image"
 import { TransitionLink } from "@/components/view-transition-link"
+import { WORK_FRAME_SIZES } from "@/lib/case-study-assets"
 import { caseStudySlug } from "@/lib/shared-frame"
 import { cn } from "@/lib/utils"
 
@@ -67,11 +68,13 @@ export const WorkCard = ({
      cards get nothing — there is no page on the other side to morph into. */
   const frameSlug = href && !external ? caseStudySlug(href) : null
   /* Plates run one per row and their screenshot fills the mat, so it asks for
-     the rail width less the card's own padding. Small cards are a fixed
-     thumbnail beside their text at every width — 96px on a phone, 176px from sm
-     up — so asking for 100vw below sm fetched an image about four times wider
-     than the slot it lands in, on the viewport with the most traffic. */
-  const sizes = isPlate ? "(max-width: 768px) 100vw, 660px" : "(max-width: 640px) 96px, 176px"
+     the rail width less the card's own padding — via the string the case-study
+     hero shares, so the morph's far side always hits this card's cache. Small
+     cards are a fixed thumbnail beside their text at every width — 96px on a
+     phone, 176px from sm up — so asking for 100vw below sm fetched an image
+     about four times wider than the slot it lands in, on the viewport with the
+     most traffic. */
+  const sizes = isPlate ? WORK_FRAME_SIZES : "(max-width: 640px) 96px, 176px"
 
   /*
    * Small cards run horizontally: a fixed thumbnail on the left, the text
