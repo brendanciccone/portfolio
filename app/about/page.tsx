@@ -154,43 +154,37 @@ const publications = [
 
 const albums = [
   {
-    name: "Take Me to Your Leader",
-    artist: "King Geedorah",
+    name: "This Mirror Weighs a Ton",
+    artist: "Interpol",
     cover: "/about/albums/album1.webp",
-    url: "https://music.apple.com/us/album/take-me-to-your-leader/416318858",
+    url: "https://music.apple.com/us/album/this-mirror-weighs-a-ton/6768694728",
   },
   {
-    name: "I Looked Out",
-    artist: "Greg Freeman",
+    name: "On Avery Island",
+    artist: "Neutral Milk Hotel",
     cover: "/about/albums/album2.webp",
-    url: "https://music.apple.com/us/album/i-looked-out/1776689075",
+    url: "https://music.apple.com/us/album/on-avery-island/1839074660",
   },
   {
-    name: "Love Is Not Enough",
-    artist: "Converge",
+    name: "Life in Small Spaces",
+    artist: "Black Marble",
     cover: "/about/albums/album3.webp",
-    url: "https://music.apple.com/us/album/love-is-not-enough/1848413292",
+    url: "https://music.apple.com/us/album/life-in-small-spaces/6768450506",
   },
   {
-    name: "LOTTO",
-    artist: "They Are Gutting a Body of Water",
+    name: "Greatest Hits, Vol. 2",
+    artist: "Ovlov",
     cover: "/about/albums/album4.webp",
-    url: "https://music.apple.com/us/album/lotto/1821845532",
+    url: "https://music.apple.com/us/album/greatest-hits-vol-2/1438672380",
   },
 ]
 
 const books = [
   {
-    name: "Brave New World",
-    author: "Aldous Huxley",
+    name: "Parable of the Sower",
+    author: "Octavia E. Butler",
     cover: "/about/books/book1.webp",
-    url: "https://bookshop.org/p/books/brave-new-world-aldous-huxley/f7c8af7eeabea853?ean=9780060850524&next=t",
-  },
-  {
-    name: "Blood Meridian",
-    author: "Cormac McCarthy",
-    cover: "/about/books/book2.webp",
-    url: "https://bookshop.org/p/books/blood-meridian-or-the-evening-redness-in-the-west-cormac-mccarthy/6697128?ean=9780679728757&next=t",
+    url: "https://bookshop.org/p/books/parable-of-the-sower-a-novel-octavia-e-butler/251d041cc94c99c2?ean=9781538732182",
   },
 ]
 
