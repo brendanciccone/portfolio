@@ -13,6 +13,14 @@ that serves the prebuilt `out/` directory:
   replace the `redirects()` / `headers()` blocks that used to live in
   `next.config.mjs` (both are ignored under `output: 'export'`). Workers static
   assets honor these files from the assets root.
+- Images that get swapped for new artwork live in `assets/` and are imported,
+  not referenced by path from `public/`. The bundler emits those to
+  `/_next/static/media/` under a content hash, so replacing the file changes the
+  URL and every cache misses it — browser, edge, and the `/cdn-cgi/image/`
+  variants alike. A file under `public/` keeps its path forever, and the
+  week-long `Cache-Control` below would serve the old bytes to anyone who had
+  already loaded the page. Put an image in `public/` only when its content is
+  fixed (logos, tool icons) or something external links to its URL.
 
 > **Why a Worker and not Pages?** Either works for a static export, but a
 > git-connected build runs `wrangler deploy`, and with no config present
