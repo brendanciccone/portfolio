@@ -9,17 +9,7 @@ import { Badge } from "@/components/ui/badge"
 import { generatePageMetadata } from "@/lib/metadata"
 import { cn } from "@/lib/utils"
 import Image from "next/image"
-/* Cover art is imported rather than referenced from public/ so Next
-   content-hashes each file into /_next/static/media/. The hash changes with the
-   bytes, so swapping in new artwork changes the URL and busts every cache by
-   itself. Under public/ the path never changes, and the week-long
-   Cache-Control in public/_headers would serve the old cover to anyone who had
-   already loaded this page. */
-import album1Cover from "@/assets/about/albums/album1.webp"
-import album2Cover from "@/assets/about/albums/album2.webp"
-import album3Cover from "@/assets/about/albums/album3.webp"
-import album4Cover from "@/assets/about/albums/album4.webp"
-import book1Cover from "@/assets/about/books/book1.webp"
+import { albums, books } from "./currently"
 
 export const metadata = generatePageMetadata({
   title: "About",
@@ -160,42 +150,6 @@ const publications = [
     venue: "Society for Simulation in Healthcare",
     date: "Jan 31, 2021",
     url: "https://pubmed.ncbi.nlm.nih.gov/35093978/",
-  },
-]
-
-const albums = [
-  {
-    name: "This Mirror Weighs a Ton",
-    artist: "Interpol",
-    cover: album1Cover,
-    url: "https://music.apple.com/us/album/this-mirror-weighs-a-ton/6768694728",
-  },
-  {
-    name: "On Avery Island",
-    artist: "Neutral Milk Hotel",
-    cover: album2Cover,
-    url: "https://music.apple.com/us/album/on-avery-island/1839074660",
-  },
-  {
-    name: "Life in Small Spaces",
-    artist: "Black Marble",
-    cover: album3Cover,
-    url: "https://music.apple.com/us/album/life-in-small-spaces/6768450506",
-  },
-  {
-    name: "Greatest Hits, Vol. 2",
-    artist: "Ovlov",
-    cover: album4Cover,
-    url: "https://music.apple.com/us/album/greatest-hits-vol-2/1438672380",
-  },
-]
-
-const books = [
-  {
-    name: "Parable of the Sower",
-    author: "Octavia E. Butler",
-    cover: book1Cover,
-    url: "https://bookshop.org/p/books/parable-of-the-sower-a-novel-octavia-e-butler/251d041cc94c99c2?ean=9781538732182",
   },
 ]
 
