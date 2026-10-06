@@ -179,7 +179,7 @@ export default function CorelliumPage() {
               I designed the system to be modular, handling complex IoT devices with unique configuration requirements just as easily as standard iOS or Android setups. Future device types can be added without rearchitecting the experience, whether for new use cases or entirely new revenue lines.
             </p>
             <p>
-              The redesign is <span className="text-foreground font-semibold">fully designed and approved</span>, but a major internal shift reprioritized the roadmap before it reached engineering, and it&apos;s currently queued for implementation. That outcome reinforced the lesson at the heart of this project: in enterprise B2B, foundational UX work has to be re-sold as priorities change, not just sold once.
+              The redesign is <span className="text-foreground font-semibold">fully designed and approved</span>. Engineering started the build, but a major internal shift reprioritized the roadmap and it paused before completion. That outcome reinforced the lesson at the heart of this project: in enterprise B2B, foundational UX work has to be re-sold as priorities change, not just sold once.
             </p>
           </div>
           <div className="flex flex-col gap-4">
