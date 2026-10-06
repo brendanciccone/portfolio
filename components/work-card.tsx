@@ -1,4 +1,5 @@
 import type React from "react"
+import Image from "next/image"
 import Link from "next/link"
 import { Badge } from "@/components/ui/badge"
 import { LightboxTrigger } from "@/components/lightbox-trigger"
@@ -16,6 +17,14 @@ export interface WorkCardData {
   /* Omit href to render a lightbox card (no page to link to) */
   href?: string
   external?: boolean
+}
+
+export interface CompactWorkCardData {
+  title: string
+  description: string
+  logo: { src: string; alt: string }
+  /* Always off-site, so it opens in a new tab */
+  href: string
 }
 
 interface WorkCardProps extends WorkCardData {
@@ -313,3 +322,30 @@ export const WorkCard = ({
 
   return <div className={cardClasses}>{body}</div>
 }
+
+/*
+ * A logo, a name and one line, for work that lives off this site. Same panel,
+ * hover and title rule as the cards above; the type and padding are the Other
+ * Work row's.
+ */
+export const CompactWorkCard = ({ title, description, logo, href }: CompactWorkCardData): React.JSX.Element => (
+  <Link href={href} className={cardClasses} target="_blank" rel="noopener noreferrer">
+    <div className="flex items-center gap-3 p-3 sm:gap-4 sm:p-4">
+      <Image
+        src={logo.src}
+        alt={logo.alt}
+        width={48}
+        height={48}
+        quality={80}
+        sizes="48px"
+        className="w-12 h-12 shrink-0 object-cover rounded-lg border border-border bg-card"
+      />
+      <div className="min-w-0 flex-1">
+        <h3 className="text-base font-heading font-semibold leading-tight mb-1">
+          <span className={titleWipeClasses}>{title}</span>
+        </h3>
+        <p className="text-muted-foreground text-sm">{description}</p>
+      </div>
+    </div>
+  </Link>
+)

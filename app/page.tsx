@@ -4,7 +4,7 @@ import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { SectionLabel } from "@/components/section-label"
 import { StatRows, type StatRow } from "@/components/stat-rows"
-import { WorkCard, type WorkCardData } from "@/components/work-card"
+import { CompactWorkCard, WorkCard, type CompactWorkCardData, type WorkCardData } from "@/components/work-card"
 
 /*
  * Grid siblings melt at slightly different rates as they leave the top of the
@@ -100,7 +100,7 @@ const otherWork: readonly WorkCardData[] = [
       src: "/work/crenel/1.webp",
       alt: "Crenel autoposting platform showing automatic crossposting across social platforms",
     },
-    tags: ["2025", "Coinbase Accelerator"],
+    tags: ["2025-2026", "Coinbase Accelerator"],
   },
   {
     title: "Magier",
@@ -119,6 +119,15 @@ const otherWork: readonly WorkCardData[] = [
       alt: "Biobox link-in-bio platform leveraging onchain data",
     },
     tags: ["2021", "ETHGlobal Winner", "Web3"],
+  },
+]
+
+const openSource: readonly CompactWorkCardData[] = [
+  {
+    title: "Storysync",
+    description: "Design system sync from code to Figma",
+    logo: { src: "/about/logos/storysync.jpeg", alt: "Storysync logo" },
+    href: "https://github.com/brendanciccone/storysync",
   },
 ]
 
@@ -236,6 +245,18 @@ export default function Portfolio() {
             {otherWork.map((project, index) => (
               <div key={project.title} data-flow={flowStagger[index % flowStagger.length]} className="h-full">
                 <WorkCard {...project} variant="other" />
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section data-flow className="flex flex-col gap-5">
+          <SectionLabel title="Open Source" />
+
+          <div className="flex flex-col gap-6 sm:gap-3">
+            {openSource.map((project, index) => (
+              <div key={project.title} data-flow={flowStagger[index % flowStagger.length]} className="h-full">
+                <CompactWorkCard {...project} />
               </div>
             ))}
           </div>

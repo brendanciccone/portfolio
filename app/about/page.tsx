@@ -88,7 +88,7 @@ const founderWork: readonly ExperienceEntry[] = [
   {
     role: "Founder",
     org: "Crenel",
-    date: "2025",
+    date: "2025-2026",
     logo: { src: "/about/logos/crenel.jpeg", alt: "Crenel logo" },
   },
   {
@@ -134,6 +134,12 @@ const certificates: readonly ExperienceEntry[] = [
 
 const publications = [
   {
+    title: "Assessing Usability of Untethered Head-Mounted Displays for Medical Education: A Within-Person Randomized Trial",
+    venue: "Society for Simulation in Healthcare",
+    date: "Jan 31, 2022",
+    url: "https://pubmed.ncbi.nlm.nih.gov/35093978/",
+  },
+  {
     title: "The Next Generation of Virtual Reality: Recommendations for Accessible and Ergonomic Design",
     venue: "Ergonomics in Design: The Quarterly of Human Factors Applications",
     date: "Mar 23, 2021",
@@ -144,12 +150,6 @@ const publications = [
     venue: "Proceedings of the Human Factors and Ergonomics Society Annual Meeting",
     date: "Feb 9, 2021",
     url: "https://journals.sagepub.com/doi/abs/10.1177/1071181320641514",
-  },
-  {
-    title: "Assessing Usability of Untethered Head-Mounted Displays for Medical Education: A Within-Person Randomized Trial",
-    venue: "Society for Simulation in Healthcare",
-    date: "Jan 31, 2021",
-    url: "https://pubmed.ncbi.nlm.nih.gov/35093978/",
   },
 ]
 
@@ -298,7 +298,7 @@ export default function About() {
                 I&apos;m a 0 → 1 product designer and founder with <span className="text-foreground font-semibold">8 years of experience</span> shipping B2B products at early-stage startups in healthcare, cybersecurity, and finance.
               </p>
               <p>
-                As founding product designer at Immertec, I led a platform redesign that <span className="text-foreground font-semibold">increased SUS from 68 to 83</span>, hired and managed 2 product designers, and helped secure <span className="text-foreground font-semibold">$12M in Series A</span> funding. At Corellium, I owned end-to-end product design, shipped CI/CD-integrated threat analysis tools, and achieved an 81 SUS score that contributed to a <span className="text-foreground font-semibold">$200M acquisition</span> by Cellebrite.
+                As founding product designer at Immertec, I led a platform redesign that <span className="text-foreground font-semibold">increased SUS from 68 to 83</span>, hired and managed 2 product designers, and helped secure <span className="text-foreground font-semibold">$12M in Series A</span> funding. At Corellium, I owned end-to-end product design, shipped a CI/CD-integrated mobile threat analysis tool, reached an 81 SUS score, and led design for the WCAG initiative and design system that contributed to a <span className="text-foreground font-semibold">$200M acquisition</span> by Cellebrite.
               </p>
             </div>
             {/* The publications sentence that used to close this block is gone.
