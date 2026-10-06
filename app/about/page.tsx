@@ -311,9 +311,21 @@ export default function About() {
                 Work has none for Techstars or the Coinbase intake. That one had
                 nothing of its own, so it read as a hedge in front of stronger
                 evidence. */}
-            <div className="anim-rise [animation-delay:200ms]">
+            <div className="space-y-4 anim-rise [animation-delay:200ms]">
               <p>
                 I founded Paidly in 2020, a Stripe-integrated invoicing app used by <span className="text-foreground font-semibold">over 2,000 SMEs</span>. In 2023 I started Magier, an AI startup that was <span className="text-foreground font-semibold">acquired the same year</span> and accepted into <span className="text-foreground font-semibold">Techstars&apos; 2024</span> cohort. In late 2025, I launched Crenel, a tool for automatic crossposting across social platforms, and was <span className="text-foreground font-semibold">selected for Coinbase&apos;s accelerator</span> (50 of 900+ applicants).
+              </p>
+              <p>
+                In 2026 I released{" "}
+                <Link
+                  href="https://github.com/brendanciccone/storysync"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline underline-offset-4 decoration-border hover:decoration-foreground transition-colors"
+                >
+                  Storysync
+                </Link>
+                , an open-source tool that lets an AI agent sync a design system from Storybook to Figma, then checks what landed against the rendered components.
               </p>
             </div>
           </div>

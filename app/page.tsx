@@ -125,7 +125,7 @@ const otherWork: readonly WorkCardData[] = [
 const openSource: readonly CompactWorkCardData[] = [
   {
     title: "Storysync",
-    description: "Design system sync from code to Figma",
+    description: "Design system sync from Storybook to Figma",
     logo: { src: "/about/logos/storysync.jpeg", alt: "Storysync logo" },
     href: "https://github.com/brendanciccone/storysync",
   },
