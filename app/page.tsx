@@ -100,7 +100,7 @@ const otherWork: readonly WorkCardData[] = [
       src: "/work/crenel/1.webp",
       alt: "Crenel autoposting platform showing automatic crossposting across social platforms",
     },
-    tags: ["2025", "Coinbase Accelerator"],
+    tags: ["2025-2026", "Coinbase Accelerator"],
   },
   {
     title: "Magier",
