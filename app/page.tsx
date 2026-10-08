@@ -129,6 +129,12 @@ const openSource: readonly CompactWorkCardData[] = [
     logo: { src: "/about/logos/storysync.jpeg", alt: "Storysync logo" },
     href: "https://github.com/brendanciccone/storysync",
   },
+  {
+    title: "OSRS AI Chat",
+    description: "RuneLite plugin for chatting with AI models in game",
+    logo: { src: "/about/logos/osrs-ai-chat.png", alt: "OSRS AI Chat logo" },
+    href: "https://github.com/brendanciccone/osrs-ai-chat",
+  },
 ]
 
 export default function Portfolio() {
