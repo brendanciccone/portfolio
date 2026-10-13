@@ -89,7 +89,9 @@ const linkTarget = (element) => {
 const contentText = (element) => {
   const children = [...element.childNodes].filter((child) => !isElement(child) || !isSkipped(child))
   const elements = children.filter(isElement)
-  const hasOwnText = children.some((child) => child.nodeType === TEXT_NODE && collapse(child.textContent ?? ""))
+  // A bare space counts: in <strong>Fast</strong> <em>secure</em> it is the
+  // word break, not a gap between chips
+  const hasOwnText = children.some((child) => child.nodeType === TEXT_NODE && (child.textContent ?? "") !== "")
 
   // Sibling elements with no text between them are separate items on screen
   // (a row of tag chips, the lines of a card), which would otherwise run

@@ -39,6 +39,11 @@ describe('mainToMarkdown', () => {
     expect(markdown).toBe('- Role: Staff Product Designer\n- Timeline: 2023–Present')
   })
 
+  it('keeps the space between inline elements in a sentence', () => {
+    const markdown = mainToMarkdown(page('<p><strong>Fast</strong> <em>secure</em></p>'))
+    expect(markdown).toBe('Fast secure')
+  })
+
   it('separates a row of chips instead of running them together', () => {
     const markdown = mainToMarkdown(page('<div><span>2023</span><span>Acquired</span><span>AI</span></div>'))
     expect(markdown).toBe('2023 · Acquired · AI')
