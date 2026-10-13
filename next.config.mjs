@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Static export for Cloudflare Pages — the site has no runtime server.
+  // Static export for Cloudflare Workers static assets — the site has no runtime server.
   // redirects() and headers() are ignored under output: 'export', so:
   //  - www → apex (permanent 308) lives in a Cloudflare zone Redirect Rule
   //  - legacy /work/*.png → .webp redirects live in public/_redirects

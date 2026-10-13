@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Serves the static export in out/ the way Cloudflare Pages does:
+ * Serves the static export in out/ the way Cloudflare's asset hosting does:
  * clean URLs fall back to <path>.html, unknown routes get 404.html, and
  * /cdn-cgi/image/<options>/<src> (Cloudflare Image Transformations, which
  * only exist at Cloudflare's edge) passes through to the original asset so

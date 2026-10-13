@@ -1,7 +1,7 @@
 # Mockup PNGs were converted to WebP. Keep cached HTML, indexed URLs, and
 # shared social-media links resolving until they're refreshed. This replaces
 # the next.config.mjs redirects() rule, which is ignored under output: 'export'.
-# Cloudflare Pages _redirects can't rewrite file extensions with a pattern, so
+# Cloudflare's _redirects can't rewrite file extensions with a pattern, so
 # the legacy set is enumerated (it's fixed — files added after the conversion
 # never had .png URLs in the wild).
 #
