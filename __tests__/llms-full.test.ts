@@ -49,6 +49,11 @@ describe('mainToMarkdown', () => {
     expect(markdown).toBe('2023 · Acquired · AI')
   })
 
+  it('still separates chips when the row has whitespace around it', () => {
+    const markdown = mainToMarkdown(page('<div> <span>2023</span><span>Acquired</span> </div>'))
+    expect(markdown).toBe('2023 · Acquired')
+  })
+
   it('flattens a laid-out list item into one line, keeping its links', () => {
     const markdown = mainToMarkdown(
       page('<ul><li><div><p>Designer</p><p><a href="https://www.fourpixels.xyz">Four Pixels</a></p></div><span>2015-2018</span></li></ul>'),

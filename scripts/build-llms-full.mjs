@@ -89,14 +89,17 @@ const linkTarget = (element) => {
 const contentText = (element) => {
   const children = [...element.childNodes].filter((child) => !isElement(child) || !isSkipped(child))
   const elements = children.filter(isElement)
-  // A bare space counts: in <strong>Fast</strong> <em>secure</em> it is the
-  // word break, not a gap between chips
-  const hasOwnText = children.some((child) => child.nodeType === TEXT_NODE && (child.textContent ?? "") !== "")
+  const hasWords = children.some((child) => child.nodeType === TEXT_NODE && collapse(child.textContent ?? ""))
+  // Only text between the first and last element can join them. A bare space
+  // there counts (in <strong>Fast</strong> <em>secure</em> it is the word
+  // break); whitespace before the first or after the last separates nothing.
+  const between = children.slice(children.indexOf(elements[0]), children.indexOf(elements[elements.length - 1]) + 1)
+  const hasTextBetween = between.some((child) => child.nodeType === TEXT_NODE && (child.textContent ?? "") !== "")
 
   // Sibling elements with no text between them are separate items on screen
   // (a row of tag chips, the lines of a card), which would otherwise run
   // together into one word
-  if (elements.length > 1 && !hasOwnText) {
+  if (elements.length > 1 && !hasWords && !hasTextBetween) {
     return elements.map((child) => collapse(inlineText(child))).filter(Boolean).join(" · ")
   }
   return children.map(inlineText).join("")
