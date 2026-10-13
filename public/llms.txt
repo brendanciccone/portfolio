@@ -2,7 +2,7 @@
 
 > Brendan Ciccone is a staff product designer and founder with 8 years of experience shipping B2B products at early-stage startups in healthcare, cybersecurity, and finance.
 
-This is the portfolio site of Brendan Ciccone. It contains four in-depth product design case studies, a professional background page, and a contact page. Crawling rules live in [robots.txt](https://brendanciccone.com/robots.txt); the full URL list lives in [sitemap.xml](https://brendanciccone.com/sitemap.xml).
+This is the portfolio site of Brendan Ciccone. It contains four in-depth product design case studies, a professional background page, and a contact page. The home page also lists founder work without a case study: Crenel (2025–2026, Coinbase Accelerator), Magier (2023, acquired), and Biobox (2021, ETHGlobal winner). The full text of every page is in [llms-full.txt](https://brendanciccone.com/llms-full.txt). Crawling rules live in [robots.txt](https://brendanciccone.com/robots.txt); the full URL list lives in [sitemap.xml](https://brendanciccone.com/sitemap.xml).
 
 ## Case studies
 
@@ -16,6 +16,16 @@ This is the portfolio site of Brendan Ciccone. It contains four in-depth product
 - [Home](https://brendanciccone.com/): Overview of Brendan's work, selected case studies, and current focus.
 - [About](https://brendanciccone.com/about/): Professional experience, roles, and the products shipped across 8 years of design work.
 - [Contact](https://brendanciccone.com/contact/): How to get in touch about design work and collaboration.
+
+## Open source
+
+- [Storysync](https://github.com/brendanciccone/storysync): Lets an AI agent sync a design system from Storybook to Figma, then checks what landed against the rendered components.
+- [OSRS AI Chat](https://github.com/brendanciccone/osrs-ai-chat): RuneLite plugin for chatting with AI models in game.
+
+## Profiles
+
+- [LinkedIn](https://www.linkedin.com/in/brendanciccone/): Professional history.
+- [GitHub](https://github.com/brendanciccone): Open-source work and contribution history.
 
 ## Usage guidance
 

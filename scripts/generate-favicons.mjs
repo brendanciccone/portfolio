@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /**
- * Regenerates the PNG/ICO favicon set from the site mark (the red stamp
- * period on paper — keep in sync with app/icon.svg, which serves the
- * dark-mode-aware SVG favicon for modern browsers).
+ * Regenerates the PNG/ICO favicon set from the site mark in app/icon.svg.
+ * Re-run after changing the mark; the SVG itself serves the dark-mode-aware
+ * favicon for modern browsers.
  *
  * Usage: node scripts/generate-favicons.mjs
  */

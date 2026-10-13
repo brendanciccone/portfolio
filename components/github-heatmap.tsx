@@ -118,7 +118,10 @@ export const GitHubHeatmap = (): React.JSX.Element => {
   const grid = showData ? weeks : skeletonWeeks
 
   return (
-    <div>
+    /* Busy until the contributions arrive. Assistive tech holds off on the
+       empty skeleton, and scripts/build-llms-full.mjs leaves it out rather
+       than reporting "Loading contributions" as page content. */
+    <div aria-busy={!showData}>
       <div ref={scrollRef} className="overflow-x-auto pb-1">
         <div className="flex gap-[3px] w-max">
           {grid.map((week, weekIndex) => (

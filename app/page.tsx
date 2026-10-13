@@ -4,6 +4,7 @@ import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { SectionLabel } from "@/components/section-label"
 import { StatRows, type StatRow } from "@/components/stat-rows"
+import { OpenInLinks } from "@/components/open-in-links"
 import { CompactWorkCard, WorkCard, type CompactWorkCardData, type WorkCardData } from "@/components/work-card"
 
 /*
@@ -204,6 +205,15 @@ export default function Portfolio() {
                 rows, and deliberately so: there the hero image already separates
                 the sentence from the facts, and here nothing does. */}
             <StatRows rows={introStats} className="mt-10 anim-rise [animation-delay:220ms]" />
+            {/* 32px under the last rule on a phone, 40 from sm up. At 24 the
+                pills sat close enough to the rule to read as a row of the
+                table, an action on "Currently" rather than on the whole page.
+                40 is the gap the intro keeps from these rows, so the hero
+                reads as three even beats: sentence, facts, actions. At both
+                sizes the gap above stays smaller than the section gap below
+                (40 on a phone, 48 from sm), so the pills still close the hero
+                instead of floating between it and Selected Work. */}
+            <OpenInLinks className="mt-8 sm:mt-10 anim-rise [animation-delay:260ms]" />
           </div>
         </section>
 
